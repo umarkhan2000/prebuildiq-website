@@ -1,0 +1,60 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@500&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Off-white background -->
+  <rect width="1584" height="396" fill="#f4f2ed"/>
+
+  <!-- Subtle blueprint grid — very faint -->
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#1b3a5c" stroke-width="0.4" opacity="0.07"/>
+    </pattern>
+  </defs>
+  <rect width="1584" height="396" fill="url(#grid)"/>
+
+  <!-- Orange accent line -->
+  <line x1="860" y1="118" x2="1484" y2="118" stroke="#ff6a13" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Slogan — scaled down, more breathing room -->
+  <text
+    x="860"
+    y="202"
+    font-family="'Instrument Serif', Georgia, 'Times New Roman', serif"
+    font-size="58"
+    font-style="italic"
+    font-weight="400"
+    fill="#0f1e30"
+    letter-spacing="-1"
+  >Clarity,</text>
+
+  <text
+    x="860"
+    y="272"
+    font-family="'Instrument Serif', Georgia, 'Times New Roman', serif"
+    font-size="58"
+    font-style="italic"
+    font-weight="400"
+    fill="#ff6a13"
+    letter-spacing="-1"
+  >before concrete.</text>
+
+  <!-- Divider -->
+  <line x1="860" y1="300" x2="1484" y2="300" stroke="#1b3a5c" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- Tagline -->
+  <text
+    x="860"
+    y="332"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="12"
+    font-weight="500"
+    fill="#1b3a5c"
+    letter-spacing="2"
+    opacity="0.4"
+  >Canada's first pre-development intelligence platform</text>
+
+</svg>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>Terms of Service — PreBuildIQ</title>
+<link rel="icon" type="image/png" href="logo_300.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light only;
+    --bg: #ffffff;
+    --bg-2: #f7f8fa;
+    --ink: #0f1e30;
+    --ink-2: #3d4a5c;
+    --muted: #7b8594;
+    --line: #e2e5ea;
+    --line-soft: rgba(15,30,48,0.07);
+    --navy: #1b3a5c;
+    --navy-dark: #122a43;
+    --accent: #ff6a13;
+    --accent-soft: #fff0e6;
+    --paper: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
+  html { background: #ffffff; scrollbar-width: none; overflow-x: hidden; scroll-behavior: smooth; }
+  html::-webkit-scrollbar { display: none; }
+  body { font-family: 'DM Sans', Arial, Helvetica, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1; background-image: linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px); background-size: 48px 48px; background-position: -1px -1px; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 1.25rem 2.5rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(255,255,255,0.94); border-bottom: 1px solid var(--line); }
+  .logo { display: flex; align-items: center; gap: 0.65rem; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+  .logo-mark { width: 28px; height: 28px; background: var(--navy); border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .logo-mark::before { content: ''; position: absolute; width: 14px; height: 14px; border: 1.5px solid var(--paper); border-radius: 2px; }
+  .logo-mark::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .nav-back { font-size: 0.88rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--ink); }
+
+  .layout { display: flex; max-width: 1160px; margin: 0 auto; padding: 7.5rem 2.5rem 6rem; gap: 4rem; align-items: flex-start; }
+
+  /* TOC sidebar */
+  .toc { width: 220px; flex-shrink: 0; position: sticky; top: 6rem; }
+  .toc-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.85rem; }
+  .toc a { display: block; font-size: 0.82rem; color: var(--muted); text-decoration: none; padding: 0.3rem 0; border-left: 2px solid var(--line); padding-left: 0.75rem; transition: all 0.2s; line-height: 1.4; }
+  .toc a:hover { color: var(--ink); border-left-color: var(--accent); }
+
+  /* Main content */
+  .content { flex: 1; min-width: 0; }
+  .page-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+  .page-eyebrow::before { content: ''; width: 8px; height: 8px; background: var(--accent); display: inline-block; flex-shrink: 0; }
+  h1 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.0; color: var(--ink); margin-bottom: 0.75rem; }
+  .page-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--line); line-height: 1.8; }
+
+  .prose { font-size: 0.96rem; color: var(--ink-2); }
+  .prose p { margin-bottom: 1rem; }
+  .prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  .prose li { margin-bottom: 0.35rem; }
+  .prose a { color: var(--accent); text-decoration: none; }
+  .prose a:hover { text-decoration: underline; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+  .prose em { font-style: italic; }
+
+  h2 { font-family: Arial, Helvetica, sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 3rem 0 0.85rem; padding-top: 3rem; border-top: 1px solid var(--line-soft); scroll-margin-top: 6rem; }
+  h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+  /* Critical disclaimer boxes */
+  .disclaimer-box { background: var(--bg-2); border: 1px solid var(--line); border-left: 3px solid var(--navy); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; font-size: 0.87rem; color: var(--ink); line-height: 1.65; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.01em; }
+  .disclaimer-box.warning { border-left-color: var(--accent); background: var(--accent-soft); }
+
+  /* Definition table */
+  .def-table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; font-size: 0.9rem; }
+  .def-table td { padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  .def-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; padding-right: 1.25rem; width: 30%; }
+  .def-table tr:last-child td { border-bottom: none; }
+
+  footer { border-top: 1px solid var(--line-soft); padding: 2.5rem 2.5rem; max-width: 1400px; margin: 0 auto; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; gap: 0.75rem; }
+  .footer-bottom a { color: var(--muted); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--ink); }
+  .footer-links { display: flex; gap: 1.5rem; align-items: center; }
+
+  /* ── Mobile TOC button ── */
+  .mobile-toc-btn { display: none; align-items: center; gap: 7px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 0.45rem 0.85rem; font-size: 0.82rem; font-weight: 600; color: var(--ink); cursor: pointer; font-family: inherit; letter-spacing: -0.01em; transition: all 0.2s; }
+  .mobile-toc-btn:hover { border-color: var(--navy); }
+  .mobile-toc-btn svg { flex-shrink: 0; }
+
+  /* ── Mobile TOC bottom sheet ── */
+  .mobile-toc-backdrop { position: fixed; inset: 0; z-index: 299; background: rgba(15,30,48,0.45); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  .mobile-toc-backdrop.open { opacity: 1; pointer-events: auto; }
+  .mobile-toc-panel { position: fixed; bottom: 0; left: 0; right: 0; z-index: 300; background: var(--bg); border-radius: 18px 18px 0 0; padding: 0 0 env(safe-area-inset-bottom, 16px); max-height: 72vh; overflow-y: auto; transform: translateY(100%); transition: transform 0.38s cubic-bezier(0.2,0.8,0.2,1); box-shadow: 0 -8px 48px rgba(15,30,48,0.18); }
+  .mobile-toc-panel.open { transform: translateY(0); }
+  .mobile-toc-handle { width: 36px; height: 4px; background: var(--line); border-radius: 2px; margin: 12px auto 0; }
+  .mobile-toc-header { padding: 14px 20px 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line-soft); }
+  .mobile-toc-title { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .mobile-toc-close { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 1rem; line-height: 1; }
+  .mobile-toc-close:hover { background: var(--bg-2); color: var(--ink); }
+  .mobile-toc-links { padding: 8px 0 16px; }
+  .mobile-toc-links a { display: block; padding: 13px 20px; font-size: 0.95rem; color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-soft); transition: color 0.15s, background 0.15s; font-weight: 500; }
+  .mobile-toc-links a:last-child { border-bottom: none; }
+  .mobile-toc-links a:hover { color: var(--accent); background: var(--accent-soft); }
+
+  /* ── Back to top ── */
+  .back-to-top { position: fixed; bottom: 28px; right: 20px; z-index: 200; width: 44px; height: 44px; background: var(--navy); color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(15,30,48,0.28); opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s; pointer-events: none; }
+  .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .back-to-top:hover { background: var(--navy-dark); }
+
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-back { display: none; }
+    .mobile-toc-btn { display: flex; }
+    .layout { flex-direction: column; padding: 6rem 1.25rem 4rem; gap: 0; }
+    .toc { display: none; }
+    footer { padding: 2rem 1.25rem; }
+  }
+  @media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; }
+    .footer-links { justify-content: center; }
+    .def-table td:first-child { white-space: normal; width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><div class="logo-mark"></div>PreBuildIQ</a>
+  <button class="mobile-toc-btn" id="mobileTocBtn" aria-label="Open contents">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="1.5" rx="0.75" fill="currentColor"/><rect x="2" y="7.25" width="9" height="1.5" rx="0.75" fill="currentColor"/><rect x="2" y="10.5" width="10.5" height="1.5" rx="0.75" fill="currentColor"/></svg>
+    Contents
+  </button>
+  <a href="index.html" class="nav-back">&#x2190; Back to home</a>
+</nav>
+
+<div class="mobile-toc-backdrop" id="mobileTocBackdrop"></div>
+<div class="mobile-toc-panel" id="mobileTocPanel" role="dialog" aria-modal="true" aria-label="Table of contents">
+  <div class="mobile-toc-handle"></div>
+  <div class="mobile-toc-header">
+    <span class="mobile-toc-title">Contents</span>
+    <button class="mobile-toc-close" id="mobileTocClose" aria-label="Close">&#x2715;</button>
+  </div>
+  <div class="mobile-toc-links">
+    <a href="#definitions">1. Definitions</a>
+    <a href="#access">2. Access and Licence</a>
+    <a href="#obligations">3. Customer Obligations</a>
+    <a href="#fees">4. Fees and Payment</a>
+    <a href="#ip">5. Intellectual Property</a>
+    <a href="#confidentiality">6. Confidentiality</a>
+    <a href="#disclaimer">7. Disclaimer of Warranties</a>
+    <a href="#specific">8. Specific Disclaimers</a>
+    <a href="#liability">9. Limitation of Liability</a>
+    <a href="#indemnification">10. Indemnification</a>
+    <a href="#termination">11. Term and Termination</a>
+    <a href="#forcemajeure">12. Force Majeure</a>
+    <a href="#general">13. General Provisions</a>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- Table of contents (desktop sidebar) -->
+  <aside class="toc" aria-label="Contents">
+    <div class="toc-label">Contents</div>
+    <a href="#definitions">1. Definitions</a>
+    <a href="#access">2. Access and Licence</a>
+    <a href="#obligations">3. Customer Obligations</a>
+    <a href="#fees">4. Fees and Payment</a>
+    <a href="#ip">5. Intellectual Property</a>
+    <a href="#confidentiality">6. Confidentiality</a>
+    <a href="#disclaimer">7. Disclaimer of Warranties</a>
+    <a href="#specific">8. Specific Disclaimers</a>
+    <a href="#liability">9. Limitation of Liability</a>
+    <a href="#indemnification">10. Indemnification</a>
+    <a href="#termination">11. Term and Termination</a>
+    <a href="#forcemajeure">12. Force Majeure</a>
+    <a href="#general">13. General Provisions</a>
+  </aside>
+
+  <!-- Main document -->
+  <div class="content">
+    <div class="page-eyebrow">Legal</div>
+    <h1>Terms of Service</h1>
+    <div class="page-meta">
+      Effective date: May 22, 2026 &nbsp;&middot;&nbsp; PreBuildIQ Inc., Toronto, Ontario, Canada<br>
+      These Terms govern your use of both the PreBuildIQ marketing website (prebuildiq.ca) and the PreBuildIQ application platform. By accessing either, you agree to these Terms.
+    </div>
+
+    <div class="prose">
+
+      <p>These Terms of Service ("Agreement") are entered into between PreBuildIQ Inc. ("PreBuildIQ", "we", "us", "our"), a corporation incorporated under the laws of Ontario, and the individual or entity accessing or using the PreBuildIQ website and software platform ("Customer", "you"). By creating an account, clicking "I agree", or accessing the Service, you represent that you have read, understood, and agree to be bound by this Agreement. If you are agreeing on behalf of a company or other legal entity, you represent that you have the authority to bind that entity.</p>
+
+      <!-- 1 -->
+      <h2 id="definitions">1. Definitions</h2>
+      <table class="def-table">
+        <tr><td>"Service"</td><td>The PreBuildIQ web application, platform, API, and associated tools available at app.prebuildiq.ca and any subdomains, including all features, reports, checklists, and outputs generated thereby.</td></tr>
+        <tr><td>"Website"</td><td>The marketing and informational website located at prebuildiq.ca.</td></tr>
+        <tr><td>"Output"</td><td>Any report, checklist, zoning summary, study list, approval body list, drawing analysis, or other information generated by the Service in response to Customer input.</td></tr>
+        <tr><td>"Customer Data"</td><td>All data, content, and information submitted by Customer to the Service, including property addresses, uploaded drawings, and project details.</td></tr>
+        <tr><td>"Municipal Data"</td><td>Information sourced from municipal governments, provincial authorities, public open data portals, zoning bylaws, official plans, and other regulatory sources, as aggregated and processed by PreBuildIQ.</td></tr>
+        <tr><td>"Authorized Users"</td><td>Customer's employees, contractors, and agents permitted to access the Service under Customer's account.</td></tr>
+        <tr><td>"Subscription Term"</td><td>The period during which Customer has an active paid subscription as set out in the applicable order.</td></tr>
+        <tr><td>"Fees"</td><td>All amounts payable by Customer for access to the Service.</td></tr>
+      </table>
+
+      <!-- 2 -->
+      <h2 id="access">2. Access and Licence</h2>
+      <p><strong>2.1 Licence Grant.</strong> Subject to Customer's compliance with this Agreement and timely payment of Fees, PreBuildIQ grants Customer a limited, non-exclusive, non-transferable, non-sublicensable right to access and use the Service during the Subscription Term solely for Customer's internal business purposes.</p>
+      <p><strong>2.2 Free Tier.</strong> PreBuildIQ may offer a free tier with limited functionality. Free tier access is subject to this Agreement and may be modified or discontinued at any time without notice.</p>
+      <p><strong>2.3 Restrictions.</strong> Customer shall not, and shall ensure Authorized Users do not: (a) license, sublicense, sell, resell, transfer, assign, or otherwise commercially exploit the Service or Outputs; (b) copy, modify, translate, adapt, or create derivative works based on the Service; (c) reverse engineer, disassemble, decompile, or otherwise attempt to discover the source code, underlying algorithms, or data structures of the Service; (d) use the Service to build a competitive product or service; (e) access the Service by automated means (including bots, scrapers, or crawlers) without prior written consent; (f) use the Service in a manner that violates any applicable law or regulation; or (g) remove or obscure any proprietary notices on the Service.</p>
+      <p><strong>2.4 Modification of Service.</strong> PreBuildIQ reserves the right to modify, update, or discontinue features of the Service at any time. We will use commercially reasonable efforts to provide advance notice of material changes.</p>
+
+      <!-- 3 -->
+      <h2 id="obligations">3. Customer Obligations</h2>
+      <p><strong>3.1 Account Security.</strong> Customer is responsible for maintaining the confidentiality of account credentials and for all activity that occurs under Customer's account. Customer must promptly notify PreBuildIQ at <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a> of any unauthorized use or security breach.</p>
+      <p><strong>3.2 Accurate Information.</strong> Customer must provide accurate, current, and complete information when registering and must keep such information updated.</p>
+      <p><strong>3.3 Acceptable Use.</strong> Customer agrees to use the Service solely as a productivity and research aid in connection with lawful pre-development, real estate, or construction planning activities. Customer acknowledges that the Service is not a substitute for professional advice and shall not represent Service Outputs as authoritative planning, legal, or engineering determinations to third parties.</p>
+      <p><strong>3.4 Customer Data.</strong> Customer retains all ownership of Customer Data. Customer grants PreBuildIQ a limited licence to process Customer Data solely to provide and improve the Service. Customer represents and warrants that it has all rights necessary to submit Customer Data to the Service and that Customer Data does not infringe any third-party rights or violate any law.</p>
+      <p><strong>3.5 Compliance.</strong> Customer is solely responsible for complying with all laws applicable to its use of Service Outputs, including land use planning legislation, the Planning Act (Ontario), the Building Code Act, and all applicable municipal bylaws and official plans.</p>
+
+      <!-- 4 -->
+      <h2 id="fees">4. Fees and Payment</h2>
+      <p><strong>4.1 Fees.</strong> Customer agrees to pay all Fees applicable to the subscription plan selected. All Fees are stated in Canadian dollars.</p>
+      <p><strong>4.2 Taxes.</strong> Fees are exclusive of all applicable taxes. Customer is responsible for all goods and services tax (GST), harmonized sales tax (HST), provincial sales taxes, or other applicable taxes arising in connection with the Service. PreBuildIQ will collect and remit applicable HST where required by law.</p>
+      <p><strong>4.3 Billing.</strong> Subscriptions are billed in advance on a monthly or annual basis, as selected at the time of purchase, via PreBuildIQ's third-party payment processor (Stripe). By providing payment information, Customer authorizes PreBuildIQ to charge the applicable Fees on a recurring basis.</p>
+      <p><strong>4.4 Non-Refundable.</strong> Except as required by applicable consumer protection law or expressly stated herein, all Fees are non-refundable. Cancellation takes effect at the end of the current billing period; no pro-rata refunds are issued for unused portions of a subscription period.</p>
+      <p><strong>4.5 Fee Changes.</strong> PreBuildIQ may change Fees upon thirty (30) days' written notice to Customer. Continued use of the Service after the effective date of a price change constitutes acceptance. If Customer does not accept a price change, Customer may cancel prior to the effective date.</p>
+      <p><strong>4.6 Suspension for Non-Payment.</strong> PreBuildIQ may suspend access to the Service if any invoice remains unpaid for more than fifteen (15) days after the due date, without prejudice to any other rights or remedies.</p>
+
+      <!-- 5 -->
+      <h2 id="ip">5. Intellectual Property</h2>
+      <p><strong>5.1 PreBuildIQ IP.</strong> PreBuildIQ and its licensors own all intellectual property rights in and to the Service, including all software, algorithms, models, databases, compiled Municipal Data, design, trademarks, and trade secrets. Nothing in this Agreement transfers any ownership interest to Customer.</p>
+      <p><strong>5.2 Customer Data Ownership.</strong> As between the parties, Customer retains all intellectual property rights in Customer Data.</p>
+      <p><strong>5.3 Output Ownership.</strong> Subject to Customer's compliance with this Agreement, Customer owns the specific Output generated in direct response to Customer's inputs. Customer acknowledges that substantially similar Outputs may be generated for other users and that no exclusive rights in the underlying methodologies or data are granted.</p>
+      <p><strong>5.4 Feedback.</strong> If Customer provides PreBuildIQ with feedback, suggestions, or ideas regarding the Service, Customer grants PreBuildIQ a perpetual, irrevocable, worldwide, royalty-free licence to use such feedback for any purpose without compensation or attribution.</p>
+      <p><strong>5.5 Aggregated Data.</strong> PreBuildIQ may collect, generate, and use anonymized, aggregated data derived from use of the Service (which does not identify Customer or any individual) for any business purpose, including product improvement, research, and analytics.</p>
+
+      <!-- 6 -->
+      <h2 id="confidentiality">6. Confidentiality</h2>
+      <p><strong>6.1 Obligations.</strong> Each party agrees to keep confidential the other party's non-public business information disclosed in connection with this Agreement ("Confidential Information") and to use it only for the purposes of this Agreement. Each party will protect Confidential Information using at least the same degree of care it uses to protect its own confidential information, and in no event less than reasonable care.</p>
+      <p><strong>6.2 Exceptions.</strong> Confidentiality obligations do not apply to information that: (a) is or becomes publicly available through no fault of the receiving party; (b) was already known to the receiving party without obligation of confidentiality; (c) is independently developed by the receiving party without use of Confidential Information; or (d) is required to be disclosed by law, court order, or governmental authority, provided the receiving party gives reasonable prior notice to the disclosing party.</p>
+      <p><strong>6.3 Survival.</strong> Confidentiality obligations survive termination of this Agreement for a period of three (3) years, except with respect to trade secrets, which remain protected for as long as they qualify as trade secrets under applicable law.</p>
+
+      <!-- 7 -->
+      <h2 id="disclaimer">7. Disclaimer of Warranties</h2>
+      <div class="disclaimer-box">
+        THE SERVICE, WEBSITE, AND ALL OUTPUTS ARE PROVIDED "AS IS," "WITH ALL FAULTS," AND "AS AVAILABLE," WITHOUT WARRANTY OR CONDITION OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, PREBUILDIQ AND ITS OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, LICENSORS, AND SUPPLIERS EXPRESSLY DISCLAIM ALL WARRANTIES, REPRESENTATIONS, AND CONDITIONS OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING WITHOUT LIMITATION: (A) ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT; (B) THAT THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS; (C) THAT ANY OUTPUT WILL BE ACCURATE, COMPLETE, CURRENT, RELIABLE, OR SUITABLE FOR ANY PARTICULAR USE; (D) THAT DEFECTS IN THE SERVICE WILL BE CORRECTED; AND (E) THAT THE SERVICE OR ANY OUTPUT WILL SATISFY ANY REGULATORY REQUIREMENT OR STANDARD. NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY CUSTOMER FROM PREBUILDIQ OR THROUGH THE SERVICE SHALL CREATE ANY WARRANTY NOT EXPRESSLY SET OUT IN THIS AGREEMENT.
+      </div>
+
+      <!-- 8 -->
+      <h2 id="specific">8. Specific Disclaimers</h2>
+      <p><strong>8.1 Not Professional Advice.</strong></p>
+      <div class="disclaimer-box warning">
+        THE SERVICE IS A PRODUCTIVITY AND RESEARCH TOOL DESIGNED TO AID IN PRE-DEVELOPMENT PLANNING. NOTHING IN THE SERVICE OR ANY OUTPUT CONSTITUTES, OR IS INTENDED TO CONSTITUTE, PROFESSIONAL PLANNING ADVICE, LEGAL ADVICE, ENGINEERING ADVICE, ARCHITECTURAL ADVICE, SURVEYING ADVICE, OR ANY OTHER FORM OF REGULATED PROFESSIONAL ADVICE OR OPINION. PREBUILDIQ DOES NOT PRACTICE LAW, LAND USE PLANNING, PROFESSIONAL ENGINEERING, OR ANY OTHER REGULATED PROFESSION. ALL OUTPUTS, INCLUDING WITHOUT LIMITATION CHECKLISTS, APPROVAL BODY IDENTIFICATIONS, REQUIRED STUDY LISTS, ZONING INTERPRETATIONS, AND BYLAW ANALYSES, REPRESENT A STARTING POINT FOR INTERNAL REVIEW ONLY. CUSTOMER IS SOLELY RESPONSIBLE FOR OBTAINING INDEPENDENT PROFESSIONAL ADVICE FROM QUALIFIED PLANNERS, LAWYERS, ENGINEERS, OR OTHER PROFESSIONALS BEFORE MAKING ANY DEVELOPMENT, REGULATORY, OR INVESTMENT DECISION. PREBUILDIQ EXPRESSLY DISCLAIMS ANY DUTY OF CARE WITH RESPECT TO THE SUFFICIENCY OR COMPLETENESS OF ANY OUTPUT.
+      </div>
+
+      <p><strong>8.2 No Guarantee of Outcomes.</strong></p>
+      <div class="disclaimer-box warning">
+        PREBUILDIQ MAKES NO REPRESENTATION, WARRANTY, OR GUARANTEE THAT USE OF THE SERVICE WILL RESULT IN: (A) APPROVAL OF ANY PERMIT APPLICATION OR DEVELOPMENT PROPOSAL; (B) ANY REDUCTION IN THE NUMBER OF SUBMISSIONS, RESUBMISSIONS, OR REVISIONS REQUIRED BY ANY MUNICIPALITY OR APPROVAL AUTHORITY; (C) ANY REDUCTION IN PROJECT TIMELINES, CARRYING COSTS, OR DEVELOPMENT COSTS; (D) COMPLIANCE WITH ANY APPLICABLE ZONING BYLAW, OFFICIAL PLAN, BUILDING CODE, OR OTHER REGULATORY REQUIREMENT; OR (E) AVOIDANCE OF REQUESTS FOR ADDITIONAL STUDIES, REPORTS, OR INFORMATION FROM APPROVAL AUTHORITIES. ALL PROJECTED TIME AND COST SAVINGS ARE ESTIMATES ONLY AND ARE NOT GUARANTEES OF PERFORMANCE. ACTUAL RESULTS WILL VARY BASED ON THE SPECIFIC PROJECT, MUNICIPALITY, REGULATORY ENVIRONMENT, AND DECISIONS OF RELEVANT APPROVAL AUTHORITIES.
+      </div>
+
+      <p><strong>8.3 Municipal Data Accuracy.</strong></p>
+      <div class="disclaimer-box">
+        THE SERVICE AGGREGATES MUNICIPAL DATA FROM GOVERNMENT SOURCES INCLUDING MUNICIPAL OPEN DATA PORTALS, PROVINCIAL DATABASES, ZONING BYLAWS, OFFICIAL PLANS, AND OTHER PUBLIC RECORDS. PREBUILDIQ DOES NOT CONTROL THESE SOURCES AND MAKES NO REPRESENTATION OR WARRANTY AS TO THE ACCURACY, COMPLETENESS, CURRENCY, OR FITNESS FOR PURPOSE OF ANY MUNICIPAL DATA CONTAINED IN OR GENERATED BY THE SERVICE. MUNICIPAL REQUIREMENTS ARE SUBJECT TO CHANGE AT ANY TIME BY BYLAW AMENDMENT, COUNCIL RESOLUTION, OFFICIAL PLAN MODIFICATION, MINISTERIAL ZONING ORDER, OR PROVINCIAL POLICY CHANGE. PREBUILDIQ DOES NOT GUARANTEE THAT ANY OUTPUT REFLECTS THE MOST CURRENT REGULATORY REQUIREMENTS OF ANY MUNICIPALITY. CUSTOMER ACKNOWLEDGES THAT INDEPENDENT VERIFICATION WITH THE APPLICABLE MUNICIPALITY, CONSERVATION AUTHORITY, OR PROVINCIAL MINISTRY AND A QUALIFIED PROFESSIONAL IS REQUIRED BEFORE FILING ANY PERMIT APPLICATION OR MAKING ANY DEVELOPMENT DECISION IN RELIANCE ON ANY OUTPUT.
+      </div>
+
+      <p><strong>8.4 Third-Party Data.</strong> Portions of the Service incorporate data obtained from third-party sources. PreBuildIQ does not control third-party data sources and disclaims all liability for errors, omissions, or inaccuracies therein. Third-party data is provided "as is" without any warranty of any kind.</p>
+      <p><strong>8.5 AI-Generated Content.</strong> Certain features of the Service use artificial intelligence and machine learning models to generate Outputs. AI-generated content may be inaccurate, incomplete, or inconsistent. Customer must independently verify all AI-generated Outputs before relying on them for any purpose.</p>
+
+      <!-- 9 -->
+      <h2 id="liability">9. Limitation of Liability</h2>
+      <p><strong>9.1 Exclusion of Consequential Damages.</strong></p>
+      <div class="disclaimer-box">
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL PREBUILDIQ OR ITS OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, LICENSORS, OR SUPPLIERS BE LIABLE TO CUSTOMER OR ANY THIRD PARTY FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES OF ANY KIND, HOWEVER CAUSED AND UNDER ANY THEORY OF LIABILITY (INCLUDING CONTRACT, TORT, NEGLIGENCE, PRODUCT LIABILITY, OR OTHERWISE), INCLUDING WITHOUT LIMITATION: LOSS OF PROFITS, LOSS OF REVENUE, LOSS OF BUSINESS OPPORTUNITY, LOSS OF DATA, BUSINESS INTERRUPTION, REPUTATIONAL HARM, CARRYING COSTS, FINANCING COSTS, INCREASED CONSTRUCTION COSTS, PERMIT REJECTION COSTS, RESUBMISSION COSTS, REGULATORY FINES OR PENALTIES, OR LOSS OF GOODWILL, EVEN IF PREBUILDIQ HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND EVEN IF A REMEDY FAILS OF ITS ESSENTIAL PURPOSE.
+      </div>
+
+      <p><strong>9.2 Aggregate Liability Cap.</strong></p>
+      <div class="disclaimer-box">
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, PREBUILDIQ'S TOTAL CUMULATIVE LIABILITY TO CUSTOMER ARISING OUT OF OR RELATED TO THIS AGREEMENT, WHETHER IN CONTRACT, TORT, STRICT LIABILITY, OR ANY OTHER LEGAL THEORY, SHALL NOT EXCEED THE TOTAL FEES ACTUALLY PAID BY CUSTOMER TO PREBUILDIQ IN THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM. IF CUSTOMER HAS NOT PAID ANY FEES (E.G., FREE TIER), PREBUILDIQ'S TOTAL LIABILITY SHALL NOT EXCEED ONE HUNDRED CANADIAN DOLLARS (CAD $100).
+      </div>
+
+      <p><strong>9.3 Exceptions.</strong> Nothing in this Agreement limits or excludes PreBuildIQ's liability for: (a) death or personal injury caused by PreBuildIQ's gross negligence or wilful misconduct; (b) fraud or fraudulent misrepresentation; or (c) any liability that cannot be excluded or limited under applicable law.</p>
+      <p><strong>9.4 Basis of the Bargain.</strong> The parties acknowledge that the limitations of liability in this Section 9 reflect a reasonable allocation of risk and form an essential basis of the bargain between the parties, without which PreBuildIQ would not have entered into this Agreement.</p>
+      <p><strong>9.5 Essential Purpose.</strong> These limitations apply even if any remedy fails of its essential purpose.</p>
+
+      <!-- 10 -->
+      <h2 id="indemnification">10. Indemnification</h2>
+      <p><strong>10.1 By PreBuildIQ.</strong> PreBuildIQ shall defend, indemnify, and hold harmless Customer from and against any third-party claim that Customer's authorized use of the Service (excluding Customer Data and Outputs) infringes the intellectual property rights of a third party in Canada, provided that Customer: (a) gives PreBuildIQ prompt written notice of the claim; (b) grants PreBuildIQ sole control of the defense and settlement; and (c) provides reasonable cooperation. This indemnity does not apply if the claim arises from modification of the Service by Customer or use of the Service other than as permitted hereunder.</p>
+      <p><strong>10.2 By Customer.</strong> Customer shall defend, indemnify, and hold harmless PreBuildIQ and its officers, directors, employees, and agents from and against any third-party claims, damages, losses, judgments, and expenses (including reasonable legal fees) arising out of or relating to: (a) Customer's breach of this Agreement; (b) Customer's violation of applicable law; (c) Customer Data or Customer Content infringing any third-party rights; (d) any decision, action, or omission by Customer or any third party in reliance on any Output; (e) Customer's development project, permit application, or regulatory submission; or (f) Customer's misrepresentation of any Output to any third party, including any authority having jurisdiction.</p>
+      <p><strong>10.3 Procedure.</strong> The indemnified party must: (a) give the indemnifying party prompt written notice of any claim; (b) grant the indemnifying party sole control of the defense and settlement; (c) cooperate fully; and (d) not make any admission of liability or settle any claim without the indemnifying party's prior written consent. The indemnifying party may not settle any claim in a manner that imposes obligations on the indemnified party without prior written consent.</p>
+
+      <!-- 11 -->
+      <h2 id="termination">11. Term and Termination</h2>
+      <p><strong>11.1 Term.</strong> This Agreement commences on the date Customer first accesses the Service and continues until terminated as set out herein.</p>
+      <p><strong>11.2 Termination by Customer.</strong> Customer may terminate this Agreement at any time by cancelling their subscription through account settings. Termination takes effect at the end of the then-current billing period.</p>
+      <p><strong>11.3 Termination by PreBuildIQ.</strong> PreBuildIQ may suspend or terminate Customer's access to the Service immediately upon written notice if: (a) Customer materially breaches this Agreement and fails to cure such breach within fourteen (14) days of written notice; (b) Customer's use of the Service poses a security risk to PreBuildIQ or any third party; (c) Customer becomes insolvent or bankrupt; or (d) PreBuildIQ is required to do so by law.</p>
+      <p><strong>11.4 Effect of Termination.</strong> Upon termination: (a) all licences granted hereunder immediately cease; (b) Customer must cease all use of the Service; and (c) PreBuildIQ will retain Customer Data for thirty (30) days and then delete it, subject to any legal retention obligations. PreBuildIQ may retain anonymized, aggregated data derived from Customer Data.</p>
+      <p><strong>11.5 Survival.</strong> Sections 1, 4 (outstanding payment obligations), 5, 6, 7, 8, 9, 10, 11.4, and 13 survive any termination or expiration of this Agreement.</p>
+
+      <!-- 12 -->
+      <h2 id="forcemajeure">12. Force Majeure</h2>
+      <p>Neither party shall be liable for failure or delay in performing its obligations (excluding payment obligations) to the extent caused by circumstances beyond that party's reasonable control, including without limitation: acts of God; flood, fire, earthquake, or explosion; epidemic or pandemic; war, terrorism, riot, or civil unrest; governmental action, embargo, or change in law; failure of third-party cloud infrastructure, internet backbone, or utility services; distributed denial of service attacks or cybersecurity incidents not caused by that party's negligence; or labour disputes ("Force Majeure Event"). The affected party must: (a) provide prompt written notice describing the Force Majeure Event and its anticipated duration; (b) use commercially reasonable efforts to mitigate its effects; and (c) resume performance as soon as reasonably practicable. If a Force Majeure Event continues for more than sixty (60) consecutive days, either party may terminate the Agreement upon written notice without liability to the other party.</p>
+
+      <!-- 13 -->
+      <h2 id="general">13. General Provisions</h2>
+      <p><strong>13.1 Governing Law.</strong> This Agreement shall be governed by and construed in accordance with the laws of the Province of Ontario and the federal laws of Canada applicable therein, without regard to conflict of law principles. Each party irrevocably submits to the exclusive jurisdiction of the courts of the Province of Ontario, Toronto, for resolution of any dispute arising out of or in connection with this Agreement.</p>
+      <p><strong>13.2 Dispute Resolution.</strong> Prior to initiating legal proceedings, the parties shall attempt to resolve any dispute through good-faith senior management negotiation for a period of thirty (30) days following written notice of dispute. Nothing in this Section prevents a party from seeking injunctive or other equitable relief in any court of competent jurisdiction.</p>
+      <p><strong>13.3 Entire Agreement.</strong> This Agreement, together with any applicable order forms or subscription confirmations, constitutes the entire agreement between the parties with respect to its subject matter and supersedes all prior or contemporaneous agreements, representations, warranties, and understandings, whether oral or written.</p>
+      <p><strong>13.4 Amendments.</strong> PreBuildIQ may update this Agreement at any time. The updated Agreement will be posted on the Website with a revised effective date. Continued use of the Service after the effective date of any update constitutes acceptance of the updated terms. For material changes, PreBuildIQ will provide at least thirty (30) days' advance notice by email.</p>
+      <p><strong>13.5 Severability.</strong> If any provision of this Agreement is held invalid or unenforceable, the remaining provisions will continue in full force and effect, and the invalid provision will be modified to the minimum extent necessary to make it enforceable.</p>
+      <p><strong>13.6 Waiver.</strong> No failure or delay by either party to exercise any right or remedy shall operate as a waiver thereof. No single or partial exercise of any right or remedy shall preclude any other or further exercise thereof.</p>
+      <p><strong>13.7 Assignment.</strong> Customer may not assign this Agreement or any rights hereunder without PreBuildIQ's prior written consent. PreBuildIQ may assign this Agreement in connection with a merger, acquisition, corporate reorganization, or sale of all or substantially all of its assets. Any purported assignment in violation of this Section is void.</p>
+      <p><strong>13.8 Notices.</strong> Legal notices to PreBuildIQ must be sent by email to <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a> with confirmation by registered mail to PreBuildIQ Inc., Toronto, Ontario, Canada. Notices to Customer will be sent to the email address on file. Notices are effective upon receipt.</p>
+      <p><strong>13.9 Independent Contractors.</strong> The parties are independent contractors. Nothing in this Agreement creates a partnership, joint venture, agency, franchise, or employment relationship between the parties.</p>
+      <p><strong>13.10 No Third-Party Beneficiaries.</strong> This Agreement is for the sole benefit of the parties and their permitted successors and assigns. Nothing in this Agreement, express or implied, is intended to or shall confer on any third party any legal or equitable right, benefit, or remedy of any nature under or by reason of this Agreement.</p>
+      <p><strong>13.11 Language.</strong> The parties have agreed that this Agreement and all related documents shall be drafted in English. Les parties ont convenu que cette entente et tous les documents s'y rattachant soient rédigés en anglais.</p>
+
+      <h2>Contact</h2>
+      <p>PreBuildIQ Inc. &middot; Toronto, Ontario, Canada<br>
+      <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a><br>
+      For privacy matters, see our <a href="privacy.html">Privacy Policy</a>.</p>
+
+    </div><!-- /.prose -->
+  </div><!-- /.content -->
+</div><!-- /.layout -->
+
+<footer>
+  <div class="footer-bottom">
+    <div>&copy; 2026 PreBuildIQ Inc. &middot; Toronto, ON</div>
+    <div class="footer-links">
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <span>prebuildiq.ca</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M4.5 8.5L9 4l4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+  (function () {
+    var btn = document.getElementById('mobileTocBtn');
+    var backdrop = document.getElementById('mobileTocBackdrop');
+    var panel = document.getElementById('mobileTocPanel');
+    var closeBtn = document.getElementById('mobileTocClose');
+    var btt = document.getElementById('backToTop');
+
+    function openPanel() {
+      backdrop.classList.add('open');
+      panel.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePanel() {
+      backdrop.classList.remove('open');
+      panel.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', openPanel);
+    backdrop.addEventListener('click', closePanel);
+    closeBtn.addEventListener('click', closePanel);
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closePanel);
+    });
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) {
+        btt.classList.add('visible');
+      } else {
+        btt.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    btt.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
+
+</body>
+</html>

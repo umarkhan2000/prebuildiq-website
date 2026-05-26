@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>Privacy Policy — PreBuildIQ</title>
+<link rel="icon" type="image/png" href="logo_300.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light only;
+    --bg: #ffffff;
+    --bg-2: #f7f8fa;
+    --ink: #0f1e30;
+    --ink-2: #3d4a5c;
+    --muted: #7b8594;
+    --line: #e2e5ea;
+    --line-soft: rgba(15,30,48,0.07);
+    --navy: #1b3a5c;
+    --navy-dark: #122a43;
+    --accent: #ff6a13;
+    --accent-soft: #fff0e6;
+    --paper: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
+  html { background: #ffffff; scrollbar-width: none; overflow-x: hidden; scroll-behavior: smooth; }
+  html::-webkit-scrollbar { display: none; }
+  body { font-family: 'DM Sans', Arial, Helvetica, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1; background-image: linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px); background-size: 48px 48px; background-position: -1px -1px; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 1.25rem 2.5rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(255,255,255,0.94); border-bottom: 1px solid var(--line); }
+  .logo { display: flex; align-items: center; gap: 0.65rem; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+  .logo-mark { width: 28px; height: 28px; background: var(--navy); border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .logo-mark::before { content: ''; position: absolute; width: 14px; height: 14px; border: 1.5px solid var(--paper); border-radius: 2px; }
+  .logo-mark::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .nav-back { font-size: 0.88rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--ink); }
+
+  .layout { display: flex; max-width: 1160px; margin: 0 auto; padding: 7.5rem 2.5rem 6rem; gap: 4rem; align-items: flex-start; }
+
+  .toc { width: 220px; flex-shrink: 0; position: sticky; top: 6rem; }
+  .toc-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.85rem; }
+  .toc a { display: block; font-size: 0.82rem; color: var(--muted); text-decoration: none; padding: 0.3rem 0; border-left: 2px solid var(--line); padding-left: 0.75rem; transition: all 0.2s; line-height: 1.4; }
+  .toc a:hover { color: var(--ink); border-left-color: var(--accent); }
+
+  .content { flex: 1; min-width: 0; }
+  .page-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+  .page-eyebrow::before { content: ''; width: 8px; height: 8px; background: var(--accent); display: inline-block; flex-shrink: 0; }
+  h1 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.0; color: var(--ink); margin-bottom: 0.75rem; }
+  .page-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--line); line-height: 1.8; }
+
+  .prose { font-size: 0.96rem; color: var(--ink-2); }
+  .prose p { margin-bottom: 1rem; }
+  .prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  .prose li { margin-bottom: 0.35rem; }
+  .prose a { color: var(--accent); text-decoration: none; }
+  .prose a:hover { text-decoration: underline; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+  .prose em { font-style: italic; }
+
+  h2 { font-family: Arial, Helvetica, sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 3rem 0 0.85rem; padding-top: 3rem; border-top: 1px solid var(--line-soft); scroll-margin-top: 6rem; }
+  h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+  .info-box { background: var(--bg-2); border: 1px solid var(--line); border-left: 3px solid var(--navy); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; font-size: 0.87rem; color: var(--ink); line-height: 1.65; }
+
+  /* Sub-processor table */
+  .sp-table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; font-size: 0.88rem; }
+  .sp-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.5rem 0.85rem; border-bottom: 1px solid var(--line); }
+  .sp-table td { padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--line-soft); vertical-align: top; color: var(--ink-2); }
+  .sp-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .sp-table tr:last-child td { border-bottom: none; }
+
+  /* Rights list */
+  .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+  .rights-item { background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; padding: 0.85rem 1rem; }
+  .rights-item strong { display: block; font-size: 0.85rem; color: var(--ink); margin-bottom: 0.25rem; }
+  .rights-item span { font-size: 0.82rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line-soft); padding: 2.5rem 2.5rem; max-width: 1400px; margin: 0 auto; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; gap: 0.75rem; }
+  .footer-bottom a { color: var(--muted); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--ink); }
+  .footer-links { display: flex; gap: 1.5rem; align-items: center; }
+
+  /* ── Mobile TOC button ── */
+  .mobile-toc-btn { display: none; align-items: center; gap: 7px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 0.45rem 0.85rem; font-size: 0.82rem; font-weight: 600; color: var(--ink); cursor: pointer; font-family: inherit; letter-spacing: -0.01em; transition: all 0.2s; }
+  .mobile-toc-btn:hover { border-color: var(--navy); }
+  .mobile-toc-btn svg { flex-shrink: 0; }
+
+  /* ── Mobile TOC bottom sheet ── */
+  .mobile-toc-backdrop { position: fixed; inset: 0; z-index: 299; background: rgba(15,30,48,0.45); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  .mobile-toc-backdrop.open { opacity: 1; pointer-events: auto; }
+  .mobile-toc-panel { position: fixed; bottom: 0; left: 0; right: 0; z-index: 300; background: var(--bg); border-radius: 18px 18px 0 0; padding: 0 0 env(safe-area-inset-bottom, 16px); max-height: 72vh; overflow-y: auto; transform: translateY(100%); transition: transform 0.38s cubic-bezier(0.2,0.8,0.2,1); box-shadow: 0 -8px 48px rgba(15,30,48,0.18); }
+  .mobile-toc-panel.open { transform: translateY(0); }
+  .mobile-toc-handle { width: 36px; height: 4px; background: var(--line); border-radius: 2px; margin: 12px auto 0; }
+  .mobile-toc-header { padding: 14px 20px 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line-soft); }
+  .mobile-toc-title { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .mobile-toc-close { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 1rem; line-height: 1; }
+  .mobile-toc-close:hover { background: var(--bg-2); color: var(--ink); }
+  .mobile-toc-links { padding: 8px 0 16px; }
+  .mobile-toc-links a { display: block; padding: 13px 20px; font-size: 0.95rem; color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-soft); transition: color 0.15s, background 0.15s; font-weight: 500; }
+  .mobile-toc-links a:last-child { border-bottom: none; }
+  .mobile-toc-links a:hover { color: var(--accent); background: var(--accent-soft); }
+
+  /* ── Back to top ── */
+  .back-to-top { position: fixed; bottom: 28px; right: 20px; z-index: 200; width: 44px; height: 44px; background: var(--navy); color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(15,30,48,0.28); opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s; pointer-events: none; }
+  .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .back-to-top:hover { background: var(--navy-dark); }
+
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-back { display: none; }
+    .mobile-toc-btn { display: flex; }
+    .layout { flex-direction: column; padding: 6rem 1.25rem 4rem; gap: 0; }
+    .toc { display: none; }
+    footer { padding: 2rem 1.25rem; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; }
+    .footer-links { justify-content: center; }
+    .sp-table { font-size: 0.82rem; overflow-x: auto; display: block; }
+    .sp-table td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><div class="logo-mark"></div>PreBuildIQ</a>
+  <button class="mobile-toc-btn" id="mobileTocBtn" aria-label="Open contents">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="1.5" rx="0.75" fill="currentColor"/><rect x="2" y="7.25" width="9" height="1.5" rx="0.75" fill="currentColor"/><rect x="2" y="10.5" width="10.5" height="1.5" rx="0.75" fill="currentColor"/></svg>
+    Contents
+  </button>
+  <a href="index.html" class="nav-back">&#x2190; Back to home</a>
+</nav>
+
+<div class="mobile-toc-backdrop" id="mobileTocBackdrop"></div>
+<div class="mobile-toc-panel" id="mobileTocPanel" role="dialog" aria-modal="true" aria-label="Table of contents">
+  <div class="mobile-toc-handle"></div>
+  <div class="mobile-toc-header">
+    <span class="mobile-toc-title">Contents</span>
+    <button class="mobile-toc-close" id="mobileTocClose" aria-label="Close">&#x2715;</button>
+  </div>
+  <div class="mobile-toc-links">
+    <a href="#overview">Overview</a>
+    <a href="#collected">1. What We Collect</a>
+    <a href="#use">2. How We Use It</a>
+    <a href="#sharing">3. How We Share It</a>
+    <a href="#subprocessors">4. Sub-Processors</a>
+    <a href="#transfers">5. Cross-Border Transfers</a>
+    <a href="#retention">6. Retention</a>
+    <a href="#security">7. Security</a>
+    <a href="#rights">8. Your Rights</a>
+    <a href="#casl">9. Commercial Email (CASL)</a>
+    <a href="#cookies">10. Cookies</a>
+    <a href="#children">11. Children</a>
+    <a href="#breach">12. Breach Notification</a>
+    <a href="#changes">13. Changes</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<div class="layout">
+
+  <aside class="toc" aria-label="Contents">
+    <div class="toc-label">Contents</div>
+    <a href="#overview">Overview</a>
+    <a href="#collected">1. What We Collect</a>
+    <a href="#use">2. How We Use It</a>
+    <a href="#sharing">3. How We Share It</a>
+    <a href="#subprocessors">4. Sub-Processors</a>
+    <a href="#transfers">5. Cross-Border Transfers</a>
+    <a href="#retention">6. Retention</a>
+    <a href="#security">7. Security</a>
+    <a href="#rights">8. Your Rights</a>
+    <a href="#casl">9. Commercial Email (CASL)</a>
+    <a href="#cookies">10. Cookies</a>
+    <a href="#children">11. Children</a>
+    <a href="#breach">12. Breach Notification</a>
+    <a href="#changes">13. Changes</a>
+    <a href="#contact">Contact</a>
+  </aside>
+
+  <div class="content">
+    <div class="page-eyebrow">Legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="page-meta">
+      Effective date: May 22, 2026 &nbsp;&middot;&nbsp; PreBuildIQ Inc., Toronto, Ontario, Canada<br>
+      Privacy Officer: <a href="mailto:info@prebuildiq.ca" style="color:var(--accent);">info@prebuildiq.ca</a><br>
+      This Policy covers both the PreBuildIQ marketing website (prebuildiq.ca) and the PreBuildIQ application platform.
+    </div>
+
+    <div class="prose">
+
+      <h2 id="overview">Overview</h2>
+      <p>PreBuildIQ Inc. ("PreBuildIQ", "we", "us") respects the privacy of its users and is committed to complying with the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA), Canada's Anti-Spam Legislation (CASL), and all other applicable Canadian privacy laws. This Privacy Policy describes the personal information we collect, how we use it, with whom we share it, how we protect it, and how you can exercise your rights in relation to it.</p>
+      <p>This Policy applies to personal information collected through our website (prebuildiq.ca), our application (app.prebuildiq.ca), and any communications you have with us. By using the Service, you agree to the collection and use of information in accordance with this Policy.</p>
+
+      <!-- 1 -->
+      <h2 id="collected">1. Information We Collect</h2>
+      <p>We collect personal information in the following categories. We identify the purpose of collection at or before the time of collection, as required by PIPEDA.</p>
+
+      <p><strong>1.1 Account Information.</strong> When you register, we collect your name, business email address, and company name. We use this to create and manage your account, identify you, and communicate with you about the Service. This information is required to provide the Service.</p>
+
+      <p><strong>1.2 Authentication Data.</strong> Passwords are hashed using industry-standard cryptographic methods. We never store passwords in plain text. Authentication tokens are managed via our authentication provider (Supabase).</p>
+
+      <p><strong>1.3 Project and Usage Data.</strong> When you use the Service, we collect: property addresses you submit for analysis; project details you enter; drawing files you upload to the Drawing Checker feature; reports and checklists generated; and records of features accessed. This data is necessary to deliver the Service and improve its accuracy. Property addresses are also used to query municipal data sources and, where enabled, geocoding providers (Mapbox).</p>
+
+      <p><strong>1.4 Billing Data.</strong> Payment processing is handled by our third-party processor, Stripe. We do not store full credit card numbers or payment card data on our systems. We retain billing history (subscription tier, payment dates, invoice amounts) for legal and accounting purposes.</p>
+
+      <p><strong>1.5 Technical and Log Data.</strong> Our servers automatically collect log data when you access the Service, including your IP address, browser type and version, operating system, referring URL, pages viewed, time and date of access, and session identifiers. This data is used for security monitoring, fraud prevention, debugging, and aggregate analytics. It is not used to identify you individually without your consent, except where required for security or legal purposes.</p>
+
+      <p><strong>1.6 Communications.</strong> If you contact us by email or through contact forms, we retain the contents of your communication and our response in order to answer your inquiry and improve our customer support.</p>
+
+      <p><strong>1.7 Cookies and Similar Technologies.</strong> See Section 10 below.</p>
+
+      <!-- 2 -->
+      <h2 id="use">2. How We Use Your Information</h2>
+      <p>We use personal information only for the purposes identified at the time of collection or as otherwise permitted by PIPEDA. Specifically:</p>
+      <ul>
+        <li><strong>Service delivery:</strong> to create and manage your account, generate reports and checklists, process drawing uploads, and provide all platform features</li>
+        <li><strong>Billing and payments:</strong> to process subscriptions, issue invoices, and manage plan changes</li>
+        <li><strong>Transactional communications:</strong> to send account confirmations, password resets, billing receipts, and service notifications necessary to the operation of the Service</li>
+        <li><strong>Security and fraud prevention:</strong> to monitor for unauthorized access, abuse, or fraudulent activity</li>
+        <li><strong>Service improvement:</strong> to analyze usage patterns, diagnose technical issues, and improve Service accuracy, coverage, and features; any analysis for improvement purposes uses anonymized or aggregated data where possible</li>
+        <li><strong>Legal compliance:</strong> to comply with applicable law, respond to legal process, enforce our Terms of Service, and protect the rights and safety of PreBuildIQ and its users</li>
+        <li><strong>Marketing communications:</strong> only with your express or implied consent, as described in Section 9 (CASL)</li>
+      </ul>
+      <p><strong>We will not sell, rent, trade, or otherwise share your personal information with third parties for their own independent marketing or commercial purposes.</strong></p>
+
+      <!-- 3 -->
+      <h2 id="sharing">3. How We Share Your Information</h2>
+      <p>We do not sell or rent personal information. We share personal information only in the following circumstances:</p>
+      <p><strong>3.1 Sub-Processors.</strong> We share personal information with third-party service providers ("sub-processors") who assist us in operating the Service, subject to contractual data protection obligations. See Section 4 for our full sub-processor list.</p>
+      <p><strong>3.2 Legal Requirements.</strong> We may disclose personal information if required to do so by law or in good-faith belief that such disclosure is necessary to: (a) comply with a legal obligation, court order, or governmental request; (b) protect the rights, property, or safety of PreBuildIQ, its users, or the public; or (c) detect, prevent, or address fraud, security, or technical issues.</p>
+      <p><strong>3.3 Business Transfers.</strong> If PreBuildIQ is involved in a merger, acquisition, financing, or sale of all or substantially all of its assets, personal information may be transferred as part of that transaction, subject to the acquirer agreeing to comply with this Privacy Policy or providing notice to affected users.</p>
+      <p><strong>3.4 With Your Consent.</strong> We may share personal information with third parties when we have your express consent to do so.</p>
+      <p><strong>3.5 Aggregated Data.</strong> We may share anonymized, aggregated, or de-identified data that does not identify any individual user with third parties for research, analytics, or industry reporting purposes.</p>
+
+      <!-- 4 -->
+      <h2 id="subprocessors">4. Sub-Processors</h2>
+      <p>The following third-party service providers process personal information on our behalf. We have entered into data processing agreements with each sub-processor requiring them to protect personal information to standards at least equivalent to those in this Policy.</p>
+      <table class="sp-table">
+        <thead>
+          <tr><th>Provider</th><th>Purpose</th><th>Data Processed</th><th>Location</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Supabase</td>
+            <td>Database, authentication, and storage</td>
+            <td>Account data, project data, usage data, session tokens</td>
+            <td>Canada / United States</td>
+          </tr>
+          <tr>
+            <td>Vercel</td>
+            <td>Frontend hosting and edge compute</td>
+            <td>IP addresses, request logs, session data</td>
+            <td>United States (global edge)</td>
+          </tr>
+          <tr>
+            <td>Fly.io</td>
+            <td>Backend API hosting</td>
+            <td>Project data, API request logs</td>
+            <td>United States (Toronto region)</td>
+          </tr>
+          <tr>
+            <td>Stripe</td>
+            <td>Payment processing</td>
+            <td>Billing data, payment card data (processed directly by Stripe; not stored by PreBuildIQ)</td>
+            <td>United States</td>
+          </tr>
+          <tr>
+            <td>Resend</td>
+            <td>Transactional email delivery</td>
+            <td>Email address, email content (receipts, notifications, password resets)</td>
+            <td>United States</td>
+          </tr>
+          <tr>
+            <td>Mapbox</td>
+            <td>Address geocoding and autocomplete</td>
+            <td>Property addresses submitted by users</td>
+            <td>United States</td>
+          </tr>
+          <tr>
+            <td>Anthropic</td>
+            <td>AI analysis of uploaded drawings (Drawing Checker feature)</td>
+            <td>Contents of uploaded drawing files (PDFs). Under our API usage agreement, Anthropic does not use API inputs to train its models.</td>
+            <td>United States</td>
+          </tr>
+          <tr>
+            <td>Microsoft Azure</td>
+            <td>Document intelligence and OCR processing</td>
+            <td>Uploaded drawing files</td>
+            <td>United States / Canada</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>We will update this list if we add or change sub-processors. Where feasible, we will provide advance notice of material changes to sub-processors that may affect your personal information.</p>
+
+      <!-- 5 -->
+      <h2 id="transfers">5. Cross-Border Transfers</h2>
+      <p>PreBuildIQ is based in Canada. Some of our sub-processors are located in the United States. As a result, your personal information may be transferred to, stored in, or processed in the United States, which may have different privacy laws than Canada.</p>
+      <p>We take steps to ensure that personal information transferred to our sub-processors outside Canada is subject to comparable protections through contractual data processing agreements. By using the Service, you acknowledge and consent to the transfer of your personal information to countries outside Canada, including the United States, as described in this Policy.</p>
+      <p>If you are located in Quebec, you have additional rights under <em>An Act respecting the protection of personal information in the private sector</em> (Law 25). Please contact our Privacy Officer for details.</p>
+
+      <!-- 6 -->
+      <h2 id="retention">6. Data Retention</h2>
+      <p>We retain personal information only as long as necessary for the purposes identified in this Policy, subject to legal retention requirements.</p>
+      <ul>
+        <li><strong>Active account data:</strong> retained for the duration of your account and subscription</li>
+        <li><strong>Project and report data:</strong> retained for the duration of your account and for up to ninety (90) days after account closure</li>
+        <li><strong>Billing and financial records:</strong> retained for seven (7) years as required by the <em>Income Tax Act</em> (Canada)</li>
+        <li><strong>Log and technical data:</strong> retained for up to twelve (12) months, after which it is aggregated or deleted</li>
+        <li><strong>Deleted account data:</strong> permanently deleted within thirty (30) days of account deletion, except where legal retention obligations apply</li>
+        <li><strong>Uploaded drawings:</strong> retained for the duration of your account; deleted within thirty (30) days of account closure</li>
+      </ul>
+      <p>Anonymized, aggregated data that does not identify any individual may be retained indefinitely for product improvement and analytics purposes.</p>
+
+      <!-- 7 -->
+      <h2 id="security">7. Security</h2>
+      <p>We implement appropriate technical and organizational measures to protect personal information against unauthorized access, disclosure, alteration, or destruction. Our security measures include:</p>
+      <ul>
+        <li>TLS encryption for all data in transit between your browser and our servers</li>
+        <li>Encryption at rest for data stored in our database</li>
+        <li>Row-level security (RLS) policies that ensure each user can only access their own data</li>
+        <li>Access controls limiting employee access to personal information on a need-to-know basis</li>
+        <li>Regular security reviews and vulnerability assessments</li>
+        <li>Secure development practices including input validation and protection against common web vulnerabilities</li>
+      </ul>
+      <p>No method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect personal information, we cannot guarantee its absolute security. If you discover a security vulnerability, please report it responsibly to <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a>.</p>
+
+      <!-- 8 -->
+      <h2 id="rights">8. Your Rights Under PIPEDA</h2>
+      <p>Under PIPEDA and applicable provincial law, you have the following rights regarding your personal information:</p>
+      <div class="rights-grid">
+        <div class="rights-item">
+          <strong>Right of Access</strong>
+          <span>Request a copy of the personal information we hold about you and information about how it is used and disclosed.</span>
+        </div>
+        <div class="rights-item">
+          <strong>Right of Correction</strong>
+          <span>Request that we correct inaccurate or incomplete personal information about you.</span>
+        </div>
+        <div class="rights-item">
+          <strong>Right to Withdraw Consent</strong>
+          <span>Withdraw consent to non-essential processing at any time, subject to legal or contractual restrictions. Withdrawal may limit or terminate your access to the Service.</span>
+        </div>
+        <div class="rights-item">
+          <strong>Right to Erasure</strong>
+          <span>Request deletion of your account and personal information, subject to legal retention obligations.</span>
+        </div>
+        <div class="rights-item">
+          <strong>Right to Complain</strong>
+          <span>File a complaint with the Office of the Privacy Commissioner of Canada (OPC) at <a href="https://www.priv.gc.ca">priv.gc.ca</a> if you believe we have not handled your information appropriately.</span>
+        </div>
+        <div class="rights-item">
+          <strong>Right to Know</strong>
+          <span>Know the name or title of our Privacy Officer and how to contact them with questions or concerns.</span>
+        </div>
+      </div>
+      <p>To exercise any of these rights, contact our Privacy Officer at <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a>. We will respond within thirty (30) days. We may require you to verify your identity before responding. For complex requests, we may extend this period by an additional thirty (30) days with notice.</p>
+
+      <!-- 9 -->
+      <h2 id="casl">9. Commercial Electronic Messages (CASL)</h2>
+      <p>We comply with Canada's Anti-Spam Legislation (CASL). We will only send commercial electronic messages (marketing emails, promotional content, or news about our Service) with your express or implied consent as defined under CASL.</p>
+      <p><strong>Express consent</strong> is obtained when you check a box to opt in to marketing communications during registration or at another point.</p>
+      <p><strong>Implied consent</strong> exists where you have an existing business relationship with us (e.g., you are a current subscriber), in accordance with CASL's two-year implied consent period following your last commercial transaction.</p>
+      <p>You may withdraw consent to commercial electronic messages at any time by: (a) clicking the "Unsubscribe" link in any marketing email; or (b) contacting us at <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a>. Withdrawal of consent will be processed within ten (10) business days.</p>
+      <p>Transactional messages (account confirmations, password resets, billing receipts, security alerts) are sent without requiring consent as they are necessary to the operation of the Service and are exempt from CASL's opt-in requirements.</p>
+
+      <!-- 10 -->
+      <h2 id="cookies">10. Cookies and Similar Technologies</h2>
+      <p>Our Website and Service use cookies and similar browser-based storage to operate and improve the Service.</p>
+      <p><strong>Strictly necessary cookies:</strong> Authentication session cookies and security tokens required to maintain your logged-in session and protect your account. These cannot be disabled without preventing use of the Service.</p>
+      <p><strong>Functional storage:</strong> We use browser localStorage to store your preferences (e.g., theme selection, address history) scoped to your account. This data does not leave your device and is not transmitted to third parties.</p>
+      <p><strong>Analytics:</strong> We may use anonymized analytics to understand how users interact with the Service in aggregate. Any such analytics are collected in a privacy-preserving manner and do not track individuals across sites.</p>
+      <p>You can control cookies through your browser settings. Disabling strictly necessary cookies will impair your ability to use the Service.</p>
+
+      <!-- 11 -->
+      <h2 id="children">11. Children's Privacy</h2>
+      <p>The Service is a business productivity tool intended for use by adults (18 years of age or older) and organizations in the real estate development, planning, and construction industries. We do not knowingly collect personal information from individuals under the age of 18. If we become aware that we have collected personal information from a minor without appropriate consent, we will promptly delete that information. If you believe we may have inadvertently collected information from a minor, please contact us at <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a>.</p>
+
+      <!-- 12 -->
+      <h2 id="breach">12. Breach Notification</h2>
+      <p>In the event of a security breach involving personal information, PreBuildIQ will assess whether the breach creates a "real risk of significant harm" to affected individuals, as required by PIPEDA's breach of security safeguards regulations. Where this threshold is met:</p>
+      <ul>
+        <li>We will notify the Office of the Privacy Commissioner of Canada (OPC) as soon as feasible</li>
+        <li>We will notify affected individuals as soon as feasible and in plain language</li>
+        <li>We will maintain a record of all security breaches involving personal information for a minimum of twenty-four (24) months regardless of whether notification is required</li>
+      </ul>
+      <p>Notification to individuals will describe the circumstances of the breach, the personal information affected, steps PreBuildIQ has taken to reduce harm, and steps individuals can take to protect themselves.</p>
+
+      <!-- 13 -->
+      <h2 id="changes">13. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, the Service, or applicable law. The revised Policy will be posted on this page with an updated effective date.</p>
+      <p>For material changes that affect how we handle personal information, we will provide at least fourteen (14) days' advance notice by email to the address on file. Continued use of the Service after the effective date of any update constitutes acceptance of the revised Policy. If you do not accept a material change, you may close your account before the effective date.</p>
+
+      <!-- Contact -->
+      <h2 id="contact">Contact / Privacy Officer</h2>
+      <div class="info-box">
+        <strong>PreBuildIQ Inc.</strong><br>
+        Toronto, Ontario, Canada<br>
+        Privacy Officer: <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a><br><br>
+        For questions, access requests, or complaints regarding our handling of personal information, contact our Privacy Officer. We will acknowledge your inquiry within five (5) business days and respond substantively within thirty (30) days.<br><br>
+        You may also file a complaint with the <strong>Office of the Privacy Commissioner of Canada</strong> at <a href="https://www.priv.gc.ca" target="_blank" rel="noopener">priv.gc.ca</a>.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div>&copy; 2026 PreBuildIQ Inc. &middot; Toronto, ON</div>
+    <div class="footer-links">
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <span>prebuildiq.ca</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M4.5 8.5L9 4l4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+  (function () {
+    var btn = document.getElementById('mobileTocBtn');
+    var backdrop = document.getElementById('mobileTocBackdrop');
+    var panel = document.getElementById('mobileTocPanel');
+    var closeBtn = document.getElementById('mobileTocClose');
+    var btt = document.getElementById('backToTop');
+
+    function openPanel() {
+      backdrop.classList.add('open');
+      panel.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePanel() {
+      backdrop.classList.remove('open');
+      panel.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', openPanel);
+    backdrop.addEventListener('click', closePanel);
+    closeBtn.addEventListener('click', closePanel);
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closePanel);
+    });
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) {
+        btt.classList.add('visible');
+      } else {
+        btt.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    btt.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
+
+</body>
+</html>
