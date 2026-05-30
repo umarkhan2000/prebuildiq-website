@@ -397,6 +397,57 @@
   .moat-item p { color: var(--ink-2); font-size: 0.95rem; line-height: 1.55; }
   .moat-icon { width: 36px; height: 36px; background: var(--steel-bg); border-radius: 8px; padding: 8px; color: var(--navy); margin-top: -0.25rem; }
 
+  /* ── Pricing ── */
+  .pricing-section { padding: 7rem 2.5rem; max-width: 1400px; margin: 0 auto; }
+  .pricing-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 20ch; }
+  .pricing-heading em { color: var(--navy); font-style: italic; }
+  .pricing-sub { color: var(--ink-2); max-width: 54ch; font-size: 1.05rem; margin-bottom: 2.5rem; }
+  .pricing-toggle-wrap { margin-bottom: 3.5rem; }
+  .pricing-toggle { display: inline-flex; align-items: center; gap: 0; background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 4px; }
+  .pricing-toggle-btn { padding: 0.55rem 1.5rem; border-radius: 7px; border: none; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; background: transparent; color: var(--ink-2); transition: all 0.2s; display: flex; align-items: center; gap: 0.6rem; }
+  .pricing-toggle-btn.active { background: var(--navy); color: #fff; }
+  .pricing-save-badge { font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; letter-spacing: 0.07em; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 2px 7px; }
+  .pricing-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 4rem; align-items: stretch; }
+  .pricing-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 2rem; position: relative; display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.3s; }
+  .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,30,48,0.09); }
+  .pricing-card.featured { border: 2px solid var(--navy); }
+  .pricing-badge-top { position: absolute; top: -11px; left: 20px; font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--navy); color: #fff; padding: 3px 10px; border-radius: 4px; }
+  .pricing-plan-name { font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .pricing-price { line-height: 1; margin-bottom: 0.35rem; }
+  .pricing-price .amount { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 2.9rem; font-weight: 700; letter-spacing: -0.04em; color: var(--navy); }
+  .pricing-price .period { font-size: 0.88rem; color: var(--muted); font-weight: 400; }
+  .pricing-saving { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; min-height: 1.2em; margin-bottom: 0.75rem; }
+  .pricing-tagline { font-size: 0.91rem; color: var(--ink-2); line-height: 1.5; padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line-soft); }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; flex: 1; }
+  .pricing-features li { padding-left: 1.5rem; position: relative; font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; }
+  .pricing-features li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 700; }
+  .pricing-cta-btn { display: block; width: 100%; padding: 0.85rem; border-radius: 8px; font-size: 0.93rem; font-weight: 600; text-align: center; text-decoration: none; cursor: pointer; border: none; font-family: inherit; transition: all 0.25s cubic-bezier(0.2,0.8,0.2,1); }
+  .pricing-cta-btn.accent { background: var(--accent); color: #fff; }
+  .pricing-cta-btn.accent:hover { background: #e55a07; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,106,19,0.35); }
+  .pricing-cta-btn.outline { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+  .pricing-cta-btn.outline:hover { background: var(--navy); color: #fff; }
+  .pricing-cta-btn.dark { background: var(--navy); color: #fff; }
+  .pricing-cta-btn.dark:hover { background: var(--navy-dark); transform: translateY(-1px); }
+  .pricing-vs { background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .pricing-vs-header { padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--line-soft); }
+  .pricing-vs-eyebrow { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  .pricing-vs-title { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 0.4rem; }
+  .pricing-vs-sub { font-size: 0.9rem; color: var(--muted); }
+  .pricing-vs-table { width: 100%; border-collapse: collapse; }
+  .pricing-vs-table th { padding: 0.85rem 2.5rem; text-align: left; font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line-soft); }
+  .pricing-vs-table th:last-child { text-align: right; }
+  .pricing-vs-table td { padding: 1rem 2.5rem; font-size: 0.92rem; color: var(--ink); border-bottom: 1px solid var(--line-soft); background: #fff; vertical-align: middle; }
+  .pricing-vs-table td:last-child { text-align: right; font-family: 'JetBrains Mono',monospace; font-weight: 700; color: var(--navy); font-size: 0.85rem; white-space: nowrap; }
+  .pricing-vs-table tr.vs-total td { border-bottom: none; background: var(--steel-bg); font-weight: 700; }
+  .pricing-vs-table tr.vs-total td:first-child { color: var(--navy); }
+  .pricing-vs-table tr.vs-total td:last-child { color: var(--accent); font-size: 0.95rem; }
+  .pricing-vs-punch { padding: 1.75rem 2.5rem; background: var(--navy-dark); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .pricing-vs-punch p { font-family: 'Instrument Serif',serif; font-style: italic; font-size: 1.15rem; color: rgba(255,255,255,0.88); max-width: 52ch; line-height: 1.45; }
+  .pricing-vs-punch p strong { font-style: normal; color: var(--accent); }
+  .pricing-vs-punch-stat { flex-shrink: 0; text-align: right; }
+  .pricing-vs-punch-stat .ps-amount { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 2rem; font-weight: 700; color: #fff; line-height: 1; }
+  .pricing-vs-punch-stat .ps-label { font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 5px; }
+
   /* ── CTA ── */
   .cta { padding: 7rem 2.5rem; text-align: center; max-width: 900px; margin: 0 auto; }
   .cta-heading { font-size: clamp(2.5rem,6vw,5rem); margin-bottom: 1.5rem; line-height: 1; }
@@ -480,6 +531,12 @@
     .moat { padding: 5rem 1.25rem; }
     .moat-grid { grid-template-columns: 1fr; gap: 3rem; }
     .cta { padding: 4rem 1.25rem; }
+    .pricing-section { padding: 4rem 1.25rem; }
+    .pricing-cards { grid-template-columns: 1fr; }
+    .pricing-vs-table th, .pricing-vs-table td { padding: 0.75rem 1.25rem; font-size: 0.85rem; }
+    .pricing-vs-header { padding: 1.5rem 1.25rem 1.25rem; }
+    .pricing-vs-punch { flex-direction: column; text-align: center; padding: 1.5rem 1.25rem; }
+    .pricing-vs-punch-stat { text-align: center; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; align-items: center; text-align: center; }
     .footer-top { flex-direction: column !important; align-items: center !important; text-align: center !important; }
     .footer-top .footer-contact { text-align: center !important; }
@@ -537,6 +594,7 @@
     <a href="#demo">Live Demo</a>
     <a href="#how">How It Works</a>
     <a href="#moat">Why Us</a>
+    <a href="#pricing">Pricing</a>
   </div>
   <div class="nav-cta" style="display:flex;gap:0.5rem;">
     <button class="btn btn-accent" data-open-waitlist>Book a demo <span class="arrow">&#x2192;</span></button>
@@ -551,6 +609,7 @@
   <a href="#demo">Live Demo</a>
   <a href="#how">How It Works</a>
   <a href="#moat">Why Us</a>
+  <a href="#pricing">Pricing</a>
   <button class="btn btn-accent" data-open-waitlist style="width:100%;justify-content:center;margin-top:0.75rem;">Book a demo &#x2192;</button>
 </div>
 
@@ -1056,6 +1115,124 @@
   </div>
 </section>
 
+<!-- ── Pricing ── -->
+<section class="pricing-section" id="pricing">
+  <div class="section-eyebrow mono reveal">Pricing</div>
+  <h2 class="display pricing-heading reveal">One platform. <em>Every</em> project.</h2>
+  <p class="pricing-sub reveal">Transparent pricing built around how teams actually work. No seat fees. No per-report charges.</p>
+
+  <div class="pricing-toggle-wrap reveal">
+    <div class="pricing-toggle">
+      <button class="pricing-toggle-btn active" id="pricingMonthly" onclick="setPricingBilling('monthly')">Monthly</button>
+      <button class="pricing-toggle-btn" id="pricingAnnual" onclick="setPricingBilling('annual')">Annual <span class="pricing-save-badge">Save 20%</span></button>
+    </div>
+  </div>
+
+  <div class="pricing-cards reveal">
+    <!-- Free -->
+    <div class="pricing-card">
+      <div class="pricing-plan-name">Free</div>
+      <div class="pricing-price"><span class="amount">$0</span><span class="period"> / forever</span></div>
+      <div class="pricing-saving">&nbsp;</div>
+      <p class="pricing-tagline">Explore zoning verdicts and see what the approval process looks like on any Canadian address.</p>
+      <ul class="pricing-features">
+        <li>Zone designation and zoning verdict</li>
+        <li>First 3 approval bodies</li>
+        <li>First 2 required studies</li>
+        <li>5 reports per month</li>
+        <li>1 drawing compliance check</li>
+      </ul>
+      <button class="pricing-cta-btn outline" data-open-waitlist>Get started free</button>
+    </div>
+
+    <!-- Professional -->
+    <div class="pricing-card featured">
+      <div class="pricing-badge-top">Most popular</div>
+      <div class="pricing-plan-name">Professional</div>
+      <div class="pricing-price"><span class="amount" id="proPrice">$399</span><span class="period"> / mo</span></div>
+      <div class="pricing-saving" id="proSaving">&nbsp;</div>
+      <p class="pricing-tagline">Full pre-application intelligence for teams running 5 to 20 projects per year.</p>
+      <ul class="pricing-features">
+        <li>Full report — all agencies and required studies</li>
+        <li>Suitability analysis and path-to-permit</li>
+        <li>Zoning bylaw standards and carrying cost forecast</li>
+        <li>Export to CSV and Word</li>
+        <li>Report sharing</li>
+        <li>15 reports per month, up to 3 members</li>
+        <li>Drawing and code compliance checker</li>
+      </ul>
+      <button class="pricing-cta-btn accent" data-open-waitlist>Book a demo &#x2192;</button>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="pricing-card">
+      <div class="pricing-plan-name">Enterprise</div>
+      <div class="pricing-price"><span class="amount" id="entPrice">$799</span><span class="period"> / mo</span></div>
+      <div class="pricing-saving" id="entSaving">&nbsp;</div>
+      <p class="pricing-tagline">Full platform access for high-volume developers, expeditors, and multi-project firms.</p>
+      <ul class="pricing-features">
+        <li>Everything in Professional</li>
+        <li>50 reports per month, up to 10 members</li>
+        <li>Priority support</li>
+        <li>API access for integrations</li>
+        <li>Branded PDF exports</li>
+        <li>Advanced drawing analysis</li>
+      </ul>
+      <button class="pricing-cta-btn dark" data-open-waitlist>Book a demo &#x2192;</button>
+    </div>
+  </div>
+
+  <!-- Retail rate comparison -->
+  <div class="pricing-vs reveal">
+    <div class="pricing-vs-header">
+      <div class="pricing-vs-eyebrow">Retail consultant rates</div>
+      <h3 class="pricing-vs-title">What you pay without PreBuildIQ</h3>
+      <p class="pricing-vs-sub">Typical fees charged per pre-application engagement in Ontario.</p>
+    </div>
+    <table class="pricing-vs-table">
+      <thead>
+        <tr>
+          <th>Pre-application service</th>
+          <th>Market rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Agency identification and circulation mapping</td>
+          <td>$2,500–$4,000</td>
+        </tr>
+        <tr>
+          <td>Required studies scoping (TMP, EIS, HIA, FSR)</td>
+          <td>$3,000–$8,000</td>
+        </tr>
+        <tr>
+          <td>Zoning compliance review and verdict</td>
+          <td>$2,000–$4,500</td>
+        </tr>
+        <tr>
+          <td>Pre-consultation package preparation (ZBA)</td>
+          <td>$5,000–$12,000</td>
+        </tr>
+        <tr>
+          <td>Approval timeline and carrying cost forecast</td>
+          <td>$1,500–$3,000</td>
+        </tr>
+        <tr class="vs-total">
+          <td><strong>Total per pre-application engagement</strong></td>
+          <td>$14,000–$31,500+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pricing-vs-punch">
+      <p>PreBuildIQ covers <strong>all of this in 60 seconds</strong>. At $399 a month, a single project more than pays for the entire year.</p>
+      <div class="pricing-vs-punch-stat">
+        <div class="ps-amount">$399<span style="font-size:1rem;font-weight:400;opacity:0.5">/mo</span></div>
+        <div class="ps-label">vs. $14K+ per engagement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── CTA ── -->
 <section class="cta" id="contact">
   <div class="section-eyebrow mono reveal" style="justify-content:center;display:inline-flex;">Book a demo</div>
@@ -1160,6 +1337,17 @@
 </div>
 
 <script>
+  /* ── Pricing toggle ── */
+  function setPricingBilling(mode) {
+    const isAnnual = mode === 'annual';
+    document.getElementById('pricingMonthly').classList.toggle('active', !isAnnual);
+    document.getElementById('pricingAnnual').classList.toggle('active', isAnnual);
+    document.getElementById('proPrice').textContent = isAnnual ? '$319' : '$399';
+    document.getElementById('entPrice').textContent = isAnnual ? '$639' : '$799';
+    document.getElementById('proSaving').textContent = isAnnual ? 'SAVE $960 / YR' : ' ';
+    document.getElementById('entSaving').textContent = isAnnual ? 'SAVE $1,920 / YR' : ' ';
+  }
+
   /* ── Scroll progress ── */
   const progressBar = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
@@ -1211,6 +1399,7 @@
   document.querySelectorAll('.phase').forEach((el, i) => { el.style.transitionDelay = `${i * 110}ms`; });
   document.querySelectorAll('.pain-stat').forEach((el, i) => { el.style.transitionDelay = `${i * 80}ms`; });
   document.querySelectorAll('.stat-item').forEach((el, i) => { el.style.transitionDelay = `${i * 80}ms`; });
+  document.querySelectorAll('.pricing-card').forEach((el, i) => { el.style.transitionDelay = `${i * 90}ms`; });
 
   /* ── Animated counters ── */
   const counterObserver = new IntersectionObserver((entries) => {
