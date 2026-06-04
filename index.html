@@ -1534,6 +1534,13 @@
     const submitBtn = wlForm.querySelector('.modal-submit');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting\u2026';
+    /* Fire confirmation email + internal notification via API (best effort).
+       Failures are swallowed \u2014 Netlify Forms below is the lead source of truth. */
+    fetch('https://prebuildiq-api.fly.dev/demo/notify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
