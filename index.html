@@ -484,6 +484,7 @@
   .form-field { margin-bottom: 1rem; position: relative; }
   .form-field label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--ink-2); margin-bottom: 0.35rem; letter-spacing: 0.01em; }
   .form-field label .req { color: var(--accent); }
+  .form-field label .opt { color: var(--muted); font-weight: 400; font-size: 0.85em; }
   .form-field input, .form-field select, .form-field textarea { width: 100%; padding: 0.7rem 0.85rem; background: #fff; border: 1px solid var(--line); border-radius: 6px; font-family: inherit; font-size: 0.92rem; color: var(--ink); transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
   .form-field textarea { resize: vertical; min-height: 80px; }
   .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(20,48,79,0.12); }
@@ -1350,6 +1351,10 @@
           </div>
         </div>
         <div class="form-field">
+          <label for="wlPhone">Phone <span class="opt">(optional)</span></label>
+          <input type="tel" id="wlPhone" name="wlPhone" autocomplete="tel" placeholder="(416) 555-0123" />
+        </div>
+        <div class="form-field">
           <label for="wlProjects">Projects per year <span class="req">*</span></label>
           <select id="wlProjects" name="wlProjects">
             <option value="">Select one&#x2026;</option>
@@ -1529,6 +1534,7 @@
       email: document.getElementById('wlEmail').value.trim().toLowerCase(),
       company: document.getElementById('wlCompany').value.trim(),
       municipality: document.getElementById('wlMunicipality').value.trim(),
+      phone: document.getElementById('wlPhone').value.trim(),
       projectsPerYear: document.getElementById('wlProjects').value,
     };
     const submitBtn = wlForm.querySelector('.modal-submit');
