@@ -255,11 +255,45 @@
     }
 
     .nav-logo {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: 20px;
-      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
       text-decoration: none;
+      color: var(--ink);
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--navy);
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid #ffffff;
+      border-radius: 2px;
+    }
+
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
     }
 
     .nav-cta {
@@ -315,22 +349,10 @@
       gap: 8px;
     }
 
-    .verified-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border-radius: 3px;
-    }
-
     .quick-answer {
-      background: #eaf0f6;
-      border-left: 4px solid var(--navy);
-      padding: 16px 20px;
+      background: var(--navy);
+      border-left: 4px solid var(--accent);
+      padding: 20px 22px;
       border-radius: 4px;
       margin: 20px 0 28px;
     }
@@ -341,13 +363,13 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--steel);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .quick-answer p {
       font-size: 15px;
       line-height: 1.65;
-      color: var(--ink-2);
+      color: var(--steel-light);
       margin: 0;
     }
 
@@ -582,23 +604,54 @@
       margin-bottom: 8px;
     }
 
-    .faq-item {
+    details.faq-item {
       border-bottom: 1px solid var(--line);
-      padding: 20px 0;
     }
 
-    .faq-item:last-child { border-bottom: none; }
+    details.faq-item:last-of-type { border-bottom: none; }
+
+    details.faq-item summary {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 18px 0;
+      list-style: none;
+      user-select: none;
+      gap: 16px;
+    }
+
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::marker { display: none; }
 
     .faq-q {
       font-weight: 600;
       color: var(--ink);
       font-size: 16px;
-      margin-bottom: 8px;
       font-family: 'DM Sans', sans-serif;
+      line-height: 1.4;
+      flex: 1;
     }
 
-    .faq-a { color: var(--ink-2); font-size: 15px; line-height: 1.65; }
-    .faq-a p { margin-bottom: 0; }
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--steel);
+      transition: transform 0.2s ease;
+      margin-top: 1px;
+    }
+
+    details.faq-item[open] .faq-chevron { transform: rotate(180deg); }
+
+    .faq-body {
+      padding: 0 28px 18px 0;
+      color: var(--ink-2);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .faq-body p { margin-bottom: 0; }
 
     .about-data {
       font-size: 13px;
@@ -722,7 +775,7 @@
 <body>
 
 <nav class="top-nav">
-  <a href="https://prebuildiq.ca/" class="nav-logo">PreBuildIQ</a>
+  <a href="https://prebuildiq.ca/" class="nav-logo"><div class="logo-mark"></div>PreBuildIQ</a>
   <a href="https://prebuildiq.app" class="nav-cta">Launch App</a>
 </nav>
 
@@ -731,9 +784,9 @@
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="https://prebuildiq.ca/">PreBuildIQ</a>
     <span class="breadcrumb-sep">/</span>
-    <a href="https://prebuildiq.ca/ontario/">Ontario</a>
+    <span>Ontario</span>
     <span class="breadcrumb-sep">/</span>
-    <a href="https://prebuildiq.ca/ontario/toronto/">Toronto</a>
+    <span>Toronto</span>
     <span class="breadcrumb-sep">/</span>
     Pre-Development Checklist
   </nav>
@@ -748,7 +801,6 @@
       <span>9 min read</span>
       <span>&middot;</span>
       <span>PreBuildIQ Research Team</span>
-      <span class="verified-badge">Last verified: June 2026</span>
     </div>
   </header>
 
@@ -1175,47 +1227,65 @@
 
   <h2>Frequently Asked Questions</h2>
 
-  <div class="faq-item">
-    <div class="faq-q">What studies are required for a development application in Toronto?</div>
-    <div class="faq-a">
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">What studies are required for a development application in Toronto?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,8 10,13 15,8"/></svg>
+    </summary>
+    <div class="faq-body">
       <p>Toronto development applications require between 10 and 27 studies depending on site. Always required for ZBA and OPA applications under Zoning By-law 569-2013: Planning Justification Report, Boundary Plan of Survey, Topographic Survey, Context Plan, 3D Building Mass Model, Servicing Report, Stormwater Management Report, Geotechnical Study, Transportation Impact Study, Public Consultation Strategy Report, Simplified Report Graphics, and all architectural drawings. The full list is confirmed in the Planning Application Checklist Package issued at the Pre-Application Consultation (PAC) stage.</p>
     </div>
-  </div>
+  </details>
 
-  <div class="faq-item">
-    <div class="faq-q">Which agencies are circulated on a planning application in Toronto?</div>
-    <div class="faq-a">
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">Which agencies are circulated on a planning application in Toronto?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,8 10,13 15,8"/></svg>
+    </summary>
+    <div class="faq-body">
       <p>Toronto City Planning circulates applications to as many as seven agencies: City of Toronto City Planning Division (all applications), Toronto and Region Conservation Authority (TRCA), Toronto Transit Commission (TTC), Heritage Preservation Services (HPS), Toronto Public Health (TPH), Toronto Green Standard Review (TGS), and Engineering and Construction Services (ECS). Not all seven agencies comment on every application. Triggers are site-specific and confirmed at the PAC meeting.</p>
     </div>
-  </div>
+  </details>
 
-  <div class="faq-item">
-    <div class="faq-q">How long does the pre-application consultation process take in Toronto?</div>
-    <div class="faq-a">
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">How long does the pre-application consultation process take in Toronto?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,8 10,13 15,8"/></svg>
+    </summary>
+    <div class="faq-body">
       <p>Toronto's Pre-Application Consultation (PAC) typically takes 4 to 8 weeks from request to receipt of the written Planning Application Checklist Package. City Planning assigns a Community Planner within 20 business days of the PAC request. The PAC meeting is then scheduled, attended by City staff and relevant agency representatives. The written Checklist Package follows the meeting and confirms all required studies and agency circulation.</p>
     </div>
-  </div>
+  </details>
 
-  <div class="faq-item">
-    <div class="faq-q">What is required for a complete application submission in Toronto?</div>
-    <div class="faq-a">
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">What is required for a complete application submission in Toronto?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,8 10,13 15,8"/></svg>
+    </summary>
+    <div class="faq-body">
       <p>A complete Toronto planning application requires all studies and drawings listed in the Planning Application Checklist Package issued at the PAC stage, plus a completed Project Data Sheet, Public Consultation Strategy Report, and Simplified Report Graphics for OPA and ZBA applications. All files must be submitted electronically through the City's ePlan portal. City Planning will not issue a receipt, and the statutory clock will not start, until the application is accepted as complete.</p>
     </div>
-  </div>
+  </details>
 
-  <div class="faq-item">
-    <div class="faq-q">What happens if my Toronto planning application is returned as incomplete?</div>
-    <div class="faq-a">
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">What happens if my Toronto planning application is returned as incomplete?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,8 10,13 15,8"/></svg>
+    </summary>
+    <div class="faq-body">
       <p>An incomplete Toronto planning application is returned without a receipt, and the 90-day statutory review clock under the Ontario Planning Act does not start. The applicant must resubmit a complete commenting package, which restarts agency circulation from the beginning. Common causes of returns: missing studies confirmed at PAC, outdated environmental assessments, incorrect drawing specifications, and missing supporting documents required by the fee schedule.</p>
     </div>
-  </div>
+  </details>
 
-  <div class="faq-item">
-    <div class="faq-q">Does Toronto charge a fee for the pre-application consultation?</div>
-    <div class="faq-a">
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">Does Toronto charge a fee for the pre-application consultation?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,8 10,13 15,8"/></svg>
+    </summary>
+    <div class="faq-body">
       <p>Toronto's Pre-Application Consultation (PAC) requires a fee at the time of the PAC request, as outlined in the City's Planning Application Fee Schedule, which is updated annually. The fee varies by application type and the scale of the proposed development. PAC fees are credited against the final planning application fee paid at 1st submission.</p>
     </div>
-  </div>
+  </details>
 
   <div class="about-data">
     <strong>About this data:</strong> PreBuildIQ aggregates official submission requirements from City of Toronto Planning Services, the Toronto and Region Conservation Authority (TRCA), and Ontario Planning Act requirements. Data verified June 2026. Requirements change. Confirm current submission requirements with the applicable planning department before filing.
