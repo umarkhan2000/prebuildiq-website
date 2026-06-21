@@ -193,6 +193,7 @@
   }
   </script>
 
+  <link rel="icon" type="image/png" href="https://prebuildiq.ca/logo_300.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -759,6 +760,128 @@
 
     .resources-list a:hover { text-decoration: underline; }
 
+    .related-card-planned {
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      display: block;
+      background: var(--bg-2);
+      cursor: default;
+    }
+
+    .related-card-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .planned-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-left: 6px;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      margin-top: 64px;
+      background: #ffffff;
+    }
+
+    .footer-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 24px 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .footer-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--ink-2);
+      margin: 0;
+    }
+
+    .footer-contact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .footer-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--ink);
+      text-decoration: none;
+      display: block;
+    }
+
+    .footer-email:hover { text-decoration: underline; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      font-size: 13px;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links { display: flex; gap: 20px; align-items: center; }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .footer-links a.footer-launch {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .footer-links a:hover { text-decoration: underline; }
+
     @media (max-width: 768px) {
       .page-wrap { padding: 0 16px 48px; }
       .top-nav { padding: 0 16px; }
@@ -768,6 +891,8 @@
       .micro-cta { flex-direction: column; align-items: flex-start; gap: 10px; }
       .final-cta { padding: 32px 16px; }
       .related-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
     }
   </style>
 </head>
@@ -1300,30 +1425,26 @@
   <h2>More Toronto Planning Guides</h2>
 
   <div class="related-grid">
-    <a href="https://prebuildiq.ca/ontario/toronto/development-approvals/" class="related-card">
-      <span class="related-card-type">Toronto</span>
+    <span class="related-card-planned">
+      <span class="related-card-type">Toronto <span class="planned-tag">Coming soon</span></span>
       Development Approvals
-    </a>
-    <a href="https://prebuildiq.ca/ontario/toronto/zoning-bylaw/" class="related-card">
-      <span class="related-card-type">Toronto</span>
+    </span>
+    <span class="related-card-planned">
+      <span class="related-card-type">Toronto <span class="planned-tag">Coming soon</span></span>
       Zoning Bylaw Amendment
-    </a>
-    <a href="https://prebuildiq.ca/ontario/toronto/site-plan-approval/" class="related-card">
-      <span class="related-card-type">Toronto</span>
+    </span>
+    <span class="related-card-planned">
+      <span class="related-card-type">Toronto <span class="planned-tag">Coming soon</span></span>
       Site Plan Approval
-    </a>
-    <a href="https://prebuildiq.ca/ontario/toronto/minor-variance/" class="related-card">
-      <span class="related-card-type">Toronto</span>
+    </span>
+    <span class="related-card-planned">
+      <span class="related-card-type">Toronto <span class="planned-tag">Coming soon</span></span>
       Minor Variance
-    </a>
-    <a href="https://prebuildiq.ca/ontario/toronto/" class="related-card">
-      <span class="related-card-type">Toronto</span>
-      Toronto Planning Hub
-    </a>
-    <a href="https://prebuildiq.ca/guides/predevelopment-checklist-ontario/" class="related-card">
-      <span class="related-card-type">Ontario Guide</span>
+    </span>
+    <span class="related-card-planned">
+      <span class="related-card-type">Ontario Guide <span class="planned-tag">Coming soon</span></span>
       Pre-Development Checklist Ontario
-    </a>
+    </span>
   </div>
 
   <h2>Official Resources</h2>
@@ -1345,15 +1466,30 @@
 
 </div>
 
-<footer style="background:#1b3a5c;color:#c6d4e2;padding:48px 24px;text-align:center;margin-top:64px;">
-  <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:#ffffff;margin-bottom:4px;">PreBuildIQ</div>
-  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#6b8aa8;margin-bottom:24px;">Clarity, before concrete.</div>
-  <div style="display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;">
-    <a href="https://prebuildiq.ca/privacy.html" style="color:#c6d4e2;text-decoration:none;font-size:14px;">Privacy Policy</a>
-    <a href="https://prebuildiq.ca/terms.html" style="color:#c6d4e2;text-decoration:none;font-size:14px;">Terms of Service</a>
-    <a href="https://prebuildiq.app" style="color:#ff6a13;text-decoration:none;font-size:14px;font-weight:600;">Launch App</a>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="https://prebuildiq.ca/" class="footer-logo-link">
+          <div class="logo-mark"></div>
+          PreBuildIQ
+        </a>
+        <p class="footer-tagline">Canada's pre-development intelligence platform.</p>
+      </div>
+      <div>
+        <div class="footer-contact-label">Contact</div>
+        <a href="mailto:info@prebuildiq.ca" class="footer-email">info@prebuildiq.ca</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&#169; 2026 PreBuildIQ Inc. &middot; Toronto, ON</div>
+      <div class="footer-links">
+        <a href="https://prebuildiq.ca/terms.html">Terms</a>
+        <a href="https://prebuildiq.ca/privacy.html">Privacy</a>
+        <a href="https://prebuildiq.app" class="footer-launch">Launch App</a>
+      </div>
+    </div>
   </div>
-  <div style="font-size:12px;color:#6b8aa8;">&#169; 2026 PreBuildIQ Inc. All rights reserved.</div>
 </footer>
 
 </body>
