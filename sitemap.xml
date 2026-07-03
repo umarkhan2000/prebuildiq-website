@@ -7,13 +7,13 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://prebuildiq.ca/privacy.html</loc>
+    <loc>https://prebuildiq.ca/privacy</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://prebuildiq.ca/terms.html</loc>
+    <loc>https://prebuildiq.ca/terms</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
