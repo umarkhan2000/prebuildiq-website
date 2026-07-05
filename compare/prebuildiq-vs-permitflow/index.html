@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light">
+  <title>PreBuildIQ vs PermitFlow: Ontario Development Approvals Software | PreBuildIQ</title>
+  <meta name="description" content="PermitFlow manages permit submissions once you have drawings. PreBuildIQ tells you what you need before drawings exist — agencies, studies, bylaw standards — for Ontario planning applications.">
+  <link rel="canonical" href="https://prebuildiq.ca/compare/prebuildiq-vs-permitflow/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prebuildiq.ca/compare/prebuildiq-vs-permitflow/">
+  <meta property="og:title" content="PreBuildIQ vs PermitFlow: Ontario Development Approvals Software">
+  <meta property="og:description" content="PermitFlow manages permit submissions once you have drawings. PreBuildIQ tells you what you need before drawings exist — agencies, studies, bylaw standards — for Ontario planning applications.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "PreBuildIQ vs PermitFlow: Choosing the Right Tool for Ontario Development Approvals",
+    "description": "PermitFlow is a US-based permit tracking and submission platform. PreBuildIQ is Ontario's pre-development intelligence platform, built to scope the approval process before drawings are commissioned.",
+    "datePublished": "2026-07-03",
+    "dateModified": "2026-07-03",
+    "publisher": {
+      "@type": "Organization",
+      "name": "PreBuildIQ",
+      "url": "https://prebuildiq.ca",
+      "logo": "https://prebuildiq.ca/logo_300.png"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between PreBuildIQ and PermitFlow?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PermitFlow is a permit submission and tracking platform that manages the construction permitting process after you have design drawings. PreBuildIQ is a pre-development intelligence platform that tells Ontario developers and planners what approvals, studies, and agency engagements are needed before drawings are commissioned. They address different stages: PermitFlow is post-design, PreBuildIQ is pre-design."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does PermitFlow work in Ontario?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PermitFlow is a US-based platform with primary coverage in American jurisdictions. The company has referenced some Canadian presence, primarily in western Canada. It does not cover Ontario's OPA, ZBA, minor variance, site plan, or conservation authority permit workflows, which are governed by the Planning Act (Ontario) and the Conservation Authorities Act."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can PreBuildIQ help with permit submission in Ontario?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PreBuildIQ focuses on the pre-development stage: generating the agency list, required studies, and bylaw analysis for a planning application before 1st submission. Permit filing and tracking (Phase 3 on the PreBuildIQ roadmap) will extend the platform into submission management. For now, PreBuildIQ is purpose-built for the research and scoping stage that happens before any drawings or applications are prepared."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does it matter to research approvals before commissioning drawings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Ontario, a developer who begins commissioning architectural drawings without knowing which studies are triggered wastes consultant fees on the wrong scope. The municipality confirms required studies at the Pre-Application Consultation (PAC) stage. If the drawing set does not account for a required Environmental Impact Study or Functional Servicing Report, the 1st submission is returned incomplete and the statutory review clock never starts. In the GTA, 60% of applications are resubmitted at least once, costing $197K+ in additional carrying costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which Ontario municipalities does PreBuildIQ cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PreBuildIQ covers 43 Ontario municipalities including Toronto, Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville, Burlington, Hamilton, Peterborough, Kingston, and Greater Sudbury, with 188 approval bodies and 381 required studies indexed across those municipalities."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/png" href="https://prebuildiq.ca/logo_300.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: light only;
+      --bg: #ffffff;
+      --bg-2: #f7f8fa;
+      --ink: #0f1e30;
+      --ink-2: #3d4a5c;
+      --muted: #7b8594;
+      --line: #e2e5ea;
+      --navy: #1b3a5c;
+      --navy-dark: #122a43;
+      --accent: #ff6a13;
+      --accent-soft: #fff0e6;
+      --steel: #6b8aa8;
+      --steel-light: #c6d4e2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #ffffff; }
+
+    body {
+      font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.7;
+      font-size: 16px;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--navy);
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid #ffffff;
+      border-radius: 2px;
+    }
+
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .breadcrumb {
+      padding: 20px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .breadcrumb a { color: var(--steel); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--navy); }
+    .breadcrumb-sep { margin: 0 6px; color: var(--steel-light); }
+
+    .article-header { padding: 32px 0 8px; }
+
+    .article-header h1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .article-meta {
+      font-size: 13px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .article-meta span { white-space: nowrap; }
+
+    p { margin-bottom: 18px; color: var(--ink-2); font-size: 16px; line-height: 1.75; }
+
+    h2 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 600;
+      color: var(--ink);
+      margin: 36px 0 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 24px 0 8px;
+    }
+
+    .quick-answer {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin: 24px 0 28px;
+    }
+
+    .quick-answer-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .quick-answer p { margin: 0; font-size: 15px; color: var(--ink); }
+
+    .stage-diagram {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 24px 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .stage-block {
+      flex: 1;
+      padding: 16px 14px;
+      text-align: center;
+      border-right: 1px solid var(--line);
+      position: relative;
+    }
+
+    .stage-block:last-child { border-right: none; }
+
+    .stage-block.ours { background: #fff7f2; }
+    .stage-block.neutral { background: var(--bg-2); }
+    .stage-block.them { background: #f4f6f9; }
+
+    .stage-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .stage-label.ours-label { color: var(--accent); }
+    .stage-label.them-label { color: var(--steel); }
+    .stage-label.neutral-label { color: var(--muted); }
+
+    .stage-name {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .stage-desc {
+      font-size: 12px;
+      color: var(--ink-2);
+      line-height: 1.5;
+    }
+
+    .compare-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(15,30,48,0.07);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    table thead tr { background: var(--navy); color: #ffffff; }
+
+    table thead th {
+      padding: 14px 16px;
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    table thead th:first-child { width: 38%; }
+    table thead th.col-ours {
+      background: var(--accent);
+      color: #ffffff;
+      width: 31%;
+    }
+    table thead th.col-them { width: 31%; }
+
+    table tbody tr { border-bottom: 1px solid var(--line); }
+    table tbody tr:last-child { border-bottom: none; }
+
+    table tbody td {
+      padding: 12px 16px;
+      color: var(--ink-2);
+      vertical-align: middle;
+      line-height: 1.5;
+    }
+
+    table tbody td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 13px;
+      background: var(--bg-2);
+    }
+
+    table tbody td.col-ours {
+      background: #fff7f2;
+      font-weight: 500;
+    }
+
+    table tbody td.col-them { color: var(--muted); }
+
+    .check { color: #1a7a3c; font-weight: 700; }
+    .cross { color: #b0b8c1; font-weight: 400; }
+    .partial { color: var(--steel); font-weight: 500; }
+
+    .verdict-banner {
+      background: var(--navy);
+      border-radius: 6px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .verdict-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .verdict-copy h3 {
+      color: #ffffff;
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .verdict-copy p {
+      color: var(--steel-light);
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .use-case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .use-case-card {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 18px 20px;
+      background: var(--bg-2);
+    }
+
+    .use-case-card .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 8px;
+    }
+
+    .use-case-card h3 { font-size: 15px; margin: 0 0 8px; color: var(--ink); }
+    .use-case-card p { font-size: 14px; margin: 0; color: var(--ink-2); line-height: 1.6; }
+    .use-case-card.ours { border-color: var(--accent); border-top-width: 3px; }
+    .use-case-card.ours .label { color: var(--accent); }
+
+    .micro-cta {
+      border: 1px solid var(--navy);
+      background: #ffffff;
+      padding: 14px 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 24px 0;
+      gap: 16px;
+    }
+
+    .micro-cta p { margin: 0; font-size: 14px; color: var(--ink-2); }
+
+    .micro-cta a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .micro-cta a:hover { text-decoration: underline; }
+
+    details.faq-item { border-bottom: 1px solid var(--line); }
+    details.faq-item:last-of-type { border-bottom: none; }
+
+    details.faq-item summary {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 18px 0;
+      list-style: none;
+      user-select: none;
+      gap: 16px;
+    }
+
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::marker { display: none; }
+
+    .faq-q {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--steel);
+      transition: transform 0.2s ease;
+      margin-top: 1px;
+    }
+
+    details.faq-item[open] .faq-chevron { transform: rotate(180deg); }
+
+    .faq-body {
+      padding: 0 28px 18px 0;
+      color: var(--ink-2);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .faq-body p { margin-bottom: 0; }
+
+    .final-cta {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--navy);
+      border-radius: 8px;
+      margin: 48px 0;
+    }
+
+    .final-cta h2 {
+      border-top: none;
+      border: none;
+      color: #ffffff;
+      margin: 0 0 12px;
+      padding-top: 0;
+    }
+
+    .final-cta p { color: var(--steel-light); font-size: 15px; max-width: 520px; margin: 0 auto 24px; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 14px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover { opacity: 0.92; }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      margin-top: 64px;
+      background: #ffffff;
+    }
+
+    .footer-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 24px 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .footer-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--ink-2);
+      margin: 0;
+    }
+
+    .footer-contact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .footer-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--ink);
+      text-decoration: none;
+      display: block;
+    }
+
+    .footer-email:hover { text-decoration: underline; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      font-size: 13px;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links { display: flex; gap: 20px; align-items: center; }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .footer-links a.footer-launch {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .footer-links a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .page-wrap { padding: 0 16px 48px; }
+      .top-nav { padding: 0 16px; }
+      h2 { font-size: 19px; }
+      .micro-cta { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .final-cta { padding: 32px 16px; }
+      .use-case-grid { grid-template-columns: 1fr; }
+      .stage-diagram { flex-direction: column; }
+      .stage-block { border-right: none; border-bottom: 1px solid var(--line); }
+      .stage-block:last-child { border-bottom: none; }
+      .verdict-banner { flex-direction: column; gap: 12px; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="top-nav">
+  <a href="https://prebuildiq.ca/" class="nav-logo"><div class="logo-mark"></div>PreBuildIQ</a>
+  <a href="https://prebuildiq.app" class="nav-cta">Try free</a>
+</nav>
+
+<div class="page-wrap">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="https://prebuildiq.ca/">PreBuildIQ</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Compare</span>
+    <span class="breadcrumb-sep">/</span>
+    PreBuildIQ vs PermitFlow
+  </nav>
+
+  <header class="article-header">
+    <h1>PreBuildIQ vs PermitFlow: The Right Tool for Ontario Development Approvals</h1>
+    <div class="article-meta">
+      <span>Published July 2026</span>
+      <span>&middot;</span>
+      <span>Updated July 2026</span>
+      <span>&middot;</span>
+      <span>6 min read</span>
+      <span>&middot;</span>
+      <span>PreBuildIQ Research Team</span>
+    </div>
+  </header>
+
+  <div class="quick-answer">
+    <div class="quick-answer-label">Bottom line</div>
+    <p>PermitFlow is a US-based permit submission and tracking tool for contractors who already have drawings. PreBuildIQ is Ontario's pre-development intelligence platform, built for developers and planners who need to scope approval requirements before drawings are commissioned. Different stage. Different problem.</p>
+  </div>
+
+  <p>The Ontario planning approvals process has two distinct research phases. The first happens before a single drawing is produced: which agencies are triggered, which studies are mandatory, what does the bylaw actually permit. The second happens after design is complete: submitting applications and tracking their progress through municipal review. PermitFlow addresses the second. PreBuildIQ addresses the first.</p>
+
+  <p>Getting the first phase wrong is expensive. A developer who commissions drawings without knowing a Hydrogeological Study is required has paid for a drawing set that cannot support a complete 1st submission.</p>
+
+  <h2>Where each tool fits in the development timeline</h2>
+
+  <div class="stage-diagram">
+    <div class="stage-block ours">
+      <div class="stage-label ours-label">PreBuildIQ</div>
+      <div class="stage-name">Pre-Development</div>
+      <div class="stage-desc">Agency triggers, study list, bylaw standards, feasibility. Before drawings.</div>
+    </div>
+    <div class="stage-block neutral">
+      <div class="stage-label neutral-label">Both</div>
+      <div class="stage-name">Pre-Application Consultation</div>
+      <div class="stage-desc">Municipality confirms required studies and agency circulation.</div>
+    </div>
+    <div class="stage-block neutral">
+      <div class="stage-label neutral-label">Consultant</div>
+      <div class="stage-name">Study commissioning</div>
+      <div class="stage-desc">Environmental, servicing, transportation studies. 8–14 weeks each.</div>
+    </div>
+    <div class="stage-block them">
+      <div class="stage-label them-label">PermitFlow</div>
+      <div class="stage-name">Permit submission</div>
+      <div class="stage-desc">Commenting package filed, permit applications tracked.</div>
+    </div>
+  </div>
+
+  <h2>Feature comparison</h2>
+
+  <div class="compare-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="col-ours">&#9733; PreBuildIQ</th>
+          <th class="col-them">PermitFlow</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ontario-native coverage</td>
+          <td class="col-ours"><span class="check">&#10003;</span> 43 Ontario municipalities</td>
+          <td class="col-them"><span class="cross">&#215;</span> US-primary, limited Canada</td>
+        </tr>
+        <tr>
+          <td>Pre-application agency trigger analysis</td>
+          <td class="col-ours"><span class="check">&#10003;</span> 188 approval bodies indexed</td>
+          <td class="col-them"><span class="cross">&#215;</span> Not covered</td>
+        </tr>
+        <tr>
+          <td>Required studies list for 1st submission</td>
+          <td class="col-ours"><span class="check">&#10003;</span> 381 studies across 43 munis</td>
+          <td class="col-them"><span class="cross">&#215;</span> Not covered</td>
+        </tr>
+        <tr>
+          <td>Zoning bylaw standards by address</td>
+          <td class="col-ours"><span class="check">&#10003;</span> 37,941 sections RAG-indexed</td>
+          <td class="col-them"><span class="cross">&#215;</span> Not covered</td>
+        </tr>
+        <tr>
+          <td>Conservation authority jurisdiction overlay</td>
+          <td class="col-ours"><span class="check">&#10003;</span> TRCA, LSRCA, CLOCA, others</td>
+          <td class="col-them"><span class="cross">&#215;</span> Not covered</td>
+        </tr>
+        <tr>
+          <td>Greenbelt / Oak Ridges Moraine overlay</td>
+          <td class="col-ours"><span class="check">&#10003;</span> Live</td>
+          <td class="col-them"><span class="cross">&#215;</span> Not covered</td>
+        </tr>
+        <tr>
+          <td>Drawing compliance checker (OBC + bylaws)</td>
+          <td class="col-ours"><span class="check">&#10003;</span> Phase 2, live</td>
+          <td class="col-them"><span class="partial">&#8726;</span> Permit application prep only</td>
+        </tr>
+        <tr>
+          <td>Lot size and density feasibility check</td>
+          <td class="col-ours"><span class="check">&#10003;</span> 10 municipalities via ArcGIS</td>
+          <td class="col-them"><span class="cross">&#215;</span> Not covered</td>
+        </tr>
+        <tr>
+          <td>Works before drawings exist</td>
+          <td class="col-ours"><span class="check">&#10003;</span> Address lookup only required</td>
+          <td class="col-them"><span class="cross">&#215;</span> Requires completed drawings</td>
+        </tr>
+        <tr>
+          <td>Permit submission management</td>
+          <td class="col-ours"><span class="partial">&#8726;</span> Phase 3 roadmap</td>
+          <td class="col-them"><span class="check">&#10003;</span> Core product</td>
+        </tr>
+        <tr>
+          <td>Permit tracking / status dashboard</td>
+          <td class="col-ours"><span class="partial">&#8726;</span> Phase 3 roadmap</td>
+          <td class="col-them"><span class="check">&#10003;</span> Core product</td>
+        </tr>
+        <tr>
+          <td>Procore integration</td>
+          <td class="col-ours"><span class="partial">&#8726;</span> Phase 3 roadmap</td>
+          <td class="col-them"><span class="check">&#10003;</span> Available</td>
+        </tr>
+        <tr>
+          <td>Self-serve, free first report</td>
+          <td class="col-ours"><span class="check">&#10003;</span> No credit card required</td>
+          <td class="col-them"><span class="partial">&#8726;</span> Pricing on request</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="verdict-banner">
+    <div class="verdict-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="verdict-copy">
+      <h3>PreBuildIQ wins for Ontario pre-development research</h3>
+      <p>PermitFlow solves a post-design problem in the US market. If you are an Ontario developer or planner trying to scope approvals before commissioning studies, PreBuildIQ covers 9 of 13 features above that PermitFlow does not. PermitFlow leads on permit submission workflow, which is a different stage in the process.</p>
+    </div>
+  </div>
+
+  <h2>Who each tool is built for</h2>
+
+  <div class="use-case-grid">
+    <div class="use-case-card ours">
+      <div class="label">PreBuildIQ</div>
+      <h3>Ontario developers and planners before 1st submission</h3>
+      <p>You know the address. You need to know which agencies circulate, which studies are triggered, what the bylaw permits for the proposed use. Weeks before drawings exist.</p>
+    </div>
+    <div class="use-case-card">
+      <div class="label">PermitFlow</div>
+      <h3>US contractors managing permit applications</h3>
+      <p>Drawings are done. Applications are ready. You need to file permits across multiple US jurisdictions and track their status through review. Post-design workflow.</p>
+    </div>
+  </div>
+
+  <h2>Why Ontario developers cannot use PermitFlow as a research tool</h2>
+
+  <p>PermitFlow's core value proposition is permit submission automation: feeding application data into municipal portals and tracking review status. That presupposes a complete application package. To assemble that package, a developer needs to already know which studies are required. PermitFlow does not answer that question.</p>
+
+  <p>In Ontario specifically, the approvals stack is also materially different from the US jurisdictions PermitFlow was built for. Ontario developers navigate the <em>Planning Act</em> (OPA, ZBA, site plan, minor variance), the <em>Conservation Authorities Act</em> (permits in regulated areas), and the provincial policy framework (Greenbelt Plan, Oak Ridges Moraine Conservation Plan, Growth Plan). US permit software does not model these workflows.</p>
+
+  <div class="micro-cta">
+    <p>Get the full agency list and required studies for any Ontario address in 60 seconds.</p>
+    <a href="https://prebuildiq.app">Try free &rarr;</a>
+  </div>
+
+  <h2>The cost of starting with drawings before scoping approvals</h2>
+
+  <p>Architectural fees for a mid-rise development range from $200K to $800K+ depending on scope. If the drawing set is prepared without confirmation of the required study list, the commenting package may be returned incomplete at 1st submission. The statutory 90-day review clock never starts. The applicant restarts from the beginning.</p>
+
+  <p>In the GTA, 60% of planning applications require at least one resubmission. The average delay cost from a single rejected submission is $197K+ in carrying costs. The pre-development checklist is the document that prevents this. It costs 60 seconds to generate.</p>
+
+  <h2>Frequently asked questions</h2>
+
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">What is the difference between PreBuildIQ and PermitFlow?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+    </summary>
+    <div class="faq-body">
+      <p>PermitFlow is a permit submission and tracking platform that manages the construction permitting process after you have design drawings. PreBuildIQ is a pre-development intelligence platform that tells Ontario developers and planners what approvals, studies, and agency engagements are needed before drawings are commissioned. They address different stages: PermitFlow is post-design, PreBuildIQ is pre-design.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">Does PermitFlow work for Ontario planning applications?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+    </summary>
+    <div class="faq-body">
+      <p>PermitFlow is a US-based platform with primary coverage in American jurisdictions. It does not cover Ontario's OPA, ZBA, minor variance, site plan, or conservation authority permit workflows, which are governed by the Planning Act (Ontario) and the Conservation Authorities Act. PreBuildIQ is purpose-built for the Ontario approvals stack across 43 municipalities.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">Why does it matter to research approvals before commissioning drawings?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+    </summary>
+    <div class="faq-body">
+      <p>In Ontario, a developer who begins commissioning drawings without knowing which studies are triggered wastes consultant fees on the wrong scope. The municipality confirms required studies at the Pre-Application Consultation (PAC) stage. If the drawing set does not account for a required Environmental Impact Study or Functional Servicing Report, the 1st submission is returned incomplete and the statutory review clock never starts. In the GTA, 60% of applications are resubmitted at least once, costing $197K+ in additional carrying costs.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">Which Ontario municipalities does PreBuildIQ cover?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+    </summary>
+    <div class="faq-body">
+      <p>PreBuildIQ covers 43 Ontario municipalities including Toronto, Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville, Burlington, Hamilton, Peterborough, Kingston, and Greater Sudbury, with 188 approval bodies and 381 required studies indexed. The platform is purpose-built for the Ontario planning approvals workflow under the Planning Act and Conservation Authorities Act.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span class="faq-q">Will PreBuildIQ add permit submission and tracking?</span>
+      <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+    </summary>
+    <div class="faq-body">
+      <p>Yes. Permit filing and live status tracking are on the PreBuildIQ Phase 3 roadmap. The platform will eventually cover the full development lifecycle from pre-application scoping through permit tracking. Phase 1 (pre-development checklist) and Phase 2 (drawing compliance checker) are live now.</p>
+    </div>
+  </details>
+
+  <div class="final-cta">
+    <h2>Scope your Ontario approvals in 60 seconds</h2>
+    <p>Enter an address. Get every agency, study, and approval trigger before commissioning a single drawing. First report free.</p>
+    <a href="https://prebuildiq.app" class="btn-primary">Try it free today &rarr;</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="https://prebuildiq.ca/" class="footer-logo-link">
+          <div class="logo-mark"></div>PreBuildIQ
+        </a>
+        <p class="footer-tagline">Canada's pre-development intelligence platform.</p>
+      </div>
+      <div>
+        <div class="footer-contact-label">Contact</div>
+        <a href="mailto:umar@prebuildiq.ca" class="footer-email">umar@prebuildiq.ca</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 PreBuildIQ Inc. Toronto, Ontario.</span>
+      <div class="footer-links">
+        <a href="https://prebuildiq.ca/privacy">Privacy</a>
+        <a href="https://prebuildiq.ca/terms">Terms</a>
+        <a href="https://prebuildiq.app" class="footer-launch">Launch app &rarr;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

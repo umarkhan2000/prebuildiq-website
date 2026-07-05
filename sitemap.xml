@@ -19,6 +19,18 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://prebuildiq.ca/compare/prebuildiq-vs-landlogic/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://prebuildiq.ca/compare/prebuildiq-vs-permitflow/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://prebuildiq.ca/ontario/toronto/predevelopment-checklist/</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
