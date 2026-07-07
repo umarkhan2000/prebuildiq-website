@@ -6,14 +6,14 @@
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
 <title>PreBuildIQ — Canada's Pre-Development Intelligence Platform</title>
-<meta name="description" content="Enter any Canadian development address and get every approval body, required study, and agency condition in 60 seconds. Built for GTA developers, architects, and planning consultants.">
+<meta name="description" content="Enter any Canadian development address and get the zoning verdict, every approval body, required studies, bylaw standards, construction costs, and nearby planning decisions in 60 seconds. Built for GTA developers, architects, and planning consultants.">
 <link rel="canonical" href="https://prebuildiq.ca/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://prebuildiq.ca/">
 <meta property="og:title" content="PreBuildIQ — Canada's Pre-Development Intelligence Platform">
-<meta property="og:description" content="Enter any Canadian development address and get every approval body, required study, and agency condition in 60 seconds.">
+<meta property="og:description" content="Zoning verdict, approval bodies, required studies, bylaw standards, construction costs, and nearby planning decisions for any Canadian address. In 60 seconds.">
 <meta property="og:image" content="https://prebuildiq.ca/logo_300.png">
 <meta property="og:locale" content="en_CA">
 
@@ -167,37 +167,59 @@
 
   .hero-cta { display: flex; gap: 1rem; animation: fadeIn 1.2s 0.6s cubic-bezier(0.2,0.8,0.2,1) both; flex-wrap: wrap; }
 
-  .hero-features { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 2.5rem; animation: fadeIn 1.2s 0.8s cubic-bezier(0.2,0.8,0.2,1) both; }
-  .hero-feature { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.85rem; background: var(--steel-bg); border-radius: 100px; font-size: 0.82rem; color: var(--navy); font-weight: 500; font-family: 'JetBrains Mono',monospace; letter-spacing: 0.02em; }
-  .hero-feature svg { width: 14px; height: 14px; color: var(--accent); }
-
   .hero-art { position: absolute; right: -4rem; top: 7rem; width: 45%; max-width: 560px; pointer-events: none; animation: fadeIn 1.5s 0.5s cubic-bezier(0.2,0.8,0.2,1) both; }
 
-  /* ── Stats Bar ── */
-  .stats-bar {
-    background: var(--bg-2);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 2.25rem 2.5rem;
-  }
-  .stats-bar-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-  }
-  .stat-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.4rem; }
-  .stat-num {
-    font-family: 'Instrument Serif',serif;
-    font-size: clamp(2rem,3.5vw,3rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--navy);
-    line-height: 1;
-  }
-  .stat-num.accent { color: var(--accent); }
-  .stat-lbl { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); line-height: 1.4; }
+  /* ── Hero dimension strip ── */
+  .hero-dims { display: flex; align-items: center; margin-top: 3rem; max-width: 760px; animation: fadeIn 1.2s 0.8s cubic-bezier(0.2,0.8,0.2,1) both; }
+  .hero-dims .dim-line { position: relative; flex: 1; height: 1px; background: var(--steel-light); min-width: 14px; }
+  .hero-dims .dim-line::before, .hero-dims .dim-line::after { content: ''; position: absolute; top: -4px; width: 1px; height: 9px; background: var(--steel); }
+  .hero-dims .dim-line::before { left: 0; }
+  .hero-dims .dim-line::after { right: 0; }
+  .hero-dims .dim-label { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--navy); padding: 0 0.8rem; white-space: nowrap; font-weight: 600; }
+  .hero-dims .dim-label b { color: var(--accent); font-weight: 700; }
+
+  /* ── Report anatomy (sheet index) ── */
+  .anatomy { padding: 7rem 2.5rem; max-width: 1400px; margin: 0 auto; }
+  .anatomy-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 22ch; }
+  .anatomy-heading em { color: var(--navy); font-style: italic; }
+  .anatomy-sub { color: var(--ink-2); max-width: 58ch; font-size: 1.05rem; margin-bottom: 3.5rem; }
+  .anatomy-sheet { background: #fff; border: 1px solid var(--navy); box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(27,58,92,0.22), var(--shadow-md); }
+  .anatomy-titlebar { background: var(--navy); color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1.75rem; font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; letter-spacing: 0.14em; font-weight: 600; }
+  .anatomy-titlebar span:last-child { opacity: 0.55; }
+  .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .anatomy-item { padding: 1.9rem 2rem; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 58px 1fr; gap: 1.25rem; align-items: start; transition: background 0.25s ease; }
+  .anatomy-item:nth-child(odd) { border-right: 1px solid var(--line); }
+  .anatomy-item:nth-last-child(-n+2) { border-bottom: none; }
+  .anatomy-item:hover { background: var(--bg-2); }
+  .anatomy-item:hover .anatomy-idx { color: var(--accent); }
+  .anatomy-idx { font-family: 'JetBrains Mono',monospace; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--steel); padding-top: 0.25rem; transition: color 0.25s ease; }
+  .anatomy-item h3 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+  .anatomy-item p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.55; }
+  .anatomy-tb { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--navy); }
+  .anatomy-tb-cell { padding: 0.8rem 1.75rem; border-right: 1px solid var(--line); }
+  .anatomy-tb-cell:last-child { border-right: none; }
+  .anatomy-tb-k { font-family: 'JetBrains Mono',monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+  .anatomy-tb-v { font-family: 'JetBrains Mono',monospace; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; color: var(--navy); }
+
+  /* ── Compression band ── */
+  .compress-band { padding: 5.5rem 2.5rem 6rem; max-width: 1000px; margin: 0 auto; text-align: center; }
+  .compress-band p { font-family: 'Instrument Serif',serif; font-style: italic; font-size: clamp(1.5rem,3.2vw,2.5rem); line-height: 1.3; color: var(--ink); }
+  .compress-band p strong { font-style: normal; color: var(--navy); font-weight: 700; background: linear-gradient(180deg, transparent 60%, rgba(255,106,19,0.3) 60%, rgba(255,106,19,0.3) 92%, transparent 92%); padding: 0 4px; }
+
+  /* ── Single report band ── */
+  .pricing-single { display: flex; align-items: center; gap: 2.5rem; background: #fff; border: 1.5px dashed var(--navy); border-radius: 16px; padding: 2.25rem 2.5rem; margin-bottom: 4rem; flex-wrap: wrap; }
+  .single-stamp { border: 2.5px solid var(--accent); color: var(--accent); padding: 1rem 1.6rem; transform: rotate(-3deg); text-align: center; border-radius: 6px; flex-shrink: 0; }
+  .single-stamp .amt { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+  .single-stamp .lbl { font-family: 'JetBrains Mono',monospace; font-size: 0.62rem; letter-spacing: 0.14em; font-weight: 700; margin-top: 0.35rem; }
+  .pricing-single-body { flex: 1; min-width: 260px; }
+  .pricing-single-body h3 { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
+  .pricing-single-body p { color: var(--ink-2); font-size: 0.95rem; line-height: 1.55; max-width: 62ch; }
+  .pricing-single .pricing-cta-btn { width: auto; padding: 0.85rem 1.6rem; flex-shrink: 0; }
+
+  /* ── CTA stamp ── */
+  .cta-stamp { display: inline-block; border: 2.5px solid var(--accent); color: var(--accent); font-family: 'JetBrains Mono',monospace; font-size: 0.78rem; letter-spacing: 0.14em; font-weight: 700; padding: 0.55rem 1.1rem; border-radius: 4px; transform: rotate(-6deg); margin-bottom: 2rem; opacity: 0; }
+  .reveal.in .cta-stamp { animation: stampIn 0.45s cubic-bezier(0.2,0.8,0.2,1) 0.25s both; }
+  @keyframes stampIn { 0% { opacity: 0; transform: rotate(-6deg) scale(1.9); } 60% { opacity: 1; transform: rotate(-6deg) scale(0.96); } 100% { opacity: 1; transform: rotate(-6deg) scale(1); } }
 
   /* ── Municipality Strip ── */
   .muni-strip { padding: 2rem 0; border-bottom: 1px solid var(--line); overflow: hidden; }
@@ -236,6 +258,7 @@
   /* ── Section shared ── */
   .section-eyebrow { color: var(--accent); margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.6rem; }
   .section-eyebrow::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
+  .section-eyebrow::after { content: ''; width: 56px; height: 1px; background: var(--line); }
 
   /* ── Problem ── */
   .pain { padding: 6rem 2.5rem 8rem; max-width: 1400px; margin: 0 auto; }
@@ -252,28 +275,6 @@
   .pain-stat.zero .pain-num { color: var(--accent); }
   .pain-icon { width: 32px; height: 32px; background: var(--steel-bg); border-radius: 8px; padding: 7px; margin-bottom: 1.5rem; color: var(--navy); }
   .pain-stat.zero .pain-icon { background: var(--accent-soft); color: var(--accent); }
-
-  /* ── Solution ── */
-  .solution { padding: 7rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-  .solution-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 20ch; }
-  .solution-heading em { color: var(--navy); font-style: italic; }
-  .solution-sub { color: var(--ink-2); max-width: 54ch; font-size: 1.05rem; margin-bottom: 4rem; }
-  .solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .solution-col { padding: 2.5rem 2rem; border-radius: 16px; position: relative; }
-  .solution-col.without { background: #fef3f0; border: 1px solid rgba(211,45,45,0.15); }
-  .solution-col.with { background: var(--steel-bg); border: 1px solid rgba(27,58,92,0.18); }
-  .solution-col h3 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1.75rem; display: flex; align-items: center; gap: 0.75rem; }
-  .solution-col.without h3 { color: #b52d1f; }
-  .solution-col.with h3 { color: var(--navy); }
-  .solution-col ul { list-style: none; }
-  .solution-col li { padding: 0.85rem 0; padding-left: 2rem; position: relative; font-size: 0.98rem; color: var(--ink); border-bottom: 1px dashed rgba(15,30,48,0.08); line-height: 1.45; }
-  .solution-col li:last-child { border-bottom: none; }
-  .solution-col li::before { position: absolute; left: 0; top: 0.95rem; font-family: 'JetBrains Mono',monospace; font-weight: 700; font-size: 1rem; }
-  .solution-col.without li::before { content: '✕'; color: #d32d2d; }
-  .solution-col.with li::before { content: '✓'; color: var(--accent); }
-  .solution-col strong { font-weight: 700; }
-  .solution-punchline { margin-top: 3rem; padding: 2rem; text-align: center; font-family: 'Instrument Serif',serif; font-size: clamp(1.3rem,2.6vw,1.9rem); font-style: italic; color: var(--ink); line-height: 1.3; background: linear-gradient(180deg, transparent, var(--bg-2)); border-radius: 12px; }
-  .solution-punchline strong { font-style: normal; color: var(--navy); font-weight: 700; background: linear-gradient(180deg, transparent 60%, rgba(255,106,19,0.3) 60%, rgba(255,106,19,0.3) 92%, transparent 92%); padding: 0 4px; }
 
   /* ── Product Showcase ── */
   #products { background: var(--navy-dark); position: relative; overflow: hidden; }
@@ -560,13 +561,26 @@
     .nav-hamburger { display: flex; }
     .hero { padding: 7rem 1.25rem 3rem; }
     .hero-art { display: none; }
-    .stats-bar-inner { grid-template-columns: 1fr 1fr; }
+    .hero-dims { flex-wrap: wrap; justify-content: center; row-gap: 0.6rem; }
+    .hero-dims .dim-line { display: none; }
+    .hero-dims .dim-label { padding: 0 0.6rem; }
     .pain { padding: 3rem 1.25rem 5rem; }
     .pain-grid { grid-template-columns: 1fr 1fr; }
     .pain-stat { border-right: none; border-bottom: 1px solid var(--line-soft); }
     .pain-stat:nth-child(odd) { border-right: 1px solid var(--line-soft); }
-    .solution { padding: 4rem 1.25rem; }
-    .solution-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .anatomy { padding: 4rem 1.25rem; }
+    .anatomy-grid { grid-template-columns: 1fr; }
+    .anatomy-item { padding: 1.5rem 1.25rem; grid-template-columns: 48px 1fr; gap: 0.9rem; }
+    .anatomy-item:nth-child(odd) { border-right: none; }
+    .anatomy-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .anatomy-item:last-child { border-bottom: none; }
+    .anatomy-tb { grid-template-columns: 1fr 1fr; }
+    .anatomy-tb-cell { padding: 0.7rem 1.25rem; border-bottom: 1px solid var(--line); }
+    .anatomy-tb-cell:nth-child(even) { border-right: none; }
+    .anatomy-tb-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .compress-band { padding: 4rem 1.25rem; }
+    .pricing-single { flex-direction: column; text-align: center; padding: 2rem 1.5rem; gap: 1.5rem; }
+    .pricing-single-body p { max-width: 100%; }
     .showcase { padding: 4rem 1.25rem; }
     .browser-frame { border-radius: 8px; }
     .demo { padding: 4rem 1.25rem; }
@@ -597,25 +611,21 @@
     .hero-banner { margin-left: auto; margin-right: auto; }
     .hero-sub { font-size: 1rem; text-align: center; }
     .hero-cta { justify-content: center; }
-    .hero-features { justify-content: center; }
+    .hero-dims { justify-content: center; }
     .section-eyebrow { margin-left: auto; margin-right: auto; }
-    .pain-heading, .solution-heading, .showcase-heading, .demo-heading,
+    .pain-heading, .anatomy-heading, .showcase-heading, .demo-heading,
     .for-whom-heading, .moat-heading, .cta-heading { text-align: center; max-width: 100%; }
-    .showcase-sub, .demo-sub, .solution-punchline { text-align: center; }
+    .showcase-sub, .demo-sub { text-align: center; }
     .cta { text-align: center; }
     .demo-chips { justify-content: center; }
     /* Pain grid */
     .pain-grid { grid-template-columns: 1fr; }
     .pain-stat:nth-child(odd) { border-right: none; }
-    /* Hero features */
-    .hero-features { gap: 0.4rem; }
-    .hero-feature { font-size: 0.75rem; padding: 0.35rem 0.65rem; }
     /* Demo */
     .demo-input-row { flex-direction: column; }
     .demo-input-field { border-right: 1.5px solid var(--line); border-bottom: none; border-radius: 6px 6px 0 0; }
     .demo-scan-btn { border-radius: 0 0 6px 6px; width: 100%; justify-content: center; }
     /* Misc */
-    .solution-punchline { font-size: 1.1rem; }
     .modal-backdrop { align-items: flex-start; padding-top: 1rem; }
     .modal { padding: 1.5rem 1.25rem; max-height: calc(100vh - 2rem); }
     h1.hero-title { margin-left: auto; margin-right: auto; text-align: center; }
@@ -635,10 +645,9 @@
     PreBuildIQ
   </a>
   <div class="nav-links">
-    <a href="#problem">Problem</a>
-    <a href="#products">Products</a>
+    <a href="#products">Product</a>
+    <a href="#inside">What's Inside</a>
     <a href="#demo">Live Demo</a>
-    <a href="#how">How It Works</a>
     <a href="#moat">Why Us</a>
     <a href="#pricing">Pricing</a>
   </div>
@@ -650,10 +659,9 @@
   </button>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <a href="#problem">Problem</a>
-  <a href="#products">Products</a>
+  <a href="#products">Product</a>
+  <a href="#inside">What's Inside</a>
   <a href="#demo">Live Demo</a>
-  <a href="#how">How It Works</a>
   <a href="#moat">Why Us</a>
   <a href="#pricing">Pricing</a>
   <button class="btn btn-accent" data-open-waitlist style="width:100%;justify-content:center;margin-top:0.75rem;">Try free &#x2192;</button>
@@ -672,7 +680,7 @@
   </h1>
 
   <p class="hero-sub">
-    Zoning verdict, approval agencies, required studies, and every submission trigger for any Canadian address. In 60 seconds. <strong style="color:var(--ink);">AI-native. Canada-first.</strong>
+    Enter an address. Get the <strong style="color:var(--ink);">zoning verdict</strong>, every approval body, every required study, bylaw standards cited to section, <strong style="color:var(--ink);">construction costs</strong>, and how nearby applications were decided. <strong style="color:var(--ink);">In 60 seconds.</strong>
   </p>
 
   <div class="hero-cta">
@@ -680,23 +688,16 @@
     <a href="#demo" class="btn btn-ghost">See live demo</a>
   </div>
 
-  <div class="hero-features">
-    <span class="hero-feature">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      $300B+ CDN market
-    </span>
-    <span class="hero-feature">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      18–24 month timelines
-    </span>
-    <span class="hero-feature">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-      First in Canada
-    </span>
-    <span class="hero-feature">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      Report in 60 seconds
-    </span>
+  <div class="hero-dims">
+    <span class="dim-line"></span>
+    <span class="dim-label"><b>43</b> MUNICIPALITIES</span>
+    <span class="dim-line"></span>
+    <span class="dim-label"><b>188+</b> APPROVAL BODIES</span>
+    <span class="dim-line"></span>
+    <span class="dim-label"><b>381+</b> STUDY TYPES</span>
+    <span class="dim-line"></span>
+    <span class="dim-label"><b>60</b> SECONDS</span>
+    <span class="dim-line"></span>
   </div>
 
   <!-- Hero art (blueprint drawing) -->
@@ -758,31 +759,9 @@
   </svg>
 </section>
 
-<!-- ── Stats Bar ── -->
-<section class="stats-bar">
-  <div class="stats-bar-inner">
-    <div class="stat-item reveal">
-      <div class="stat-num">$300B<span style="font-size:0.55em;font-style:italic;color:var(--ink-2)">+</span></div>
-      <div class="stat-lbl">Canadian construction market</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-num">18–24<span style="font-size:0.45em;font-style:italic;color:var(--ink-2);margin-left:4px">mo</span></div>
-      <div class="stat-lbl">Avg GTA permit timeline</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-num">$197K<span style="font-size:0.55em;font-style:italic;color:var(--ink-2)">+</span></div>
-      <div class="stat-lbl">Cost per rejection delay</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-num accent">0</div>
-      <div class="stat-lbl">Competing platforms in Canada</div>
-    </div>
-  </div>
-</section>
-
 <!-- ── Municipality Strip ── -->
 <section class="muni-strip">
-  <div class="muni-strip-label mono">Covering Ontario — new municipalities added monthly</div>
+  <div class="muni-strip-label mono">Covering Ontario. New municipalities added monthly</div>
   <div class="muni-track-wrap">
     <div class="muni-track">
       <span class="muni-chip"><img src="logos/toronto.png" alt="">Toronto</span>
@@ -860,12 +839,12 @@
 
 <!-- ── Problem ── -->
 <section class="pain" id="problem">
-  <div class="section-eyebrow mono reveal">The Problem</div>
+  <div class="section-eyebrow mono reveal">01 / The Problem</div>
   <h2 class="display pain-heading reveal">
     Canadian developers are flying blind into a <em>$300B</em> market.
   </h2>
   <p class="pain-sub reveal">
-    A developer acquires a site in Toronto. Spends 3 weeks on pre-consultation and manual research across 6 approval agencies. Pays $25K to a planning consultant. 1st submission rejected. Missing a required Noise and Vibration Assessment. The commenting package arrives 8 weeks later. Resubmission: 4 months. Carrying cost: $43K/month. <strong style="color:var(--ink);">Total delay cost: $197K+ before a single shovel hits dirt.</strong>
+    A developer buys a site. Three weeks of research across 6 agencies. <strong style="color:var(--ink);">$25K to a planning consultant.</strong> The 1st submission still comes back rejected over one missing study, and the resubmission takes 4 months at $43K/month carrying cost. <strong style="color:var(--ink);">Total delay cost: $197K+ before a shovel hits dirt.</strong>
   </p>
 
   <div class="pain-grid">
@@ -904,57 +883,10 @@
   </div>
 </section>
 
-<!-- ── Solution ── -->
-<section class="solution" id="solution">
-  <div class="section-eyebrow mono reveal">The Solution</div>
-  <h2 class="display solution-heading reveal">
-    Same developer. Same site. <em>Different</em> outcome.
-  </h2>
-  <p class="solution-sub reveal">
-    PreBuildIQ compresses 3 weeks of pre-consultation research into a 60-second intelligence report.
-  </p>
-
-  <div class="solution-grid">
-    <div class="solution-col without reveal">
-      <h3>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-        Without PreBuildIQ
-      </h3>
-      <ul>
-        <li><strong>3+ weeks</strong> of pre-consultation and manual research</li>
-        <li><strong>$15K–$40K</strong> on planning consultants</li>
-        <li>1st submission rejected. Missing studies. <strong>60% of applications</strong> require resubmission</li>
-        <li><strong>4–6 months</strong> waiting for commenting packages and resubmission reviews</li>
-        <li><strong>$170K–$260K</strong> in avoidable carrying costs</li>
-        <li>No visibility until the reviewing agency responds</li>
-      </ul>
-    </div>
-
-    <div class="solution-col with reveal">
-      <h3>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        With PreBuildIQ
-      </h3>
-      <ul>
-        <li>Enter address, <strong>zoning verdict + full submission checklist in 60 seconds</strong></li>
-        <li>Know your ZBA exposure <strong>before you commit capital</strong></li>
-        <li>Know your full submission requirements <strong>before you engage a planning consultant</strong></li>
-        <li>AI flags OBC + bylaw issues <strong>before your 1st submission</strong></li>
-        <li>First-submission approval rates dramatically higher</li>
-        <li>Carrying costs <strong>reduced by months</strong></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="solution-punchline reveal">
-    3 weeks of pre-consultation research. Compressed to <strong>60 seconds</strong>.
-  </div>
-</section>
-
 <!-- ── App Showcase ── -->
 <section id="products">
   <div class="showcase">
-    <div class="section-eyebrow mono reveal">The Products</div>
+    <div class="section-eyebrow mono reveal">02 / The Platform</div>
     <h2 class="display showcase-heading reveal">The platform, <em>screen by screen.</em></h2>
     <p class="showcase-sub reveal">Two tools. Built for pre-development. Works for any Canadian address.</p>
     <div class="browser-frame reveal">
@@ -975,14 +907,113 @@
   </div><!-- /showcase -->
 </section>
 
+<!-- ── Inside the Report ── -->
+<section class="anatomy" id="inside">
+  <div class="section-eyebrow mono reveal">03 / Inside the Report</div>
+  <h2 class="display anatomy-heading reveal">
+    Eight sections. <em>None</em> of them a Google search away.
+  </h2>
+  <p class="anatomy-sub reveal">
+    Every report reads like a drawing set: indexed, dimensioned, and cited. Assembled from <strong style="color:var(--ink);">zoning bylaws, municipal GIS, agency terms of reference, and planning decision records</strong> for every municipality we cover.
+  </p>
+
+  <div class="anatomy-sheet reveal">
+    <div class="anatomy-titlebar">
+      <span>PRE-DEVELOPMENT INTELLIGENCE REPORT · SHEET INDEX</span>
+      <span>SET A-100</span>
+    </div>
+    <div class="anatomy-grid">
+      <div class="anatomy-item">
+        <div class="anatomy-idx">A-00</div>
+        <div>
+          <h3>Zoning verdict</h3>
+          <p>As-of-right, minor variance, or ZBA. Read from your municipality's zoning fabric for the exact parcel, including holding provisions and overlays.</p>
+        </div>
+      </div>
+      <div class="anatomy-item">
+        <div class="anatomy-idx">A-01</div>
+        <div>
+          <h3>Suitability analysis</h3>
+          <p>Every barrier between your intended use and an approvable path, ranked by severity, with the approvals, studies, weeks, and cost to clear each one.</p>
+        </div>
+      </div>
+      <div class="anatomy-item">
+        <div class="anatomy-idx">A-02</div>
+        <div>
+          <h3>Agency circulation</h3>
+          <p>The full commenting list: planning, building, conservation authority, region, utilities. Who reviews your file and what each one requires.</p>
+        </div>
+      </div>
+      <div class="anatomy-item">
+        <div class="anatomy-idx">A-03</div>
+        <div>
+          <h3>Required studies</h3>
+          <p>Every study your submission triggers, with the terms of reference, the consultant who produces it, market cost, and duration.</p>
+        </div>
+      </div>
+      <div class="anatomy-item">
+        <div class="anatomy-idx">A-04</div>
+        <div>
+          <h3>Bylaw standards</h3>
+          <p>Setbacks, height, FSI, lot coverage, parking. Pulled from the governing bylaw and cited to the exact section.</p>
+        </div>
+      </div>
+      <div class="anatomy-item">
+        <div class="anatomy-idx">A-05</div>
+        <div>
+          <h3>Building envelope</h3>
+          <p>Your maximum buildable envelope drawn to the parcel's real geometry. Plan and elevation, every setback dimensioned.</p>
+        </div>
+      </div>
+      <div class="anatomy-item">
+        <div class="anatomy-idx">A-06</div>
+        <div>
+          <h3>Construction cost</h3>
+          <p>Structural, engineering, permit fees, finishes, HST. An all-in range for your project type and scale, plus the carrying cost of every month of delay.</p>
+        </div>
+      </div>
+      <div class="anatomy-item">
+        <div class="anatomy-idx">A-07</div>
+        <div>
+          <h3>Nearby decisions</h3>
+          <p>How comparable applications near your site were decided: approved, refused, conditions attached. Precedent without digging through committee minutes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="anatomy-tb">
+      <div class="anatomy-tb-cell">
+        <div class="anatomy-tb-k">Project</div>
+        <div class="anatomy-tb-v">YOUR ADDRESS</div>
+      </div>
+      <div class="anatomy-tb-cell">
+        <div class="anatomy-tb-k">Jurisdiction</div>
+        <div class="anatomy-tb-v">43 MUNICIPALITIES</div>
+      </div>
+      <div class="anatomy-tb-cell">
+        <div class="anatomy-tb-k">Turnaround</div>
+        <div class="anatomy-tb-v">60 SECONDS</div>
+      </div>
+      <div class="anatomy-tb-cell">
+        <div class="anatomy-tb-k">Status</div>
+        <div class="anatomy-tb-v" style="color:var(--accent);">READY TO RUN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Compression band ── -->
+<section class="compress-band">
+  <p class="reveal">Three weeks of research. A <strong>$14,000</strong> consultant engagement. Compressed to <strong>60 seconds</strong>.</p>
+</section>
+
 <!-- ── Interactive Demo ── -->
 <section class="demo" id="demo">
-  <div class="section-eyebrow mono reveal">Sample Output</div>
+  <div class="section-eyebrow mono reveal">04 / Sample Output</div>
   <h2 class="display demo-heading reveal">
     What a report <em>looks like</em>.
   </h2>
   <p class="demo-sub reveal">
-    Try a sample scan. This illustrates real output — live data goes live with our Toronto launch.
+    Try a sample scan. This illustrates real output. Live data goes live with our Toronto launch.
   </p>
 
   <div class="demo-chips reveal">
@@ -1011,7 +1042,7 @@
 <!-- ── How It Works ── -->
 <section class="how" id="how">
   <div class="how-inner">
-    <div class="section-eyebrow mono reveal">How it works</div>
+    <div class="section-eyebrow mono reveal">05 / How It Works</div>
     <h2 class="display how-heading reveal">
       Three steps. From land to <em>permit</em>.
     </h2>
@@ -1032,9 +1063,9 @@
         <p class="phase-body">Enter an address. Get your <strong>zoning verdict</strong>, every approval agency, every required study, and every submission trigger. In <strong>60 seconds</strong>.</p>
         <ul class="phase-features">
           <li>Zoning verdict: as-of-right, ZBA, or minor variance</li>
-          <li>Full agency circulation list</li>
-          <li>Required studies and ToRs surfaced</li>
-          <li>Timeline and carrying cost forecast</li>
+          <li>Suitability barriers + remediation path</li>
+          <li>Agency circulation, studies, and ToRs</li>
+          <li>Construction cost + carrying cost forecast</li>
         </ul>
       </div>
 
@@ -1079,7 +1110,7 @@
 
 <!-- ── Who It's For ── -->
 <section class="for-whom" id="for-whom">
-  <div class="section-eyebrow mono reveal">Who it's for</div>
+  <div class="section-eyebrow mono reveal">06 / Who It's For</div>
   <h2 class="display for-whom-heading reveal">Built for the people <em>on the ground</em>.</h2>
   <p class="for-whom-sub reveal">
     Canadian developers, GCs, and architects spending weeks on research that should take minutes.
@@ -1113,7 +1144,7 @@
 <section class="moat" id="moat">
   <div class="moat-grid">
     <div>
-      <div class="section-eyebrow mono reveal">Why PreBuildIQ</div>
+      <div class="section-eyebrow mono reveal">07 / Why PreBuildIQ</div>
       <h2 class="display moat-heading reveal">A Canadian <em>dataset</em> nobody else has.</h2>
       <p class="moat-text reveal">
         US platforms don't have Canadian municipal data. Generic AI tools don't have it. We're building it, municipality by municipality, from the portal up.
@@ -1154,7 +1185,7 @@
         </div>
         <div>
           <h3>Zoning intelligence, not just permit tracking</h3>
-          <p>Knowing you need a ZBA before the site plan — before you commit capital — is worth more than any permit dashboard.</p>
+          <p>Knowing you need a ZBA before you commit capital is worth more than any permit dashboard.</p>
         </div>
       </li>
     </ul>
@@ -1163,9 +1194,9 @@
 
 <!-- ── Pricing ── -->
 <section class="pricing-section" id="pricing">
-  <div class="section-eyebrow mono reveal">Pricing</div>
+  <div class="section-eyebrow mono reveal">08 / Pricing</div>
   <h2 class="display pricing-heading reveal">One platform. <em>Every</em> project.</h2>
-  <p class="pricing-sub reveal">Transparent pricing built around how teams actually work. Annual quotas, predictable overage rates, no surprise fees.</p>
+  <p class="pricing-sub reveal">Subscribe for your pipeline, or run a single site with no commitment. Predictable rates, no surprise fees.</p>
 
   <div class="pricing-toggle-wrap reveal">
     <div class="pricing-toggle">
@@ -1187,7 +1218,7 @@
       <div class="pricing-quota-sub">at sign-up</div>
       <p class="pricing-tagline">Try the full product, no card</p>
       <ul class="pricing-features">
-        <li>Every agency, every study, all bylaw constraints</li>
+        <li>The complete report, all eight sections</li>
         <li>After that: zoning verdict + summary view</li>
         <li>1 drawing compliance check</li>
         <li>No credit card</li>
@@ -1208,9 +1239,10 @@
       <p class="pricing-tagline">Solo planners + architects</p>
       <ul class="pricing-features">
         <li>$99 / extra report</li>
-        <li>Full report — every agency, every study</li>
+        <li>Full report, every agency, every study</li>
         <li>Suitability analysis + path to permit</li>
-        <li>Zoning bylaw standards + carrying cost</li>
+        <li>Bylaw standards cited to section</li>
+        <li>Construction cost + nearby decisions</li>
         <li>Export to CSV and Word</li>
       </ul>
       <button class="pricing-cta-btn outline" data-open-waitlist>Start</button>
@@ -1262,6 +1294,19 @@
     </div>
   </div>
 
+  <!-- Single report -->
+  <div class="pricing-single reveal">
+    <div class="single-stamp">
+      <div class="amt">$499</div>
+      <div class="lbl">PER REPORT</div>
+    </div>
+    <div class="pricing-single-body">
+      <h3>Just need one site checked?</h3>
+      <p>One address, the complete report: verdict, agencies, studies, bylaw standards, costs, and nearby decisions. <strong>No subscription, no monthly commitment.</strong> Running more than 4 sites a year? Starter is already cheaper.</p>
+    </div>
+    <button class="pricing-cta-btn outline" data-open-waitlist>Run one site &#x2192;</button>
+  </div>
+
   <!-- Retail rate comparison -->
   <div class="pricing-vs reveal">
     <div class="pricing-vs-header">
@@ -1304,9 +1349,9 @@
       </tbody>
     </table>
     <div class="pricing-vs-punch">
-      <p>PreBuildIQ covers <strong>all of this in 60 seconds</strong>. At $399 a month, a single project more than pays for the entire year.</p>
+      <p>PreBuildIQ covers <strong>all of this in 60 seconds</strong>. One report: $499. On a plan: under $100. A single project more than pays for the year.</p>
       <div class="pricing-vs-punch-stat">
-        <div class="ps-amount">$399<span style="font-size:1rem;font-weight:400;opacity:0.5">/mo</span></div>
+        <div class="ps-amount">$499<span style="font-size:1rem;font-weight:400;opacity:0.5">/report</span></div>
         <div class="ps-label">vs. $14K+ per engagement</div>
       </div>
     </div>
@@ -1315,7 +1360,7 @@
 
 <!-- ── CTA ── -->
 <section class="cta" id="contact">
-  <div class="section-eyebrow mono reveal" style="justify-content:center;display:inline-flex;">Get started free</div>
+  <div class="reveal"><span class="cta-stamp">FIRST REPORT FREE · NO CARD</span></div>
   <h2 class="display cta-heading reveal">
     Stop losing months. <em>Start knowing</em>.
   </h2>
@@ -1483,7 +1528,6 @@
   /* Stagger delays */
   document.querySelectorAll('.phase').forEach((el, i) => { el.style.transitionDelay = `${i * 110}ms`; });
   document.querySelectorAll('.pain-stat').forEach((el, i) => { el.style.transitionDelay = `${i * 80}ms`; });
-  document.querySelectorAll('.stat-item').forEach((el, i) => { el.style.transitionDelay = `${i * 80}ms`; });
   document.querySelectorAll('.pricing-card').forEach((el, i) => { el.style.transitionDelay = `${i * 90}ms`; });
 
   /* ── Animated counters ── */
@@ -1605,12 +1649,13 @@
 
   /* ── Interactive Demo ── */
   const DEMO_RESULTS = [
-    { label: 'Zoning Classification', value: 'CR 3.0 Mixed-Use', status: 'info' },
-    { label: 'Heritage Overlay', value: 'HIA Required', status: 'warn' },
-    { label: 'Environmental Studies', value: '2 Required', status: 'warn' },
-    { label: 'Conservation Authority', value: 'No Jurisdiction', status: 'ok' },
-    { label: 'Archaeological Assessment', value: 'Stage 1 Required', status: 'warn' },
-    { label: 'Building Division', value: 'Toronto (Ward 13)', status: 'ok' },
+    { label: 'Zoning Verdict', value: 'CR 3.0 · ZBA Required', status: 'warn' },
+    { label: 'Agency Circulation', value: '6 Approval Bodies', status: 'info' },
+    { label: 'Required Studies', value: '4 Triggered + ToRs', status: 'warn' },
+    { label: 'Bylaw Standards', value: '11 Cited to Section', status: 'ok' },
+    { label: 'Construction Cost', value: '$2.1M–$2.6M All-in', status: 'info' },
+    { label: 'Nearby Decisions', value: '3 Comparable Found', status: 'ok' },
+    { label: 'Carrying Cost Forecast', value: '$43K / Month', status: 'warn' },
   ];
 
   const demoInput = document.getElementById('demoInput');
@@ -1645,7 +1690,7 @@
         if (i >= DEMO_RESULTS.length) {
           const footer = document.createElement('div');
           footer.className = 'demo-complete';
-          footer.innerHTML = '<p>Preview only. Full reports include 23+ checklist items.</p>';
+          footer.innerHTML = '<p>Preview only. Full reports include all eight sections.</p>';
           const footerBtn = document.createElement('button');
           footerBtn.className = 'btn btn-accent';
           footerBtn.style.cssText = 'padding:0.65rem 1.25rem;font-size:0.88rem;';
