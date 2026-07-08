@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
-<title>PreBuildIQ — Canada's Pre-Development Intelligence Platform</title>
+<title>Zoning Reports, Studies & Approvals in 60 Seconds | PreBuildIQ</title>
 <meta name="description" content="Enter any Canadian development address and get the zoning verdict, every approval body, required studies, bylaw standards, construction costs, and nearby planning decisions in 60 seconds. Built for GTA developers, architects, and planning consultants.">
 <link rel="canonical" href="https://prebuildiq.ca/">
 
@@ -32,8 +32,8 @@
   "url": "https://prebuildiq.ca/",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" },
-  "description": "Canada's pre-development intelligence platform. Enter an address, get every approval body, required study, and agency condition in 60 seconds.",
+  "offers": { "@type": "AggregateOffer", "lowPrice": "0", "highPrice": "799", "priceCurrency": "CAD" },
+  "description": "Canada's pre-development intelligence platform. Enter an address, get the zoning verdict, every approval body, required study, bylaw standards, construction costs, and nearby planning decisions in 60 seconds.",
   "publisher": {
     "@type": "Organization",
     "name": "PreBuildIQ Inc.",
@@ -42,6 +42,44 @@
     "email": "umar@prebuildiq.ca",
     "address": { "@type": "PostalAddress", "addressCountry": "CA" }
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does a PreBuildIQ report include?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Eight sections for any Canadian development address: the zoning verdict (as-of-right, minor variance, or ZBA), a suitability analysis with every barrier ranked by severity, the full agency circulation list, required studies with terms of reference and market costs, bylaw standards cited to the exact section, a building envelope drawn to your parcel, an all-in construction cost range, and how comparable nearby applications were decided. Delivered in 60 seconds." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which municipalities does PreBuildIQ cover?",
+      "acceptedAnswer": { "@type": "Answer", "text": "43 Ontario municipalities including Toronto, Mississauga, Brampton, Vaughan, Markham, Hamilton, Oakville, Burlington, Richmond Hill, and the Durham and York Region townships. New municipalities are added monthly." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does the data come from?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Reports are assembled from municipal zoning bylaws, municipal GIS parcel and zoning data, agency terms of reference, and planning decision records for every covered municipality, and kept current as bylaws change. It is not scraped blog content or a generic AI summary." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does PreBuildIQ replace my planning consultant?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It front-loads the research a consultant spends the first weeks of an engagement assembling, so you walk into pre-consultation informed and use consultant hours on strategy instead of lookup. Planning consultants and permit expeditors are among our heaviest users." }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the zoning verdict?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The verdict is read from your municipality's own zoning fabric for the exact parcel, including holding provisions and overlays, and every bylaw standard is cited to its section so you can verify it. PreBuildIQ is decision support for pre-development diligence, not legal advice." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does PreBuildIQ cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Your first full report is free with no credit card. After that, run a single site for $499 with no subscription, or subscribe from $199 per month for 20 reports a year. A comparable consultant pre-application engagement runs $14,000 to $31,500." }
+    }
+  ]
 }
 </script>
 
@@ -494,6 +532,26 @@
   .pricing-vs-punch-stat .ps-amount { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 2rem; font-weight: 700; color: #fff; line-height: 1; }
   .pricing-vs-punch-stat .ps-label { font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 5px; }
 
+  /* ── FAQ ── */
+  .faq { padding: 6rem 2.5rem; max-width: 900px; margin: 0 auto; }
+  .faq-heading { font-size: clamp(2.2rem,5vw,3.8rem); margin-bottom: 3rem; max-width: 20ch; }
+  .faq-heading em { color: var(--navy); font-style: italic; }
+  .faq-list { border-top: 1px solid var(--line); }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-item summary { display: flex; align-items: baseline; gap: 1.25rem; padding: 1.4rem 0.25rem; cursor: pointer; list-style: none; font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 1.02rem; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); transition: color 0.2s; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { color: var(--navy); }
+  .faq-idx { font-family: 'JetBrains Mono',monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--steel); flex-shrink: 0; transition: color 0.2s; }
+  .faq-item[open] .faq-idx { color: var(--accent); }
+  .faq-toggle { margin-left: auto; position: relative; width: 14px; height: 14px; flex-shrink: 0; align-self: center; }
+  .faq-toggle::before, .faq-toggle::after { content: ''; position: absolute; background: var(--navy); transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1); }
+  .faq-toggle::before { left: 0; right: 0; top: 6px; height: 2px; }
+  .faq-toggle::after { top: 0; bottom: 0; left: 6px; width: 2px; }
+  .faq-item[open] .faq-toggle::after { transform: scaleY(0); }
+  .faq-body { padding: 0 0.25rem 1.5rem 3.1rem; font-size: 0.95rem; color: var(--ink-2); line-height: 1.65; max-width: 66ch; }
+  .faq-body a { color: var(--navy); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--steel-light); }
+  .faq-body a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
   /* ── CTA ── */
   .cta { padding: 7rem 2.5rem; text-align: center; max-width: 900px; margin: 0 auto; }
   .cta-heading { font-size: clamp(2.5rem,6vw,5rem); margin-bottom: 1.5rem; line-height: 1; }
@@ -503,6 +561,11 @@
   /* ── Footer ── */
   footer { border-top: 1px solid var(--line-soft); padding: 4rem 2.5rem 2rem; max-width: 1400px; margin: 0 auto; }
   .footer-tagline { font-family: 'Instrument Serif',serif; font-size: 1.4rem; line-height: 1.3; margin-top: 1.5rem; max-width: 32ch; color: var(--ink-2); font-style: italic; }
+  .footer-links { display: flex; gap: 4rem; flex-wrap: wrap; padding: 2rem 0 2.5rem; border-top: 1px solid var(--line-soft); }
+  .footer-links-col { display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer-links-label { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+  .footer-links-col a { color: var(--ink-2); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+  .footer-links-col a:hover { color: var(--accent); }
   .footer-bottom { display: flex; justify-content: space-between; padding-top: 2rem; border-top: 1px solid var(--line-soft); font-size: 0.82rem; color: var(--muted); }
 
   /* ── Reveal ── */
@@ -591,6 +654,9 @@
     .moat { padding: 5rem 1.25rem; }
     .moat-grid { grid-template-columns: 1fr; gap: 3rem; }
     .cta { padding: 4rem 1.25rem; }
+    .faq { padding: 4rem 1.25rem; }
+    .faq-body { padding-left: 0.25rem; }
+    .footer-links { gap: 2rem; justify-content: center; text-align: center; }
     .pricing-section { padding: 4rem 1.25rem; }
     .pricing-cards { grid-template-columns: 1fr; }
     .pricing-vs-table th, .pricing-vs-table td { padding: 0.75rem 1.25rem; font-size: 0.85rem; }
@@ -614,7 +680,7 @@
     .hero-dims { justify-content: center; }
     .section-eyebrow { margin-left: auto; margin-right: auto; }
     .pain-heading, .anatomy-heading, .showcase-heading, .demo-heading,
-    .for-whom-heading, .moat-heading, .cta-heading { text-align: center; max-width: 100%; }
+    .for-whom-heading, .moat-heading, .cta-heading, .faq-heading { text-align: center; max-width: 100%; }
     .showcase-sub, .demo-sub { text-align: center; }
     .cta { text-align: center; }
     .demo-chips { justify-content: center; }
@@ -1024,7 +1090,7 @@
   </div>
 
   <div class="demo-input-row reveal">
-    <input class="demo-input-field" id="demoInput" type="text" placeholder="Enter a Canadian address&#x2026;" autocomplete="off" />
+    <input class="demo-input-field" id="demoInput" type="text" placeholder="Enter a Canadian address&#x2026;" autocomplete="off" aria-label="Enter a Canadian address to scan" />
     <button class="demo-scan-btn" id="demoBtn">Scan</button>
   </div>
 
@@ -1358,6 +1424,38 @@
   </div>
 </section>
 
+<!-- ── FAQ ── -->
+<section class="faq" id="faq">
+  <div class="section-eyebrow mono reveal">09 / Questions</div>
+  <h2 class="display faq-heading reveal">Asked before <em>every</em> first report.</h2>
+  <div class="faq-list reveal">
+    <details class="faq-item">
+      <summary><span class="faq-idx">Q-01</span>What does a report include?<span class="faq-toggle"></span></summary>
+      <div class="faq-body">Eight sections for any address: the zoning verdict (as-of-right, minor variance, or ZBA), a suitability analysis with every barrier ranked by severity, the full agency circulation list, required studies with terms of reference and market costs, bylaw standards cited to the exact section, a building envelope drawn to your parcel, an all-in construction cost range, and how comparable nearby applications were decided. In 60 seconds.</div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-idx">Q-02</span>Which municipalities do you cover?<span class="faq-toggle"></span></summary>
+      <div class="faq-body">43 Ontario municipalities including <a href="ontario/toronto/development-approvals/">Toronto</a>, <a href="ontario/mississauga/development-approvals/">Mississauga</a>, <a href="ontario/brampton/development-approvals/">Brampton</a>, <a href="ontario/vaughan/development-approvals/">Vaughan</a>, <a href="ontario/markham/development-approvals/">Markham</a>, Hamilton, <a href="ontario/oakville/development-approvals/">Oakville</a>, <a href="ontario/burlington/development-approvals/">Burlington</a>, and <a href="ontario/richmond-hill/development-approvals/">Richmond Hill</a>. New municipalities added monthly.</div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-idx">Q-03</span>Where does the data come from?<span class="faq-toggle"></span></summary>
+      <div class="faq-body">Municipal zoning bylaws, municipal GIS parcel and zoning data, agency terms of reference, and planning decision records for every covered municipality, kept current as bylaws change. Not scraped blog content. Not a generic AI summary.</div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-idx">Q-04</span>Does this replace my planning consultant?<span class="faq-toggle"></span></summary>
+      <div class="faq-body">No. It front-loads the research a consultant spends the first weeks of an engagement assembling, so you walk into pre-consultation informed and spend consultant hours on strategy instead of lookup. Planning consultants and permit expeditors are among our heaviest users.</div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-idx">Q-05</span>How accurate is the zoning verdict?<span class="faq-toggle"></span></summary>
+      <div class="faq-body">The verdict is read from your municipality's own zoning fabric for the exact parcel, including holding provisions and overlays, and every bylaw standard is cited to its section so you can verify it yourself. PreBuildIQ is decision support for pre-development diligence, not legal advice.</div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-idx">Q-06</span>What does it cost?<span class="faq-toggle"></span></summary>
+      <div class="faq-body">Your first full report is free, no credit card. After that: one site for $499 with no subscription, or plans from $199/month for 20 reports a year. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div>
+    </details>
+  </div>
+</section>
+
 <!-- ── CTA ── -->
 <section class="cta" id="contact">
   <div class="reveal"><span class="cta-stamp">FIRST REPORT FREE · NO CARD</span></div>
@@ -1370,7 +1468,10 @@
   <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal">
     <button class="btn btn-accent" data-open-waitlist style="padding:1rem 1.75rem;font-size:0.98rem;">Try it free today <span class="arrow">&#x2192;</span></button>
   </div>
-  <div style="margin-top:2.5rem;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--muted);letter-spacing:0.08em;">
+  <div class="reveal" style="margin-top:2rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--navy);letter-spacing:0.1em;text-transform:uppercase;">
+    3 design partners &middot; 2 signed LOIs &middot; Built in Toronto
+  </div>
+  <div style="margin-top:1.25rem;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--muted);letter-spacing:0.08em;">
     info@prebuildiq.ca
   </div>
 </section>
@@ -1388,6 +1489,27 @@
     <div class="footer-contact" style="text-align:right;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;">Contact</div>
       <a href="mailto:info@prebuildiq.ca" style="color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:0.95rem;text-decoration:none;">info@prebuildiq.ca</a>
+    </div>
+  </div>
+  <div class="footer-links">
+    <div class="footer-links-col">
+      <div class="footer-links-label">Coverage guides</div>
+      <a href="ontario/toronto/development-approvals/">Toronto</a>
+      <a href="ontario/mississauga/development-approvals/">Mississauga</a>
+      <a href="ontario/brampton/development-approvals/">Brampton</a>
+      <a href="ontario/vaughan/development-approvals/">Vaughan</a>
+    </div>
+    <div class="footer-links-col">
+      <div class="footer-links-label">&nbsp;</div>
+      <a href="ontario/markham/development-approvals/">Markham</a>
+      <a href="ontario/oakville/development-approvals/">Oakville</a>
+      <a href="ontario/burlington/development-approvals/">Burlington</a>
+      <a href="ontario/richmond-hill/development-approvals/">Richmond Hill</a>
+    </div>
+    <div class="footer-links-col">
+      <div class="footer-links-label">Compare</div>
+      <a href="compare/prebuildiq-vs-landlogic/">PreBuildIQ vs LandLogic</a>
+      <a href="compare/prebuildiq-vs-permitflow/">PreBuildIQ vs PermitFlow</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1449,7 +1571,7 @@
           </select>
           <div class="form-error">Select a range</div>
         </div>
-        <button type="submit" class="modal-submit">Book my demo &#x2192;</button>
+        <button type="submit" class="modal-submit">Get my free report &#x2192;</button>
       </form>
     </div>
 
@@ -1459,8 +1581,8 @@
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <h3>Demo booked, <span id="wlSuccessName">there</span>.</h3>
-      <p>We'll reach out within one business day to confirm a time.</p>
+      <h3>You're in, <span id="wlSuccessName">there</span>.</h3>
+      <p>We'll set up your access and reach out within one business day.</p>
     </div>
   </div>
 </div>
@@ -1642,7 +1764,7 @@
     })
     .catch(() => {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Reserve my spot \u2192';
+      submitBtn.textContent = 'Get my free report \u2192';
       alert('Something went wrong. Please email umar@prebuildiq.ca directly.');
     });
   });
