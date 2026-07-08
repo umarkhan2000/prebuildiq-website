@@ -1370,7 +1370,7 @@
       <h3>Just need one site checked?</h3>
       <p>One address, the complete report: verdict, agencies, studies, bylaw standards, costs, and nearby decisions. <strong>No subscription, no monthly commitment.</strong> Running more than 4 sites a year? Starter is already cheaper.</p>
     </div>
-    <button class="pricing-cta-btn outline" data-open-waitlist>Run one site &#x2192;</button>
+    <button class="pricing-cta-btn outline" data-open-waitlist="one-report">Run one site &#x2192;</button>
   </div>
 
   <!-- Retail rate comparison -->
@@ -1528,13 +1528,14 @@
     <button class="modal-close" id="waitlistClose" aria-label="Close">✕</button>
 
     <div id="waitlistFormWrap">
-      <div class="modal-eyebrow">Get started free</div>
+      <div class="modal-eyebrow" id="wlEyebrow">Get started free</div>
       <h2 id="waitlistTitle">Run your first <em>address</em> free.</h2>
-      <p class="modal-sub">Full report. No credit card required.</p>
+      <p class="modal-sub" id="wlSub">Full report. No credit card required.</p>
 
       <form id="waitlistForm" name="waitlist" data-netlify="true" method="POST" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="waitlist" />
         <input type="hidden" name="bot-field" style="display:none" />
+        <input type="hidden" name="wlIntent" id="wlIntent" value="free_report" />
         <div class="form-field">
           <label for="wlName">Name <span class="req">*</span></label>
           <input type="text" id="wlName" name="wlName" autocomplete="name" />
@@ -1683,7 +1684,31 @@
   const wlSuccess = document.getElementById('waitlistSuccess');
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-  function openWaitlist() {
+  const WL_COPY = {
+    free: {
+      eyebrow: 'Get started free',
+      title: 'Run your first <em>address</em> free.',
+      sub: 'Full report. No credit card required.',
+      submit: 'Get my free report →',
+      intent: 'free_report',
+    },
+    'one-report': {
+      eyebrow: 'Single report · $499',
+      title: 'One site. The <em>complete</em> report.',
+      sub: 'Your first report is on us. Already used it? We’ll set you up with a $499 single-site report, no subscription.',
+      submit: 'Get started →',
+      intent: 'one_report',
+    },
+  };
+  let wlCurrent = WL_COPY.free;
+
+  function openWaitlist(variant) {
+    wlCurrent = WL_COPY[variant] || WL_COPY.free;
+    document.getElementById('wlEyebrow').textContent = wlCurrent.eyebrow;
+    document.getElementById('waitlistTitle').innerHTML = wlCurrent.title;
+    document.getElementById('wlSub').textContent = wlCurrent.sub;
+    document.getElementById('wlIntent').value = wlCurrent.intent;
+    wlForm.querySelector('.modal-submit').textContent = wlCurrent.submit;
     document.body.style.overflow = 'hidden';
     wlModal.classList.add('open');
     wlModal.setAttribute('aria-hidden', 'false');
@@ -1701,7 +1726,7 @@
     }, 380);
   }
 
-  document.querySelectorAll('[data-open-waitlist]').forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); openWaitlist(); }));
+  document.querySelectorAll('[data-open-waitlist]').forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); openWaitlist(b.getAttribute('data-open-waitlist') || ''); }));
   wlClose.addEventListener('click', closeWaitlist);
   wlModal.addEventListener('click', (e) => { if (e.target === wlModal) closeWaitlist(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && wlModal.classList.contains('open')) closeWaitlist(); });
@@ -1764,7 +1789,7 @@
     })
     .catch(() => {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Get my free report \u2192';
+      submitBtn.textContent = wlCurrent.submit;
       alert('Something went wrong. Please email umar@prebuildiq.ca directly.');
     });
   });
@@ -1817,7 +1842,7 @@
           footerBtn.className = 'btn btn-accent';
           footerBtn.style.cssText = 'padding:0.65rem 1.25rem;font-size:0.88rem;';
           footerBtn.textContent = 'Get full access \u2192';
-          footerBtn.addEventListener('click', openWaitlist);
+          footerBtn.addEventListener('click', () => openWaitlist());
           footer.appendChild(footerBtn);
           demoResults.appendChild(footer);
           demoBtn.disabled = false;
