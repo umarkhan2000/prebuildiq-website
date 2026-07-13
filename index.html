@@ -77,7 +77,7 @@
     {
       "@type": "Question",
       "name": "What does PreBuildIQ cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Your first full report is free with no credit card. After that, run a single site for $499 with no subscription, or subscribe from $199 per month for 20 reports a year. A comparable consultant pre-application engagement runs $14,000 to $31,500." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Your first full report is free with no credit card. After that, plans start from $199 per month for 20 reports a year. A comparable consultant pre-application engagement runs $14,000 to $31,500." }
     }
   ]
 }
@@ -244,15 +244,6 @@
   .compress-band p { font-family: 'Instrument Serif',serif; font-style: italic; font-size: clamp(1.5rem,3.2vw,2.5rem); line-height: 1.3; color: var(--ink); }
   .compress-band p strong { font-style: normal; color: var(--navy); font-weight: 700; background: linear-gradient(180deg, transparent 60%, rgba(255,106,19,0.3) 60%, rgba(255,106,19,0.3) 92%, transparent 92%); padding: 0 4px; }
 
-  /* ── Single report band ── */
-  .pricing-single { display: flex; align-items: center; gap: 2.5rem; background: #fff; border: 1.5px dashed var(--navy); border-radius: 16px; padding: 2.25rem 2.5rem; margin-bottom: 4rem; flex-wrap: wrap; }
-  .single-stamp { border: 2.5px solid var(--accent); color: var(--accent); padding: 1rem 1.6rem; transform: rotate(-3deg); text-align: center; border-radius: 6px; flex-shrink: 0; }
-  .single-stamp .amt { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
-  .single-stamp .lbl { font-family: 'JetBrains Mono',monospace; font-size: 0.62rem; letter-spacing: 0.14em; font-weight: 700; margin-top: 0.35rem; }
-  .pricing-single-body { flex: 1; min-width: 260px; }
-  .pricing-single-body h3 { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
-  .pricing-single-body p { color: var(--ink-2); font-size: 0.95rem; line-height: 1.55; max-width: 62ch; }
-  .pricing-single .pricing-cta-btn { width: auto; padding: 0.85rem 1.6rem; flex-shrink: 0; }
 
   /* ── CTA stamp ── */
   .cta-stamp { display: inline-block; border: 2.5px solid var(--accent); color: var(--accent); font-family: 'JetBrains Mono',monospace; font-size: 0.78rem; letter-spacing: 0.14em; font-weight: 700; padding: 0.55rem 1.1rem; border-radius: 4px; transform: rotate(-6deg); margin-bottom: 2rem; opacity: 0; }
@@ -642,8 +633,6 @@
     .anatomy-tb-cell:nth-child(even) { border-right: none; }
     .anatomy-tb-cell:nth-last-child(-n+2) { border-bottom: none; }
     .compress-band { padding: 4rem 1.25rem; }
-    .pricing-single { flex-direction: column; text-align: center; padding: 2rem 1.5rem; gap: 1.5rem; }
-    .pricing-single-body p { max-width: 100%; }
     .showcase { padding: 4rem 1.25rem; }
     .browser-frame { border-radius: 8px; }
     .demo { padding: 4rem 1.25rem; }
@@ -1360,19 +1349,6 @@
     </div>
   </div>
 
-  <!-- Single report -->
-  <div class="pricing-single reveal">
-    <div class="single-stamp">
-      <div class="amt">$499</div>
-      <div class="lbl">PER REPORT</div>
-    </div>
-    <div class="pricing-single-body">
-      <h3>Just need one site checked?</h3>
-      <p>One address, the complete report: verdict, agencies, studies, bylaw standards, costs, and nearby decisions. <strong>No subscription, no monthly commitment.</strong> Running more than 4 sites a year? Starter is already cheaper.</p>
-    </div>
-    <button class="pricing-cta-btn outline" data-open-waitlist="one-report">Run one site &#x2192;</button>
-  </div>
-
   <!-- Retail rate comparison -->
   <div class="pricing-vs reveal">
     <div class="pricing-vs-header">
@@ -1415,9 +1391,9 @@
       </tbody>
     </table>
     <div class="pricing-vs-punch">
-      <p>PreBuildIQ covers <strong>all of this in 60 seconds</strong>. One report: $499. On a plan: under $100. A single project more than pays for the year.</p>
+      <p>PreBuildIQ covers <strong>all of this in 60 seconds</strong>. On a plan: under $100 per report. A single project more than pays for the year.</p>
       <div class="pricing-vs-punch-stat">
-        <div class="ps-amount">$499<span style="font-size:1rem;font-weight:400;opacity:0.5">/report</span></div>
+        <div class="ps-amount">$199<span style="font-size:1rem;font-weight:400;opacity:0.5">/mo</span></div>
         <div class="ps-label">vs. $14K+ per engagement</div>
       </div>
     </div>
@@ -1451,7 +1427,7 @@
     </details>
     <details class="faq-item">
       <summary><span class="faq-idx">Q-06</span>What does it cost?<span class="faq-toggle"></span></summary>
-      <div class="faq-body">Your first full report is free, no credit card. After that: one site for $499 with no subscription, or plans from $199/month for 20 reports a year. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div>
+      <div class="faq-body">Your first full report is free, no credit card. After that, plans start at $199/month for 20 reports a year. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div>
     </details>
   </div>
 </section>
@@ -1691,13 +1667,6 @@
       sub: 'Full report. No credit card required.',
       submit: 'Get my free report →',
       intent: 'free_report',
-    },
-    'one-report': {
-      eyebrow: 'Single report · $499',
-      title: 'One site. The <em>complete</em> report.',
-      sub: 'Your first report is on us. Already used it? We’ll set you up with a $499 single-site report, no subscription.',
-      submit: 'Get started →',
-      intent: 'one_report',
     },
   };
   let wlCurrent = WL_COPY.free;
