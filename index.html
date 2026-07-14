@@ -476,10 +476,18 @@
   .pricing-toggle-btn { padding: 0.55rem 1.5rem; border-radius: 7px; border: none; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; background: transparent; color: var(--ink-2); transition: all 0.2s; display: flex; align-items: center; gap: 0.6rem; }
   .pricing-toggle-btn.active { background: var(--navy); color: #fff; }
   .pricing-save-badge { font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; letter-spacing: 0.07em; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 2px 7px; }
-  .pricing-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 4rem; align-items: stretch; max-width: 760px; }
+  .pricing-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 0 auto 4rem; align-items: stretch; max-width: 760px; }
+  @media (max-width: 640px) { .pricing-cards { grid-template-columns: 1fr; } }
   .pricing-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 2rem; position: relative; display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.3s; }
   .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,30,48,0.09); }
-  .pricing-card.featured { border: 2px solid var(--navy); }
+  .pricing-card.featured { border: 2px solid var(--navy); box-shadow: 0 8px 32px rgba(27,58,92,0.12); }
+  .pricing-card.secondary { background: var(--bg-2); border-color: var(--line-soft); }
+  .pricing-card.secondary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15,30,48,0.05); }
+  .pricing-card.secondary .pricing-price .amount { color: var(--ink-2); }
+  .pricing-card.secondary .pricing-quota .quota-num { color: var(--muted); }
+  .pricing-card.secondary .pricing-tagline { color: var(--muted); }
+  .pricing-card.secondary .pricing-features li { color: var(--muted); }
+  .pricing-card.secondary .pricing-features li::before { color: var(--muted); }
   .pricing-badge-top { position: absolute; top: -11px; left: 20px; font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--navy); color: #fff; padding: 3px 10px; border-radius: 4px; }
   .pricing-plan-name { font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
   .pricing-price { line-height: 1; margin-bottom: 0.35rem; }
@@ -1263,7 +1271,7 @@
 
   <div class="pricing-cards reveal">
     <!-- Free -->
-    <div class="pricing-card">
+    <div class="pricing-card secondary">
       <div class="pricing-plan-name">Free</div>
       <div class="pricing-price"><span class="amount">$0</span><span class="period"> / forever</span></div>
       <div class="pricing-saving">&nbsp;</div>
@@ -1284,6 +1292,7 @@
 
     <!-- $499 Single Report -->
     <div class="pricing-card featured">
+      <div class="pricing-badge-top">Recommended</div>
       <div class="pricing-plan-name">Single Report</div>
       <div class="pricing-price"><span class="amount">$499</span><span class="period"> / one time</span></div>
       <div class="pricing-saving">&nbsp;</div>
