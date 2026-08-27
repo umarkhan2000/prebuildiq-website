@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only">
+<title>Variant B — Title Block | PreBuildIQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light only;
+  --bg: #ffffff; --bg-2: #f7f8fa; --sheet: #fafaf5;
+  --ink: #0f1e30; --ink-2: #3d4a5c; --muted: #7b8594;
+  --line: #e2e5ea; --navy: #1b3a5c; --navy-dark: #122a43;
+  --accent: #ff6a13; --accent-soft: #fff0e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #ffffff; }
+body {
+  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+  color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.display { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; }
+.mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+.italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+
+nav {
+  position: relative; z-index: 5; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 4vw; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.92);
+}
+.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; }
+.logo-mark { width: 30px; height: 30px; background: var(--navy); border-radius: 7px; display: grid; place-items: center; }
+.logo-mark span { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; }
+.logo em { color: var(--accent); font-style: normal; }
+.nav-cta { background: var(--accent); color: #fff; border: none; padding: 0.62rem 1.25rem; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+
+/* ── HERO: the whole fold is one drawing sheet ── */
+.sheet-wrap { position: relative; z-index: 1; max-width: 1240px; margin: 3rem auto 0; padding: 0 3vw; }
+.sheet {
+  background: var(--sheet); border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  box-shadow: 0 18px 50px rgba(15,30,48,0.12);
+  background-image: linear-gradient(rgba(20,48,79,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(20,48,79,0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.sheet-bar { background: var(--navy); color: #f4f2ed; display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 1.4rem; }
+.sheet-bar .mono { font-size: 0.7rem; }
+.sheet-bar .dwg { opacity: 0.7; font-size: 0.66rem; }
+.sheet-main { display: grid; grid-template-columns: 1.35fr 1fr; gap: 0; }
+.sheet-left { padding: 3.6rem 3rem 3rem; }
+.sheet-left h1 { font-size: clamp(2.3rem, 4.6vw, 3.7rem); max-width: 16ch; }
+.sheet-left h1 em { color: var(--accent); }
+.sheet-sub { margin-top: 1.3rem; max-width: 42ch; font-size: 1.05rem; line-height: 1.62; color: var(--ink-2); }
+.sheet-sub strong { color: var(--ink); }
+.sheet-cta { display: flex; gap: 0.85rem; margin-top: 2rem; flex-wrap: wrap; }
+.btn-accent { background: var(--accent); color: #fff; border: none; padding: 0.82rem 1.6rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+.btn-ghost { background: #fff; color: var(--navy); border-top: 1px solid var(--navy); border-right: 1px solid var(--navy); border-bottom: 1px solid var(--navy); border-left: 1px solid var(--navy); padding: 0.82rem 1.6rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none; }
+.sheet-note { margin-top: 0.9rem; font-size: 0.8rem; color: var(--muted); }
+
+/* Title block: the three pillars live where a drawing's revision table lives */
+.title-block { border-left: 1.5px solid var(--navy); display: flex; flex-direction: column; }
+.tb-head { padding: 0.85rem 1.4rem; border-bottom: 1.5px solid var(--navy); background: rgba(27,58,92,0.05); }
+.tb-head .mono { font-size: 0.66rem; color: var(--navy); }
+.tb-row { flex: 1; padding: 1.35rem 1.4rem; border-bottom: 1.5px solid var(--navy); position: relative; transition: background 0.2s ease; }
+.tb-row:last-child { border-bottom: none; }
+.tb-row:hover { background: var(--accent-soft); }
+.tb-row .rev { position: absolute; top: 1.2rem; right: 1.3rem; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--accent); font-weight: 600; letter-spacing: 0.1em; }
+.tb-row .num { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 2.6vw, 2.4rem); letter-spacing: -0.03em; color: var(--navy); line-height: 1; }
+.tb-row .num small { font-size: 0.44em; font-weight: 600; color: var(--ink-2); letter-spacing: 0; }
+.tb-row h3 { font-size: 0.98rem; margin-top: 0.55rem; font-weight: 700; }
+.tb-row p { font-size: 0.85rem; color: var(--ink-2); line-height: 1.5; margin-top: 0.3rem; }
+.tb-row p strong { color: var(--ink); }
+
+/* Sheet footer strip */
+.sheet-foot { border-top: 1.5px solid var(--navy); display: flex; justify-content: space-between; padding: 0.6rem 1.4rem; }
+.sheet-foot .mono { font-size: 0.62rem; color: var(--navy); opacity: 0.75; }
+
+.rest { margin-top: 4.5rem; border-top: 1px solid var(--line); background: var(--bg-2); padding: 3.2rem 4vw 4.2rem; position: relative; z-index: 1; text-align: center; }
+.rest .mono { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.8rem; display: block; }
+.rest h2 { font-size: 1.55rem; max-width: 36ch; margin: 0 auto; }
+.rest p { max-width: 54ch; margin: 0.9rem auto 0; color: var(--ink-2); font-size: 0.95rem; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .sheet-main { grid-template-columns: 1fr; }
+  .title-block { border-left: none; border-top: 1.5px solid var(--navy); }
+  .sheet-left { padding: 2.2rem 1.4rem; }
+  .sheet-wrap { margin-top: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><div class="logo-mark"><span>IQ</span></div>PreBuild<em>IQ</em></div>
+  <button class="nav-cta">Try it free &#x2192;</button>
+</nav>
+
+<div class="sheet-wrap">
+  <div class="sheet">
+    <div class="sheet-bar">
+      <span class="mono">PRE-DEVELOPMENT INTELLIGENCE REPORT</span>
+      <span class="mono dwg">SHEET 1 OF 1 &middot; DWG-001</span>
+    </div>
+
+    <div class="sheet-main">
+      <div class="sheet-left">
+        <h1 class="display">Know the whole approval path <em class="italic-serif">before</em> you buy the land.</h1>
+        <p class="sheet-sub">One address in. The <strong>zoning verdict</strong>, the <strong>full agency list</strong>, and the <strong>studies that decide your budget</strong> out. That is the entire product.</p>
+        <div class="sheet-cta">
+          <button class="btn-accent">Run your first address free &#x2192;</button>
+          <a class="btn-ghost" href="#">See live demo</a>
+        </div>
+        <div class="sheet-note">Full report. No credit card.</div>
+      </div>
+
+      <aside class="title-block">
+        <div class="tb-head"><span class="mono">Why teams switch &middot; three line items</span></div>
+        <div class="tb-row">
+          <span class="rev">REV A</span>
+          <div class="num">60 <small>SECONDS</small></div>
+          <h3>Instant</h3>
+          <p>Site diligence that took <strong>weeks of calls and PDFs</strong>, returned before the meeting ends.</p>
+        </div>
+        <div class="tb-row">
+          <span class="rev">REV B</span>
+          <div class="num">37,941 <small>BYLAW SECTIONS</small></div>
+          <h3>Verifiable</h3>
+          <p>Parcel-exact zoning from <strong>municipal data</strong>, every standard cited to its section.</p>
+        </div>
+        <div class="tb-row">
+          <span class="rev">REV C</span>
+          <div class="num">$197K<small>+ AVOIDED</small></div>
+          <h3>Cheaper than being wrong</h3>
+          <p>60%+ of applications bounce. One resubmission costs <strong>more than a decade of PreBuildIQ.</strong></p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="sheet-foot">
+      <span class="mono">43 MUNICIPALITIES &middot; 188+ APPROVAL BODIES &middot; 381+ STUDY TYPES</span>
+      <span class="mono">FIRST IN CANADA</span>
+    </div>
+  </div>
+</div>
+
+<section class="rest">
+  <span class="mono">Below the fold</span>
+  <h2 class="display">Existing sections stay in current order.</h2>
+  <p>The sheet replaces the current hero and hero art. Live demo, report anatomy, screens, pricing, and FAQ remain untouched below it. The three pillars read as line items in the title block, in the visual language the ICP already trusts.</p>
+</section>
+
+</body>
+</html>

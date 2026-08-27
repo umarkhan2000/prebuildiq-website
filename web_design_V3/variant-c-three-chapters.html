@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only">
+<title>Variant C — Three Chapters | PreBuildIQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light only;
+  --bg: #ffffff; --bg-2: #f7f8fa;
+  --ink: #0f1e30; --ink-2: #3d4a5c; --muted: #7b8594;
+  --line: #e2e5ea; --navy: #1b3a5c; --navy-dark: #122a43;
+  --accent: #ff6a13; --accent-soft: #fff0e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #ffffff; scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+  color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.display { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+.italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+
+nav {
+  position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 4vw; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.94); backdrop-filter: blur(6px);
+}
+.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; }
+.logo-mark { width: 30px; height: 30px; background: var(--navy); border-radius: 7px; display: grid; place-items: center; }
+.logo-mark span { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; }
+.logo em { color: var(--accent); font-style: normal; }
+.nav-cta { background: var(--accent); color: #fff; border: none; padding: 0.62rem 1.25rem; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+
+/* ── HERO: one line + the promise of three ── */
+.hero { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 6rem 4vw 4.5rem; text-align: center; }
+.hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.4rem); max-width: 18ch; margin: 0 auto; }
+.hero h1 em { color: var(--accent); }
+.hero-sub { max-width: 40ch; margin: 1.4rem auto 0; font-size: 1.1rem; line-height: 1.6; color: var(--ink-2); }
+.hero-three { display: flex; justify-content: center; gap: 0; margin-top: 2.6rem; }
+.hero-three a {
+  text-decoration: none; color: var(--navy); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 600;
+  padding: 0.7rem 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line); border-right: none; background: #fff; transition: all 0.2s ease;
+}
+.hero-three a:last-child { border-right: 1px solid var(--line); }
+.hero-three a:hover { background: var(--navy); color: #fff; }
+.hero-three a b { color: var(--accent); }
+.hero-three a:hover b { color: #ffb98c; }
+.scroll-hint { margin-top: 3rem; color: var(--muted); font-size: 0.8rem; animation: bob 2.2s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+/* ── Chapters ── */
+.chapter { position: relative; z-index: 1; min-height: 88vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; max-width: 1240px; margin: 0 auto; padding: 4rem 4vw; border-top: 1px solid var(--line); }
+.chapter .figure { text-align: right; }
+.chapter:nth-child(even) .figure { order: 2; text-align: left; }
+.chapter .figure .huge {
+  font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.05em;
+  font-size: clamp(4.5rem, 11vw, 9.5rem); line-height: 0.95; color: var(--navy);
+}
+.chapter .figure .huge .accent { color: var(--accent); }
+.chapter .figure .unit { display: block; margin-top: 0.4rem; }
+.chapter .figure .unit .mono { color: var(--muted); }
+.chapter .copy .kicker { color: var(--accent); margin-bottom: 1rem; }
+.chapter .copy h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); max-width: 18ch; }
+.chapter .copy p { margin-top: 1rem; max-width: 46ch; font-size: 1.02rem; line-height: 1.65; color: var(--ink-2); }
+.chapter .copy p strong { color: var(--ink); }
+.chapter .copy .receipts { margin-top: 1.4rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.chapter .copy .receipts .r { display: flex; align-items: baseline; gap: 0.6rem; font-size: 0.86rem; color: var(--ink-2); }
+.chapter .copy .receipts .r::before { content: '＋'; color: var(--accent); font-weight: 700; font-size: 0.8rem; }
+
+/* reveal on scroll */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── Close ── */
+.close { position: relative; z-index: 1; text-align: center; padding: 5.5rem 4vw 6rem; border-top: 1px solid var(--line); background: var(--navy); color: #fff; }
+.close h2 { font-size: clamp(1.9rem, 3.6vw, 2.9rem); max-width: 22ch; margin: 0 auto; }
+.close h2 em { color: #ffb98c; }
+.close p { margin: 1rem auto 0; max-width: 44ch; color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.6; }
+.close .btn-accent { margin-top: 2rem; background: var(--accent); color: #fff; border: none; padding: 0.95rem 2rem; border-radius: 8px; font-size: 1.02rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+.close .note { margin-top: 0.9rem; font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+
+.rest { position: relative; z-index: 1; text-align: center; background: var(--bg-2); padding: 3rem 4vw 4rem; }
+.rest .mono { color: var(--muted); display: block; margin-bottom: 0.7rem; }
+.rest p { max-width: 54ch; margin: 0 auto; color: var(--ink-2); font-size: 0.93rem; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .chapter { grid-template-columns: 1fr; min-height: unset; gap: 1.6rem; padding: 3rem 5vw; }
+  .chapter .figure, .chapter:nth-child(even) .figure { text-align: left; order: 0; }
+  .hero { padding: 3.5rem 5vw 3rem; }
+  .hero-three { flex-direction: column; align-items: stretch; }
+  .hero-three a { border-right: 1px solid var(--line); border-bottom: none; }
+  .hero-three a:last-child { border-bottom: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><div class="logo-mark"><span>IQ</span></div>PreBuild<em>IQ</em></div>
+  <button class="nav-cta">Try it free &#x2192;</button>
+</nav>
+
+<section class="hero">
+  <h1 class="display">Three numbers decide <em class="italic-serif">every</em> development deal.</h1>
+  <p class="hero-sub">How fast you know. How much you can trust it. What it costs when you are wrong. PreBuildIQ wins all three.</p>
+  <div class="hero-three">
+    <a href="#instant"><b>01</b> &nbsp;Instant</a>
+    <a href="#accurate"><b>02</b> &nbsp;Verifiable</a>
+    <a href="#cost"><b>03</b> &nbsp;Cheaper than being wrong</a>
+  </div>
+  <div class="scroll-hint">&#x2193; scroll</div>
+</section>
+
+<section class="chapter" id="instant">
+  <div class="figure reveal">
+    <div class="huge">60<span class="accent">s</span></div>
+    <span class="unit"><span class="mono">from address to full report</span></span>
+  </div>
+  <div class="copy reveal">
+    <div class="kicker mono">01 / Instant</div>
+    <h2 class="display">Answers while the deal is still alive.</h2>
+    <p>Site diligence today means weeks of bylaw PDFs, GIS portals, and unreturned planner calls. PreBuildIQ returns the <strong>zoning verdict, the agency list, and every required study</strong> before the meeting ends.</p>
+    <div class="receipts">
+      <div class="r">43 municipalities, 188+ approval bodies, 381+ study types</div>
+      <div class="r">Run it in the room, on the property you are discussing</div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="accurate">
+  <div class="figure reveal">
+    <div class="huge">37,941</div>
+    <span class="unit"><span class="mono">bylaw sections in the engine</span></span>
+  </div>
+  <div class="copy reveal">
+    <div class="kicker mono">02 / Verifiable</div>
+    <h2 class="display">Cited to the section, so you can check us.</h2>
+    <p>The verdict is read from <strong>your municipality's own zoning fabric</strong> for the exact parcel, holding provisions and overlays included. Every standard is <strong>cited to its bylaw section.</strong> Not a generic AI summary.</p>
+    <div class="receipts">
+      <div class="r">Municipal GIS parcel and zoning data, agency terms of reference</div>
+      <div class="r">Kept current as bylaws change</div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="cost">
+  <div class="figure reveal">
+    <div class="huge"><span class="accent">$197K</span>+</div>
+    <span class="unit"><span class="mono">cost of one rejected application</span></span>
+  </div>
+  <div class="copy reveal">
+    <div class="kicker mono">03 / Cheaper than being wrong</div>
+    <h2 class="display">One missed study costs more than a decade of this.</h2>
+    <p>60%+ of applications get sent back, and a stalled project burns <strong>$43K a month</strong> while it waits. A consultant pre-app engagement runs <strong>$14K to $31.5K.</strong> Your first PreBuildIQ report is free.</p>
+    <div class="receipts">
+      <div class="r">First full report free, no credit card</div>
+      <div class="r">Plans from $199 per month after that</div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <h2 class="display">Enter the address. <em class="italic-serif">Know</em> the whole path.</h2>
+  <p>Everything else on this page, the live demo, the report anatomy, pricing, is proof for these three claims.</p>
+  <button class="btn-accent">Run your first address free &#x2192;</button>
+  <div class="note">Full report. No credit card.</div>
+</section>
+
+<section class="rest">
+  <span class="mono">Below the fold</span>
+  <p>Existing sections (live demo, platform screens, report anatomy, how it works, pricing, FAQ) follow after the navy close band, reframed as evidence for the three chapters.</p>
+</section>
+
+<script>
+const obs = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.25 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

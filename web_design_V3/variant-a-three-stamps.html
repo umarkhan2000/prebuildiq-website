@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only">
+<title>Variant A v2 — Three Stamps | PreBuildIQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light only;
+  --bg: #ffffff; --bg-2: #f7f8fa; --sheet: #fafaf5;
+  --ink: #0f1e30; --ink-2: #3d4a5c; --muted: #7b8594;
+  --line: #e2e5ea; --navy: #1b3a5c; --navy-dark: #122a43;
+  --accent: #ff6a13; --accent-soft: #fff0e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #ffffff; scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+  color: var(--ink); background: var(--bg);
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.display { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+.italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+
+/* ── Nav ── */
+nav {
+  position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 4vw; border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(8px);
+}
+.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; }
+.logo-mark { width: 30px; height: 30px; background: var(--navy); border-radius: 7px; display: grid; place-items: center; }
+.logo-mark span { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; }
+.logo em { color: var(--accent); font-style: normal; }
+.nav-cta { background: var(--accent); color: #fff; border: none; padding: 0.62rem 1.3rem; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(255,106,19,0.35); }
+
+/* ── Hero: the three words ARE the headline ── */
+.hero { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 4.2rem 4vw 0; text-align: center; }
+.hero-eyebrow { color: var(--navy); opacity: 0.85; }
+.hero-eyebrow b { color: var(--accent); }
+
+.stamp-line {
+  display: flex; justify-content: center; align-items: center; gap: clamp(0.8rem, 2.4vw, 1.8rem);
+  margin-top: 2rem; flex-wrap: wrap;
+}
+.stampword {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;
+  font-size: clamp(1.9rem, 5.6vw, 4.3rem); letter-spacing: 0.04em; line-height: 1;
+  padding: clamp(0.5rem, 1.2vw, 0.85rem) clamp(0.8rem, 2vw, 1.5rem);
+  border-radius: 8px; position: relative; opacity: 0;
+}
+.stampword.s1 { color: var(--navy); box-shadow: inset 0 0 0 3px var(--navy); transform: rotate(-2.5deg); animation: stampIn 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) 0.25s forwards; }
+.stampword.s2 { color: var(--accent); box-shadow: inset 0 0 0 3px var(--accent); transform: rotate(1.8deg); animation: stampIn 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) 0.65s forwards; }
+.stampword.s3 { color: #fff; background: var(--navy); box-shadow: inset 0 0 0 3px var(--navy); transform: rotate(-1.6deg); animation: stampIn 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) 1.05s forwards; }
+.stampword::after {
+  content: ''; position: absolute; inset: 4px; border-radius: 5px; pointer-events: none;
+  border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor; border-left: 1px solid currentColor; opacity: 0.35;
+}
+@keyframes stampIn {
+  0%   { opacity: 0; transform: scale(2.4) rotate(var(--rot, -2deg)); filter: blur(2px); }
+  55%  { opacity: 1; transform: scale(0.93) rotate(var(--rot, -2deg)); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) rotate(var(--rot, -2deg)); }
+}
+.stampword.s1 { --rot: -2.5deg; } .stampword.s2 { --rot: 1.8deg; } .stampword.s3 { --rot: -1.6deg; }
+.stampword .dollar { color: var(--accent); margin-right: 0.06em; }
+.stamp-dot { color: var(--muted); font-size: clamp(1.2rem, 2.6vw, 2rem); opacity: 0; animation: fadeUp 0.5s ease 1.35s forwards; }
+
+.hero-sub {
+  max-width: 52ch; margin: 1.9rem auto 0; font-size: clamp(1rem, 1.6vw, 1.16rem); line-height: 1.62; color: var(--ink-2);
+  opacity: 0; animation: fadeUp 0.6s ease 1.45s forwards;
+}
+.hero-sub strong { color: var(--ink); }
+
+/* Hero CTA pair */
+.hero-cta {
+  display: flex; justify-content: center; gap: 0.9rem; margin-top: 2.1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.6s ease 1.6s forwards;
+}
+.btn-accent {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--accent); color: #fff; border: none; padding: 0.95rem 2rem; border-radius: 10px;
+  font-size: 1.04rem; font-weight: 700; cursor: pointer; font-family: inherit; text-decoration: none;
+  box-shadow: 5px 5px 0 rgba(27,58,92,0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn-accent:hover { background: #e85e0f; transform: translate(-2px,-2px); box-shadow: 8px 8px 0 rgba(27,58,92,0.2); }
+.btn-ghost {
+  display: inline-flex; align-items: center; background: #fff; color: var(--navy);
+  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  padding: 0.95rem 1.7rem; border-radius: 10px; font-size: 1.04rem; font-weight: 600;
+  cursor: pointer; font-family: inherit; text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.btn-ghost:hover { background: var(--navy); color: #fff; }
+.hero-note { margin-top: 0.85rem; font-size: 0.8rem; color: var(--muted); opacity: 0; animation: fadeUp 0.6s ease 1.7s forwards; }
+.hero-note b { color: var(--ink-2); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* "+ more" chip inside the sub */
+.plus-more {
+  display: inline-block; margin-left: 0.35rem; padding: 0.18rem 0.6rem; border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy); background: rgba(27,58,92,0.07); text-decoration: none; white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.plus-more:hover { background: var(--navy); color: #fff; }
+
+/* Floating "see more" scroll cue */
+.see-more {
+  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 8;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+  color: var(--navy); background: rgba(255,255,255,0.92); backdrop-filter: blur(6px);
+  padding: 0.5rem 1rem; border-radius: 100px; text-decoration: none;
+  box-shadow: 0 4px 18px rgba(15,30,48,0.14), inset 0 0 0 1px var(--line);
+  animation: bob 2.2s ease-in-out infinite;
+  transition: opacity 0.35s ease, visibility 0.35s, background 0.15s ease, color 0.15s ease;
+}
+.see-more:hover { background: var(--navy); color: #fff; animation-play-state: paused; }
+.see-more .arr { color: var(--accent); font-size: 0.8rem; }
+.see-more:hover .arr { color: #ffb98c; }
+.see-more.hidden { opacity: 0; visibility: hidden; }
+@keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(5px); } }
+@media (prefers-reduced-motion: reduce) { .see-more { animation: none; } }
+
+/* ── The three proof cards ── */
+.cards { position: relative; z-index: 1; max-width: 1200px; margin: 3.6rem auto 0; padding: 0 4vw; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+.card {
+  position: relative; background: #fff; border-radius: 10px; text-align: left;
+  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  box-shadow: 6px 6px 0 rgba(27,58,92,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0; transform: translateY(28px);
+}
+.card:hover, .card:focus-within { z-index: 4; }
+.card.in { animation: cardIn 0.6s ease forwards; }
+.card:nth-child(2).in { animation-delay: 0.12s; }
+.card:nth-child(3).in { animation-delay: 0.24s; }
+@keyframes cardIn { to { opacity: 1; transform: none; } }
+.card:hover { transform: translate(-3px,-3px); box-shadow: 10px 10px 0 rgba(27,58,92,0.13); }
+
+.card-tab {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.6rem 1.3rem; border-bottom: 1.5px solid var(--navy);
+  border-radius: 8.5px 8.5px 0 0;
+}
+.card:nth-child(1) .card-tab { background: rgba(27,58,92,0.06); }
+.card:nth-child(2) .card-tab { background: var(--accent-soft); }
+.card:nth-child(3) .card-tab { background: var(--navy); }
+.card-tab .word { font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.92rem; }
+.card:nth-child(1) .card-tab .word { color: var(--navy); }
+.card:nth-child(2) .card-tab .word { color: var(--accent); }
+.card:nth-child(3) .card-tab .word { color: #fff; }
+.card-tab .idx { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--muted); }
+.card:nth-child(3) .card-tab .idx { color: rgba(255,255,255,0.6); }
+
+.card-body { padding: 1.5rem 1.3rem 1.4rem; }
+.card .big {
+  font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em;
+  font-size: clamp(2.6rem, 4.2vw, 3.6rem); line-height: 1; color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.card .big .accent { color: var(--accent); }
+.card .big-unit { display: block; margin-top: 0.35rem; font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.card h3 { font-size: 1.08rem; margin: 1.05rem 0 0.4rem; font-weight: 700; letter-spacing: -0.01em; }
+.card p { font-size: 0.92rem; line-height: 1.58; color: var(--ink-2); }
+.card p strong { color: var(--ink); }
+.card .foot {
+  margin-top: 1.15rem; padding-top: 0.9rem; border-top: 1px dashed var(--line);
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted);
+}
+.card .foot::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.8rem; }
+
+/* Disclaimer tooltip */
+.info-tip {
+  position: relative; display: inline-grid; place-items: center; vertical-align: super;
+  width: 1.05rem; height: 1.05rem; margin-left: 0.35rem; border-radius: 50%;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 600;
+  color: var(--muted); box-shadow: inset 0 0 0 1.2px var(--muted);
+  cursor: help; outline: none; transition: color 0.15s ease, box-shadow 0.15s ease;
+}
+.info-tip:hover, .info-tip:focus { color: var(--accent); box-shadow: inset 0 0 0 1.2px var(--accent); }
+.info-tip .tip-box {
+  position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-72%) translateY(4px);
+  width: 205px; background: var(--navy-dark); color: #fff; text-align: left;
+  font-family: 'DM Sans', Arial, sans-serif; font-size: 0.7rem; font-weight: 400;
+  line-height: 1.45; letter-spacing: 0; padding: 0.6rem 0.7rem; border-radius: 7px;
+  box-shadow: 0 10px 28px rgba(15,30,48,0.3);
+  opacity: 0; visibility: hidden; pointer-events: none; z-index: 6;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+.info-tip .tip-box::after {
+  content: ''; position: absolute; top: 100%; left: 72%; transform: translateX(-50%);
+  border-top: 6px solid var(--navy-dark); border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: none;
+}
+.info-tip:hover .tip-box, .info-tip:focus .tip-box {
+  opacity: 1; visibility: visible; transform: translateX(-72%) translateY(0);
+}
+@media (max-width: 768px) {
+  .info-tip .tip-box { left: auto; right: -0.5rem; transform: translateY(4px); }
+  .info-tip:hover .tip-box, .info-tip:focus .tip-box { transform: translateY(0); }
+  .info-tip .tip-box::after { left: auto; right: 0.7rem; transform: none; }
+}
+
+/* ── Receipts strip ── */
+.dims { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 3rem auto 0; padding: 0 4vw; }
+.dim-line { width: 44px; height: 1px; background: var(--line); }
+.dim-label { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--navy); }
+.dim-label b { color: var(--accent); }
+
+/* ── Below-the-fold note ── */
+.rest { margin-top: 4.2rem; border-top: 1px solid var(--line); background: var(--bg-2); padding: 3rem 4vw 4rem; position: relative; z-index: 1; text-align: center; }
+.rest .mono { color: var(--muted); display: block; margin-bottom: 0.8rem; }
+.rest h2 { font-size: 1.55rem; max-width: 34ch; margin: 0 auto; }
+.rest p { max-width: 54ch; margin: 0.9rem auto 0; color: var(--ink-2); font-size: 0.94rem; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .cards { grid-template-columns: 1fr; }
+  .hero { padding-top: 2.6rem; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .btn-accent, .btn-ghost { justify-content: center; }
+  .stamp-dot { display: none; }
+  .stamp-line { gap: 0.7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stampword, .hero-sub, .hero-cta, .hero-note, .stamp-dot { animation: none !important; opacity: 1 !important; }
+  .card { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><div class="logo-mark"><span>IQ</span></div>PreBuild<em>IQ</em></div>
+  <button class="nav-cta">Try it free &#x2192;</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow mono">PreBuildIQ &middot; Pre-development intelligence &middot; <b>First in Canada</b></div>
+
+  <h1 class="stamp-line" aria-label="Instant. Verified. Dollars saved.">
+    <span class="stampword s1">Instant</span>
+    <span class="stamp-dot">&middot;</span>
+    <span class="stampword s2">Verified</span>
+    <span class="stamp-dot">&middot;</span>
+    <span class="stampword s3"><span class="dollar">$</span>Saved</span>
+  </h1>
+
+  <p class="hero-sub">Enter any Canadian address. Get the <strong>zoning verdict, every approval body, and every required study</strong> in 60 seconds, cited to the bylaw section, at a fraction of consultant cost. <a class="plus-more" href="#more">+ 5 more sections in every report &#x2193;</a></p>
+
+  <div class="hero-cta">
+    <a class="btn-accent" href="https://prebuildiq.app">Get my report &#x2192;</a>
+    <a class="btn-ghost" href="#more">See what is in it</a>
+  </div>
+  <div class="hero-note"><b>First report free.</b> No credit card.</div>
+</section>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-tab"><span class="word">Instant</span><span class="idx">01 / 03</span></div>
+    <div class="card-body">
+      <div class="big"><span class="count" data-to="60">0</span><span class="accent">s</span></div>
+      <span class="big-unit">from address to full report</span>
+      <h3>Answers while the deal is still alive.</h3>
+      <p>Site diligence that takes <strong>weeks of bylaw PDFs and unreturned planner calls</strong> comes back before the meeting ends. Run it in the room, on the property you are discussing.</p>
+      <div class="foot">43 municipalities &middot; 188+ approval bodies</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-tab"><span class="word">Verified</span><span class="idx">02 / 03</span></div>
+    <div class="card-body">
+      <div class="big"><span class="count" data-to="37941">0</span></div>
+      <span class="big-unit">bylaw sections in the engine</span>
+      <h3>Cited to the section, so you can check us.</h3>
+      <p>The verdict is read from <strong>your municipality's own zoning fabric</strong> for the exact parcel, overlays and holding provisions included. Every standard cites its bylaw section. <strong>Not a generic AI summary.</strong></p>
+      <div class="foot">Municipal GIS &middot; agency terms of reference</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-tab"><span class="word">$ Saved</span><span class="idx">03 / 03</span></div>
+    <div class="card-body">
+      <div class="big"><span class="accent">$1,000s</span><span class="info-tip" tabindex="0" role="note" aria-label="Where the savings come from">i<span class="tip-box">Savings come from avoided resubmissions, fewer consultant lookup hours, and less time carrying a stalled project. Actual amounts vary with project scope and municipality. Not a guarantee.</span></span></div>
+      <span class="big-unit">saved on every application</span>
+      <h3>One missed study costs more than a year of this.</h3>
+      <p>60%+ of applications get sent back, and every resubmission means <strong>redesign fees, consultant hours, and months of added carrying cost.</strong> Know the full list before you file. <strong>Your first report is free.</strong></p>
+      <div class="foot">Plans from $199/mo after your free report</div>
+    </div>
+  </div>
+</div>
+
+<div class="dims">
+  <span class="dim-line"></span>
+  <span class="dim-label"><b>43</b> MUNICIPALITIES</span>
+  <span class="dim-line"></span>
+  <span class="dim-label"><b>188+</b> APPROVAL BODIES</span>
+  <span class="dim-line"></span>
+  <span class="dim-label"><b>381+</b> STUDY TYPES</span>
+  <span class="dim-line"></span>
+  <span class="dim-label"><b>60</b> SECONDS</span>
+  <span class="dim-line"></span>
+</div>
+
+<a class="see-more" href="#more" id="seeMore">See more <span class="arr">&#x2193;</span></a>
+
+<section class="rest" id="more">
+  <span class="mono">Below the fold</span>
+  <h2 class="display">Everything else becomes evidence.</h2>
+  <p>Live demo, platform screens, report anatomy, how it works, pricing, and FAQ stay in their current order below. The fold now makes exactly three claims, and the address bar turns the hero itself into the first conversion point.</p>
+</section>
+
+<script>
+// Cards reveal on scroll
+const cardObs = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); cardObs.unobserve(e.target); } });
+}, { threshold: 0.2 });
+document.querySelectorAll('.card').forEach(el => cardObs.observe(el));
+
+// Count-up numbers when cards enter
+function countUp(el) {
+  const to = parseInt(el.dataset.to, 10);
+  const dur = 1100, t0 = performance.now();
+  function tick(t) {
+    const p = Math.min((t - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(to * eased).toLocaleString('en-CA');
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const numObs = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { countUp(e.target); numObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count').forEach(el => numObs.observe(el));
+
+// Hide the "see more" cue once the visitor starts scrolling
+const seeMore = document.getElementById('seeMore');
+window.addEventListener('scroll', () => {
+  seeMore.classList.toggle('hidden', window.scrollY > 160);
+}, { passive: true });
+
+</script>
+
+</body>
+</html>
