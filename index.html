@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
 <title>Zoning Reports, Studies & Approvals in 60 Seconds | PreBuildIQ</title>
@@ -86,1406 +86,844 @@
 <link rel="icon" type="image/png" href="logo_300.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    color-scheme: light only;
-    --bg: #ffffff;
-    --bg-2: #f7f8fa;
-    --ink: #0f1e30;
-    --ink-2: #3d4a5c;
-    --muted: #7b8594;
-    --line: #e2e5ea;
-    --line-soft: rgba(15,30,48,0.07);
-    --navy: #1b3a5c;
-    --navy-dark: #122a43;
-    --steel: #6b8aa8;
-    --steel-light: #c6d4e2;
-    --steel-bg: #eaf0f6;
-    --paper: #ffffff;
-    --accent: #ff6a13;
-    --accent-soft: #fff0e6;
-    --shadow-md: 0 6px 24px rgba(10,24,41,0.10), 0 2px 6px rgba(10,24,41,0.05);
-  }
+:root {
+  color-scheme: light only;
+  --bg: #ffffff; --bg-2: #f7f8fa; --sheet: #fafaf5; --paper: #f4f2ed;
+  --ink: #0f1e30; --ink-2: #3d4a5c; --muted: #7b8594;
+  --line: #e2e5ea; --navy: #1b3a5c; --navy-dark: #122a43;
+  --accent: #ff6a13; --accent-soft: #fff0e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #ffffff; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+  color: var(--ink); background: var(--bg);
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.display { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+.italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+section { position: relative; z-index: 1; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: 4vw; padding-right: 4vw; }
+.eyebrow { color: var(--muted); display: block; margin-bottom: 0.9rem; }
+.eyebrow b { color: var(--accent); font-weight: 600; }
+h2.sec { font-size: clamp(1.7rem, 3.4vw, 2.6rem); max-width: 26ch; }
+h2.sec em { color: var(--accent); }
+.sec-sub { max-width: 62ch; margin-top: 1rem; font-size: 1.02rem; line-height: 1.65; color: var(--ink-2); }
+.sec-sub strong { color: var(--ink); }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
-  html { scroll-behavior: smooth; background: #ffffff; scroll-padding-top: 90px; scrollbar-width: none; overflow-x: hidden; }
-  html::-webkit-scrollbar { display: none; }
+#scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0; z-index: 20; }
 
-  body {
-    font-family: 'DM Sans', Arial, Helvetica, sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    font-weight: 400;
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    letter-spacing: -0.005em;
-  }
+/* ── Nav ── */
+#nav {
+  position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center;
+  padding: 0.9rem 4vw; border-bottom: 1px solid transparent;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease;
+}
+#nav.scrolled { border-color: var(--line); }
+.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; color: var(--ink); text-decoration: none; }
+.logo-mark { width: 28px; height: 28px; background: var(--navy); border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; }
+.logo-mark::before { content: ''; position: absolute; width: 14px; height: 14px; border-top: 1.5px solid var(--paper); border-right: 1.5px solid var(--paper); border-bottom: 1.5px solid var(--paper); border-left: 1.5px solid var(--paper); border-radius: 2px; }
+.logo-mark::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+.nav-links { display: flex; gap: 1.6rem; align-items: center; }
+.nav-links a { color: var(--ink-2); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+.nav-links a:hover { color: var(--navy); }
+.nav-cta {
+  display: inline-flex; align-items: center; min-height: 44px;
+  background: var(--accent); color: #fff; border: none; padding: 0.55rem 1.25rem; border-radius: 8px;
+  font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(255,106,19,0.35); }
+.nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile {
+  display: none; position: fixed; top: 57px; left: 0; right: 0; z-index: 9;
+  background: #fff; border-bottom: 1px solid var(--line);
+  flex-direction: column; padding: 0.6rem 4vw 1.2rem;
+  box-shadow: 0 14px 30px rgba(15,30,48,0.1);
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a { color: var(--ink); text-decoration: none; font-size: 1rem; font-weight: 600; padding: 0.8rem 0; border-bottom: 1px solid var(--line); min-height: 44px; display: flex; align-items: center; }
+.nav-mobile a:last-child { border-bottom: none; }
+.nav-mobile .nav-cta { margin-top: 0.8rem; justify-content: center; }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    background-image:
-      linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px);
-    background-size: 48px 48px;
-    background-position: -1px -1px;
-  }
+/* ── Hero ── */
+.hero { text-align: center; padding: 4rem 4vw 0; }
+.hero-eyebrow { color: var(--navy); opacity: 0.85; }
+.hero-eyebrow b { color: var(--accent); }
+.stamp-line { display: flex; justify-content: center; align-items: center; gap: clamp(0.7rem, 2.2vw, 1.7rem); margin-top: 1.9rem; flex-wrap: wrap; }
+.stampword {
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;
+  font-size: clamp(1.7rem, 5.4vw, 4.1rem); letter-spacing: 0.04em; line-height: 1;
+  padding: clamp(0.45rem, 1.2vw, 0.85rem) clamp(0.7rem, 2vw, 1.5rem);
+  border-radius: 8px; position: relative; opacity: 0;
+}
+.stampword.s1 { --rot: -2.5deg; color: var(--navy); box-shadow: inset 0 0 0 3px var(--navy); transform: rotate(-2.5deg); animation: stampIn 0.5s cubic-bezier(0.2,1.6,0.4,1) 0.25s forwards; }
+.stampword.s2 { --rot: 1.8deg; color: var(--accent); box-shadow: inset 0 0 0 3px var(--accent); transform: rotate(1.8deg); animation: stampIn 0.5s cubic-bezier(0.2,1.6,0.4,1) 0.65s forwards; }
+.stampword.s3 { --rot: -1.6deg; color: #fff; background: var(--navy); box-shadow: inset 0 0 0 3px var(--navy); transform: rotate(-1.6deg); animation: stampIn 0.5s cubic-bezier(0.2,1.6,0.4,1) 1.05s forwards; }
+.stampword::after {
+  content: ''; position: absolute; inset: 4px; border-radius: 5px; pointer-events: none;
+  border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor; border-left: 1px solid currentColor; opacity: 0.35;
+}
+.stampword .dollar { color: var(--accent); margin-right: 0.06em; }
+@keyframes stampIn {
+  0%   { opacity: 0; transform: scale(2.4) rotate(var(--rot)); filter: blur(2px); }
+  55%  { opacity: 1; transform: scale(0.93) rotate(var(--rot)); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) rotate(var(--rot)); }
+}
+.stamp-dot { color: var(--muted); font-size: clamp(1.1rem, 2.4vw, 2rem); opacity: 0; animation: fadeUp 0.5s ease 1.35s forwards; }
+.hero-sub { max-width: 52ch; margin: 1.8rem auto 0; font-size: clamp(0.98rem, 1.6vw, 1.14rem); line-height: 1.62; color: var(--ink-2); opacity: 0; animation: fadeUp 0.6s ease 1.45s forwards; }
+.hero-sub strong { color: var(--ink); }
+.plus-more {
+  display: inline-block; margin-left: 0.35rem; padding: 0.25rem 0.65rem; border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy); background: rgba(27,58,92,0.07); text-decoration: none; white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.plus-more:hover { background: var(--navy); color: #fff; }
+.hero-cta { display: flex; justify-content: center; gap: 0.9rem; margin-top: 2rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.6s ease 1.6s forwards; }
+.btn-accent {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 48px;
+  background: var(--accent); color: #fff; border: none; padding: 0.85rem 2rem; border-radius: 10px;
+  font-size: 1.02rem; font-weight: 700; cursor: pointer; font-family: inherit; text-decoration: none;
+  box-shadow: 5px 5px 0 rgba(27,58,92,0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn-accent:hover { background: #e85e0f; transform: translate(-2px,-2px); box-shadow: 8px 8px 0 rgba(27,58,92,0.2); }
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px;
+  background: #fff; color: var(--navy);
+  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  padding: 0.85rem 1.7rem; border-radius: 10px; font-size: 1.02rem; font-weight: 600;
+  cursor: pointer; font-family: inherit; text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.btn-ghost:hover { background: var(--navy); color: #fff; }
+.hero-note { margin-top: 0.85rem; font-size: 0.8rem; color: var(--muted); opacity: 0; animation: fadeUp 0.6s ease 1.7s forwards; }
+.hero-note b { color: var(--ink-2); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
-  .display { font-family: 'IBM Plex Sans', Arial, Helvetica, sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.0; }
-  .mono { font-family: 'JetBrains Mono',monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
-  .italic-serif { font-family: 'Instrument Serif',serif; font-style: italic; }
+/* ── Stamp cards ── */
+.cardgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; margin-top: 2.4rem; }
+.scard {
+  position: relative; background: #fff; border-radius: 10px; text-align: left;
+  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  box-shadow: 6px 6px 0 rgba(27,58,92,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.scard:hover, .scard:focus-within { transform: translate(-3px,-3px); box-shadow: 10px 10px 0 rgba(27,58,92,0.13); z-index: 4; }
+.scard-tab {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.55rem 1.25rem; border-bottom: 1.5px solid var(--navy); border-radius: 8.5px 8.5px 0 0;
+  background: rgba(27,58,92,0.06);
+}
+.scard-tab.orange { background: var(--accent-soft); }
+.scard-tab.solid { background: var(--navy); }
+.scard-tab .word { font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; color: var(--navy); }
+.scard-tab.orange .word { color: var(--accent); }
+.scard-tab.solid .word { color: #fff; }
+.scard-tab .idx { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; color: var(--muted); }
+.scard-tab.solid .idx { color: rgba(255,255,255,0.6); }
+.scard-body { padding: 1.4rem 1.25rem 1.3rem; }
+.scard .big { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; color: var(--navy); font-variant-numeric: tabular-nums; }
+.scard .big .accent { color: var(--accent); }
+.scard .big-unit { display: block; margin-top: 0.35rem; font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.scard h3 { font-size: 1.05rem; margin: 1rem 0 0.4rem; font-weight: 700; letter-spacing: -0.01em; }
+.scard p { font-size: 0.91rem; line-height: 1.58; color: var(--ink-2); }
+.scard p strong { color: var(--ink); }
+.scard .foot {
+  margin-top: 1.1rem; padding-top: 0.85rem; border-top: 1px dashed var(--line);
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+.scard .foot::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.8rem; }
 
-  /* ── Scroll progress ── */
-  #scroll-progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 2px;
-    background: var(--accent);
-    width: 0%;
-    z-index: 300;
-    transition: width 0.08s linear;
-    pointer-events: none;
-  }
+/* Disclaimer tooltip */
+.info-tip {
+  position: relative; display: inline-grid; place-items: center; vertical-align: super;
+  width: 1.05rem; height: 1.05rem; margin-left: 0.35rem; border-radius: 50%;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 600;
+  color: var(--muted); box-shadow: inset 0 0 0 1.2px var(--muted); cursor: help; outline: none;
+  transition: color 0.15s ease, box-shadow 0.15s ease;
+}
+.info-tip:hover, .info-tip:focus { color: var(--accent); box-shadow: inset 0 0 0 1.2px var(--accent); }
+.info-tip .tip-box {
+  position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-72%) translateY(4px);
+  width: 205px; background: var(--navy-dark); color: #fff; text-align: left;
+  font-family: 'DM Sans', Arial, sans-serif; font-size: 0.7rem; font-weight: 400;
+  line-height: 1.45; letter-spacing: 0; padding: 0.6rem 0.7rem; border-radius: 7px;
+  box-shadow: 0 10px 28px rgba(15,30,48,0.3);
+  opacity: 0; visibility: hidden; pointer-events: none; z-index: 6;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+.info-tip .tip-box::after {
+  content: ''; position: absolute; top: 100%; left: 72%; transform: translateX(-50%);
+  border-top: 6px solid var(--navy-dark); border-left: 6px solid transparent; border-right: 6px solid transparent;
+}
+.info-tip:hover .tip-box, .info-tip:focus .tip-box { opacity: 1; visibility: visible; transform: translateX(-72%) translateY(0); }
 
-  /* ── Nav ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-    padding: 1.25rem 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background: rgba(255,255,255,0.94);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-  nav.scrolled { border-bottom-color: var(--line); }
+/* ── Muni strip ── */
+.muni { margin-top: 3.6rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-2); padding: 1rem 0; overflow: hidden; }
+.muni-label { text-align: center; color: var(--muted); margin-bottom: 0.7rem; }
+.muni-track { display: flex; gap: 0.7rem; width: max-content; animation: marquee 36s linear infinite; }
+.muni-chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; white-space: nowrap;
+  color: var(--navy); background: #fff; padding: 0.42rem 0.9rem 0.42rem 0.6rem; border-radius: 100px;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.muni-chip img { width: 20px; height: 20px; object-fit: contain; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  .logo { display: flex; align-items: center; gap: 0.65rem; font-family: Arial,Helvetica,sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
-  .logo-mark { width: 28px; height: 28px; background: var(--navy); border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .logo-mark::before { content: ''; position: absolute; width: 14px; height: 14px; border: 1.5px solid var(--paper); border-radius: 2px; }
-  .logo-mark::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+/* ── Sections ── */
+.padsec { padding: 4.5rem 0 0; }
+.pain-num { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: 2.6rem; line-height: 1; color: var(--navy); }
+.pain-num .suffix { font-size: 0.42em; color: var(--ink-2); font-weight: 600; margin-left: 0.15rem; }
+.pain-label { margin-top: 0.55rem; font-size: 0.88rem; color: var(--ink-2); line-height: 1.5; }
+.cardgrid.four { grid-template-columns: repeat(4, 1fr); }
 
-  .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a { color: var(--ink-2); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; letter-spacing: -0.01em; }
-  .nav-links a:hover { color: var(--ink); }
+.browser {
+  margin-top: 2.2rem; background: #fff; border-radius: 12px; overflow: hidden;
+  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  box-shadow: 8px 8px 0 rgba(27,58,92,0.1);
+}
+.browser-chrome { display: flex; align-items: center; gap: 0.9rem; background: var(--navy); padding: 0.6rem 1rem; }
+.bc-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.28); display: inline-block; margin-right: 4px; }
+.bc-url { flex: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); border-radius: 6px; padding: 0.3rem 0.9rem; }
+.browser video { width: 100%; height: auto; display: block; }
 
-  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.72rem 1.4rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.25s cubic-bezier(0.2,0.8,0.2,1); cursor: pointer; border: none; font-family: inherit; white-space: nowrap; letter-spacing: -0.01em; }
-  .btn-accent { background: var(--accent); color: #fff; }
-  .btn-accent:hover { background: #e55a07; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,106,19,0.35); }
-  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
-  .btn-ghost:hover { border-color: var(--ink); background: rgba(10,24,41,0.03); }
-  .btn .arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1); }
-  .btn:hover .arrow { transform: translateX(3px); }
+.sheet {
+  margin-top: 2.2rem; background: var(--sheet); border-radius: 4px; overflow: hidden;
+  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  box-shadow: 8px 8px 0 rgba(27,58,92,0.1);
+  background-image: linear-gradient(rgba(20,48,79,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(20,48,79,0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.sheet-bar { background: var(--navy); color: #f4f2ed; display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 1.3rem; gap: 1rem; }
+.sheet-bar .mono { font-size: 0.66rem; letter-spacing: 0.1em; }
+.sheet-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.sheet-item { display: flex; gap: 0.95rem; padding: 1.25rem 1.3rem; border-bottom: 1px solid rgba(27,58,92,0.15); }
+.sheet-item:nth-child(odd) { border-right: 1px solid rgba(27,58,92,0.15); }
+.sheet-idx { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; color: var(--accent); white-space: nowrap; padding-top: 0.2rem; }
+.sheet-item h3 { font-size: 0.98rem; font-weight: 700; }
+.sheet-item p { margin-top: 0.3rem; font-size: 0.86rem; line-height: 1.55; color: var(--ink-2); }
+.sheet-tb { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1.5px solid var(--navy); }
+.sheet-tb-cell { padding: 0.8rem 1.3rem; border-right: 1px solid rgba(27,58,92,0.15); }
+.sheet-tb-cell:last-child { border-right: none; }
+.sheet-tb-k { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.sheet-tb-v { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--navy); margin-top: 0.25rem; }
 
-  /* ── Hero ── */
-  .hero { padding: 9.5rem 2.5rem 4rem; max-width: 1400px; margin: 0 auto; position: relative; }
-  .hero::before { content: ''; position: absolute; top: -20%; left: -10%; right: -10%; height: 80%; background: radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 40%, transparent 70%); pointer-events: none; z-index: 0; }
-  .hero > * { position: relative; z-index: 1; }
+.compress { margin-top: 4.5rem; background: var(--navy); color: #fff; text-align: center; padding: 2.2rem 4vw; }
+.compress p { font-size: clamp(1.05rem, 2vw, 1.4rem); font-weight: 500; max-width: 46ch; margin: 0 auto; }
+.compress strong { color: #ffb98c; }
 
-  .hero-banner { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.35rem 0.9rem 0.35rem 0.4rem; background: rgba(255,255,255,0.7); border: 1px solid var(--line); border-radius: 100px; margin-bottom: 2.75rem; font-size: 0.81rem; color: var(--ink-2); animation: fadeIn 1s 0.1s cubic-bezier(0.2,0.8,0.2,1) both; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-weight: 500; }
-  .hero-banner .tag { background: var(--accent); color: #fff; padding: 0.2rem 0.6rem; border-radius: 100px; font-size: 0.67rem; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono',monospace; }
+/* ── Demo ── */
+.demo-chips { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; margin-top: 1.6rem; }
+.demo-chips-label { font-size: 0.85rem; color: var(--muted); }
+.demo-chip {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--navy); background: #fff;
+  border: none; box-shadow: inset 0 0 0 1px var(--line); padding: 0.55rem 0.9rem; border-radius: 100px;
+  cursor: pointer; min-height: 40px; transition: box-shadow 0.15s ease;
+}
+.demo-chip:hover { box-shadow: inset 0 0 0 1.5px var(--navy); }
+.demo-input-row {
+  display: flex; margin-top: 1.1rem; max-width: 620px; background: #fff;
+  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  border-radius: 12px; overflow: hidden; box-shadow: 6px 6px 0 rgba(27,58,92,0.1);
+}
+.demo-input-field { flex: 1; border: none; outline: none; font-family: 'JetBrains Mono', monospace; font-size: 16px; padding: 0.9rem 1rem; color: var(--ink); background: transparent; min-width: 0; }
+.demo-scan-btn { background: var(--accent); color: #fff; border: none; padding: 0 1.5rem; font-family: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; min-height: 48px; }
+.demo-scan-btn:disabled { opacity: 0.6; cursor: default; }
+.demo-scanning { display: none; margin-top: 1.2rem; max-width: 620px; }
+.demo-scanning-inner { display: flex; align-items: center; gap: 0.6rem; }
+.scan-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.scan-text { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-2); letter-spacing: 0.04em; }
+.scan-bar { margin-top: 0.6rem; height: 6px; border-radius: 100px; background: var(--line); overflow: hidden; }
+#scanBarFill { height: 100%; width: 0; background: var(--accent); animation: scanfill 1.4s ease forwards; }
+@keyframes scanfill { to { width: 100%; } }
+.demo-results { display: none; flex-direction: column; gap: 0.5rem; margin-top: 1.3rem; max-width: 620px; }
+.demo-result-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  background: #fff; border-radius: 8px; padding: 0.7rem 1rem;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.dr-label { font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+.dr-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.04em; white-space: nowrap; color: var(--ink-2); }
+.dr-warn { color: var(--accent); font-weight: 600; }
+.dr-ok { color: var(--navy); font-weight: 600; }
+.demo-complete { margin-top: 0.7rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.demo-complete p { font-size: 0.82rem; color: var(--muted); }
+.demo-complete .btn-accent { min-height: 44px; padding: 0.6rem 1.25rem; font-size: 0.88rem; }
 
-  h1.hero-title { font-size: clamp(2.8rem,7vw,6.4rem); margin-bottom: 2rem; color: var(--ink); max-width: 15ch; font-weight: 700; }
-  h1.hero-title .line { display: block; overflow: hidden; padding: 0.05em 0; }
-  h1.hero-title .line > span { display: inline-block; animation: riseIn 1.1s cubic-bezier(0.2,0.8,0.2,1) both; }
-  h1.hero-title .line:nth-child(2) > span { animation-delay: 0.1s; }
-  @keyframes riseIn { from { transform: translateY(110%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+/* ── Phases / features ── */
+.phase-features { margin-top: 0.9rem; list-style: none; }
+.phase-features li { font-size: 0.84rem; color: var(--ink-2); padding: 0.28rem 0 0.28rem 1.3rem; position: relative; }
+.phase-features li::before { content: '＋'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 0.75rem; }
+.roadmap-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.56rem; background: rgba(255,255,255,0.18); color: #ffb98c; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.08em; margin-left: 0.4rem; }
 
-  .hero-sub { font-size: 1.18rem; max-width: 54ch; color: var(--ink-2); margin-bottom: 2.5rem; font-weight: 400; animation: fadeIn 1.2s 0.4s cubic-bezier(0.2,0.8,0.2,1) both; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+/* ── Moat ── */
+.moat-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.6rem; align-items: start; }
+.moat-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.moat-item { display: flex; gap: 0.9rem; background: #fff; border-radius: 10px; padding: 1.1rem 1.2rem; box-shadow: inset 0 0 0 1px var(--line), 4px 4px 0 rgba(27,58,92,0.06); }
+.moat-item .tick { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 700; }
+.moat-item h3 { font-size: 0.98rem; font-weight: 700; }
+.moat-item p { margin-top: 0.25rem; font-size: 0.86rem; line-height: 1.55; color: var(--ink-2); }
 
-  .hero-cta { display: flex; gap: 1rem; animation: fadeIn 1.2s 0.6s cubic-bezier(0.2,0.8,0.2,1) both; flex-wrap: wrap; }
+/* ── Pricing ── */
+.price-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 420px)); justify-content: center; gap: 1.3rem; margin-top: 2.4rem; }
+.price-big { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: 2.8rem; color: var(--navy); }
+.price-big .period { font-size: 0.95rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.price-feats { margin-top: 1rem; list-style: none; }
+.price-feats li { font-size: 0.88rem; color: var(--ink-2); padding: 0.3rem 0 0.3rem 1.3rem; position: relative; }
+.price-feats li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 0.8rem; }
+.price-cta { margin-top: 1.3rem; }
+.price-cta .btn-accent, .price-cta .btn-ghost { width: 100%; }
+.vs { margin-top: 2.6rem; }
+.vs-table { width: 100%; border-collapse: collapse; margin-top: 1.4rem; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: inset 0 0 0 1.5px var(--navy), 6px 6px 0 rgba(27,58,92,0.08); }
+.vs-table th { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: left; background: var(--navy); color: #fff; padding: 0.75rem 1.1rem; }
+.vs-table td { padding: 0.75rem 1.1rem; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--ink-2); }
+.vs-table td:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.vs-table .total td { font-weight: 700; color: var(--ink); background: var(--accent-soft); }
+.vs-punch { margin-top: 1.3rem; font-size: 0.98rem; color: var(--ink-2); max-width: 60ch; }
+.vs-punch strong { color: var(--ink); }
 
-  .hero-art { position: absolute; right: -4rem; top: 7rem; width: 45%; max-width: 560px; pointer-events: none; animation: fadeIn 1.5s 0.5s cubic-bezier(0.2,0.8,0.2,1) both; }
+/* ── FAQ ── */
+.faq-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; max-width: 820px; }
+.faq-item { background: #fff; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line), 4px 4px 0 rgba(27,58,92,0.05); }
+.faq-item summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; gap: 0.9rem;
+  padding: 1rem 1.2rem; font-weight: 600; font-size: 0.96rem; min-height: 44px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-idx { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--accent); font-weight: 600; }
+.faq-item summary::after { content: '+'; margin-left: auto; font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 1rem; }
+.faq-item[open] summary::after { content: '–'; }
+.faq-body { padding: 0 1.2rem 1.1rem 3.1rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-2); }
+.faq-body a { color: var(--navy); }
 
-  /* ── Hero dimension strip ── */
-  .hero-dims { display: flex; align-items: center; margin-top: 3rem; max-width: 760px; animation: fadeIn 1.2s 0.8s cubic-bezier(0.2,0.8,0.2,1) both; }
-  .hero-dims .dim-line { position: relative; flex: 1; height: 1px; background: var(--steel-light); min-width: 14px; }
-  .hero-dims .dim-line::before, .hero-dims .dim-line::after { content: ''; position: absolute; top: -4px; width: 1px; height: 9px; background: var(--steel); }
-  .hero-dims .dim-line::before { left: 0; }
-  .hero-dims .dim-line::after { right: 0; }
-  .hero-dims .dim-label { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--navy); padding: 0 0.8rem; white-space: nowrap; font-weight: 600; }
-  .hero-dims .dim-label b { color: var(--accent); font-weight: 700; }
+/* ── Final CTA + footer ── */
+.cta { margin-top: 5rem; background: var(--navy); color: #fff; text-align: center; padding: 4.5rem 4vw 5rem; }
+.cta-stamp {
+  display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.14em;
+  color: #ffb98c; padding: 0.4rem 0.85rem; border-radius: 5px; font-weight: 600;
+  box-shadow: inset 0 0 0 1.5px rgba(255,185,140,0.6); transform: rotate(-2deg); margin-bottom: 1.4rem;
+}
+.cta h2 { font-size: clamp(1.9rem, 4vw, 3rem); max-width: 20ch; margin: 0 auto; }
+.cta h2 em { color: #ffb98c; }
+.cta p { margin: 1rem auto 0; max-width: 46ch; color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.6; }
+.cta .btn-accent { margin-top: 2rem; }
+.cta .proof { margin-top: 2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: rgba(255,255,255,0.65); letter-spacing: 0.1em; text-transform: uppercase; }
+.cta .mail { margin-top: 1.1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; }
 
-  /* ── Report anatomy (sheet index) ── */
-  .anatomy { padding: 7rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-  .anatomy-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 22ch; }
-  .anatomy-heading em { color: var(--navy); font-style: italic; }
-  .anatomy-sub { color: var(--ink-2); max-width: 58ch; font-size: 1.05rem; margin-bottom: 3.5rem; }
-  .anatomy-sheet { background: #fff; border: 1px solid var(--navy); box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(27,58,92,0.22), var(--shadow-md); }
-  .anatomy-titlebar { background: var(--navy); color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1.75rem; font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; letter-spacing: 0.14em; font-weight: 600; }
-  .anatomy-titlebar span:last-child { opacity: 0.55; }
-  .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; }
-  .anatomy-item { padding: 1.9rem 2rem; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 58px 1fr; gap: 1.25rem; align-items: start; transition: background 0.25s ease; }
-  .anatomy-item:nth-child(odd) { border-right: 1px solid var(--line); }
-  .anatomy-item:nth-last-child(-n+2) { border-bottom: none; }
-  .anatomy-item:hover { background: var(--bg-2); }
-  .anatomy-item:hover .anatomy-idx { color: var(--accent); }
-  .anatomy-idx { font-family: 'JetBrains Mono',monospace; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--steel); padding-top: 0.25rem; transition: color 0.25s ease; }
-  .anatomy-item h3 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
-  .anatomy-item p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.55; }
-  .anatomy-tb { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--navy); }
-  .anatomy-tb-cell { padding: 0.8rem 1.75rem; border-right: 1px solid var(--line); }
-  .anatomy-tb-cell:last-child { border-right: none; }
-  .anatomy-tb-k { font-family: 'JetBrains Mono',monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
-  .anatomy-tb-v { font-family: 'JetBrains Mono',monospace; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; color: var(--navy); }
+footer { position: relative; z-index: 1; background: var(--navy-dark); color: rgba(255,255,255,0.65); padding: 3rem 4vw calc(2rem + env(safe-area-inset-bottom)); }
+footer .logo { color: #fff; }
+.footer-tagline { margin-top: 0.7rem; font-size: 0.88rem; color: rgba(255,255,255,0.55); }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; padding-bottom: 2.2rem; }
+.footer-contact a { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; text-decoration: none; }
+.footer-contact .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.75rem; }
+.footer-links { display: flex; gap: 3.5rem; flex-wrap: wrap; padding: 1.8rem 0; border-top: 1px solid rgba(255,255,255,0.12); }
+.footer-links-col { display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-links-label { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.3rem; }
+.footer-links-col a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; }
+.footer-links-col a:hover { color: #fff; }
+.footer-bottom { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.8rem; }
+.footer-bottom a { color: rgba(255,255,255,0.55); text-decoration: none; }
 
-  /* ── Compression band ── */
-  .compress-band { padding: 5.5rem 2.5rem 6rem; max-width: 1000px; margin: 0 auto; text-align: center; }
-  .compress-band p { font-family: 'Instrument Serif',serif; font-style: italic; font-size: clamp(1.5rem,3.2vw,2.5rem); line-height: 1.3; color: var(--ink); }
-  .compress-band p strong { font-style: normal; color: var(--navy); font-weight: 700; background: linear-gradient(180deg, transparent 60%, rgba(255,106,19,0.3) 60%, rgba(255,106,19,0.3) 92%, transparent 92%); padding: 0 4px; }
+/* ── Waitlist modal ── */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 30; background: rgba(15,30,48,0.55);
+  display: flex; align-items: center; justify-content: center; padding: 1rem;
+  opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s;
+}
+.modal-backdrop.open { opacity: 1; visibility: visible; }
+.modal {
+  position: relative; background: #fff; border-radius: 14px; width: min(520px, 100%);
+  max-height: calc(100dvh - 2rem); overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: 2.2rem 2rem 2rem;
+  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  box-shadow: 8px 8px 0 rgba(18,42,67,0.35);
+  transform: translateY(14px) scale(0.98); transition: transform 0.3s ease;
+}
+.modal-backdrop.open .modal { transform: none; }
+.modal-close { position: absolute; top: 0.9rem; right: 0.9rem; background: none; border: none; font-size: 1rem; color: var(--muted); cursor: pointer; padding: 10px; min-height: 44px; min-width: 44px; }
+.modal-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.modal h2 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 700; letter-spacing: -0.03em; font-size: 1.6rem; margin-top: 0.6rem; }
+.modal h2 em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--accent); }
+.modal-sub { margin-top: 0.5rem; font-size: 0.92rem; color: var(--ink-2); }
+#waitlistForm { margin-top: 1.4rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.form-field { margin-bottom: 0.95rem; }
+.form-field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; }
+.form-field .req { color: var(--accent); }
+.form-field .opt { color: var(--muted); font-weight: 400; }
+.form-field input, .form-field select {
+  width: 100%; font-family: inherit; font-size: 16px; color: var(--ink);
+  padding: 0.65rem 0.8rem; border-radius: 8px; background: #fff;
+  border-top: 1.5px solid var(--line); border-right: 1.5px solid var(--line);
+  border-bottom: 1.5px solid var(--line); border-left: 1.5px solid var(--line);
+  outline: none; transition: border-color 0.15s ease;
+}
+.form-field input:focus, .form-field select:focus { border-color: var(--navy); }
+.form-error { display: none; font-size: 0.74rem; color: var(--accent); margin-top: 0.3rem; }
+.form-field.error input, .form-field.error select { border-color: var(--accent); }
+.form-field.error .form-error { display: block; }
+.modal-submit {
+  width: 100%; min-height: 48px; background: var(--accent); color: #fff; border: none;
+  padding: 0.85rem 1.5rem; border-radius: 10px; font-family: inherit; font-size: 1rem; font-weight: 700;
+  cursor: pointer; margin-top: 0.4rem; box-shadow: 4px 4px 0 rgba(27,58,92,0.15);
+}
+.modal-submit:disabled { opacity: 0.6; cursor: default; }
+.modal-success { display: none; text-align: center; padding: 1.5rem 0 0.5rem; }
+.modal-success.show { display: block; }
+.modal-success .check { width: 56px; height: 56px; margin: 0 auto 1rem; border-radius: 50%; background: var(--accent-soft); display: grid; place-items: center; }
+.modal-success .check svg { width: 28px; height: 28px; stroke: var(--accent); }
+.modal-success h3 { font-size: 1.25rem; font-weight: 700; }
+.modal-success p { margin-top: 0.5rem; font-size: 0.92rem; color: var(--ink-2); }
 
+/* ── Reveal + see-more ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.see-more {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 8;
+  display: inline-flex; align-items: center; gap: 0.45rem; min-height: 40px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+  color: var(--navy); background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  padding: 0.5rem 1rem; border-radius: 100px; text-decoration: none;
+  box-shadow: 0 4px 18px rgba(15,30,48,0.14), inset 0 0 0 1px var(--line);
+  animation: bob 2.2s ease-in-out infinite;
+  transition: opacity 0.35s ease, visibility 0.35s, background 0.15s ease, color 0.15s ease;
+}
+.see-more:hover { background: var(--navy); color: #fff; animation-play-state: paused; }
+.see-more .arr { color: var(--accent); font-size: 0.8rem; }
+.see-more.hidden { opacity: 0; visibility: hidden; }
+@keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(5px); } }
 
-  /* ── CTA stamp ── */
-  .cta-stamp { display: inline-block; border: 2.5px solid var(--accent); color: var(--accent); font-family: 'JetBrains Mono',monospace; font-size: 0.78rem; letter-spacing: 0.14em; font-weight: 700; padding: 0.55rem 1.1rem; border-radius: 4px; transform: rotate(-6deg); margin-bottom: 2rem; opacity: 0; }
-  .reveal.in .cta-stamp { animation: stampIn 0.45s cubic-bezier(0.2,0.8,0.2,1) 0.25s both; }
-  @keyframes stampIn { 0% { opacity: 0; transform: rotate(-6deg) scale(1.9); } 60% { opacity: 1; transform: rotate(-6deg) scale(0.96); } 100% { opacity: 1; transform: rotate(-6deg) scale(1); } }
-
-  /* ── Municipality Strip ── */
-  .muni-strip { padding: 2rem 0; border-bottom: 1px solid var(--line); overflow: hidden; }
-  .muni-strip-label { text-align: center; color: var(--muted); margin-bottom: 1.25rem; }
-  .muni-track-wrap {
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
-    overflow: hidden;
-  }
-  .muni-track { display: flex; gap: 0.75rem; width: max-content; animation: muniScroll 38s linear infinite; }
-  .muni-track:hover { animation-play-state: paused; }
-  @keyframes muniScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .muni-chip {
-    flex-shrink: 0;
-    display: flex; align-items: center;
-    padding: 0 0.6rem;
-    font-size: 0;
-    white-space: nowrap;
-  }
-  .muni-chip img { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
-  .muni-chip-more {
-    flex-shrink: 0;
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.35rem 1rem;
-    border: 1px dashed var(--steel-light);
-    border-radius: 100px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--accent);
-    white-space: nowrap;
-    background: var(--accent-soft);
-  }
-
-  /* ── Section shared ── */
-  .section-eyebrow { color: var(--accent); margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.6rem; }
-  .section-eyebrow::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
-  .section-eyebrow::after { content: ''; width: 56px; height: 1px; background: var(--line); }
-
-  /* ── Problem ── */
-  .pain { padding: 6rem 2.5rem 8rem; max-width: 1400px; margin: 0 auto; }
-  .pain-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 20ch; }
-  .pain-heading em { color: var(--navy); font-style: italic; }
-  .pain-sub { color: var(--ink-2); max-width: 54ch; font-size: 1.05rem; margin-bottom: 4rem; }
-  .pain-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .pain-stat { padding: 2.75rem 2rem; border-right: 1px solid var(--line-soft); position: relative; }
-  .pain-stat:last-child { border-right: none; }
-  .pain-stat .pain-num { font-family: 'Instrument Serif',serif; font-size: clamp(3.25rem,6vw,5.25rem); font-weight: 400; letter-spacing: -0.03em; line-height: 1; color: var(--navy); display: flex; align-items: baseline; gap: 0.08em; }
-  .pain-stat .pain-num .suffix { font-size: 0.5em; color: var(--ink-2); font-style: italic; font-weight: 400; }
-  .pain-stat .pain-label { margin-top: 1rem; font-size: 0.95rem; color: var(--ink-2); max-width: 22ch; line-height: 1.45; }
-  .pain-stat .pain-tag { position: absolute; top: 1.25rem; right: 1.25rem; font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); }
-  .pain-stat.zero .pain-num { color: var(--accent); }
-  .pain-icon { width: 32px; height: 32px; background: var(--steel-bg); border-radius: 8px; padding: 7px; margin-bottom: 1.5rem; color: var(--navy); }
-  .pain-stat.zero .pain-icon { background: var(--accent-soft); color: var(--accent); }
-
-  /* ── Product Showcase ── */
-  #products { background: var(--navy-dark); position: relative; overflow: hidden; }
-  #products::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(198,212,226,0.055) 1px,transparent 1px),linear-gradient(90deg,rgba(198,212,226,0.055) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; }
-  #products::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:80%; height:480px; background:radial-gradient(ellipse at center bottom, rgba(255,106,19,0.13) 0%, transparent 65%); pointer-events:none; }
-  .showcase { padding: 7rem 2.5rem; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
-  .showcase-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 22ch; color: #fff; }
-  .showcase-heading em { color: var(--steel-light); font-style: italic; }
-  .showcase-sub { color: rgba(255,255,255,0.6); max-width: 56ch; font-size: 1.05rem; margin-bottom: 2.5rem; }
-  .browser-frame { border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06), 0 0 60px rgba(255,106,19,0.07); }
-  .browser-chrome { background: #1a2b3c; padding: 0.65rem 1rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.09); }
-  .bc-dots { display: flex; gap: 6px; flex-shrink: 0; }
-  .bc-dot { width: 10px; height: 10px; border-radius: 50%; display: block; }
-  .bc-url-bar { flex: 1; background: rgba(255,255,255,0.07); border-radius: 20px; padding: 0.22rem 0.85rem; font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; color: rgba(255,255,255,0.38); text-align: center; max-width: 300px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.1); }
-  .app-screen { display: none; background: var(--bg-2); overflow: hidden; line-height: 0; }
-  .app-screen.s-active { display: block; }
-  .app-screen video { width: 100%; height: auto; display: block; }
-  /* Sidebar in mockup */
-  .ams-sb { width: 205px; flex-shrink: 0; background: #fff; border-right: 1px solid var(--line); display: flex; flex-direction: column; height: 100%; overflow: hidden; font-family: Arial,Helvetica,sans-serif; }
-  .ams-brand { padding: 13px 15px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); }
-  .ams-lm { width: 22px; height: 22px; background: var(--navy); border-radius: 3px; position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .ams-lm::before { content: ''; position: absolute; width: 11px; height: 11px; border: 1.5px solid #fff; border-radius: 2px; }
-  .ams-lm::after { content: ''; position: absolute; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
-  .ams-eyebrow { font-family: 'JetBrains Mono',monospace; font-size: 8.5px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; padding: 8px 10px 4px; font-weight: 500; }
-  .ams-nav { padding: 4px 10px; flex: 1; display: flex; flex-direction: column; }
-  .ams-ni { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 5px; font-size: 12px; color: var(--ink-2); cursor: pointer; border: none; background: transparent; width: 100%; font-family: inherit; text-align: left; }
-  .ams-ni.on { background: var(--bg-2); color: var(--ink); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
-  .ams-ni svg { width: 14px; height: 14px; flex-shrink: 0; }
-  .ams-badge { font-family: 'JetBrains Mono',monospace; font-size: 8px; padding: 1px 5px; background: #fff; border: 1px solid var(--line); border-radius: 3px; color: var(--ink-2); margin-left: auto; }
-  /* TopBar in mockup */
-  .ams-tb { height: 46px; background: #fff; border-bottom: 1px solid var(--line); padding: 0 18px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-  .ams-bc { display: flex; align-items: center; gap: 5px; font-family: 'JetBrains Mono',monospace; font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-  .ams-bc .cur { color: var(--ink); font-weight: 600; }
-  .ams-bg { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 5px; font-size: 10.5px; font-weight: 500; cursor: pointer; font-family: inherit; }
-  .ams-ba { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; background: var(--accent); color: #fff; border: none; border-radius: 5px; font-size: 10.5px; font-weight: 600; cursor: pointer; font-family: inherit; }
-  .ams-main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
-  .ams-scroll { flex: 1; overflow: hidden; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
-  /* Chips in mockup */
-  .ams-chip-o { display: inline-flex; align-items: center; padding: 2px 8px; background: var(--accent-soft); color: var(--accent); border-radius: 4px; font-family: 'JetBrains Mono',monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.06em; }
-  .ams-chip-n { display: inline-flex; align-items: center; padding: 2px 8px; background: var(--steel-bg); color: var(--navy); border-radius: 4px; font-family: 'JetBrains Mono',monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.06em; }
-  .ams-chip-m { display: inline-flex; align-items: center; padding: 2px 8px; background: var(--bg-2); color: var(--muted); border-radius: 4px; font-family: 'JetBrains Mono',monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.06em; }
-  .ams-chip-r { display: inline-flex; align-items: center; padding: 2px 8px; background: #fff0ef; color: #c4302a; border-radius: 4px; font-family: 'JetBrains Mono',monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.06em; }
-  .ams-chip-a { display: inline-flex; align-items: center; padding: 2px 8px; background: #fef8e6; color: #c98905; border-radius: 4px; font-family: 'JetBrains Mono',monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.06em; }
-  /* Sidebar user footer */
-  .ams-user { padding: 10px 12px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 8px; margin-top: auto; }
-  .ams-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; font-weight: 700; flex-shrink: 0; letter-spacing: 0; font-family: 'JetBrains Mono',monospace; }
-  /* Dashboard */
-  .ams-stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 12px; }
-  .ams-stat { background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 10px 12px; }
-  .ams-stat-val { font-family: 'JetBrains Mono',monospace; font-size: 17px; font-weight: 700; color: var(--navy); }
-  .ams-stat-lbl { font-size: 9px; color: var(--muted); margin-top: 2px; }
-  .ams-tbl { width: 100%; border-collapse: collapse; font-size: 11px; }
-  .ams-tbl th { text-align: left; font-family: 'JetBrains Mono',monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 8px; border-bottom: 1px solid var(--line); }
-  .ams-tbl td { padding: 6px 8px; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: middle; }
-  .ams-tbl tr:last-child td { border-bottom: none; }
-  .ams-tbl-wrap { background: #fff; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
-  /* Report */
-  .ams-score-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
-  .ams-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
-  .ams-kv { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; }
-  .ams-kv-k { font-size: 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; font-family: 'JetBrains Mono',monospace; }
-  .ams-kv-v { font-size: 12px; font-weight: 600; color: var(--ink); margin-top: 2px; }
-  .ams-agencies { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
-  .ams-agency { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; }
-  .ams-agency-n { font-size: 10px; font-weight: 600; color: var(--ink); line-height: 1.25; }
-  .ams-agency-t { font-size: 8px; color: var(--muted); margin-top: 2px; }
-  /* Checker */
-  .ams-checker-layout { display: grid; grid-template-columns: 1fr 195px; gap: 10px; flex: 1; overflow: hidden; padding: 12px; }
-  .ams-fp { background: #fff; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-  .ams-viol-panel { display: flex; flex-direction: column; gap: 5px; overflow: hidden; }
-  .ams-viol { background: #fff; border-radius: 6px; padding: 7px 9px; border-left: 3px solid; }
-  .ams-viol-code { font-family: 'JetBrains Mono',monospace; font-size: 8px; font-weight: 700; margin-bottom: 2px; }
-  .ams-viol-desc { font-size: 9px; color: var(--ink-2); line-height: 1.3; }
-
-  /* ── Interactive Demo ── */
-  .demo { padding: 7rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-  .demo-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 20ch; }
-  .demo-heading em { color: var(--navy); font-style: italic; }
-  .demo-sub { color: var(--ink-2); max-width: 54ch; font-size: 1.05rem; margin-bottom: 2rem; }
-  .demo-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; align-items: center; }
-  .demo-chips-label { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
-  .demo-chip { padding: 0.3rem 0.75rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 100px; font-size: 0.82rem; color: var(--ink-2); cursor: pointer; transition: all 0.2s; font-family: inherit; }
-  .demo-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
-  .demo-input-row { display: flex; max-width: 600px; margin-bottom: 2rem; }
-  .demo-input-field { flex: 1; padding: 0.85rem 1rem; border: 1.5px solid var(--line); border-right: none; border-radius: 6px 0 0 6px; font-family: inherit; font-size: 0.95rem; color: var(--ink); background: #fff; outline: none; transition: border-color 0.2s; }
-  .demo-input-field:focus { border-color: var(--navy); }
-  .demo-scan-btn { padding: 0.85rem 1.5rem; background: var(--accent); color: #fff; border: none; border-radius: 0 6px 6px 0; font-family: 'JetBrains Mono',monospace; font-size: 0.72rem; letter-spacing: 0.1em; font-weight: 600; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-  .demo-scan-btn:hover { background: #e55a07; }
-  .demo-scan-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-  .demo-scanning { display: none; max-width: 600px; margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: var(--navy-dark); border-radius: 8px; }
-  .demo-scanning-inner { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
-  .scan-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: scanPulse 1s ease-in-out infinite; }
-  @keyframes scanPulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
-  .scan-text { font-family: 'JetBrains Mono',monospace; font-size: 0.75rem; color: rgba(255,255,255,0.75); letter-spacing: 0.06em; }
-  .scan-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
-  .scan-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--steel-light)); border-radius: 2px; animation: scanProgress 1.4s ease-in-out forwards; }
-  @keyframes scanProgress { from { width: 0; } to { width: 100%; } }
-  .demo-results { display: none; flex-direction: column; gap: 0.6rem; max-width: 600px; }
-  .demo-result-row { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: #fff; border: 1px solid var(--line); border-radius: 6px; animation: slideIn 0.35s ease forwards; }
-  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  .dr-label { font-size: 0.92rem; color: var(--ink); }
-  .dr-badge { font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; padding: 0.25rem 0.65rem; border-radius: 4px; }
-  .dr-ok { background: var(--steel-bg); color: var(--navy); }
-  .dr-warn { background: var(--accent-soft); color: var(--accent); }
-  .dr-info { background: var(--bg-2); color: var(--ink-2); }
-  .demo-complete { margin-top: 1rem; padding: 1.25rem; background: var(--bg-2); border-radius: 8px; text-align: center; }
-  .demo-complete p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; font-family: 'JetBrains Mono',monospace; letter-spacing: 0.04em; }
-
-  /* ── How It Works ── */
-  .how { background: var(--navy); color: var(--paper); padding: 7rem 2.5rem; position: relative; overflow: hidden; border-radius: 16px; margin: 0 1.5rem; transform: translateZ(0); will-change: transform; }
-  .how::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(198,212,226,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(198,212,226,0.07) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
-  .how::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, rgba(107,138,168,0.18) 0%, transparent 50%), radial-gradient(circle at 85% 80%, rgba(255,106,19,0.08) 0%, transparent 50%); pointer-events: none; }
-  .how-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
-  .how .section-eyebrow { color: var(--accent); }
-  .how .section-eyebrow::before { background: var(--accent); }
-  .how-heading { font-size: clamp(2.2rem,5vw,4.4rem); max-width: 20ch; margin-bottom: 1.25rem; color: #fff; }
-  .how-heading em { color: var(--steel-light); font-style: italic; }
-  .how-sub { color: rgba(255,255,255,0.85); max-width: 54ch; margin-bottom: 5rem; font-size: 1.05rem; }
-  .phase-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; counter-reset: phase; }
-  .phase { position: relative; padding: 2rem 1.75rem; background: linear-gradient(165deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%); border: 1px solid rgba(198,212,226,0.18); border-radius: 14px; transition: all 0.4s cubic-bezier(0.2,0.8,0.2,1); overflow: hidden; display: flex; flex-direction: column; }
-  .phase::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,106,19,0.5), transparent); opacity: 0; transition: opacity 0.4s ease; }
-  .phase:hover { transform: translateY(-4px); background: linear-gradient(165deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.03) 100%); border-color: rgba(198,212,226,0.3); }
-  .phase:hover::before { opacity: 1; }
-  .phase-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
-  .phase-num { font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.18em; font-weight: 600; }
-  .phase-icon { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(255,106,19,0.18), rgba(255,106,19,0.06)); border: 1px solid rgba(255,106,19,0.3); border-radius: 10px; padding: 10px; color: var(--accent); transition: all 0.4s ease; }
-  .phase:hover .phase-icon { background: linear-gradient(135deg, rgba(255,106,19,0.3), rgba(255,106,19,0.1)); transform: rotate(-6deg) scale(1.05); }
-  .phase-title { font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.0; color: #fff; margin-bottom: 0.65rem; }
-  .phase-trigger { font-family: 'DM Sans', Arial, sans-serif; font-style: italic; font-size: 1.05rem; font-weight: 400; color: rgba(255,255,255,0.55); margin-bottom: 1.75rem; letter-spacing: 0; }
-  .phase-body { color: rgba(255,255,255,0.88); font-size: 1rem; line-height: 1.55; margin-bottom: 1.75rem; }
-  .phase-body strong { color: #fff; font-weight: 700; background: linear-gradient(180deg, transparent 62%, rgba(255,106,19,0.35) 62%, rgba(255,106,19,0.35) 92%, transparent 92%); padding: 0 2px; }
-  .phase-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-top: auto; padding-top: 1.5rem; border-top: 1px dashed rgba(198,212,226,0.2); }
-  .phase-features li { font-size: 0.85rem; color: rgba(255,255,255,0.78); padding-left: 1.5rem; position: relative; line-height: 1.4; font-family: 'JetBrains Mono',monospace; letter-spacing: -0.005em; }
-  .phase-features li::before { content: ''; position: absolute; left: 0; top: 0.5em; width: 10px; height: 10px; border: 1.5px solid var(--accent); border-radius: 2px; transform: rotate(45deg); }
-  .phase:hover .phase-features li::after { opacity: 1; }
-
-  /* ── Who It's For ── */
-  .for-whom { padding: 7rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-  .for-whom-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 20ch; }
-  .for-whom-heading em { color: var(--navy); font-style: italic; }
-  .for-whom-sub { color: var(--ink-2); max-width: 54ch; font-size: 1.05rem; margin-bottom: 4rem; }
-  .for-whom-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
-  .for-whom-card { padding: 2.25rem 2rem; background: #fff; border: 1px solid var(--line); border-radius: 16px; transition: all 0.3s cubic-bezier(0.2,0.8,0.2,1); }
-  .for-whom-card:hover { transform: translateY(-4px); border-color: rgba(27,58,92,0.35); box-shadow: 0 16px 40px rgba(15,30,48,0.09); }
-  .for-whom-icon { width: 40px; height: 40px; background: var(--steel-bg); border-radius: 10px; padding: 9px; color: var(--navy); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
-  .for-whom-card h3 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem; line-height: 1.2; }
-  .for-whom-card p { color: var(--ink-2); font-size: 0.93rem; line-height: 1.55; }
-
-  /* ── Moat ── */
-  .moat { padding: 9rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-  .moat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .moat-heading { font-size: clamp(2.2rem,5vw,4.2rem); margin-bottom: 1.5rem; }
-  .moat-heading em { font-style: italic; color: var(--navy); }
-  .moat-text { color: var(--ink-2); font-size: 1.05rem; max-width: 42ch; margin-bottom: 2rem; }
-  .moat-list { list-style: none; }
-  .moat-item { padding: 1.5rem 0; border-top: 1px solid var(--line-soft); display: grid; grid-template-columns: 36px 1fr; gap: 1.25rem; align-items: start; }
-  .moat-item:last-child { border-bottom: 1px solid var(--line-soft); }
-  .moat-item-num { font-family: 'JetBrains Mono',monospace; font-size: 0.75rem; color: var(--accent); padding-top: 0.25rem; letter-spacing: 0.1em; }
-  .moat-item h3 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; letter-spacing: -0.02em; }
-  .moat-item p { color: var(--ink-2); font-size: 0.95rem; line-height: 1.55; }
-  .moat-icon { width: 36px; height: 36px; background: var(--steel-bg); border-radius: 8px; padding: 8px; color: var(--navy); margin-top: -0.25rem; }
-
-  /* ── Pricing ── */
-  .pricing-section { padding: 7rem 2.5rem; max-width: 1400px; margin: 0 auto; }
-  .pricing-heading { font-size: clamp(2.2rem,5vw,4.4rem); margin-bottom: 1.25rem; max-width: 20ch; }
-  .pricing-heading em { color: var(--navy); font-style: italic; }
-  .pricing-sub { color: var(--ink-2); max-width: 54ch; font-size: 1.05rem; margin-bottom: 2.5rem; }
-  .pricing-toggle-wrap { margin-bottom: 3.5rem; }
-  .pricing-toggle { display: inline-flex; align-items: center; gap: 0; background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 4px; }
-  .pricing-toggle-btn { padding: 0.55rem 1.5rem; border-radius: 7px; border: none; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; background: transparent; color: var(--ink-2); transition: all 0.2s; display: flex; align-items: center; gap: 0.6rem; }
-  .pricing-toggle-btn.active { background: var(--navy); color: #fff; }
-  .pricing-save-badge { font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; letter-spacing: 0.07em; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 2px 7px; }
-  .pricing-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 0 auto 4rem; align-items: stretch; max-width: 760px; }
-  @media (max-width: 640px) { .pricing-cards { grid-template-columns: 1fr; } }
-  .pricing-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 2rem; position: relative; display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.3s; }
-  .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,30,48,0.09); }
-  .pricing-card.featured { border: 2px solid var(--navy); box-shadow: 0 8px 32px rgba(27,58,92,0.12); }
-  .pricing-card.secondary { background: var(--bg-2); border-color: var(--line-soft); }
-  .pricing-card.secondary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15,30,48,0.05); }
-  .pricing-card.secondary .pricing-price .amount { color: var(--ink-2); }
-  .pricing-card.secondary .pricing-quota .quota-num { color: var(--muted); }
-  .pricing-card.secondary .pricing-tagline { color: var(--muted); }
-  .pricing-card.secondary .pricing-features li { color: var(--muted); }
-  .pricing-card.secondary .pricing-features li::before { color: var(--muted); }
-  .pricing-badge-top { position: absolute; top: -11px; left: 20px; font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--navy); color: #fff; padding: 3px 10px; border-radius: 4px; }
-  .pricing-plan-name { font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
-  .pricing-price { line-height: 1; margin-bottom: 0.35rem; }
-  .pricing-price .amount { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 2.9rem; font-weight: 700; letter-spacing: -0.04em; color: var(--navy); }
-  .pricing-price .period { font-size: 0.88rem; color: var(--muted); font-weight: 400; }
-  .pricing-saving { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; min-height: 1.2em; margin-bottom: 0.75rem; }
-  .pricing-quota { display: flex; align-items: baseline; justify-content: center; gap: 0.35rem; margin-bottom: 0.4rem; }
-  .pricing-quota .quota-num { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; line-height: 1; }
-  .pricing-quota .quota-unit { font-size: 0.82rem; color: var(--ink-2); font-weight: 500; }
-  .pricing-quota-sub { text-align: center; font-family: 'JetBrains Mono',monospace; font-size: 0.64rem; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.25rem; font-weight: 600; }
-  .pricing-quota-sub:last-of-type { margin-bottom: 1.1rem; }
-  .pricing-tagline { font-size: 0.91rem; color: var(--ink-2); line-height: 1.5; padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line-soft); text-align: center; }
-  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; flex: 1; }
-  .pricing-features li { padding-left: 1.5rem; position: relative; font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; }
-  .pricing-features li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 700; }
-  .pricing-cta-btn { display: block; width: 100%; padding: 0.85rem; border-radius: 8px; font-size: 0.93rem; font-weight: 600; text-align: center; text-decoration: none; cursor: pointer; border: none; font-family: inherit; transition: all 0.25s cubic-bezier(0.2,0.8,0.2,1); }
-  .pricing-cta-btn.accent { background: var(--accent); color: #fff; }
-  .pricing-cta-btn.accent:hover { background: #e55a07; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,106,19,0.35); }
-  .pricing-cta-btn.outline { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
-  .pricing-cta-btn.outline:hover { background: var(--navy); color: #fff; }
-  .pricing-cta-btn.dark { background: var(--navy); color: #fff; }
-  .pricing-cta-btn.dark:hover { background: var(--navy-dark); transform: translateY(-1px); }
-  .pricing-vs { background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-  .pricing-vs-header { padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--line-soft); }
-  .pricing-vs-eyebrow { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
-  .pricing-vs-title { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 0.4rem; }
-  .pricing-vs-sub { font-size: 0.9rem; color: var(--muted); }
-  .pricing-vs-table { width: 100%; border-collapse: collapse; }
-  .pricing-vs-table th { padding: 0.85rem 2.5rem; text-align: left; font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line-soft); }
-  .pricing-vs-table th:last-child { text-align: right; }
-  .pricing-vs-table td { padding: 1rem 2.5rem; font-size: 0.92rem; color: var(--ink); border-bottom: 1px solid var(--line-soft); background: #fff; vertical-align: middle; }
-  .pricing-vs-table td:last-child { text-align: right; font-family: 'JetBrains Mono',monospace; font-weight: 700; color: var(--navy); font-size: 0.85rem; white-space: nowrap; }
-  .pricing-vs-table tr.vs-total td { border-bottom: none; background: var(--steel-bg); font-weight: 700; }
-  .pricing-vs-table tr.vs-total td:first-child { color: var(--navy); }
-  .pricing-vs-table tr.vs-total td:last-child { color: var(--accent); font-size: 0.95rem; }
-  .pricing-vs-punch { padding: 1.75rem 2.5rem; background: var(--navy-dark); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-  .pricing-vs-punch p { font-family: 'Instrument Serif',serif; font-style: italic; font-size: 1.15rem; color: rgba(255,255,255,0.88); max-width: 52ch; line-height: 1.45; }
-  .pricing-vs-punch p strong { font-style: normal; color: var(--accent); }
-  .pricing-vs-punch-stat { flex-shrink: 0; text-align: right; }
-  .pricing-vs-punch-stat .ps-amount { font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 2rem; font-weight: 700; color: #fff; line-height: 1; }
-  .pricing-vs-punch-stat .ps-label { font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 5px; }
-
-  /* ── FAQ ── */
-  .faq { padding: 6rem 2.5rem; max-width: 900px; margin: 0 auto; }
-  .faq-heading { font-size: clamp(2.2rem,5vw,3.8rem); margin-bottom: 3rem; max-width: 20ch; }
-  .faq-heading em { color: var(--navy); font-style: italic; }
-  .faq-list { border-top: 1px solid var(--line); }
-  .faq-item { border-bottom: 1px solid var(--line); }
-  .faq-item summary { display: flex; align-items: baseline; gap: 1.25rem; padding: 1.4rem 0.25rem; cursor: pointer; list-style: none; font-family: 'IBM Plex Sans',Arial,sans-serif; font-size: 1.02rem; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); transition: color 0.2s; }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary:hover { color: var(--navy); }
-  .faq-idx { font-family: 'JetBrains Mono',monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--steel); flex-shrink: 0; transition: color 0.2s; }
-  .faq-item[open] .faq-idx { color: var(--accent); }
-  .faq-toggle { margin-left: auto; position: relative; width: 14px; height: 14px; flex-shrink: 0; align-self: center; }
-  .faq-toggle::before, .faq-toggle::after { content: ''; position: absolute; background: var(--navy); transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1); }
-  .faq-toggle::before { left: 0; right: 0; top: 6px; height: 2px; }
-  .faq-toggle::after { top: 0; bottom: 0; left: 6px; width: 2px; }
-  .faq-item[open] .faq-toggle::after { transform: scaleY(0); }
-  .faq-body { padding: 0 0.25rem 1.5rem 3.1rem; font-size: 0.95rem; color: var(--ink-2); line-height: 1.65; max-width: 66ch; }
-  .faq-body a { color: var(--navy); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--steel-light); }
-  .faq-body a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
-  /* ── CTA ── */
-  .cta { padding: 7rem 2.5rem; text-align: center; max-width: 900px; margin: 0 auto; }
-  .cta-heading { font-size: clamp(2.5rem,6vw,5rem); margin-bottom: 1.5rem; line-height: 1; }
-  .cta-heading em { font-style: italic; color: var(--navy); }
-  .cta-sub { color: var(--ink-2); font-size: 1.1rem; max-width: 48ch; margin: 0 auto 2.5rem; }
-
-  /* ── Footer ── */
-  footer { border-top: 1px solid var(--line-soft); padding: 4rem 2.5rem 2rem; max-width: 1400px; margin: 0 auto; }
-  .footer-tagline { font-family: 'Instrument Serif',serif; font-size: 1.4rem; line-height: 1.3; margin-top: 1.5rem; max-width: 32ch; color: var(--ink-2); font-style: italic; }
-  .footer-links { display: flex; gap: 4rem; flex-wrap: wrap; padding: 2rem 0 2.5rem; border-top: 1px solid var(--line-soft); }
-  .footer-links-col { display: flex; flex-direction: column; gap: 0.55rem; }
-  .footer-links-label { font-family: 'JetBrains Mono',monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
-  .footer-links-col a { color: var(--ink-2); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
-  .footer-links-col a:hover { color: var(--accent); }
-  .footer-bottom { display: flex; justify-content: space-between; padding-top: 2rem; border-top: 1px solid var(--line-soft); font-size: 0.82rem; color: var(--muted); }
-
-  /* ── Reveal ── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.2,0.8,0.2,1), transform 0.7s cubic-bezier(0.2,0.8,0.2,1); will-change: opacity, transform; }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-
-  /* ── Modal ── */
-  .modal-backdrop { position: fixed; inset: 0; background: rgba(10,24,41,0.65); z-index: 1001; opacity: 0; pointer-events: none; transition: opacity 0.35s cubic-bezier(0.2,0.8,0.2,1); display: flex; align-items: center; justify-content: center; padding: 1.5rem; overflow-y: auto; will-change: opacity; }
-  .modal-backdrop.open { opacity: 1; pointer-events: auto; }
-  .modal { background: var(--bg); max-width: 560px; width: 100%; border-radius: 12px; padding: 2.5rem; position: relative; box-shadow: 0 20px 60px rgba(10,24,41,0.25); opacity: 0; transform: translateY(16px) scale(0.98); transition: opacity 0.35s cubic-bezier(0.2,0.8,0.2,1), transform 0.35s cubic-bezier(0.2,0.8,0.2,1); max-height: calc(100vh - 3rem); overflow-y: auto; will-change: opacity, transform; }
-  .modal-backdrop.open .modal { opacity: 1; transform: translateY(0) scale(1); }
-  .modal-close { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; background: transparent; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--ink-2); transition: all 0.2s; font-family: inherit; }
-  .modal-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .modal-eyebrow { font-family: 'JetBrains Mono',monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-  .modal h2 { font-family: 'Instrument Serif',serif; font-size: 2rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.5rem; }
-  .modal h2 em { font-style: italic; color: var(--navy); }
-  .modal p.modal-sub { color: var(--ink-2); font-size: 0.95rem; margin-bottom: 1.75rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-  .form-field { margin-bottom: 1rem; position: relative; }
-  .form-field label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--ink-2); margin-bottom: 0.35rem; letter-spacing: 0.01em; }
-  .form-field label .req { color: var(--accent); }
-  .form-field label .opt { color: var(--muted); font-weight: 400; font-size: 0.85em; }
-  .form-field input, .form-field select, .form-field textarea { width: 100%; padding: 0.7rem 0.85rem; background: #fff; border: 1px solid var(--line); border-radius: 6px; font-family: inherit; font-size: 0.92rem; color: var(--ink); transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
-  .form-field textarea { resize: vertical; min-height: 80px; }
-  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(20,48,79,0.12); }
-  .form-field.error input, .form-field.error select, .form-field.error textarea { border-color: #d32d2d; background: #fff7f6; }
-  .form-error { display: none; font-size: 0.78rem; color: #c02020; margin-top: 0.35rem; font-family: 'JetBrains Mono',monospace; letter-spacing: 0.02em; }
-  .form-field.error .form-error { display: block; }
-  .modal-submit { width: 100%; padding: 0.9rem; background: var(--navy); color: var(--paper); border: none; border-radius: 6px; font-family: inherit; font-size: 0.95rem; font-weight: 500; cursor: pointer; margin-top: 0.5rem; transition: all 0.25s; }
-  .modal-submit:hover { background: var(--navy-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-  .modal-success { display: none; text-align: center; padding: 1rem 0; }
-  .modal-success.show { display: block; }
-  .modal-success .check { width: 56px; height: 56px; background: var(--accent-soft); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; }
-  .modal-success .check svg { width: 28px; height: 28px; stroke: var(--accent); }
-  .modal-success h3 { font-family: 'Instrument Serif',serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 0.75rem; }
-  .modal-success p { color: var(--ink-2); font-size: 0.95rem; }
-
-  /* ── Responsive ── */
-  /* Hamburger / Mobile Nav */
-  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; flex-shrink: 0; }
-  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.25s; }
-  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .nav-mobile { display: none; position: fixed; top: 57px; left: 0; right: 0; background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--line); padding: 0.75rem 1.5rem 1.25rem; z-index: 199; flex-direction: column; gap: 0; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 8px 24px rgba(15,30,48,0.1); }
-  .nav-mobile.open { display: flex; }
-  .nav-mobile a { padding: 0.85rem 0; color: var(--ink-2); text-decoration: none; font-size: 0.95rem; font-weight: 500; border-bottom: 1px solid var(--line); transition: color 0.2s; }
-  .nav-mobile a:last-of-type { border-bottom: none; }
-  .nav-mobile a:hover { color: var(--accent); }
-  .nav-mobile .btn { margin-top: 0.75rem; justify-content: center; }
-
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { display: none; }
-    .nav-cta { display: none; }
-    .nav-hamburger { display: flex; }
-    .hero { padding: 7rem 1.25rem 3rem; }
-    .hero-art { display: none; }
-    .hero-dims { flex-wrap: wrap; justify-content: center; row-gap: 0.6rem; }
-    .hero-dims .dim-line { display: none; }
-    .hero-dims .dim-label { padding: 0 0.6rem; }
-    .pain { padding: 3rem 1.25rem 5rem; }
-    .pain-grid { grid-template-columns: 1fr 1fr; }
-    .pain-stat { border-right: none; border-bottom: 1px solid var(--line-soft); }
-    .pain-stat:nth-child(odd) { border-right: 1px solid var(--line-soft); }
-    .anatomy { padding: 4rem 1.25rem; }
-    .anatomy-grid { grid-template-columns: 1fr; }
-    .anatomy-item { padding: 1.5rem 1.25rem; grid-template-columns: 48px 1fr; gap: 0.9rem; }
-    .anatomy-item:nth-child(odd) { border-right: none; }
-    .anatomy-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
-    .anatomy-item:last-child { border-bottom: none; }
-    .anatomy-tb { grid-template-columns: 1fr 1fr; }
-    .anatomy-tb-cell { padding: 0.7rem 1.25rem; border-bottom: 1px solid var(--line); }
-    .anatomy-tb-cell:nth-child(even) { border-right: none; }
-    .anatomy-tb-cell:nth-last-child(-n+2) { border-bottom: none; }
-    .compress-band { padding: 4rem 1.25rem; }
-    .showcase { padding: 4rem 1.25rem; }
-    .browser-frame { border-radius: 8px; }
-    .demo { padding: 4rem 1.25rem; }
-    .how { margin: 0 0.5rem; padding: 4rem 1.5rem; border-radius: 12px; }
-    .phase-list { grid-template-columns: 1fr; gap: 1rem; }
-    .for-whom { padding: 4rem 1.25rem; }
-    .for-whom-grid { grid-template-columns: 1fr; }
-    .moat { padding: 5rem 1.25rem; }
-    .moat-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .cta { padding: 4rem 1.25rem; }
-    .faq { padding: 4rem 1.25rem; }
-    .faq-body { padding-left: 0.25rem; }
-    .footer-links { gap: 2rem; justify-content: center; text-align: center; }
-    .pricing-section { padding: 4rem 1.25rem; }
-    .pricing-cards { grid-template-columns: 1fr; }
-    .pricing-vs-table th, .pricing-vs-table td { padding: 0.75rem 1.25rem; font-size: 0.85rem; }
-    .pricing-vs-header { padding: 1.5rem 1.25rem 1.25rem; }
-    .pricing-vs-punch { flex-direction: column; text-align: center; padding: 1.5rem 1.25rem; }
-    .pricing-vs-punch-stat { text-align: center; }
-    .footer-bottom { flex-direction: column; gap: 0.5rem; align-items: center; text-align: center; }
-    .footer-top { flex-direction: column !important; align-items: center !important; text-align: center !important; }
-    .footer-top .footer-contact { text-align: center !important; }
-    footer .logo { justify-content: center; }
-    .footer-tagline { text-align: center; }
-    .modal { padding: 2rem 1.5rem; }
-    .form-row { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 600px) {
-    /* Centre all content */
-    .hero { text-align: center; }
-    .hero-banner { margin-left: auto; margin-right: auto; }
-    .hero-sub { font-size: 1rem; text-align: center; }
-    .hero-cta { justify-content: center; }
-    .hero-dims { justify-content: center; }
-    .section-eyebrow { margin-left: auto; margin-right: auto; }
-    .pain-heading, .anatomy-heading, .showcase-heading, .demo-heading,
-    .for-whom-heading, .moat-heading, .cta-heading, .faq-heading { text-align: center; max-width: 100%; }
-    .showcase-sub, .demo-sub { text-align: center; }
-    .cta { text-align: center; }
-    .demo-chips { justify-content: center; }
-    /* Pain grid */
-    .pain-grid { grid-template-columns: 1fr; }
-    .pain-stat:nth-child(odd) { border-right: none; }
-    /* Demo */
-    .demo-input-row { flex-direction: column; }
-    .demo-input-field { border-right: 1.5px solid var(--line); border-bottom: none; border-radius: 6px 6px 0 0; }
-    .demo-scan-btn { border-radius: 0 0 6px 6px; width: 100%; justify-content: center; }
-    /* Misc */
-    .modal-backdrop { align-items: flex-start; padding-top: 1rem; }
-    .modal { padding: 1.5rem 1.25rem; max-height: calc(100vh - 2rem); }
-    h1.hero-title { margin-left: auto; margin-right: auto; text-align: center; }
-    .btn { padding: 0.65rem 1.1rem; font-size: 0.85rem; }
-  }
+/* ── Mobile / iOS ── */
+@media (max-width: 768px) {
+  .cardgrid, .cardgrid.four, .price-cards { grid-template-columns: 1fr; }
+  .sheet-grid { grid-template-columns: 1fr; }
+  .sheet-item:nth-child(odd) { border-right: none; }
+  .sheet-tb { grid-template-columns: repeat(2, 1fr); }
+  .sheet-tb-cell:nth-child(2) { border-right: none; }
+  .moat-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .hero { padding-top: 2.4rem; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .stamp-dot { display: none; }
+  .stamp-line { gap: 0.65rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  h2.sec { max-width: none; }
+  .vs-table th, .vs-table td { padding: 0.65rem 0.75rem; font-size: 0.82rem; }
+  .faq-body { padding-left: 1.2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-links { gap: 2rem; }
+  .info-tip .tip-box { left: auto; right: -0.5rem; transform: translateY(4px); }
+  .info-tip:hover .tip-box, .info-tip:focus .tip-box { transform: translateY(0); }
+  .info-tip .tip-box::after { left: auto; right: 0.7rem; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stampword, .hero-sub, .hero-cta, .hero-note, .stamp-dot { animation: none !important; opacity: 1 !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .see-more, .muni-track { animation: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- ── Scroll progress ── -->
 <div id="scroll-progress"></div>
 
-<!-- ── Nav ── -->
 <nav id="nav">
-  <a href="#" class="logo">
-    <div class="logo-mark"></div>
-    PreBuildIQ
-  </a>
+  <a href="#" class="logo"><div class="logo-mark"></div>PreBuildIQ</a>
   <div class="nav-links">
-    <a href="#products">Product</a>
-    <a href="#inside">What's Inside</a>
-    <a href="#demo">Live Demo</a>
-    <a href="#moat">Why Us</a>
+    <a href="#problem">Problem</a>
+    <a href="#inside">The Report</a>
+    <a href="#demo">Demo</a>
     <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <button class="nav-cta" data-open-waitlist>Try it free &#x2192;</button>
   </div>
-  <div class="nav-cta" style="display:flex;gap:0.5rem;">
-    <button class="btn btn-accent" data-open-waitlist>Try free <span class="arrow">&#x2192;</span></button>
-  </div>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <a href="#products">Product</a>
-  <a href="#inside">What's Inside</a>
-  <a href="#demo">Live Demo</a>
-  <a href="#moat">Why Us</a>
+  <a href="#problem">Problem</a>
+  <a href="#inside">The Report</a>
+  <a href="#demo">Demo</a>
   <a href="#pricing">Pricing</a>
-  <button class="btn btn-accent" data-open-waitlist style="width:100%;justify-content:center;margin-top:0.75rem;">Try free &#x2192;</button>
+  <a href="#faq">FAQ</a>
+  <button class="nav-cta" data-open-waitlist>Try it free &#x2192;</button>
 </div>
 
-<!-- ── Hero ── -->
+<!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-banner">
-    <span class="tag">FREE REPORT</span>
-    <span>Run your first address free. Full report, no credit card.</span>
-  </div>
-
-  <h1 class="hero-title display">
-    <span class="line"><span>Clarity,</span></span>
-    <span class="line"><span>before <em class="italic-serif">concrete</em>.</span></span>
+  <div class="hero-eyebrow mono">PreBuildIQ &middot; Pre-development intelligence &middot; <b>First in Canada</b></div>
+  <h1 class="stamp-line" aria-label="Instant. Verified. Dollars saved.">
+    <span class="stampword s1">Instant</span>
+    <span class="stamp-dot">&middot;</span>
+    <span class="stampword s2">Verified</span>
+    <span class="stamp-dot">&middot;</span>
+    <span class="stampword s3"><span class="dollar">$</span>Saved</span>
   </h1>
-
-  <p class="hero-sub">
-    Enter an address. Get the <strong style="color:var(--ink);">zoning verdict</strong>, every approval body, every required study, bylaw standards cited to section, <strong style="color:var(--ink);">construction costs</strong>, and how nearby applications were decided. <strong style="color:var(--ink);">In 60 seconds.</strong>
-  </p>
-
+  <p class="hero-sub">Enter any Canadian address. Get the <strong>zoning verdict, every approval body, and every required study</strong> in 60 seconds, cited to the bylaw section, at a fraction of consultant cost. <a class="plus-more" href="#inside">+ 5 more sections in every report &#x2193;</a></p>
   <div class="hero-cta">
-    <button class="btn btn-accent" data-open-waitlist>Try it free today <span class="arrow">&#x2192;</span></button>
-    <a href="#demo" class="btn btn-ghost">See live demo</a>
+    <a class="btn-accent" href="https://prebuildiq.app">Get my report &#x2192;</a>
+    <a class="btn-ghost" href="#inside">See what is in it</a>
   </div>
-
-  <div class="hero-dims">
-    <span class="dim-line"></span>
-    <span class="dim-label"><b>43</b> MUNICIPALITIES</span>
-    <span class="dim-line"></span>
-    <span class="dim-label"><b>188+</b> APPROVAL BODIES</span>
-    <span class="dim-line"></span>
-    <span class="dim-label"><b>381+</b> STUDY TYPES</span>
-    <span class="dim-line"></span>
-    <span class="dim-label"><b>60</b> SECONDS</span>
-    <span class="dim-line"></span>
-  </div>
-
-  <!-- Hero art (blueprint drawing) -->
-  <svg class="hero-art" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <defs>
-      <pattern id="blueGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#14304f" stroke-width="0.3" opacity="0.2"/>
-      </pattern>
-      <pattern id="blueGridMajor" width="100" height="100" patternUnits="userSpaceOnUse">
-        <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#14304f" stroke-width="0.5" opacity="0.3"/>
-      </pattern>
-    </defs>
-    <rect x="30" y="30" width="540" height="440" fill="#fafaf5" stroke="#14304f" stroke-width="1" opacity="0.9"/>
-    <rect x="30" y="30" width="540" height="440" fill="url(#blueGrid)"/>
-    <rect x="30" y="30" width="540" height="440" fill="url(#blueGridMajor)"/>
-    <rect x="30" y="30" width="540" height="32" fill="#14304f"/>
-    <text x="48" y="52" font-family="JetBrains Mono,monospace" font-size="11" fill="#f4f2ed" font-weight="500">PRE-DEVELOPMENT INTELLIGENCE REPORT</text>
-    <text x="555" y="52" font-family="JetBrains Mono,monospace" font-size="10" fill="#f4f2ed" text-anchor="end" opacity="0.7">DWG-001</text>
-    <g stroke="#14304f" stroke-width="1.5" fill="none">
-      <path d="M 180,140 L 360,140 L 360,200 L 420,200 L 420,340 L 180,340 Z" fill="rgba(20,48,79,0.08)"/>
-    </g>
-    <rect x="110" y="95" width="380" height="290" fill="none" stroke="#14304f" stroke-width="1" stroke-dasharray="6,3" opacity="0.7"/>
-    <rect x="140" y="120" width="320" height="240" fill="none" stroke="#ff6a13" stroke-width="1" stroke-dasharray="2,3" opacity="0.7"/>
-    <g stroke="#14304f" stroke-width="0.6" opacity="0.65">
-      <line x1="110" y1="405" x2="490" y2="405"/>
-      <line x1="110" y1="400" x2="110" y2="410"/>
-      <line x1="490" y1="400" x2="490" y2="410"/>
-    </g>
-    <text x="300" y="420" font-family="JetBrains Mono,monospace" font-size="9" fill="#14304f" text-anchor="middle" opacity="0.7">120'-0"</text>
-    <g transform="translate(520,120)" opacity="0.55">
-      <circle r="22" fill="none" stroke="#14304f" stroke-width="0.8"/>
-      <path d="M 0,-18 L 4,0 L 0,4 L -4,0 Z" fill="#14304f"/>
-      <text x="0" y="-27" font-family="JetBrains Mono,monospace" font-size="9" fill="#14304f" text-anchor="middle" font-weight="600">N</text>
-    </g>
-    <g font-family="JetBrains Mono,monospace" font-size="8.5" fill="#14304f">
-      <g>
-        <circle cx="250" cy="175" r="12" fill="#ff6a13" opacity="0.18"><animate attributeName="r" values="10;16;10" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.25;0.05;0.25" dur="3s" repeatCount="indefinite"/></circle>
-        <circle cx="250" cy="175" r="4" fill="#ff6a13"/>
-        <text x="262" y="178" fill="#14304f" font-weight="600">BUILDING DEPT</text>
-      </g>
-      <g>
-        <circle cx="370" cy="260" r="12" fill="#ff6a13" opacity="0.18"><animate attributeName="r" values="10;16;10" dur="3s" begin="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.25;0.05;0.25" dur="3s" begin="0.5s" repeatCount="indefinite"/></circle>
-        <circle cx="370" cy="260" r="4" fill="#ff6a13"/>
-        <text x="382" y="263" fill="#14304f" font-weight="600">CONSERVATION AUTH.</text>
-      </g>
-      <g>
-        <circle cx="210" cy="300" r="12" fill="#ff6a13" opacity="0.18"><animate attributeName="r" values="10;16;10" dur="3s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.25;0.05;0.25" dur="3s" begin="1s" repeatCount="indefinite"/></circle>
-        <circle cx="210" cy="300" r="4" fill="#ff6a13"/>
-        <text x="222" y="303" fill="#14304f" font-weight="600">PLANNING DEPT</text>
-      </g>
-      <g>
-        <circle cx="400" cy="160" r="12" fill="#ff6a13" opacity="0.18"><animate attributeName="r" values="10;16;10" dur="3s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.25;0.05;0.25" dur="3s" begin="1.5s" repeatCount="indefinite"/></circle>
-        <circle cx="400" cy="160" r="4" fill="#ff6a13"/>
-        <text x="412" y="163" fill="#14304f" font-weight="600">ESA</text>
-      </g>
-    </g>
-    <text x="48" y="453" font-family="JetBrains Mono,monospace" font-size="9" fill="#14304f" opacity="0.7">LOT 42, PLAN 65M-1203 · TORONTO, ON</text>
-    <text x="555" y="453" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="9" fill="#14304f" opacity="0.7">43.6532°N, 79.3832°W</text>
-  </svg>
+  <div class="hero-note"><b>First report free.</b> No credit card.</div>
 </section>
 
-<!-- ── Municipality Strip ── -->
-<section class="muni-strip">
-  <div class="muni-strip-label mono">Covering Ontario. New municipalities added monthly</div>
-  <div class="muni-track-wrap">
-    <div class="muni-track">
-      <span class="muni-chip"><img src="logos/toronto.png" alt="">Toronto</span>
-      <span class="muni-chip"><img src="logos/mississauga.png" alt="">Mississauga</span>
-      <span class="muni-chip"><img src="logos/brampton.png" alt="">Brampton</span>
-      <span class="muni-chip"><img src="logos/vaughan.png" alt="">Vaughan</span>
-      <span class="muni-chip"><img src="logos/markham.png" alt="">Markham</span>
-      <span class="muni-chip"><img src="logos/richmond-hill.svg" alt="">Richmond Hill</span>
-      <span class="muni-chip"><img src="logos/oakville.png" alt="">Oakville</span>
-      <span class="muni-chip"><img src="logos/burlington.svg" alt="">Burlington</span>
-      <span class="muni-chip"><img src="logos/hamilton.svg" alt="">Hamilton</span>
-      <span class="muni-chip"><img src="logos/oshawa.svg" alt="">Oshawa</span>
-      <span class="muni-chip"><img src="logos/whitby.svg" alt="">Whitby</span>
-      <span class="muni-chip"><img src="logos/ajax.svg" alt="">Ajax</span>
-      <span class="muni-chip"><img src="logos/pickering.svg" alt="">Pickering</span>
-      <span class="muni-chip"><img src="logos/milton.svg" alt="">Milton</span>
-      <span class="muni-chip"><img src="logos/clarington.svg" alt="">Clarington</span>
-      <span class="muni-chip"><img src="logos/caledon.png" alt="">Caledon</span>
-      <span class="muni-chip"><img src="logos/newmarket.svg" alt="">Newmarket</span>
-      <span class="muni-chip"><img src="logos/aurora.svg" alt="">Aurora</span>
-      <span class="muni-chip"><img src="logos/east-gwillimbury.svg" alt="">East Gwillimbury</span>
-      <span class="muni-chip"><img src="logos/whitchurch-stouffville.png" alt="">Whitchurch-Stouffville</span>
-      <span class="muni-chip"><img src="logos/halton-hills.png" alt="">Halton Hills</span>
-      <span class="muni-chip"><img src="logos/king.png" alt="">King Township</span>
-      <span class="muni-chip"><img src="logos/georgina.png" alt="">Georgina</span>
-      <span class="muni-chip"><img src="logos/barrie.png" alt="">Barrie</span>
-      <span class="muni-chip"><img src="logos/guelph.png" alt="">Guelph</span>
-      <span class="muni-chip"><img src="logos/waterloo.svg" alt="">Waterloo</span>
-      <span class="muni-chip"><img src="logos/niagara-falls.png" alt="">Niagara Falls</span>
-      <span class="muni-chip"><img src="logos/innisfil.svg" alt="">Innisfil</span>
-      <span class="muni-chip"><img src="logos/uxbridge.svg" alt="">Uxbridge</span>
-      <span class="muni-chip"><img src="logos/scugog.png" alt="">Scugog</span>
-      <span class="muni-chip"><img src="logos/brock.png" alt="">Brock</span>
-      <span class="muni-chip"><img src="logos/peterborough.png" alt="">Peterborough</span>
-      <span class="muni-chip"><img src="logos/kingston.png" alt="">Kingston</span>
-      <span class="muni-chip"><img src="logos/greater-sudbury.png" alt="">Greater Sudbury</span>
-      <!-- duplicate for seamless loop -->
-      <span class="muni-chip"><img src="logos/toronto.png" alt="">Toronto</span>
-      <span class="muni-chip"><img src="logos/mississauga.png" alt="">Mississauga</span>
-      <span class="muni-chip"><img src="logos/brampton.png" alt="">Brampton</span>
-      <span class="muni-chip"><img src="logos/vaughan.png" alt="">Vaughan</span>
-      <span class="muni-chip"><img src="logos/markham.png" alt="">Markham</span>
-      <span class="muni-chip"><img src="logos/richmond-hill.svg" alt="">Richmond Hill</span>
-      <span class="muni-chip"><img src="logos/oakville.png" alt="">Oakville</span>
-      <span class="muni-chip"><img src="logos/burlington.svg" alt="">Burlington</span>
-      <span class="muni-chip"><img src="logos/hamilton.svg" alt="">Hamilton</span>
-      <span class="muni-chip"><img src="logos/oshawa.svg" alt="">Oshawa</span>
-      <span class="muni-chip"><img src="logos/whitby.svg" alt="">Whitby</span>
-      <span class="muni-chip"><img src="logos/ajax.svg" alt="">Ajax</span>
-      <span class="muni-chip"><img src="logos/pickering.svg" alt="">Pickering</span>
-      <span class="muni-chip"><img src="logos/milton.svg" alt="">Milton</span>
-      <span class="muni-chip"><img src="logos/clarington.svg" alt="">Clarington</span>
-      <span class="muni-chip"><img src="logos/caledon.png" alt="">Caledon</span>
-      <span class="muni-chip"><img src="logos/newmarket.svg" alt="">Newmarket</span>
-      <span class="muni-chip"><img src="logos/aurora.svg" alt="">Aurora</span>
-      <span class="muni-chip"><img src="logos/east-gwillimbury.svg" alt="">East Gwillimbury</span>
-      <span class="muni-chip"><img src="logos/whitchurch-stouffville.png" alt="">Whitchurch-Stouffville</span>
-      <span class="muni-chip"><img src="logos/halton-hills.png" alt="">Halton Hills</span>
-      <span class="muni-chip"><img src="logos/king.png" alt="">King Township</span>
-      <span class="muni-chip"><img src="logos/georgina.png" alt="">Georgina</span>
-      <span class="muni-chip"><img src="logos/barrie.png" alt="">Barrie</span>
-      <span class="muni-chip"><img src="logos/guelph.png" alt="">Guelph</span>
-      <span class="muni-chip"><img src="logos/waterloo.svg" alt="">Waterloo</span>
-      <span class="muni-chip"><img src="logos/niagara-falls.png" alt="">Niagara Falls</span>
-      <span class="muni-chip"><img src="logos/innisfil.svg" alt="">Innisfil</span>
-      <span class="muni-chip"><img src="logos/uxbridge.svg" alt="">Uxbridge</span>
-      <span class="muni-chip"><img src="logos/scugog.png" alt="">Scugog</span>
-      <span class="muni-chip"><img src="logos/brock.png" alt="">Brock</span>
-      <span class="muni-chip"><img src="logos/peterborough.png" alt="">Peterborough</span>
-      <span class="muni-chip"><img src="logos/kingston.png" alt="">Kingston</span>
-      <span class="muni-chip"><img src="logos/greater-sudbury.png" alt="">Greater Sudbury</span>
+<!-- Three proof cards -->
+<div class="wrap">
+  <div class="cardgrid">
+    <div class="scard reveal">
+      <div class="scard-tab"><span class="word">Instant</span><span class="idx">01 / 03</span></div>
+      <div class="scard-body">
+        <div class="big"><span class="count" data-to="60">0</span><span class="accent">s</span></div>
+        <span class="big-unit">from address to full report</span>
+        <h3>Answers while the deal is still alive.</h3>
+        <p>Site diligence that takes <strong>weeks of bylaw PDFs and unreturned planner calls</strong> comes back before the meeting ends. Run it in the room, on the property you are discussing.</p>
+        <div class="foot">43 municipalities &middot; 188+ approval bodies</div>
+      </div>
+    </div>
+    <div class="scard reveal">
+      <div class="scard-tab orange"><span class="word">Verified</span><span class="idx">02 / 03</span></div>
+      <div class="scard-body">
+        <div class="big"><span class="count" data-to="37941">0</span></div>
+        <span class="big-unit">bylaw sections in the engine</span>
+        <h3>Cited to the section, so you can check us.</h3>
+        <p>The verdict is read from <strong>your municipality's own zoning fabric</strong> for the exact parcel, overlays and holding provisions included. Every standard cites its bylaw section. <strong>Not a generic AI summary.</strong></p>
+        <div class="foot">Municipal GIS &middot; agency terms of reference</div>
+      </div>
+    </div>
+    <div class="scard reveal">
+      <div class="scard-tab solid"><span class="word">$ Saved</span><span class="idx">03 / 03</span></div>
+      <div class="scard-body">
+        <div class="big"><span class="accent">$1,000s</span><span class="info-tip" tabindex="0" role="note" aria-label="Where the savings come from">i<span class="tip-box">Savings come from avoided resubmissions, fewer consultant lookup hours, and less time carrying a stalled project. Actual amounts vary with project scope and municipality. Not a guarantee.</span></span></div>
+        <span class="big-unit">saved on every application</span>
+        <h3>One missed study costs more than a year of this.</h3>
+        <p>60%+ of applications get sent back, and every resubmission means <strong>redesign fees, consultant hours, and months of added carrying cost.</strong> Know the full list before you file. <strong>Your first report is free.</strong></p>
+        <div class="foot">Plans from $199/mo after your free report</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Municipality strip ── -->
+<section class="muni">
+  <div class="muni-label mono">Covering Ontario &middot; new municipalities added monthly</div>
+  <div class="muni-track" id="muniTrack">
+    <span class="muni-chip"><img src="logos/toronto.png" alt="">Toronto</span><span class="muni-chip"><img src="logos/mississauga.png" alt="">Mississauga</span><span class="muni-chip"><img src="logos/brampton.png" alt="">Brampton</span><span class="muni-chip"><img src="logos/vaughan.png" alt="">Vaughan</span><span class="muni-chip"><img src="logos/markham.png" alt="">Markham</span><span class="muni-chip"><img src="logos/hamilton.svg" alt="">Hamilton</span><span class="muni-chip"><img src="logos/richmond-hill.svg" alt="">Richmond Hill</span><span class="muni-chip"><img src="logos/oakville.png" alt="">Oakville</span><span class="muni-chip"><img src="logos/burlington.svg" alt="">Burlington</span><span class="muni-chip"><img src="logos/milton.svg" alt="">Milton</span><span class="muni-chip"><img src="logos/newmarket.svg" alt="">Newmarket</span><span class="muni-chip"><img src="logos/aurora.svg" alt="">Aurora</span><span class="muni-chip"><img src="logos/pickering.svg" alt="">Pickering</span><span class="muni-chip"><img src="logos/ajax.svg" alt="">Ajax</span><span class="muni-chip"><img src="logos/whitby.svg" alt="">Whitby</span><span class="muni-chip"><img src="logos/oshawa.svg" alt="">Oshawa</span><span class="muni-chip"><img src="logos/kingston.png" alt="">Kingston</span><span class="muni-chip"><img src="logos/peterborough.png" alt="">Peterborough</span><span class="muni-chip"><img src="logos/greater-sudbury.png" alt="">Greater Sudbury</span>
+  </div>
+</section>
+
+<!-- ── 01 Problem ── -->
+<section class="padsec" id="problem">
+  <div class="wrap">
+    <span class="eyebrow mono"><b>01</b> / The Problem</span>
+    <h2 class="sec display">Canadian developers are flying blind into a <em class="italic-serif">$300B</em> market.</h2>
+    <p class="sec-sub">A developer buys a site. Three weeks of research across 6 agencies. <strong>$25K to a planning consultant.</strong> The 1st submission still comes back rejected over one missing study, and the resubmission takes 4 months at $43K/month carrying cost, <strong>before a shovel hits dirt.</strong></p>
+    <div class="cardgrid four">
+      <div class="scard reveal"><div class="scard-tab"><span class="word">Timeline</span></div><div class="scard-body">
+        <div class="pain-num"><span class="count" data-to="24">0</span><span class="suffix">months</span></div>
+        <div class="pain-label">Average permit timeline in the GTA</div>
+      </div></div>
+      <div class="scard reveal"><div class="scard-tab"><span class="word">Cost</span></div><div class="scard-body">
+        <div class="pain-num">$<span class="count" data-to="43">0</span><span class="suffix">K/mo</span></div>
+        <div class="pain-label">Carrying cost on a single stalled project</div>
+      </div></div>
+      <div class="scard reveal"><div class="scard-tab orange"><span class="word">Rejections</span></div><div class="scard-body">
+        <div class="pain-num"><span class="count" data-to="60">0</span><span class="suffix">%+</span></div>
+        <div class="pain-label">Of applications require at least one resubmission</div>
+      </div></div>
+      <div class="scard reveal"><div class="scard-tab solid"><span class="word">Competition</span></div><div class="scard-body">
+        <div class="pain-num">0</div>
+        <div class="pain-label">Canadian software platforms in this category. We are first.</div>
+      </div></div>
     </div>
   </div>
 </section>
 
-<!-- ── Problem ── -->
-<section class="pain" id="problem">
-  <div class="section-eyebrow mono reveal">01 / The Problem</div>
-  <h2 class="display pain-heading reveal">
-    Canadian developers are flying blind into a <em>$300B</em> market.
-  </h2>
-  <p class="pain-sub reveal">
-    A developer buys a site. Three weeks of research across 6 agencies. <strong style="color:var(--ink);">$25K to a planning consultant.</strong> The 1st submission still comes back rejected over one missing study, and the resubmission takes 4 months at $43K/month carrying cost. <strong style="color:var(--ink);">Total delay cost: $197K+ before a shovel hits dirt.</strong>
-  </p>
-
-  <div class="pain-grid">
-    <div class="pain-stat reveal">
-      <div class="pain-tag">TIMELINE</div>
-      <div class="pain-icon" style="display:flex;align-items:center;justify-content:center;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div class="pain-num"><span class="counter" data-target="24">0</span><span class="suffix">months</span></div>
-      <div class="pain-label">Average permit timeline in the GTA</div>
-    </div>
-    <div class="pain-stat reveal">
-      <div class="pain-tag">COST</div>
-      <div class="pain-icon" style="display:flex;align-items:center;justify-content:center;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-      </div>
-      <div class="pain-num"><span class="counter" data-target="43">0</span><span class="suffix">K/mo</span></div>
-      <div class="pain-label">Carrying cost on a single stalled project</div>
-    </div>
-    <div class="pain-stat reveal">
-      <div class="pain-tag">REJECTIONS</div>
-      <div class="pain-icon" style="display:flex;align-items:center;justify-content:center;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      </div>
-      <div class="pain-num"><span class="counter" data-target="60">0</span><span class="suffix">%+</span></div>
-      <div class="pain-label">Of applications require at least one resubmission</div>
-    </div>
-    <div class="pain-stat zero reveal">
-      <div class="pain-tag">COMPETITION</div>
-      <div class="pain-icon" style="display:flex;align-items:center;justify-content:center;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-      </div>
-      <div class="pain-num"><span>0</span></div>
-      <div class="pain-label">Canadian software platforms in this category. We are first.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── App Showcase ── -->
-<section id="products">
-  <div class="showcase">
-    <div class="section-eyebrow mono reveal">02 / The Platform</div>
-    <h2 class="display showcase-heading reveal">The platform, <em>screen by screen.</em></h2>
-    <p class="showcase-sub reveal">Two tools. Built for pre-development. Works for any Canadian address.</p>
-    <div class="browser-frame reveal">
+<!-- ── 02 Platform ── -->
+<section class="padsec" id="products">
+  <div class="wrap">
+    <span class="eyebrow mono"><b>02</b> / The Platform</span>
+    <h2 class="sec display">The platform, <em class="italic-serif">screen by screen.</em></h2>
+    <p class="sec-sub">Two tools. Built for pre-development. Works for any Canadian address.</p>
+    <div class="browser reveal">
       <div class="browser-chrome">
-        <div class="bc-dots">
-          <span class="bc-dot" style="background:#ff5f57;"></span>
-          <span class="bc-dot" style="background:#ffbd2e;"></span>
-          <span class="bc-dot" style="background:#28c840;"></span>
-        </div>
-        <div class="bc-url-bar">app.prebuildiq.ca</div>
+        <span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span></span>
+        <span class="bc-url">app.prebuildiq.ca</span>
       </div>
-      <div class="app-screen s-active">
-        <video autoplay muted loop playsinline preload="auto" style="width:100%;height:auto;display:block;">
-          <source src="prebuildiq_demo.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div><!-- /browser-frame -->
-  </div><!-- /showcase -->
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="prebuildiq_demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
 </section>
 
-<!-- ── Inside the Report ── -->
-<section class="anatomy" id="inside">
-  <div class="section-eyebrow mono reveal">03 / Inside the Report</div>
-  <h2 class="display anatomy-heading reveal">
-    Eight sections. <em>None</em> of them a Google search away.
-  </h2>
-  <p class="anatomy-sub reveal">
-    Every report reads like a drawing set: indexed, dimensioned, and cited. Assembled from <strong style="color:var(--ink);">zoning bylaws, municipal GIS, agency terms of reference, and planning decision records</strong> for every municipality we cover.
-  </p>
-
-  <div class="anatomy-sheet reveal">
-    <div class="anatomy-titlebar">
-      <span>PRE-DEVELOPMENT INTELLIGENCE REPORT · SHEET INDEX</span>
-      <span>SET A-100</span>
-    </div>
-    <div class="anatomy-grid">
-      <div class="anatomy-item">
-        <div class="anatomy-idx">A-00</div>
-        <div>
-          <h3>Zoning verdict</h3>
-          <p>As-of-right, minor variance, or ZBA. Read from your municipality's zoning fabric for the exact parcel, including holding provisions and overlays.</p>
-        </div>
+<!-- ── 03 Inside the report ── -->
+<section class="padsec" id="inside">
+  <div class="wrap">
+    <span class="eyebrow mono"><b>03</b> / Inside the Report</span>
+    <h2 class="sec display">Eight sections. <em class="italic-serif">None</em> of them a Google search away.</h2>
+    <p class="sec-sub">Every report reads like a drawing set: indexed, dimensioned, and cited. Assembled from <strong>zoning bylaws, municipal GIS, agency terms of reference, and planning decision records</strong> for every municipality we cover.</p>
+    <div class="sheet reveal">
+      <div class="sheet-bar"><span class="mono">PRE-DEVELOPMENT INTELLIGENCE REPORT &middot; SHEET INDEX</span><span class="mono" style="opacity:0.7;">SET A-100</span></div>
+      <div class="sheet-grid">
+        <div class="sheet-item"><span class="sheet-idx">A-00</span><div><h3>Zoning verdict</h3><p>As-of-right, minor variance, or ZBA. Read from your municipality's zoning fabric for the exact parcel, including holding provisions and overlays.</p></div></div>
+        <div class="sheet-item"><span class="sheet-idx">A-01</span><div><h3>Suitability analysis</h3><p>Every barrier between your intended use and an approvable path, ranked by severity, with the approvals, studies, weeks, and cost to clear each one.</p></div></div>
+        <div class="sheet-item"><span class="sheet-idx">A-02</span><div><h3>Agency circulation</h3><p>The full commenting list: planning, building, conservation authority, region, utilities. Who reviews your file and what each one requires.</p></div></div>
+        <div class="sheet-item"><span class="sheet-idx">A-03</span><div><h3>Required studies</h3><p>Every study your submission triggers, with the terms of reference, the consultant who produces it, market cost, and duration.</p></div></div>
+        <div class="sheet-item"><span class="sheet-idx">A-04</span><div><h3>Bylaw standards</h3><p>Setbacks, height, FSI, lot coverage, parking. Pulled from the governing bylaw and cited to the exact section.</p></div></div>
+        <div class="sheet-item"><span class="sheet-idx">A-05</span><div><h3>Building envelope</h3><p>Your maximum buildable envelope drawn to the parcel's real geometry. Plan and elevation, every setback dimensioned.</p></div></div>
+        <div class="sheet-item"><span class="sheet-idx">A-06</span><div><h3>Construction cost</h3><p>Structural, engineering, permit fees, finishes, HST. An all-in range for your project type and scale, plus the carrying cost of every month of delay.</p></div></div>
+        <div class="sheet-item"><span class="sheet-idx">A-07</span><div><h3>Nearby decisions</h3><p>How comparable applications near your site were decided: approved, refused, conditions attached. Precedent without digging through committee minutes.</p></div></div>
       </div>
-      <div class="anatomy-item">
-        <div class="anatomy-idx">A-01</div>
-        <div>
-          <h3>Suitability analysis</h3>
-          <p>Every barrier between your intended use and an approvable path, ranked by severity, with the approvals, studies, weeks, and cost to clear each one.</p>
-        </div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-idx">A-02</div>
-        <div>
-          <h3>Agency circulation</h3>
-          <p>The full commenting list: planning, building, conservation authority, region, utilities. Who reviews your file and what each one requires.</p>
-        </div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-idx">A-03</div>
-        <div>
-          <h3>Required studies</h3>
-          <p>Every study your submission triggers, with the terms of reference, the consultant who produces it, market cost, and duration.</p>
-        </div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-idx">A-04</div>
-        <div>
-          <h3>Bylaw standards</h3>
-          <p>Setbacks, height, FSI, lot coverage, parking. Pulled from the governing bylaw and cited to the exact section.</p>
-        </div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-idx">A-05</div>
-        <div>
-          <h3>Building envelope</h3>
-          <p>Your maximum buildable envelope drawn to the parcel's real geometry. Plan and elevation, every setback dimensioned.</p>
-        </div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-idx">A-06</div>
-        <div>
-          <h3>Construction cost</h3>
-          <p>Structural, engineering, permit fees, finishes, HST. An all-in range for your project type and scale, plus the carrying cost of every month of delay.</p>
-        </div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-idx">A-07</div>
-        <div>
-          <h3>Nearby decisions</h3>
-          <p>How comparable applications near your site were decided: approved, refused, conditions attached. Precedent without digging through committee minutes.</p>
-        </div>
-      </div>
-    </div>
-    <div class="anatomy-tb">
-      <div class="anatomy-tb-cell">
-        <div class="anatomy-tb-k">Project</div>
-        <div class="anatomy-tb-v">YOUR ADDRESS</div>
-      </div>
-      <div class="anatomy-tb-cell">
-        <div class="anatomy-tb-k">Jurisdiction</div>
-        <div class="anatomy-tb-v">43 MUNICIPALITIES</div>
-      </div>
-      <div class="anatomy-tb-cell">
-        <div class="anatomy-tb-k">Turnaround</div>
-        <div class="anatomy-tb-v">60 SECONDS</div>
-      </div>
-      <div class="anatomy-tb-cell">
-        <div class="anatomy-tb-k">Status</div>
-        <div class="anatomy-tb-v" style="color:var(--accent);">READY TO RUN</div>
+      <div class="sheet-tb">
+        <div class="sheet-tb-cell"><div class="sheet-tb-k">Project</div><div class="sheet-tb-v">YOUR ADDRESS</div></div>
+        <div class="sheet-tb-cell"><div class="sheet-tb-k">Jurisdiction</div><div class="sheet-tb-v">43 MUNICIPALITIES</div></div>
+        <div class="sheet-tb-cell"><div class="sheet-tb-k">Turnaround</div><div class="sheet-tb-v">60 SECONDS</div></div>
+        <div class="sheet-tb-cell"><div class="sheet-tb-k">Status</div><div class="sheet-tb-v" style="color:var(--accent);">READY TO RUN</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── Compression band ── -->
-<section class="compress-band">
-  <p class="reveal">Three weeks of research. A <strong>$14,000</strong> consultant engagement. Compressed to <strong>60 seconds</strong>.</p>
+<section class="compress">
+  <p>Three weeks of research. A <strong>$14,000</strong> consultant engagement. Compressed to <strong>60 seconds</strong>.</p>
 </section>
 
-<!-- ── Interactive Demo ── -->
-<section class="demo" id="demo">
-  <div class="section-eyebrow mono reveal">04 / Sample Output</div>
-  <h2 class="display demo-heading reveal">
-    What a report <em>looks like</em>.
-  </h2>
-  <p class="demo-sub reveal">
-    Try a sample scan. This illustrates real output. Live data goes live with our Toronto launch.
-  </p>
-
-  <div class="demo-chips reveal">
-    <span class="demo-chips-label">Try:</span>
-    <button class="demo-chip" data-demo-addr="88 Queen St E, Toronto, ON">88 Queen St E, Toronto</button>
-    <button class="demo-chip" data-demo-addr="120 Adelaide St W, Toronto, ON">120 Adelaide St W</button>
-    <button class="demo-chip" data-demo-addr="45 Elm St, Mississauga, ON">45 Elm St, Mississauga</button>
-  </div>
-
-  <div class="demo-input-row reveal">
-    <input class="demo-input-field" id="demoInput" type="text" placeholder="Enter a Canadian address&#x2026;" autocomplete="off" aria-label="Enter a Canadian address to scan" />
-    <button class="demo-scan-btn" id="demoBtn">Scan</button>
-  </div>
-
-  <div class="demo-scanning" id="demoScanning">
-    <div class="demo-scanning-inner">
-      <div class="scan-dot"></div>
-      <span class="scan-text">Checking agency requirements, zoning by-law, and submission triggers&#x2026;</span>
+<!-- ── 04 Demo ── -->
+<section class="padsec" id="demo">
+  <div class="wrap">
+    <span class="eyebrow mono"><b>04</b> / Sample Output</span>
+    <h2 class="sec display">What a report <em class="italic-serif">looks like</em>.</h2>
+    <p class="sec-sub">Try a sample scan. This illustrates real output.</p>
+    <div class="demo-chips reveal">
+      <span class="demo-chips-label">Try:</span>
+      <button class="demo-chip" data-demo-addr="88 Queen St E, Toronto, ON">88 Queen St E, Toronto</button>
+      <button class="demo-chip" data-demo-addr="120 Adelaide St W, Toronto, ON">120 Adelaide St W</button>
+      <button class="demo-chip" data-demo-addr="45 Elm St, Mississauga, ON">45 Elm St, Mississauga</button>
     </div>
-    <div class="scan-bar"><div class="scan-bar-fill" id="scanBarFill"></div></div>
+    <div class="demo-input-row reveal">
+      <input class="demo-input-field" id="demoInput" type="text" placeholder="Enter a Canadian address&#x2026;" autocomplete="off" aria-label="Enter a Canadian address to scan" />
+      <button class="demo-scan-btn" id="demoBtn">Scan</button>
+    </div>
+    <div class="demo-scanning" id="demoScanning">
+      <div class="demo-scanning-inner">
+        <div class="scan-dot"></div>
+        <span class="scan-text">Checking agency requirements, zoning by-law, and submission triggers&#x2026;</span>
+      </div>
+      <div class="scan-bar"><div id="scanBarFill"></div></div>
+    </div>
+    <div class="demo-results" id="demoResults"></div>
   </div>
-
-  <div class="demo-results" id="demoResults"></div>
 </section>
 
-<!-- ── How It Works ── -->
-<section class="how" id="how">
-  <div class="how-inner">
-    <div class="section-eyebrow mono reveal">05 / How It Works</div>
-    <h2 class="display how-heading reveal">
-      Three steps. From land to <em>permit</em>.
-    </h2>
-    <p class="how-sub reveal">
-      Built around how developers actually work.
-    </p>
-
-    <div class="phase-list">
-      <div class="phase reveal">
-        <div class="phase-top">
-          <div class="phase-num">PHASE / 01</div>
-          <div class="phase-icon" style="display:flex;align-items:center;justify-content:center;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
+<!-- ── 05 How it works ── -->
+<section class="padsec" id="how">
+  <div class="wrap">
+    <span class="eyebrow mono"><b>05</b> / How It Works</span>
+    <h2 class="sec display">Three steps. From land to <em class="italic-serif">permit</em>.</h2>
+    <p class="sec-sub">Built around how developers actually work.</p>
+    <div class="cardgrid">
+      <div class="scard reveal">
+        <div class="scard-tab"><span class="word">Phase 01</span><span class="idx">KNOW</span></div>
+        <div class="scard-body">
+          <h3 style="margin-top:0;">Know the site. Before you commit.</h3>
+          <p>Enter an address. Get your <strong>zoning verdict</strong>, every approval agency, every required study, and every submission trigger. In <strong>60 seconds</strong>.</p>
+          <ul class="phase-features">
+            <li>Zoning verdict: as-of-right, ZBA, or minor variance</li>
+            <li>Suitability barriers + remediation path</li>
+            <li>Agency circulation, studies, and ToRs</li>
+            <li>Construction cost + carrying cost forecast</li>
+          </ul>
         </div>
-        <div class="phase-title">Know the site</div>
-        <div class="phase-trigger">Before you commit.</div>
-        <p class="phase-body">Enter an address. Get your <strong>zoning verdict</strong>, every approval agency, every required study, and every submission trigger. In <strong>60 seconds</strong>.</p>
-        <ul class="phase-features">
-          <li>Zoning verdict: as-of-right, ZBA, or minor variance</li>
-          <li>Suitability barriers + remediation path</li>
-          <li>Agency circulation, studies, and ToRs</li>
-          <li>Construction cost + carrying cost forecast</li>
-        </ul>
       </div>
-
-      <div class="phase reveal">
-        <div class="phase-top">
-          <div class="phase-num">PHASE / 02</div>
-          <div class="phase-icon" style="display:flex;align-items:center;justify-content:center;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg>
-          </div>
+      <div class="scard reveal">
+        <div class="scard-tab orange"><span class="word">Phase 02</span><span class="idx">CHECK</span></div>
+        <div class="scard-body">
+          <h3 style="margin-top:0;">Check the drawings. Before you file.</h3>
+          <p>Upload drawings. <strong>Catch OBC violations and zoning conflicts</strong> before the reviewing agency does. One clean 1st submission <strong>saves months</strong>.</p>
+          <ul class="phase-features">
+            <li>OBC Part 3 compliance review</li>
+            <li>Zoning by-law and setback checks</li>
+            <li>Drawing conflict detection</li>
+            <li>Section-cited comment responses</li>
+          </ul>
         </div>
-        <div class="phase-title">Check the drawings</div>
-        <div class="phase-trigger">Before you file.</div>
-        <p class="phase-body">Upload drawings. <strong>Catch OBC violations and zoning conflicts</strong> before the reviewing agency does. One clean 1st submission <strong>saves months</strong>.</p>
-        <ul class="phase-features">
-          <li>OBC Part 3 compliance review</li>
-          <li>Zoning by-law and setback checks</li>
-          <li>Drawing conflict detection</li>
-          <li>Section-cited comment responses</li>
-        </ul>
       </div>
-
-      <div class="phase reveal">
-        <div class="phase-top">
-          <div class="phase-num">PHASE / 03 &nbsp;<span style="font-size:0.65em;background:rgba(255,106,19,0.18);color:var(--accent);padding:2px 6px;border-radius:3px;letter-spacing:0.06em;">ROADMAP</span></div>
-          <div class="phase-icon" style="display:flex;align-items:center;justify-content:center;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
+      <div class="scard reveal">
+        <div class="scard-tab solid"><span class="word">Phase 03<span class="roadmap-badge">ROADMAP</span></span><span class="idx">FILE</span></div>
+        <div class="scard-body">
+          <h3 style="margin-top:0;">File and track. Ship it.</h3>
+          <p>File directly. <strong>Track every submission</strong> across every agency in one view. Get alerts <strong>the moment a review stalls</strong>.</p>
+          <ul class="phase-features">
+            <li>Direct portal submission</li>
+            <li>Live agency review dashboard</li>
+            <li>Stall detection alerts</li>
+            <li>Commenting package response tracking</li>
+          </ul>
         </div>
-        <div class="phase-title">File and track</div>
-        <div class="phase-trigger">Ship it.</div>
-        <p class="phase-body">File directly. <strong>Track every submission</strong> across every agency in one view. Get alerts <strong>the moment a review stalls</strong>.</p>
-        <ul class="phase-features">
-          <li>Direct portal submission</li>
-          <li>Live agency review dashboard</li>
-          <li>Stall detection alerts</li>
-          <li>Commenting package response tracking</li>
-        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Who It's For ── -->
-<section class="for-whom" id="for-whom">
-  <div class="section-eyebrow mono reveal">06 / Who It's For</div>
-  <h2 class="display for-whom-heading reveal">Built for the people <em>on the ground</em>.</h2>
-  <p class="for-whom-sub reveal">
-    Canadian developers, GCs, and architects spending weeks on research that should take minutes.
-  </p>
-  <div class="for-whom-grid">
-    <div class="for-whom-card reveal">
-      <div class="for-whom-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+<!-- ── 06 Who it's for ── -->
+<section class="padsec" id="for-whom">
+  <div class="wrap">
+    <span class="eyebrow mono"><b>06</b> / Who It's For</span>
+    <h2 class="sec display">Built for the people <em class="italic-serif">on the ground</em>.</h2>
+    <p class="sec-sub">Canadian developers, GCs, and architects spending weeks on research that should take minutes.</p>
+    <div class="cardgrid">
+      <div class="scard reveal">
+        <div class="scard-tab"><span class="word">Developers</span></div>
+        <div class="scard-body"><p><strong>5&ndash;20 projects per year</strong> with no in-house planning team. Know your zoning verdict, your ZBA exposure, and your full agency circulation list <strong>before you commit capital</strong>. Not after.</p></div>
       </div>
-      <h3>Developers</h3>
-      <p><strong>5–20 projects per year</strong> with no in-house planning team. Know your zoning verdict, your ZBA exposure, and your full agency circulation list <strong>before you commit capital</strong>. Not after.</p>
-    </div>
-    <div class="for-whom-card reveal">
-      <div class="for-whom-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg>
+      <div class="scard reveal">
+        <div class="scard-tab orange"><span class="word">Architects + GCs</span></div>
+        <div class="scard-body"><p>You prepare the drawings. You face the reviewing agencies. PreBuildIQ catches <strong>OBC and zoning by-law violations before the 1st submission</strong> so your commenting package comes back clean.</p></div>
       </div>
-      <h3>Architects and GCs</h3>
-      <p>You prepare the drawings. You face the reviewing agencies. PreBuildIQ catches <strong>OBC and zoning by-law violations before the 1st submission</strong> so your commenting package comes back clean.</p>
-    </div>
-    <div class="for-whom-card reveal">
-      <div class="for-whom-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+      <div class="scard reveal">
+        <div class="scard-tab solid"><span class="word">Expeditors</span></div>
+        <div class="scard-body"><p>Deliver <strong>same-day pre-consultation packages</strong> instead of two months of manual research. Handle more clients across more jurisdictions, without adding headcount.</p></div>
       </div>
-      <h3>Permit expeditors</h3>
-      <p>Deliver <strong>same-day pre-consultation packages</strong> instead of two months of manual research. Handle more clients across more jurisdictions, without adding headcount.</p>
     </div>
   </div>
 </section>
 
-<!-- ── Moat ── -->
-<section class="moat" id="moat">
-  <div class="moat-grid">
-    <div>
-      <div class="section-eyebrow mono reveal">07 / Why PreBuildIQ</div>
-      <h2 class="display moat-heading reveal">A Canadian <em>dataset</em> nobody else has.</h2>
-      <p class="moat-text reveal">
-        US platforms don't have Canadian municipal data. Generic AI tools don't have it. We're building it, municipality by municipality, from the portal up.
-      </p>
-    </div>
-
-    <ul class="moat-list reveal">
-      <li class="moat-item">
-        <div class="moat-icon" style="display:flex;align-items:center;justify-content:center;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-        </div>
-        <div>
-          <h3>Proprietary Canadian data</h3>
-          <p>Built to scrape and update weekly from hundreds of Canadian municipal portals. No US platform has this dataset.</p>
-        </div>
-      </li>
-      <li class="moat-item">
-        <div class="moat-icon" style="display:flex;align-items:center;justify-content:center;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        </div>
-        <div>
-          <h3>Terms of reference, by jurisdiction</h3>
-          <p>What each required study needs, who produces it, what the agency expects. For every municipality we cover.</p>
-        </div>
-      </li>
-      <li class="moat-item">
-        <div class="moat-icon" style="display:flex;align-items:center;justify-content:center;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-        </div>
-        <div>
-          <h3>Canadian code, from day one</h3>
-          <p>Built for the OBC and Canadian regulatory structure. Not a US engine adapted for Canada.</p>
-        </div>
-      </li>
-      <li class="moat-item">
-        <div class="moat-icon" style="display:flex;align-items:center;justify-content:center;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-        </div>
-        <div>
-          <h3>Zoning intelligence, not just permit tracking</h3>
-          <p>Knowing you need a ZBA before you commit capital is worth more than any permit dashboard.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ── Pricing ── -->
-<section class="pricing-section" id="pricing">
-  <div class="section-eyebrow mono reveal">08 / Pricing</div>
-  <h2 class="display pricing-heading reveal">Simple pricing. <em>Full</em> report.</h2>
-  <p class="pricing-sub reveal">Start free. When you need more, run a single site — no subscription required.</p>
-
-  <!-- SUBSCRIPTIONS — restore toggle when subscription tiers are re-enabled
-  <div class="pricing-toggle-wrap reveal">
-    <div class="pricing-toggle">
-      <button class="pricing-toggle-btn active" id="pricingMonthly" onclick="setPricingBilling('monthly')">Monthly</button>
-      <button class="pricing-toggle-btn" id="pricingAnnual" onclick="setPricingBilling('annual')">Annual <span class="pricing-save-badge">Save 17%</span></button>
-    </div>
-  </div>
-  -->
-
-  <div class="pricing-cards reveal">
-    <!-- Free -->
-    <div class="pricing-card secondary">
-      <div class="pricing-plan-name">Free</div>
-      <div class="pricing-price"><span class="amount">$0</span><span class="period"> / forever</span></div>
-      <div class="pricing-saving">&nbsp;</div>
-      <div class="pricing-quota">
-        <span class="quota-num">1</span>
-        <span class="quota-unit">full report</span>
+<!-- ── 07 Moat ── -->
+<section class="padsec" id="moat">
+  <div class="wrap">
+    <div class="moat-grid">
+      <div>
+        <span class="eyebrow mono"><b>07</b> / Why PreBuildIQ</span>
+        <h2 class="sec display">A Canadian <em class="italic-serif">dataset</em> nobody else has.</h2>
+        <p class="sec-sub">US platforms don't have Canadian municipal data. Generic AI tools don't have it. We're building it, municipality by municipality, from the portal up.</p>
       </div>
-      <div class="pricing-quota-sub">at sign-up</div>
-      <p class="pricing-tagline">Try the full product, no card</p>
-      <ul class="pricing-features">
-        <li>The complete report, all eight sections</li>
-        <li>After that: zoning verdict + summary view</li>
-        <li>1 drawing compliance check</li>
-        <li>No credit card</li>
+      <ul class="moat-list reveal">
+        <li class="moat-item"><span class="tick">✓</span><div><h3>Proprietary Canadian data</h3><p>Built to scrape and update weekly from hundreds of Canadian municipal portals. No US platform has this dataset.</p></div></li>
+        <li class="moat-item"><span class="tick">✓</span><div><h3>Terms of reference, by jurisdiction</h3><p>What each required study needs, who produces it, what the agency expects. For every municipality we cover.</p></div></li>
+        <li class="moat-item"><span class="tick">✓</span><div><h3>Canadian code, from day one</h3><p>Built for the OBC and Canadian regulatory structure. Not a US engine adapted for Canada.</p></div></li>
+        <li class="moat-item"><span class="tick">✓</span><div><h3>Zoning intelligence, not just permit tracking</h3><p>Knowing you need a ZBA before you commit capital is worth more than any permit dashboard.</p></div></li>
       </ul>
-      <button class="pricing-cta-btn outline" data-open-waitlist>Get started free</button>
-    </div>
-
-    <!-- $499 Single Report -->
-    <div class="pricing-card featured">
-      <div class="pricing-badge-top">Recommended</div>
-      <div class="pricing-plan-name">Single Report</div>
-      <div class="pricing-price"><span class="amount">$499</span><span class="period"> / one time</span></div>
-      <div class="pricing-saving">&nbsp;</div>
-      <div class="pricing-quota">
-        <span class="quota-num">1</span>
-        <span class="quota-unit">full report</span>
-      </div>
-      <div class="pricing-quota-sub">address stays unlocked</div>
-      <p class="pricing-tagline">One site, the complete report</p>
-      <ul class="pricing-features">
-        <li>Full report — all eight sections</li>
-        <li>Every agency, study, and bylaw standard</li>
-        <li>Suitability analysis + path to permit</li>
-        <li>Construction cost + carrying cost calculator</li>
-        <li>Nearby council decisions (precedents)</li>
-        <li>Export to CSV and Word</li>
-        <li>No subscription, no recurring charge</li>
-      </ul>
-      <button class="pricing-cta-btn accent" data-open-waitlist="one-report">Run one site &#x2192;</button>
-    </div>
-
-    <!-- SUBSCRIPTIONS — restore cards below when subscription tiers are re-enabled
-    <div class="pricing-card">
-      <div class="pricing-plan-name">Starter</div>
-      <div class="pricing-price"><span class="amount" id="starterPrice">$199</span><span class="period"> / mo</span></div>
-      <div class="pricing-saving" id="starterSaving">&nbsp;</div>
-      <div class="pricing-quota"><span class="quota-num">20</span><span class="quota-unit">reports / year</span></div>
-      <div class="pricing-quota-sub">2 / month on monthly plan</div>
-      <p class="pricing-tagline">Solo planners + architects</p>
-      <ul class="pricing-features">
-        <li>$99 / extra report</li>
-        <li>Full report, every agency, every study</li>
-        <li>Suitability analysis + path to permit</li>
-        <li>Bylaw standards cited to section</li>
-        <li>Construction cost + nearby decisions</li>
-        <li>Export to CSV and Word</li>
-      </ul>
-      <button class="pricing-cta-btn outline" data-open-waitlist>Start</button>
-    </div>
-    <div class="pricing-card featured">
-      <div class="pricing-badge-top">Most popular</div>
-      <div class="pricing-plan-name">Professional</div>
-      <div class="pricing-price"><span class="amount" id="proPrice">$399</span><span class="period"> / mo</span></div>
-      <div class="pricing-saving" id="proSaving">&nbsp;</div>
-      <div class="pricing-quota"><span class="quota-num">80</span><span class="quota-unit">reports / year</span></div>
-      <div class="pricing-quota-sub">7 / month on monthly plan</div>
-      <p class="pricing-tagline">Small planning / architecture firms</p>
-      <ul class="pricing-features">
-        <li>$69 / extra report</li>
-        <li>Everything in Starter</li>
-        <li>Up to 3 team members</li>
-        <li>Report sharing and collaboration</li>
-        <li>Drawing and code compliance checker</li>
-        <li>1 AI generated report per month</li>
-      </ul>
-      <button class="pricing-cta-btn accent" data-open-waitlist>Try free &#x2192;</button>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-plan-name">Pro</div>
-      <div class="pricing-price"><span class="amount" id="entPrice">$799</span><span class="period"> / mo</span></div>
-      <div class="pricing-saving" id="entSaving">&nbsp;</div>
-      <div class="pricing-quota"><span class="quota-num">200</span><span class="quota-unit">reports / year</span></div>
-      <div class="pricing-quota-sub">17 / month on monthly plan</div>
-      <p class="pricing-tagline">Mid-size firms + developers</p>
-      <ul class="pricing-features">
-        <li>$49 / extra report</li>
-        <li>Everything in Professional</li>
-        <li>Up to 10 team members</li>
-        <li>10 AI generated reports per month</li>
-        <li>Priority support, API access</li>
-        <li>Branded PDF exports</li>
-      </ul>
-      <button class="pricing-cta-btn dark" data-open-waitlist>Try free &#x2192;</button>
-    </div>
-    -->
-  </div>
-
-  <!-- Retail rate comparison -->
-  <div class="pricing-vs reveal">
-    <div class="pricing-vs-header">
-      <div class="pricing-vs-eyebrow">Retail consultant rates</div>
-      <h3 class="pricing-vs-title">What you pay without PreBuildIQ</h3>
-      <p class="pricing-vs-sub">Typical fees charged per pre-application engagement in Ontario.</p>
-    </div>
-    <table class="pricing-vs-table">
-      <thead>
-        <tr>
-          <th>Pre-application service</th>
-          <th>Market rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Agency identification and circulation mapping</td>
-          <td>$2,500–$4,000</td>
-        </tr>
-        <tr>
-          <td>Required studies scoping (TMP, EIS, HIA, FSR)</td>
-          <td>$3,000–$8,000</td>
-        </tr>
-        <tr>
-          <td>Zoning compliance review and verdict</td>
-          <td>$2,000–$4,500</td>
-        </tr>
-        <tr>
-          <td>Pre-consultation package preparation (ZBA)</td>
-          <td>$5,000–$12,000</td>
-        </tr>
-        <tr>
-          <td>Approval timeline and carrying cost forecast</td>
-          <td>$1,500–$3,000</td>
-        </tr>
-        <tr class="vs-total">
-          <td><strong>Total per pre-application engagement</strong></td>
-          <td>$14,000–$31,500+</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="pricing-vs-punch">
-      <p>PreBuildIQ covers <strong>all of this in 60 seconds</strong>. On a plan: under $100 per report. A single project more than pays for the year.</p>
-      <div class="pricing-vs-punch-stat">
-        <div class="ps-amount">$199<span style="font-size:1rem;font-weight:400;opacity:0.5">/mo</span></div>
-        <div class="ps-label">vs. $14K+ per engagement</div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ── FAQ ── -->
-<section class="faq" id="faq">
-  <div class="section-eyebrow mono reveal">09 / Questions</div>
-  <h2 class="display faq-heading reveal">Asked before <em>every</em> first report.</h2>
-  <div class="faq-list reveal">
-    <details class="faq-item">
-      <summary><span class="faq-idx">Q-01</span>What does a report include?<span class="faq-toggle"></span></summary>
-      <div class="faq-body">Eight sections for any address: the zoning verdict (as-of-right, minor variance, or ZBA), a suitability analysis with every barrier ranked by severity, the full agency circulation list, required studies with terms of reference and market costs, bylaw standards cited to the exact section, a building envelope drawn to your parcel, an all-in construction cost range, and how comparable nearby applications were decided. In 60 seconds.</div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-idx">Q-02</span>Which municipalities do you cover?<span class="faq-toggle"></span></summary>
-      <div class="faq-body">43 Ontario municipalities including <a href="ontario/toronto/development-approvals/">Toronto</a>, <a href="ontario/mississauga/development-approvals/">Mississauga</a>, <a href="ontario/brampton/development-approvals/">Brampton</a>, <a href="ontario/vaughan/development-approvals/">Vaughan</a>, <a href="ontario/markham/development-approvals/">Markham</a>, Hamilton, <a href="ontario/oakville/development-approvals/">Oakville</a>, <a href="ontario/burlington/development-approvals/">Burlington</a>, and <a href="ontario/richmond-hill/development-approvals/">Richmond Hill</a>. New municipalities added monthly.</div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-idx">Q-03</span>Where does the data come from?<span class="faq-toggle"></span></summary>
-      <div class="faq-body">Municipal zoning bylaws, municipal GIS parcel and zoning data, agency terms of reference, and planning decision records for every covered municipality, kept current as bylaws change. Not scraped blog content. Not a generic AI summary.</div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-idx">Q-04</span>Does this replace my planning consultant?<span class="faq-toggle"></span></summary>
-      <div class="faq-body">No. It front-loads the research a consultant spends the first weeks of an engagement assembling, so you walk into pre-consultation informed and spend consultant hours on strategy instead of lookup. Planning consultants and permit expeditors are among our heaviest users.</div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-idx">Q-05</span>How accurate is the zoning verdict?<span class="faq-toggle"></span></summary>
-      <div class="faq-body">The verdict is read from your municipality's own zoning fabric for the exact parcel, including holding provisions and overlays, and every bylaw standard is cited to its section so you can verify it yourself. PreBuildIQ is decision support for pre-development diligence, not legal advice.</div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-idx">Q-06</span>What does it cost?<span class="faq-toggle"></span></summary>
-      <div class="faq-body">Your first full report is free, no credit card. After that, plans start at $199/month for 20 reports a year. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div>
-    </details>
+<!-- ── 08 Pricing ── -->
+<section class="padsec" id="pricing">
+  <div class="wrap">
+    <span class="eyebrow mono"><b>08</b> / Pricing</span>
+    <h2 class="sec display">Simple pricing. <em class="italic-serif">Full</em> report.</h2>
+    <p class="sec-sub">Start free. When you need more, run a single site. No subscription required.</p>
+    <div class="price-cards">
+      <div class="scard reveal">
+        <div class="scard-tab"><span class="word">Free</span><span class="idx">NO CARD</span></div>
+        <div class="scard-body">
+          <div class="price-big">$0<span class="period"> / forever</span></div>
+          <ul class="price-feats">
+            <li>1 full report at sign-up, all eight sections</li>
+            <li>After that: zoning verdict + summary view</li>
+            <li>1 drawing compliance check</li>
+            <li>No credit card</li>
+          </ul>
+          <div class="price-cta"><button class="btn-ghost" data-open-waitlist>Get started free</button></div>
+        </div>
+      </div>
+      <div class="scard reveal">
+        <div class="scard-tab orange"><span class="word">Single Report</span><span class="idx">RECOMMENDED</span></div>
+        <div class="scard-body">
+          <div class="price-big">$499<span class="period"> / one time</span></div>
+          <ul class="price-feats">
+            <li>Full report, all eight sections, address stays unlocked</li>
+            <li>Every agency, study, and bylaw standard</li>
+            <li>Suitability analysis + path to permit</li>
+            <li>Construction cost + carrying cost calculator</li>
+            <li>Nearby council decisions (precedents)</li>
+            <li>Export to CSV and Word. No subscription.</li>
+          </ul>
+          <div class="price-cta"><button class="btn-accent" data-open-waitlist="one-report">Run one site &#x2192;</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="vs reveal">
+      <table class="vs-table">
+        <thead><tr><th>Pre-application service, retail</th><th>Market rate</th></tr></thead>
+        <tbody>
+          <tr><td>Agency identification and circulation mapping</td><td>$2,500&ndash;$4,000</td></tr>
+          <tr><td>Required studies scoping (TMP, EIS, HIA, FSR)</td><td>$3,000&ndash;$8,000</td></tr>
+          <tr><td>Zoning compliance review and verdict</td><td>$2,000&ndash;$4,500</td></tr>
+          <tr><td>Pre-consultation package preparation (ZBA)</td><td>$5,000&ndash;$12,000</td></tr>
+          <tr><td>Approval timeline and carrying cost forecast</td><td>$1,500&ndash;$3,000</td></tr>
+          <tr class="total"><td><strong>Total per pre-application engagement</strong></td><td>$14,000&ndash;$31,500+</td></tr>
+        </tbody>
+      </table>
+      <p class="vs-punch">PreBuildIQ covers <strong>all of this in 60 seconds</strong>. Your first report is free, and a single site is $499 with no subscription.</p>
+    </div>
   </div>
 </section>
 
-<!-- ── CTA ── -->
+<!-- ── 09 FAQ ── -->
+<section class="padsec" id="faq">
+  <div class="wrap">
+    <span class="eyebrow mono"><b>09</b> / Questions</span>
+    <h2 class="sec display">Asked before <em class="italic-serif">every</em> first report.</h2>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary><span class="faq-idx">Q-01</span>What does a report include?</summary><div class="faq-body">Eight sections for any address: the zoning verdict (as-of-right, minor variance, or ZBA), a suitability analysis with every barrier ranked by severity, the full agency circulation list, required studies with terms of reference and market costs, bylaw standards cited to the exact section, a building envelope drawn to your parcel, an all-in construction cost range, and how comparable nearby applications were decided. In 60 seconds.</div></details>
+      <details class="faq-item"><summary><span class="faq-idx">Q-02</span>Which municipalities do you cover?</summary><div class="faq-body">43 Ontario municipalities including <a href="ontario/toronto/development-approvals/">Toronto</a>, <a href="ontario/mississauga/development-approvals/">Mississauga</a>, <a href="ontario/brampton/development-approvals/">Brampton</a>, <a href="ontario/vaughan/development-approvals/">Vaughan</a>, <a href="ontario/markham/development-approvals/">Markham</a>, Hamilton, <a href="ontario/oakville/development-approvals/">Oakville</a>, <a href="ontario/burlington/development-approvals/">Burlington</a>, and <a href="ontario/richmond-hill/development-approvals/">Richmond Hill</a>. New municipalities added monthly.</div></details>
+      <details class="faq-item"><summary><span class="faq-idx">Q-03</span>Where does the data come from?</summary><div class="faq-body">Municipal zoning bylaws, municipal GIS parcel and zoning data, agency terms of reference, and planning decision records for every covered municipality, kept current as bylaws change. Not scraped blog content. Not a generic AI summary.</div></details>
+      <details class="faq-item"><summary><span class="faq-idx">Q-04</span>Does this replace my planning consultant?</summary><div class="faq-body">No. It front-loads the research a consultant spends the first weeks of an engagement assembling, so you walk into pre-consultation informed and spend consultant hours on strategy instead of lookup. Planning consultants and permit expeditors are among our heaviest users.</div></details>
+      <details class="faq-item"><summary><span class="faq-idx">Q-05</span>How accurate is the zoning verdict?</summary><div class="faq-body">The verdict is read from your municipality's own zoning fabric for the exact parcel, including holding provisions and overlays, and every bylaw standard is cited to its section so you can verify it yourself. PreBuildIQ is decision support for pre-development diligence, not legal advice.</div></details>
+      <details class="faq-item"><summary><span class="faq-idx">Q-06</span>What does it cost?</summary><div class="faq-body">Your first full report is free, no credit card. A single site is $499 one-time with the address unlocked permanently. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ── Final CTA ── -->
 <section class="cta" id="contact">
-  <div class="reveal"><span class="cta-stamp">FIRST REPORT FREE · NO CARD</span></div>
-  <h2 class="display cta-heading reveal">
-    Stop losing months. <em>Start knowing</em>.
-  </h2>
-  <p class="cta-sub reveal">
-    First report free. No credit card. Built for Canadian developers, architects, and permit expeditors.
-  </p>
-  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal">
-    <button class="btn btn-accent" data-open-waitlist style="padding:1rem 1.75rem;font-size:0.98rem;">Try it free today <span class="arrow">&#x2192;</span></button>
-  </div>
-  <div class="reveal" style="margin-top:2rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--navy);letter-spacing:0.1em;text-transform:uppercase;">
-    3 design partners &middot; 2 signed LOIs &middot; Built in Toronto
-  </div>
-  <div style="margin-top:1.25rem;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--muted);letter-spacing:0.08em;">
-    info@prebuildiq.ca
-  </div>
+  <span class="cta-stamp">FIRST REPORT FREE &middot; NO CARD</span>
+  <h2 class="display">Stop losing months. <em class="italic-serif">Start knowing</em>.</h2>
+  <p>First report free. No credit card. Built for Canadian developers, architects, and permit expeditors.</p>
+  <button class="btn-accent" data-open-waitlist>Try it free today &#x2192;</button>
+  <div class="proof">3 design partners &middot; 2 signed LOIs &middot; Built in Toronto</div>
+  <div class="mail">info@prebuildiq.ca</div>
 </section>
 
 <!-- ── Footer ── -->
 <footer>
-  <div class="footer-top" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;padding-bottom:2.5rem;">
+  <div class="footer-top">
     <div>
-      <a href="#" class="logo">
-        <div class="logo-mark"></div>
-        PreBuildIQ
-      </a>
+      <a href="#" class="logo"><div class="logo-mark"></div>PreBuildIQ</a>
       <p class="footer-tagline">Canada's pre-development intelligence platform.</p>
     </div>
-    <div class="footer-contact" style="text-align:right;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;">Contact</div>
-      <a href="mailto:info@prebuildiq.ca" style="color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:0.95rem;text-decoration:none;">info@prebuildiq.ca</a>
+    <div class="footer-contact">
+      <div class="lbl">Contact</div>
+      <a href="mailto:info@prebuildiq.ca">info@prebuildiq.ca</a>
     </div>
   </div>
   <div class="footer-links">
@@ -1510,14 +948,16 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2026 PreBuildIQ Inc. · Toronto, ON</div>
+    <div>&copy; 2026 PreBuildIQ Inc. &middot; Toronto, ON</div>
     <div style="display:flex;gap:1.25rem;align-items:center;">
-      <a href="terms.html" style="color:var(--muted);text-decoration:none;">Terms</a>
-      <a href="privacy.html" style="color:var(--muted);text-decoration:none;">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
       <span>prebuildiq.ca</span>
     </div>
   </div>
 </footer>
+
+<a class="see-more" href="#problem" id="seeMore">See more <span class="arr">&#x2193;</span></a>
 
 <!-- ── Waitlist Modal ── -->
 <div class="modal-backdrop" id="waitlistModal" aria-hidden="true">
@@ -1586,28 +1026,14 @@
 </div>
 
 <script>
-  /* ── Pricing toggle ── */
-  function setPricingBilling(mode) {
-    const isAnnual = mode === 'annual';
-    document.getElementById('pricingMonthly').classList.toggle('active', !isAnnual);
-    document.getElementById('pricingAnnual').classList.toggle('active', isAnnual);
-    document.getElementById('starterPrice').textContent  = isAnnual ? '$166' : '$199';
-    document.getElementById('proPrice').textContent      = isAnnual ? '$332' : '$399';
-    document.getElementById('entPrice').textContent      = isAnnual ? '$666' : '$799';
-    document.getElementById('proSaving').textContent = isAnnual ? 'SAVE $960 / YR' : ' ';
-    document.getElementById('entSaving').textContent = isAnnual ? 'SAVE $1,920 / YR' : ' ';
-  }
-
-  /* ── Scroll progress ── */
+  /* ── Scroll progress + see-more + nav state ── */
   const progressBar = document.getElementById('scroll-progress');
+  const seeMore = document.getElementById('seeMore');
+  const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
     progressBar.style.width = (scrolled * 100) + '%';
-  }, { passive: true });
-
-  /* ── Nav scroll state ── */
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
+    seeMore.classList.toggle('hidden', window.scrollY > 160);
     nav.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
@@ -1624,10 +1050,11 @@
     }
     requestAnimationFrame(tick);
   }
-
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+      const sel = a.getAttribute('href');
+      if (sel === '#') return;
+      const target = document.querySelector(sel);
       if (!target) return;
       e.preventDefault();
       smoothScroll(target.getBoundingClientRect().top + window.scrollY - 80, 750);
@@ -1645,33 +1072,30 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* Stagger delays */
-  document.querySelectorAll('.phase').forEach((el, i) => { el.style.transitionDelay = `${i * 110}ms`; });
-  document.querySelectorAll('.pain-stat').forEach((el, i) => { el.style.transitionDelay = `${i * 80}ms`; });
-  document.querySelectorAll('.pricing-card').forEach((el, i) => { el.style.transitionDelay = `${i * 90}ms`; });
-
-  /* ── Animated counters ── */
+  /* ── Count-up numbers ── */
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const el = entry.target;
-        const target = parseFloat(el.dataset.target);
-        const duration = 1600;
+        const target = parseInt(el.dataset.to, 10);
+        const duration = 1400;
         const start = performance.now();
         const ease = t => 1 - Math.pow(1 - t, 3);
         const tick = (now) => {
           const progress = Math.min((now - start) / duration, 1);
-          const current = target * ease(progress);
-          el.textContent = target >= 100 ? Math.round(current).toLocaleString() : Math.round(current).toString();
+          el.textContent = Math.round(target * ease(progress)).toLocaleString('en-CA');
           if (progress < 1) requestAnimationFrame(tick);
-          else el.textContent = target >= 100 ? Math.round(target).toLocaleString() : target.toString();
         };
         requestAnimationFrame(tick);
         counterObserver.unobserve(el);
       }
     });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+  document.querySelectorAll('.count').forEach(c => counterObserver.observe(c));
+
+  /* ── Muni marquee: duplicate for seamless loop ── */
+  const muniTrack = document.getElementById('muniTrack');
+  muniTrack.innerHTML += muniTrack.innerHTML;
 
   /* ── Waitlist modal ── */
   const wlModal = document.getElementById('waitlistModal');
@@ -1766,9 +1190,9 @@
     };
     const submitBtn = wlForm.querySelector('.modal-submit');
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting\u2026';
+    submitBtn.textContent = 'Submitting…';
     /* Fire confirmation email + internal notification via API (best effort).
-       Failures are swallowed \u2014 Netlify Forms below is the lead source of truth. */
+       Failures are swallowed — Netlify Forms below is the lead source of truth. */
     fetch('https://prebuildiq-api.fly.dev/demo/notify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1810,20 +1234,17 @@
   function runDemoScan() {
     if (!demoInput.value.trim()) {
       demoInput.focus();
-      demoInput.style.borderColor = 'var(--accent)';
-      setTimeout(() => { demoInput.style.borderColor = ''; }, 1200);
       return;
     }
     demoBtn.disabled = true;
-    demoBtn.textContent = 'Scanning\u2026';
+    demoBtn.textContent = 'Scanning…';
     demoScanning.style.display = 'block';
     demoResults.style.display = 'none';
     demoResults.innerHTML = '';
 
-    // Reset and restart scan bar animation
     const fill = document.getElementById('scanBarFill');
     fill.style.animation = 'none';
-    fill.offsetHeight; // reflow
+    fill.offsetHeight;
     fill.style.animation = '';
 
     setTimeout(() => {
@@ -1836,9 +1257,8 @@
           footer.className = 'demo-complete';
           footer.innerHTML = '<p>Preview only. Full reports include all eight sections.</p>';
           const footerBtn = document.createElement('button');
-          footerBtn.className = 'btn btn-accent';
-          footerBtn.style.cssText = 'padding:0.65rem 1.25rem;font-size:0.88rem;';
-          footerBtn.textContent = 'Get full access \u2192';
+          footerBtn.className = 'btn-accent';
+          footerBtn.textContent = 'Get full access →';
           footerBtn.addEventListener('click', () => openWaitlist());
           footer.appendChild(footerBtn);
           demoResults.appendChild(footer);
@@ -1861,9 +1281,17 @@
 
   demoBtn.addEventListener('click', runDemoScan);
   demoInput.addEventListener('keydown', e => { if (e.key === 'Enter') runDemoScan(); });
+  document.querySelectorAll('[data-demo-addr]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      demoInput.value = btn.dataset.demoAddr;
+      demoResults.innerHTML = '';
+      demoResults.style.display = 'none';
+      demoScanning.style.display = 'none';
+      demoInput.focus();
+    });
+  });
 
-  /* ── App Showcase tabs ── */
-  /* Mobile nav */
+  /* ── Mobile nav ── */
   const hamburger = document.getElementById('navHamburger');
   const navMobile = document.getElementById('navMobile');
   hamburger.addEventListener('click', () => {
@@ -1874,16 +1302,6 @@
     el.addEventListener('click', () => {
       hamburger.classList.remove('open');
       navMobile.classList.remove('open');
-    });
-  });
-
-  document.querySelectorAll('[data-demo-addr]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      demoInput.value = btn.dataset.demoAddr;
-      demoResults.innerHTML = '';
-      demoResults.style.display = 'none';
-      demoScanning.style.display = 'none';
-      demoInput.focus();
     });
   });
 </script>
