@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only">
+<title>Variant A — Three Stamps | PreBuildIQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light only;
+  --bg: #ffffff; --bg-2: #f7f8fa;
+  --ink: #0f1e30; --ink-2: #3d4a5c; --muted: #7b8594;
+  --line: #e2e5ea; --navy: #1b3a5c; --navy-dark: #122a43;
+  --accent: #ff6a13; --accent-soft: #fff0e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #ffffff; scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+  color: var(--ink); background: var(--bg);
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.display { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+.italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+
+nav {
+  position: relative; z-index: 5; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 4vw; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.92);
+}
+.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; }
+.logo-mark { width: 30px; height: 30px; background: var(--navy); border-radius: 7px; display: grid; place-items: center; }
+.logo-mark span { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; }
+.logo em { color: var(--accent); font-style: normal; }
+.nav-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; border: none; padding: 0.62rem 1.25rem; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+
+/* ── HERO: one claim, three stamps ── */
+.hero { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 5rem 4vw 3rem; text-align: center; }
+.hero-eyebrow { color: var(--navy); margin-bottom: 1.4rem; }
+.hero-eyebrow b { color: var(--accent); }
+.hero h1 { font-size: clamp(2.4rem, 5.4vw, 4.2rem); max-width: 21ch; margin: 0 auto; }
+.hero h1 em { color: var(--accent); }
+.hero-sub { max-width: 44ch; margin: 1.4rem auto 0; font-size: 1.08rem; line-height: 1.6; color: var(--ink-2); }
+.hero-sub strong { color: var(--ink); }
+
+/* Three stamps */
+.stamps { max-width: 1200px; margin: 3.2rem auto 0; padding: 0 4vw; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; position: relative; z-index: 1; }
+.stamp {
+  position: relative; background: #fff; text-align: left;
+  border-top: 1px solid var(--navy); border-right: 1px solid var(--navy);
+  border-bottom: 1px solid var(--navy); border-left: 1px solid var(--navy);
+  padding: 1.9rem 1.7rem 1.7rem; border-radius: 4px;
+  box-shadow: 5px 5px 0 rgba(27,58,92,0.09);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.stamp:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 rgba(27,58,92,0.13); }
+.stamp::after {
+  content: attr(data-stamp); position: absolute; top: 1.1rem; right: 1.1rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em;
+  color: var(--accent); border-top: 1.5px solid var(--accent); border-right: 1.5px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent); border-left: 1.5px solid var(--accent);
+  padding: 0.22rem 0.5rem; border-radius: 3px; transform: rotate(6deg); opacity: 0.85; font-weight: 600;
+}
+.stamp .big { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.03em; font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 1; color: var(--navy); }
+.stamp .big small { font-size: 0.42em; font-weight: 600; letter-spacing: 0; color: var(--ink-2); }
+.stamp h3 { font-size: 1.06rem; margin: 0.9rem 0 0.45rem; font-weight: 700; }
+.stamp p { font-size: 0.92rem; line-height: 1.55; color: var(--ink-2); }
+.stamp p strong { color: var(--ink); }
+.stamp .proof { margin-top: 1rem; padding-top: 0.85rem; border-top: 1px dashed var(--line); font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+.hero-cta { display: flex; gap: 0.9rem; justify-content: center; margin-top: 2.8rem; position: relative; z-index: 1; }
+.btn-accent { background: var(--accent); color: #fff; border: none; padding: 0.85rem 1.7rem; border-radius: 8px; font-size: 0.98rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+.btn-ghost { background: transparent; color: var(--navy); border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); padding: 0.85rem 1.7rem; border-radius: 8px; font-size: 0.98rem; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none; }
+.hero-note { margin-top: 1rem; font-size: 0.82rem; color: var(--muted); }
+
+/* Everything-else band */
+.rest { margin-top: 5rem; border-top: 1px solid var(--line); background: var(--bg-2); padding: 3.4rem 4vw 4.5rem; position: relative; z-index: 1; text-align: center; }
+.rest .mono { color: var(--muted); margin-bottom: 0.8rem; }
+.rest h2 { font-size: 1.6rem; max-width: 34ch; margin: 0 auto; }
+.rest p { max-width: 52ch; margin: 0.9rem auto 0; color: var(--ink-2); font-size: 0.95rem; line-height: 1.6; }
+@media (max-width: 768px) {
+  .stamps { grid-template-columns: 1fr; }
+  .hero { padding-top: 3rem; }
+  .hero-cta { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><div class="logo-mark"><span>IQ</span></div>PreBuild<em>IQ</em></div>
+  <button class="nav-cta">Try it free &#x2192;</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow mono">Pre-development intelligence &middot; <b>First in Canada</b></div>
+  <h1 class="display">Every approval, for any address. <em class="italic-serif">Before</em> you commit.</h1>
+  <p class="hero-sub">Enter an address. PreBuildIQ tells you <strong>what you can build</strong>, <strong>who has to approve it</strong>, and <strong>what it will cost you to find out the hard way.</strong></p>
+</section>
+
+<div class="stamps">
+  <div class="stamp" data-stamp="INSTANT">
+    <div class="big">60<small> SECONDS</small></div>
+    <h3>Answers while the deal is still alive.</h3>
+    <p>The zoning verdict, every approval body, and every required study for the parcel. <strong>Not in six weeks. Before your coffee cools.</strong></p>
+    <div class="proof">43 municipalities &middot; 188+ approval bodies</div>
+  </div>
+  <div class="stamp" data-stamp="VERIFIED">
+    <div class="big">37,941<small> BYLAW SECTIONS</small></div>
+    <h3>Cited to the section, so you can check us.</h3>
+    <p>Read from <strong>your municipality's own zoning fabric</strong> for the exact parcel. Every standard cited to its bylaw section. No generic AI summaries.</p>
+    <div class="proof">Municipal GIS &middot; agency terms of reference</div>
+  </div>
+  <div class="stamp" data-stamp="SAVED">
+    <div class="big">$197K<small>+ AVOIDED</small></div>
+    <h3>One missed study costs more than a decade of this.</h3>
+    <p>60%+ of applications get sent back. A single resubmission burns <strong>$197K+ and months of carrying cost.</strong> Your first report is free.</p>
+    <div class="proof">vs $14K&ndash;$31.5K consultant pre-app engagement</div>
+  </div>
+</div>
+
+<section class="hero-cta-wrap">
+  <div class="hero-cta">
+    <button class="btn-accent">Run your first address free &#x2192;</button>
+    <a class="btn-ghost" href="#">See a sample report</a>
+  </div>
+  <div class="hero-note" style="text-align:center;">Full report. No credit card.</div>
+</section>
+
+<section class="rest">
+  <div class="mono">Below the fold</div>
+  <h2 class="display">The existing sections stay, demoted.</h2>
+  <p>Live demo, platform screens, report anatomy, how it works, pricing, FAQ all remain below in current order. The fold now carries exactly three claims: instant, verifiable, and cheaper than being wrong.</p>
+</section>
+
+</body>
+</html>
