@@ -115,10 +115,11 @@ nav {
   position: relative; background: #fff; border-radius: 10px; text-align: left;
   border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
   border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
-  box-shadow: 6px 6px 0 rgba(27,58,92,0.08); overflow: hidden;
+  box-shadow: 6px 6px 0 rgba(27,58,92,0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   opacity: 0; transform: translateY(28px);
 }
+.card:hover, .card:focus-within { z-index: 4; }
 .card.in { animation: cardIn 0.6s ease forwards; }
 .card:nth-child(2).in { animation-delay: 0.12s; }
 .card:nth-child(3).in { animation-delay: 0.24s; }
@@ -128,6 +129,7 @@ nav {
 .card-tab {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.6rem 1.3rem; border-bottom: 1.5px solid var(--navy);
+  border-radius: 8.5px 8.5px 0 0;
 }
 .card:nth-child(1) .card-tab { background: rgba(27,58,92,0.06); }
 .card:nth-child(2) .card-tab { background: var(--accent-soft); }
@@ -167,20 +169,20 @@ nav {
 }
 .info-tip:hover, .info-tip:focus { color: var(--accent); box-shadow: inset 0 0 0 1.2px var(--accent); }
 .info-tip .tip-box {
-  position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
-  width: 250px; background: var(--navy-dark); color: #fff; text-align: left;
-  font-family: 'DM Sans', Arial, sans-serif; font-size: 0.76rem; font-weight: 400;
-  line-height: 1.5; letter-spacing: 0; padding: 0.75rem 0.85rem; border-radius: 8px;
+  position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-72%) translateY(4px);
+  width: 205px; background: var(--navy-dark); color: #fff; text-align: left;
+  font-family: 'DM Sans', Arial, sans-serif; font-size: 0.7rem; font-weight: 400;
+  line-height: 1.45; letter-spacing: 0; padding: 0.6rem 0.7rem; border-radius: 7px;
   box-shadow: 0 10px 28px rgba(15,30,48,0.3);
   opacity: 0; visibility: hidden; pointer-events: none; z-index: 6;
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
 }
 .info-tip .tip-box::after {
-  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  content: ''; position: absolute; top: 100%; left: 72%; transform: translateX(-50%);
   border-top: 6px solid var(--navy-dark); border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: none;
 }
 .info-tip:hover .tip-box, .info-tip:focus .tip-box {
-  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+  opacity: 1; visibility: visible; transform: translateX(-72%) translateY(0);
 }
 @media (max-width: 768px) {
   .info-tip .tip-box { left: auto; right: -0.5rem; transform: translateY(4px); }
@@ -268,7 +270,7 @@ nav {
   <div class="card">
     <div class="card-tab"><span class="word">Saved</span><span class="idx">03 / 03</span></div>
     <div class="card-body">
-      <div class="big"><span class="accent">$<span class="count" data-to="197">0</span>K</span>+<span class="info-tip" tabindex="0" role="note" aria-label="How this number is calculated">i<span class="tip-box">Based on the typical cost of a single rejected application in the GTA: resubmission fees, redesign, and added carrying costs at $43K per month over an 18 to 24 month approval timeline. Actual savings depend on project scope, municipality, and timing. Illustrative, not a guarantee.</span></span></div>
+      <div class="big"><span class="accent">$<span class="count" data-to="197">0</span>K</span>+<span class="info-tip" tabindex="0" role="note" aria-label="How this number is calculated">i<span class="tip-box">Estimate: a rejection typically adds ~4 months at $43K/mo carrying cost, plus redesign and refiling fees. Actual figures vary with project scope and municipality. Not a guarantee.</span></span></div>
       <span class="big-unit">typical cost of one rejected application</span>
       <h3>One missed study costs more than a decade of this.</h3>
       <p>60%+ of applications get sent back, and a stalled project burns <strong>$43K a month</strong> waiting. A consultant pre-app runs $14K to $31.5K. <strong>Your first report is free.</strong></p>
