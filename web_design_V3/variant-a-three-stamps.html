@@ -83,28 +83,28 @@ nav {
 }
 .hero-sub strong { color: var(--ink); }
 
-/* Address bar CTA: the product IS the call to action */
-.addr-bar {
-  display: flex; max-width: 640px; margin: 2.1rem auto 0; background: #fff;
+/* Hero CTA pair */
+.hero-cta {
+  display: flex; justify-content: center; gap: 0.9rem; margin-top: 2.1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.6s ease 1.6s forwards;
+}
+.btn-accent {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--accent); color: #fff; border: none; padding: 0.95rem 2rem; border-radius: 10px;
+  font-size: 1.04rem; font-weight: 700; cursor: pointer; font-family: inherit; text-decoration: none;
+  box-shadow: 5px 5px 0 rgba(27,58,92,0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn-accent:hover { background: #e85e0f; transform: translate(-2px,-2px); box-shadow: 8px 8px 0 rgba(27,58,92,0.2); }
+.btn-ghost {
+  display: inline-flex; align-items: center; background: #fff; color: var(--navy);
   border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
   border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
-  border-radius: 12px; overflow: hidden; box-shadow: 6px 6px 0 rgba(27,58,92,0.1);
-  opacity: 0; animation: fadeUp 0.6s ease 1.6s forwards;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  padding: 0.95rem 1.7rem; border-radius: 10px; font-size: 1.04rem; font-weight: 600;
+  cursor: pointer; font-family: inherit; text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
 }
-.addr-bar:focus-within { transform: translate(-2px,-2px); box-shadow: 9px 9px 0 rgba(255,106,19,0.22); }
-.addr-bar .pin { display: grid; place-items: center; padding: 0 0.4rem 0 1rem; color: var(--accent); font-size: 1.05rem; }
-.addr-bar input {
-  flex: 1; border: none; outline: none; font-family: 'JetBrains Mono', monospace;
-  font-size: 0.92rem; padding: 1.05rem 0.6rem; color: var(--ink); background: transparent; min-width: 0;
-}
-.addr-bar input::placeholder { color: var(--muted); }
-.addr-bar button {
-  background: var(--accent); color: #fff; border: none; padding: 0 1.6rem;
-  font-family: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; white-space: nowrap;
-  transition: background 0.15s ease;
-}
-.addr-bar button:hover { background: #e85e0f; }
+.btn-ghost:hover { background: var(--navy); color: #fff; }
 .hero-note { margin-top: 0.85rem; font-size: 0.8rem; color: var(--muted); opacity: 0; animation: fadeUp 0.6s ease 1.7s forwards; }
 .hero-note b { color: var(--ink-2); }
 
@@ -233,13 +233,13 @@ nav {
 @media (max-width: 768px) {
   .cards { grid-template-columns: 1fr; }
   .hero { padding-top: 2.6rem; }
-  .addr-bar { flex-wrap: nowrap; }
-  .addr-bar button { padding: 0 1.1rem; font-size: 0.88rem; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .btn-accent, .btn-ghost { justify-content: center; }
   .stamp-dot { display: none; }
   .stamp-line { gap: 0.7rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .stampword, .hero-sub, .addr-bar, .hero-note, .stamp-dot { animation: none !important; opacity: 1 !important; }
+  .stampword, .hero-sub, .hero-cta, .hero-note, .stamp-dot { animation: none !important; opacity: 1 !important; }
   .card { opacity: 1; transform: none; }
 }
 </style>
@@ -264,10 +264,9 @@ nav {
 
   <p class="hero-sub">Enter any Canadian address. Get the <strong>zoning verdict, every approval body, and every required study</strong> in 60 seconds, cited to the bylaw section, at a fraction of consultant cost. <a class="plus-more" href="#more">+ 5 more sections in every report &#x2193;</a></p>
 
-  <div class="addr-bar">
-    <span class="pin">&#x25C9;</span>
-    <input type="text" placeholder="Enter a Canadian address&#x2026;" aria-label="Enter a Canadian address">
-    <button>Get my report &#x2192;</button>
+  <div class="hero-cta">
+    <a class="btn-accent" href="https://prebuildiq.app">Get my report &#x2192;</a>
+    <a class="btn-ghost" href="#more">See what is in it</a>
   </div>
   <div class="hero-note"><b>First report free.</b> No credit card.</div>
 </section>
@@ -357,10 +356,6 @@ window.addEventListener('scroll', () => {
   seeMore.classList.toggle('hidden', window.scrollY > 160);
 }, { passive: true });
 
-// Address bar scrolls to demo section on the real page; here it just focuses
-document.querySelector('.addr-bar button').addEventListener('click', () => {
-  document.querySelector('.addr-bar input').focus();
-});
 </script>
 
 </body>
