@@ -157,6 +157,37 @@ nav {
 }
 .card .foot::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.8rem; }
 
+/* Disclaimer tooltip */
+.info-tip {
+  position: relative; display: inline-grid; place-items: center; vertical-align: super;
+  width: 1.05rem; height: 1.05rem; margin-left: 0.35rem; border-radius: 50%;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 600;
+  color: var(--muted); box-shadow: inset 0 0 0 1.2px var(--muted);
+  cursor: help; outline: none; transition: color 0.15s ease, box-shadow 0.15s ease;
+}
+.info-tip:hover, .info-tip:focus { color: var(--accent); box-shadow: inset 0 0 0 1.2px var(--accent); }
+.info-tip .tip-box {
+  position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
+  width: 250px; background: var(--navy-dark); color: #fff; text-align: left;
+  font-family: 'DM Sans', Arial, sans-serif; font-size: 0.76rem; font-weight: 400;
+  line-height: 1.5; letter-spacing: 0; padding: 0.75rem 0.85rem; border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(15,30,48,0.3);
+  opacity: 0; visibility: hidden; pointer-events: none; z-index: 6;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+.info-tip .tip-box::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border-top: 6px solid var(--navy-dark); border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: none;
+}
+.info-tip:hover .tip-box, .info-tip:focus .tip-box {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+}
+@media (max-width: 768px) {
+  .info-tip .tip-box { left: auto; right: -0.5rem; transform: translateY(4px); }
+  .info-tip:hover .tip-box, .info-tip:focus .tip-box { transform: translateY(0); }
+  .info-tip .tip-box::after { left: auto; right: 0.7rem; transform: none; }
+}
+
 /* ── Receipts strip ── */
 .dims { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 3rem auto 0; padding: 0 4vw; }
 .dim-line { width: 44px; height: 1px; background: var(--line); }
@@ -237,8 +268,8 @@ nav {
   <div class="card">
     <div class="card-tab"><span class="word">Saved</span><span class="idx">03 / 03</span></div>
     <div class="card-body">
-      <div class="big"><span class="accent">$<span class="count" data-to="197">0</span>K</span>+</div>
-      <span class="big-unit">cost of one rejected application</span>
+      <div class="big"><span class="accent">$<span class="count" data-to="197">0</span>K</span>+<span class="info-tip" tabindex="0" role="note" aria-label="How this number is calculated">i<span class="tip-box">Based on the typical cost of a single rejected application in the GTA: resubmission fees, redesign, and added carrying costs at $43K per month over an 18 to 24 month approval timeline. Actual savings depend on project scope, municipality, and timing. Illustrative, not a guarantee.</span></span></div>
+      <span class="big-unit">typical cost of one rejected application</span>
       <h3>One missed study costs more than a decade of this.</h3>
       <p>60%+ of applications get sent back, and a stalled project burns <strong>$43K a month</strong> waiting. A consultant pre-app runs $14K to $31.5K. <strong>Your first report is free.</strong></p>
       <div class="foot">Plans from $199/mo after your free report</div>
