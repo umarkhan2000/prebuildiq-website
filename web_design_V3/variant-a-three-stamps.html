@@ -109,6 +109,33 @@ nav {
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
+/* "+ more" chip inside the sub */
+.plus-more {
+  display: inline-block; margin-left: 0.35rem; padding: 0.18rem 0.6rem; border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy); background: rgba(27,58,92,0.07); text-decoration: none; white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.plus-more:hover { background: var(--navy); color: #fff; }
+
+/* Floating "see more" scroll cue */
+.see-more {
+  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 8;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+  color: var(--navy); background: rgba(255,255,255,0.92); backdrop-filter: blur(6px);
+  padding: 0.5rem 1rem; border-radius: 100px; text-decoration: none;
+  box-shadow: 0 4px 18px rgba(15,30,48,0.14), inset 0 0 0 1px var(--line);
+  animation: bob 2.2s ease-in-out infinite;
+  transition: opacity 0.35s ease, visibility 0.35s, background 0.15s ease, color 0.15s ease;
+}
+.see-more:hover { background: var(--navy); color: #fff; animation-play-state: paused; }
+.see-more .arr { color: var(--accent); font-size: 0.8rem; }
+.see-more:hover .arr { color: #ffb98c; }
+.see-more.hidden { opacity: 0; visibility: hidden; }
+@keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(5px); } }
+@media (prefers-reduced-motion: reduce) { .see-more { animation: none; } }
+
 /* ── The three proof cards ── */
 .cards { position: relative; z-index: 1; max-width: 1200px; margin: 3.6rem auto 0; padding: 0 4vw; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
 .card {
@@ -234,7 +261,7 @@ nav {
     <span class="stampword s3">Saved</span>
   </h1>
 
-  <p class="hero-sub">Enter any Canadian address. Get the <strong>zoning verdict, every approval body, and every required study</strong> in 60 seconds, cited to the bylaw section, at a fraction of consultant cost.</p>
+  <p class="hero-sub">Enter any Canadian address. Get the <strong>zoning verdict, every approval body, and every required study</strong> in 60 seconds, cited to the bylaw section, at a fraction of consultant cost. <a class="plus-more" href="#more">+ 5 more sections in every report &#x2193;</a></p>
 
   <div class="addr-bar">
     <span class="pin">&#x25C9;</span>
@@ -291,7 +318,9 @@ nav {
   <span class="dim-line"></span>
 </div>
 
-<section class="rest">
+<a class="see-more" href="#more" id="seeMore">See more <span class="arr">&#x2193;</span></a>
+
+<section class="rest" id="more">
   <span class="mono">Below the fold</span>
   <h2 class="display">Everything else becomes evidence.</h2>
   <p>Live demo, platform screens, report anatomy, how it works, pricing, and FAQ stay in their current order below. The fold now makes exactly three claims, and the address bar turns the hero itself into the first conversion point.</p>
@@ -320,6 +349,12 @@ const numObs = new IntersectionObserver((es) => {
   es.forEach(e => { if (e.isIntersecting) { countUp(e.target); numObs.unobserve(e.target); } });
 }, { threshold: 0.5 });
 document.querySelectorAll('.count').forEach(el => numObs.observe(el));
+
+// Hide the "see more" cue once the visitor starts scrolling
+const seeMore = document.getElementById('seeMore');
+window.addEventListener('scroll', () => {
+  seeMore.classList.toggle('hidden', window.scrollY > 160);
+}, { passive: true });
 
 // Address bar scrolls to demo section on the real page; here it just focuses
 document.querySelector('.addr-bar button').addEventListener('click', () => {
