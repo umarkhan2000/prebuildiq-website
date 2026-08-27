@@ -50,10 +50,10 @@ nav {
   padding: 0.9rem 4vw; border-bottom: 1px solid var(--line);
   background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
 }
-.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; }
-.logo-mark { width: 32px; height: 32px; background: var(--navy); border-radius: 7px; display: grid; place-items: center; }
-.logo-mark span { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; }
-.logo em { color: var(--accent); font-style: normal; }
+.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; color: var(--ink); text-decoration: none; }
+.logo-mark { width: 28px; height: 28px; background: var(--navy); border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; }
+.logo-mark::before { content: ''; position: absolute; width: 14px; height: 14px; border-top: 1.5px solid #fff; border-right: 1.5px solid #fff; border-bottom: 1.5px solid #fff; border-left: 1.5px solid #fff; border-radius: 2px; }
+.logo-mark::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 .nav-links { display: flex; gap: 1.6rem; align-items: center; }
 .nav-links a { color: var(--ink-2); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
 .nav-links a:hover { color: var(--navy); }
@@ -188,10 +188,12 @@ nav {
 .muni-label { text-align: center; color: var(--muted); margin-bottom: 0.7rem; }
 .muni-track { display: flex; gap: 0.7rem; width: max-content; animation: marquee 36s linear infinite; }
 .muni-chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
   font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; white-space: nowrap;
-  color: var(--navy); background: #fff; padding: 0.42rem 0.9rem; border-radius: 100px;
+  color: var(--navy); background: #fff; padding: 0.42rem 0.9rem 0.42rem 0.6rem; border-radius: 100px;
   box-shadow: inset 0 0 0 1px var(--line);
 }
+.muni-chip img { width: 20px; height: 20px; object-fit: contain; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ── Problem ── */
@@ -387,7 +389,7 @@ footer a { color: rgba(255,255,255,0.75); text-decoration: none; margin-left: 1.
 <div id="progress"></div>
 
 <nav>
-  <div class="logo"><div class="logo-mark"><span>IQ</span></div>PreBuild<em>IQ</em></div>
+  <a href="#" class="logo"><div class="logo-mark"></div>PreBuildIQ</a>
   <div class="nav-links">
     <a href="#problem">Problem</a>
     <a href="#inside">The Report</a>
@@ -456,7 +458,7 @@ footer a { color: rgba(255,255,255,0.75); text-decoration: none; margin-left: 1.
 <section class="muni">
   <div class="muni-label mono">Covering Ontario &middot; new municipalities added monthly</div>
   <div class="muni-track" id="muniTrack">
-    <span class="muni-chip">Toronto</span><span class="muni-chip">Mississauga</span><span class="muni-chip">Brampton</span><span class="muni-chip">Vaughan</span><span class="muni-chip">Markham</span><span class="muni-chip">Hamilton</span><span class="muni-chip">Richmond Hill</span><span class="muni-chip">Oakville</span><span class="muni-chip">Burlington</span><span class="muni-chip">Milton</span><span class="muni-chip">Newmarket</span><span class="muni-chip">Aurora</span><span class="muni-chip">Pickering</span><span class="muni-chip">Ajax</span><span class="muni-chip">Whitby</span><span class="muni-chip">Oshawa</span><span class="muni-chip">Kingston</span><span class="muni-chip">Peterborough</span><span class="muni-chip">Greater Sudbury</span>
+    <span class="muni-chip"><img src="../logos/toronto.png" alt="">Toronto</span><span class="muni-chip"><img src="../logos/mississauga.png" alt="">Mississauga</span><span class="muni-chip"><img src="../logos/brampton.png" alt="">Brampton</span><span class="muni-chip"><img src="../logos/vaughan.png" alt="">Vaughan</span><span class="muni-chip"><img src="../logos/markham.png" alt="">Markham</span><span class="muni-chip"><img src="../logos/hamilton.svg" alt="">Hamilton</span><span class="muni-chip"><img src="../logos/richmond-hill.svg" alt="">Richmond Hill</span><span class="muni-chip"><img src="../logos/oakville.png" alt="">Oakville</span><span class="muni-chip"><img src="../logos/burlington.svg" alt="">Burlington</span><span class="muni-chip"><img src="../logos/milton.svg" alt="">Milton</span><span class="muni-chip"><img src="../logos/newmarket.svg" alt="">Newmarket</span><span class="muni-chip"><img src="../logos/aurora.svg" alt="">Aurora</span><span class="muni-chip"><img src="../logos/pickering.svg" alt="">Pickering</span><span class="muni-chip"><img src="../logos/ajax.svg" alt="">Ajax</span><span class="muni-chip"><img src="../logos/whitby.svg" alt="">Whitby</span><span class="muni-chip"><img src="../logos/oshawa.svg" alt="">Oshawa</span><span class="muni-chip"><img src="../logos/kingston.png" alt="">Kingston</span><span class="muni-chip"><img src="../logos/peterborough.png" alt="">Peterborough</span><span class="muni-chip"><img src="../logos/greater-sudbury.png" alt="">Greater Sudbury</span>
   </div>
 </section>
 
