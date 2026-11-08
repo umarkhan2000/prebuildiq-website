@@ -40,7 +40,7 @@
   "url": "https://prebuildiq.ca/",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "offers": { "@type": "AggregateOffer", "lowPrice": "0", "highPrice": "799", "priceCurrency": "CAD" },
+  "offers": { "@type": "AggregateOffer", "lowPrice": "1499", "highPrice": "9500", "priceCurrency": "CAD" },
   "description": "Canada's pre-development intelligence platform. Enter an address, get the zoning verdict, every approval body, required study, bylaw standards, construction costs, and nearby planning decisions in 60 seconds.",
   "publisher": {
     "@type": "Organization",
@@ -85,7 +85,7 @@
     {
       "@type": "Question",
       "name": "What does PreBuildIQ cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Your first full report is free with no credit card. After that, plans start from $199 per month for 20 reports a year. A comparable consultant pre-application engagement runs $14,000 to $31,500." }
+      "acceptedAnswer": { "@type": "Answer", "text": "1 report is $1,499 one-time. 5-report pack is $5,499 ($1,100 per site). 10-report pack is $9,500 ($950 per site). Credits never expire. No subscription. A comparable consultant pre-application engagement runs $14,000 to $31,500." }
     }
   ]
 }
@@ -118,7 +118,7 @@ body::before {
 }
 .display { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; }
 .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
-.italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+.italic-serif { font-style: italic; font-weight: 700; }
 section { position: relative; z-index: 1; }
 .wrap { max-width: 1200px; margin: 0 auto; padding-left: 4vw; padding-right: 4vw; }
 .eyebrow { color: var(--muted); display: block; margin-bottom: 0.9rem; }
@@ -222,6 +222,7 @@ h2.sec em { color: var(--accent); }
   border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
   box-shadow: 6px 6px 0 rgba(27,58,92,0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex; flex-direction: column;
 }
 .scard:hover, .scard:focus-within { transform: translate(-3px,-3px); box-shadow: 10px 10px 0 rgba(27,58,92,0.13); z-index: 4; }
 .scard-tab {
@@ -236,7 +237,7 @@ h2.sec em { color: var(--accent); }
 .scard-tab.solid .word { color: #fff; }
 .scard-tab .idx { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; color: var(--muted); }
 .scard-tab.solid .idx { color: rgba(255,255,255,0.6); }
-.scard-body { padding: 1.4rem 1.25rem 1.3rem; }
+.scard-body { padding: 1.4rem 1.25rem 1.3rem; flex: 1; display: flex; flex-direction: column; }
 .scard .big { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; color: var(--navy); font-variant-numeric: tabular-nums; }
 .scard .big .accent { color: var(--accent); }
 .scard .big-unit { display: block; margin-top: 0.35rem; font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
@@ -244,7 +245,7 @@ h2.sec em { color: var(--accent); }
 .scard p { font-size: 0.91rem; line-height: 1.58; color: var(--ink-2); }
 .scard p strong { color: var(--ink); }
 .scard .foot {
-  margin-top: 1.1rem; padding-top: 0.85rem; border-top: 1px dashed var(--line);
+  margin-top: auto; padding-top: 0.85rem; border-top: 1px dashed var(--line);
   display: flex; align-items: center; gap: 0.5rem;
   font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
 }
@@ -393,7 +394,7 @@ h2.sec em { color: var(--accent); }
 .price-feats { margin-top: 1rem; list-style: none; }
 .price-feats li { font-size: 0.88rem; color: var(--ink-2); padding: 0.3rem 0 0.3rem 1.3rem; position: relative; }
 .price-feats li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 0.8rem; }
-.price-cta { margin-top: 1.3rem; }
+.price-cta { margin-top: auto; padding-top: 1.3rem; }
 .price-cta .btn-accent, .price-cta .btn-ghost { width: 100%; }
 .vs { margin-top: 2.6rem; }
 .vs-table { width: 100%; border-collapse: collapse; margin-top: 1.4rem; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: inset 0 0 0 1.5px var(--navy), 6px 6px 0 rgba(27,58,92,0.08); }
@@ -499,8 +500,15 @@ footer .logo { color: #fff; }
 .modal-success p { margin-top: 0.5rem; font-size: 0.92rem; color: var(--ink-2); }
 
 /* ── Reveal + see-more ── */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
 .reveal.in { opacity: 1; transform: none; }
+/* Stagger siblings in card grids */
+.cardgrid > .reveal:nth-child(2), .price-cards > .reveal:nth-child(2) { transition-delay: 0.1s; }
+.cardgrid > .reveal:nth-child(3), .price-cards > .reveal:nth-child(3) { transition-delay: 0.2s; }
+.cardgrid > .reveal:nth-child(4) { transition-delay: 0.3s; }
+.moat-list > .reveal:nth-child(2) { transition-delay: 0.12s; }
+.moat-list > .reveal:nth-child(3) { transition-delay: 0.24s; }
+.moat-list > .reveal:nth-child(4) { transition-delay: 0.36s; }
 .see-more {
   position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 8;
   display: inline-flex; align-items: center; gap: 0.45rem; min-height: 40px;
@@ -560,7 +568,6 @@ footer .logo { color: #fff; }
     <a href="#demo">Demo</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
-    <button class="nav-cta" data-open-waitlist>Try it free &#x2192;</button>
   </div>
   <button class="nav-hamburger" id="navHamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
@@ -570,19 +577,18 @@ footer .logo { color: #fff; }
   <a href="#demo">Demo</a>
   <a href="#pricing">Pricing</a>
   <a href="#faq">FAQ</a>
-  <button class="nav-cta" data-open-waitlist>Try it free &#x2192;</button>
 </div>
 
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-eyebrow mono">PreBuildIQ &middot; Pre-development intelligence &middot; <b>First in Canada</b></div>
-  <h1 class="hero-h1 display">Every approval your site needs.<em class="italic-serif">In 60 seconds.</em></h1>
+  <h1 class="hero-h1 display">Every approval your site needs. <span style="color:var(--accent);">In 60 seconds.</span></h1>
   <p class="hero-sub">Enter any Canadian address. Get the <strong>zoning verdict, every approval body, and every required study</strong> in 60 seconds, cited to the bylaw section, at a fraction of consultant cost. <a class="plus-more" href="#inside">+ 5 more sections in every report &#x2193;</a></p>
   <div class="hero-cta">
     <a class="btn-accent" href="https://prebuildiq.app">Get my report &#x2192;</a>
     <a class="btn-ghost" href="#inside">See what is in it</a>
   </div>
-  <div class="hero-note"><b>First report free.</b> No credit card.</div>
+  <div class="hero-note">No subscription. Credits never expire.</div>
   <div class="hero-stats">
     <div class="hstat"><span class="hstat-num">43</span><span class="hstat-label">Municipalities</span></div>
     <div class="hstat-sep"></div>
@@ -590,7 +596,7 @@ footer .logo { color: #fff; }
     <div class="hstat-sep"></div>
     <div class="hstat"><span class="hstat-num">8</span><span class="hstat-label">Report sections</span></div>
     <div class="hstat-sep"></div>
-    <div class="hstat"><span class="hstat-num">$0</span><span class="hstat-label">First report</span></div>
+    <div class="hstat"><span class="hstat-num">$1,499</span><span class="hstat-label">Per report</span></div>
   </div>
 </section>
 
@@ -620,11 +626,11 @@ footer .logo { color: #fff; }
     <div class="scard reveal">
       <div class="scard-tab solid"><span class="word">$ Saved</span><span class="idx">03 / 03</span></div>
       <div class="scard-body">
-        <div class="big"><span class="accent">$1,000s</span><span class="info-tip" tabindex="0" role="note" aria-label="Where the savings come from">i<span class="tip-box">Savings come from avoided resubmissions, fewer consultant lookup hours, and less time carrying a stalled project. Actual amounts vary with project scope and municipality. Not a guarantee.</span></span></div>
-        <span class="big-unit">saved on every application</span>
-        <h3>One missed study costs more than a year of this.</h3>
-        <p>60%+ of applications get sent back, and every resubmission means <strong>redesign fees, consultant hours, and months of added carrying cost.</strong> Know the full list before you file. <strong>Your first report is free.</strong></p>
-        <div class="foot">Plans from $199/mo after your free report</div>
+        <div class="big"><span class="accent">$43K</span><span class="big" style="font-size:0.45em;color:var(--muted);font-weight:500;">/mo</span><span class="info-tip" tabindex="0" role="note" aria-label="Carrying cost estimate">i<span class="tip-box">Rough estimate based on typical GTA project carrying costs (financing, taxes, insurance, opportunity cost). Actual amounts vary with project size, financing structure, and municipality. Not a guarantee.</span></span></div>
+        <span class="big-unit">carrying cost per month of permit delay</span>
+        <h3>One missed study adds months before a shovel hits dirt.</h3>
+        <p>60%+ of applications get sent back, and every resubmission means <strong>redesign fees, consultant hours, and months of added carrying cost.</strong> Know the full list before you file.</p>
+        <div class="foot">Starting at $1,499 per site — no subscription</div>
       </div>
     </div>
   </div>
@@ -644,22 +650,18 @@ footer .logo { color: #fff; }
     <span class="eyebrow mono"><b>01</b> / The Problem</span>
     <h2 class="sec display">Canadian developers are flying blind into a <em class="italic-serif">$300B</em> market.</h2>
     <p class="sec-sub">A developer buys a site. Three weeks of research across 6 agencies. <strong>$25K to a planning consultant.</strong> The 1st submission still comes back rejected over one missing study, and the resubmission takes 4 months at $43K/month carrying cost, <strong>before a shovel hits dirt.</strong></p>
-    <div class="cardgrid four">
+    <div class="cardgrid">
       <div class="scard reveal"><div class="scard-tab"><span class="word">Timeline</span></div><div class="scard-body">
         <div class="pain-num"><span class="count" data-to="24">0</span><span class="suffix">months</span></div>
         <div class="pain-label">Average permit timeline in the GTA</div>
       </div></div>
-      <div class="scard reveal"><div class="scard-tab"><span class="word">Cost</span></div><div class="scard-body">
+      <div class="scard reveal"><div class="scard-tab orange"><span class="word">Cost</span></div><div class="scard-body">
         <div class="pain-num">$<span class="count" data-to="43">0</span><span class="suffix">K/mo</span></div>
         <div class="pain-label">Carrying cost on a single stalled project</div>
       </div></div>
-      <div class="scard reveal"><div class="scard-tab orange"><span class="word">Rejections</span></div><div class="scard-body">
+      <div class="scard reveal"><div class="scard-tab solid"><span class="word">Rejections</span></div><div class="scard-body">
         <div class="pain-num"><span class="count" data-to="60">0</span><span class="suffix">%+</span></div>
         <div class="pain-label">Of applications require at least one resubmission</div>
-      </div></div>
-      <div class="scard reveal"><div class="scard-tab solid"><span class="word">Competition</span></div><div class="scard-body">
-        <div class="pain-num">0</div>
-        <div class="pain-label">Canadian software platforms in this category. We are first.</div>
       </div></div>
     </div>
   </div>
@@ -802,15 +804,24 @@ footer .logo { color: #fff; }
     <div class="cardgrid">
       <div class="scard reveal">
         <div class="scard-tab"><span class="word">Developers</span></div>
-        <div class="scard-body"><p><strong>5&ndash;20 projects per year</strong> with no in-house planning team. Know your zoning verdict, your ZBA exposure, and your full agency circulation list <strong>before you commit capital</strong>. Not after.</p></div>
+        <div class="scard-body">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.75rem;display:block;"><rect x="3" y="10" width="5" height="11"/><rect x="9.5" y="6" width="5" height="15"/><rect x="16" y="13" width="5" height="8"/><line x1="1" y1="21" x2="23" y2="21"/></svg>
+          <p><strong>5&ndash;20 projects per year</strong> with no in-house planning team. Know your zoning verdict, your ZBA exposure, and your full agency circulation list <strong>before you commit capital</strong>. Not after.</p>
+        </div>
       </div>
       <div class="scard reveal">
         <div class="scard-tab orange"><span class="word">Architects + GCs</span></div>
-        <div class="scard-body"><p>You prepare the drawings. You face the reviewing agencies. PreBuildIQ catches <strong>OBC and zoning by-law violations before the 1st submission</strong> so your commenting package comes back clean.</p></div>
+        <div class="scard-body">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.75rem;display:block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+          <p>You prepare the drawings. You face the reviewing agencies. PreBuildIQ catches <strong>OBC and zoning by-law violations before the 1st submission</strong> so your commenting package comes back clean.</p>
+        </div>
       </div>
       <div class="scard reveal">
         <div class="scard-tab solid"><span class="word">Expeditors</span></div>
-        <div class="scard-body"><p>Deliver <strong>same-day pre-consultation packages</strong> instead of two months of manual research. Handle more clients across more jurisdictions, without adding headcount.</p></div>
+        <div class="scard-body">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.75rem;display:block;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <p>Deliver <strong>same-day pre-consultation packages</strong> instead of two months of manual research. Handle more clients across more jurisdictions, without adding headcount.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -825,11 +836,11 @@ footer .logo { color: #fff; }
         <h2 class="sec display">A Canadian <em class="italic-serif">dataset</em> nobody else has.</h2>
         <p class="sec-sub">US platforms don't have Canadian municipal data. Generic AI tools don't have it. We're building it, municipality by municipality, from the portal up.</p>
       </div>
-      <ul class="moat-list reveal">
-        <li class="moat-item"><span class="tick">✓</span><div><h3>Proprietary Canadian data</h3><p>Built to scrape and update weekly from hundreds of Canadian municipal portals. No US platform has this dataset.</p></div></li>
-        <li class="moat-item"><span class="tick">✓</span><div><h3>Terms of reference, by jurisdiction</h3><p>What each required study needs, who produces it, what the agency expects. For every municipality we cover.</p></div></li>
-        <li class="moat-item"><span class="tick">✓</span><div><h3>Canadian code, from day one</h3><p>Built for the OBC and Canadian regulatory structure. Not a US engine adapted for Canada.</p></div></li>
-        <li class="moat-item"><span class="tick">✓</span><div><h3>Zoning intelligence, not just permit tracking</h3><p>Knowing you need a ZBA before you commit capital is worth more than any permit dashboard.</p></div></li>
+      <ul class="moat-list">
+        <li class="moat-item reveal"><span class="tick">✓</span><div><h3>Proprietary Canadian data</h3><p>Built to scrape and update weekly from hundreds of Canadian municipal portals. No US platform has this dataset.</p></div></li>
+        <li class="moat-item reveal"><span class="tick">✓</span><div><h3>Terms of reference, by jurisdiction</h3><p>What each required study needs, who produces it, what the agency expects. For every municipality we cover.</p></div></li>
+        <li class="moat-item reveal"><span class="tick">✓</span><div><h3>Canadian code, from day one</h3><p>Built for the OBC and Canadian regulatory structure. Not a US engine adapted for Canada.</p></div></li>
+        <li class="moat-item reveal"><span class="tick">✓</span><div><h3>Zoning intelligence, not just permit tracking</h3><p>Knowing you need a ZBA before you commit capital is worth more than any permit dashboard.</p></div></li>
       </ul>
     </div>
   </div>
@@ -839,35 +850,50 @@ footer .logo { color: #fff; }
 <section class="padsec" id="pricing">
   <div class="wrap">
     <span class="eyebrow mono"><b>08</b> / Pricing</span>
-    <h2 class="sec display">Simple pricing. <em class="italic-serif">Full</em> report.</h2>
-    <p class="sec-sub">Start free. When you need more, run a single site. No subscription required.</p>
-    <div class="price-cards">
+    <h2 class="sec display">Transparent pricing. <em class="italic-serif">Full</em> report.</h2>
+    <p class="sec-sub">Pay per site. No subscription. Each address stays unlocked on your account permanently. Credits never expire.</p>
+    <div class="price-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
       <div class="scard reveal">
-        <div class="scard-tab"><span class="word">Free</span><span class="idx">NO CARD</span></div>
+        <div class="scard-tab"><span class="word">1 Report</span><span class="idx">$1,499</span></div>
         <div class="scard-body">
-          <div class="price-big">$0<span class="period"> / forever</span></div>
+          <div class="price-big">$1,499<span class="period"> / one time</span></div>
+          <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:12px;">$1,499 per site</div>
           <ul class="price-feats">
-            <li>1 full report at sign-up, all eight sections</li>
-            <li>After that: zoning verdict + summary view</li>
-            <li>1 drawing compliance check</li>
-            <li>No credit card</li>
-          </ul>
-          <div class="price-cta"><button class="btn-ghost" data-open-waitlist>Get started free</button></div>
-        </div>
-      </div>
-      <div class="scard reveal">
-        <div class="scard-tab orange"><span class="word">Single Report</span><span class="idx">RECOMMENDED</span></div>
-        <div class="scard-body">
-          <div class="price-big">$499<span class="period"> / one time</span></div>
-          <ul class="price-feats">
-            <li>Full report, all eight sections, address stays unlocked</li>
+            <li>Full report, all eight sections</li>
             <li>Every agency, study, and bylaw standard</li>
             <li>Suitability analysis + path to permit</li>
             <li>Construction cost + carrying cost calculator</li>
-            <li>Nearby council decisions (precedents)</li>
             <li>Export to CSV and Word. No subscription.</li>
           </ul>
-          <div class="price-cta"><button class="btn-accent" data-open-waitlist="one-report">Run one site &#x2192;</button></div>
+          <div class="price-cta"><button class="btn-ghost" data-open-waitlist="one-report">Run one site &#x2192;</button></div>
+        </div>
+      </div>
+      <div class="scard reveal">
+        <div class="scard-tab orange"><span class="word">5 Reports</span><span class="idx">RECOMMENDED</span></div>
+        <div class="scard-body">
+          <div class="price-big">$5,499<span class="period"> / 5 sites</span></div>
+          <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px;">$1,100 per site</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">save $1,996 vs. singles</div>
+          <ul class="price-feats">
+            <li>Everything in 1 Report, × 5 addresses</li>
+            <li>Credits never expire, use anytime</li>
+            <li>Shareable across your team</li>
+          </ul>
+          <div class="price-cta"><button class="btn-accent" data-open-waitlist="five-reports">Buy 5 reports &#x2192;</button></div>
+        </div>
+      </div>
+      <div class="scard reveal">
+        <div class="scard-tab solid"><span class="word">10 Reports</span><span class="idx">BEST VALUE</span></div>
+        <div class="scard-body">
+          <div class="price-big">$9,500<span class="period"> / 10 sites</span></div>
+          <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px;">$950 per site</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">save $5,490 vs. singles</div>
+          <ul class="price-feats">
+            <li>Everything in 1 Report, × 10 addresses</li>
+            <li>Credits never expire, use anytime</li>
+            <li>Shareable across your team</li>
+          </ul>
+          <div class="price-cta"><button class="btn-ghost" data-open-waitlist="ten-reports">Buy 10 reports &#x2192;</button></div>
         </div>
       </div>
     </div>
@@ -883,7 +909,7 @@ footer .logo { color: #fff; }
           <tr class="total"><td><strong>Total per pre-application engagement</strong></td><td>$14,000&ndash;$31,500+</td></tr>
         </tbody>
       </table>
-      <p class="vs-punch">PreBuildIQ covers <strong>all of this in 60 seconds</strong>. Your first report is free, and a single site is $499 with no subscription.</p>
+      <p class="vs-punch">PreBuildIQ covers <strong>all of this in 60 seconds</strong> for $1,499 — a fraction of one consultant hour on the same file.</p>
     </div>
   </div>
 </section>
@@ -899,17 +925,17 @@ footer .logo { color: #fff; }
       <details class="faq-item"><summary><span class="faq-idx">Q-03</span>Where does the data come from?</summary><div class="faq-body">Municipal zoning bylaws, municipal GIS parcel and zoning data, agency terms of reference, and planning decision records for every covered municipality, kept current as bylaws change. Not scraped blog content. Not a generic AI summary.</div></details>
       <details class="faq-item"><summary><span class="faq-idx">Q-04</span>Does this replace my planning consultant?</summary><div class="faq-body">No. It front-loads the research a consultant spends the first weeks of an engagement assembling, so you walk into pre-consultation informed and spend consultant hours on strategy instead of lookup. Planning consultants and permit expeditors are among our heaviest users.</div></details>
       <details class="faq-item"><summary><span class="faq-idx">Q-05</span>How accurate is the zoning verdict?</summary><div class="faq-body">The verdict is read from your municipality's own zoning fabric for the exact parcel, including holding provisions and overlays, and every bylaw standard is cited to its section so you can verify it yourself. PreBuildIQ is decision support for pre-development diligence, not legal advice.</div></details>
-      <details class="faq-item"><summary><span class="faq-idx">Q-06</span>What does it cost?</summary><div class="faq-body">Your first full report is free, no credit card. A single site is $499 one-time with the address unlocked permanently. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div></details>
+      <details class="faq-item"><summary><span class="faq-idx">Q-06</span>What does it cost?</summary><div class="faq-body">1 report is $1,499 one-time. 5-report pack is $5,499 ($1,100 per site). 10-report pack is $9,500 ($950 per site). Credits never expire. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div></details>
     </div>
   </div>
 </section>
 
 <!-- ── Final CTA ── -->
 <section class="cta" id="contact">
-  <span class="cta-stamp">FIRST REPORT FREE &middot; NO CARD</span>
+  <span class="cta-stamp">NO SUBSCRIPTION &middot; CREDITS NEVER EXPIRE</span>
   <h2 class="display">Stop losing months. <em class="italic-serif">Start knowing</em>.</h2>
-  <p>First report free. No credit card. Built for Canadian developers, architects, and permit expeditors.</p>
-  <button class="btn-accent" data-open-waitlist>Try it free today &#x2192;</button>
+  <p>Know every agency, every study, and every bylaw constraint before your 1st submission. Built for Canadian developers, architects, and permit expeditors.</p>
+  <button class="btn-accent" data-open-waitlist>Get your report &#x2192;</button>
   <div class="proof">3 design partners &middot; 2 signed LOIs &middot; Built in Toronto</div>
   <div class="mail">info@prebuildiq.ca</div>
 </section>
@@ -966,7 +992,7 @@ footer .logo { color: #fff; }
 
     <div id="waitlistFormWrap">
       <div class="modal-eyebrow" id="wlEyebrow">Get started free</div>
-      <h2 id="waitlistTitle">Run your first <em>address</em> free.</h2>
+      <h2 id="waitlistTitle">Run your first <strong>address</strong> free.</h2>
       <p class="modal-sub" id="wlSub">Full report. No credit card required.</p>
 
       <form id="waitlistForm" name="waitlist" data-netlify="true" method="POST" netlify-honeypot="bot-field" novalidate>
@@ -1009,7 +1035,7 @@ footer .logo { color: #fff; }
           </select>
           <div class="form-error">Select a range</div>
         </div>
-        <button type="submit" class="modal-submit">Get my free report &#x2192;</button>
+        <button type="submit" class="modal-submit">Get access &#x2192;</button>
       </form>
     </div>
 
@@ -1019,8 +1045,8 @@ footer .logo { color: #fff; }
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <h3>You're in, <span id="wlSuccessName">there</span>.</h3>
-      <p>We'll set up your access and reach out within one business day.</p>
+      <h3>Got it, <span id="wlSuccessName">there</span>.</h3>
+      <p>Taking you to the app now&#x2026;</p>
     </div>
   </div>
 </div>
@@ -1069,7 +1095,7 @@ footer .logo { color: #fff; }
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   /* ── Count-up numbers ── */
@@ -1107,18 +1133,36 @@ footer .logo { color: #fff; }
 
   const WL_COPY = {
     free: {
-      eyebrow: 'Get started free',
-      title: 'Run your first <em>address</em> free.',
-      sub: 'Full report. No credit card required.',
-      submit: 'Get my free report →',
-      intent: 'free_report',
+      eyebrow: 'Get access',
+      title: 'Every agency. Every study. <strong>60 seconds</strong>.',
+      sub: 'Full pre-development intelligence for any Ontario address.',
+      submit: 'Get access →',
+      intent: 'signup',
+      redirect: 'https://prebuildiq.app',
     },
     'one-report': {
-      eyebrow: 'Single report · $499',
-      title: 'One site. The <em>complete</em> report.',
-      sub: 'Your first report is free. Already used it? Run any additional site for $499 — no subscription.',
+      eyebrow: '1 Report · $1,499',
+      title: 'One site. The <strong>complete</strong> report.',
+      sub: '$1,499 one-time. Address stays unlocked permanently. No subscription.',
       submit: 'Get started →',
       intent: 'one_report',
+      redirect: 'https://prebuildiq.app/login?mode=signup&next=%2Fbilling',
+    },
+    'five-reports': {
+      eyebrow: '5 Reports · $5,499',
+      title: 'Five sites. <strong>$1,100</strong> each.',
+      sub: 'Credits never expire. Shareable across your team. Save $1,996 vs. singles.',
+      submit: 'Buy 5 reports →',
+      intent: 'five_reports',
+      redirect: 'https://prebuildiq.app/login?mode=signup&next=%2Fbilling',
+    },
+    'ten-reports': {
+      eyebrow: '10 Reports · $9,500',
+      title: 'Ten sites. <strong>$950</strong> each.',
+      sub: 'Credits never expire. Shareable across your team. Save $5,490 vs. singles.',
+      submit: 'Buy 10 reports →',
+      intent: 'ten_reports',
+      redirect: 'https://prebuildiq.app/login?mode=signup&next=%2Fbilling',
     },
   };
   let wlCurrent = WL_COPY.free;
@@ -1207,6 +1251,8 @@ footer .logo { color: #fff; }
       document.getElementById('wlSuccessName').textContent = payload.name.split(' ')[0];
       wlFormWrap.style.display = 'none';
       wlSuccess.classList.add('show');
+      const dest = wlCurrent.redirect + (wlCurrent.redirect.includes('login') ? '&email=' + encodeURIComponent(payload.email) : '');
+      setTimeout(() => { window.location.href = dest; }, 1500);
     })
     .catch(() => {
       submitBtn.disabled = false;
