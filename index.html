@@ -98,22 +98,31 @@
 <style>
 :root {
   color-scheme: light only;
-  --bg: #ffffff; --bg-2: #f7f8fa; --sheet: #fafaf5; --paper: #f4f2ed;
-  --ink: #0f1e30; --ink-2: #3d4a5c; --muted: #7b8594;
-  --line: #e2e5ea; --navy: #1b3a5c; --navy-dark: #122a43;
-  --accent: #ff6a13; --accent-soft: #fff0e6;
+  --bg: #081628; --bg-2: rgba(255,255,255,0.04); --sheet: #0b1f38; --paper: #f4f2ed;
+  --ink: #eef3f9; --ink-2: rgba(238,243,249,0.72); --muted: rgba(238,243,249,0.46);
+  --line: rgba(255,255,255,0.12); --navy: #1b3a5c; --navy-dark: #0a1a30;
+  --accent: #ff6a13; --accent-soft: rgba(255,106,19,0.14);
+  --card: rgba(255,255,255,0.045); --card-line: rgba(255,255,255,0.1);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { background: #ffffff; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+  background-color: #081628;
+  background-image:
+    radial-gradient(1100px 620px at 86% -4%, rgba(255,106,19,0.11), transparent 62%),
+    radial-gradient(1200px 820px at 6% 10%, rgba(39,78,128,0.45), transparent 60%),
+    linear-gradient(180deg, #081628 0%, #0a1f3a 55%, #0b2340 100%);
+  background-attachment: fixed;
+}
 body {
   font-family: 'DM Sans', Arial, Helvetica, sans-serif;
-  color: var(--ink); background: var(--bg);
+  color: var(--ink); background: transparent;
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
 body::before {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: linear-gradient(rgba(27,58,92,0.035) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(27,58,92,0.035) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 .display { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; }
@@ -134,17 +143,17 @@ h2.sec em { color: var(--accent); }
 #nav {
   position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center;
   padding: 0.9rem 4vw; border-bottom: 1px solid transparent;
-  background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  transition: border-color 0.2s ease;
+  background: rgba(8,22,40,0.72); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
-#nav.scrolled { border-color: var(--line); }
+#nav.scrolled { border-color: var(--line); background: rgba(8,22,40,0.88); }
 .logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; color: var(--ink); text-decoration: none; }
 .logo-mark { width: 28px; height: 28px; background: var(--navy); border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; }
 .logo-mark::before { content: ''; position: absolute; width: 14px; height: 14px; border-top: 1.5px solid var(--paper); border-right: 1.5px solid var(--paper); border-bottom: 1.5px solid var(--paper); border-left: 1.5px solid var(--paper); border-radius: 2px; }
 .logo-mark::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 .nav-links { display: flex; gap: 1.6rem; align-items: center; }
 .nav-links a { color: var(--ink-2); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-.nav-links a:hover { color: var(--navy); }
+.nav-links a:hover { color: #fff; }
 .nav-cta {
   display: inline-flex; align-items: center; min-height: 44px;
   background: var(--accent); color: #fff; border: none; padding: 0.55rem 1.25rem; border-radius: 8px;
@@ -153,15 +162,16 @@ h2.sec em { color: var(--accent); }
 }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(255,106,19,0.35); }
 .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
-.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .nav-mobile {
   display: none; position: fixed; top: 57px; left: 0; right: 0; z-index: 9;
-  background: #fff; border-bottom: 1px solid var(--line);
+  background: rgba(9,24,42,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
   flex-direction: column; padding: 0.6rem 4vw 1.2rem;
-  box-shadow: 0 14px 30px rgba(15,30,48,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 .nav-mobile.open { display: flex; }
 .nav-mobile a { color: var(--ink); text-decoration: none; font-size: 1rem; font-weight: 600; padding: 0.8rem 0; border-bottom: 1px solid var(--line); min-height: 44px; display: flex; align-items: center; }
@@ -169,7 +179,14 @@ h2.sec em { color: var(--accent); }
 .nav-mobile .nav-cta { margin-top: 0.8rem; justify-content: center; }
 
 /* ── Hero ── */
-.hero { text-align: center; padding: 4rem 4vw 0; }
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2.5rem;
+  text-align: left; padding: 6rem 4vw 5rem;
+  background: transparent; overflow: hidden;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-illo { position: relative; z-index: 1; display: flex; align-items: center; justify-content: flex-end; }
+.hero-svg { width: 100%; max-width: 480px; height: auto; display: block; }
 .hero-eyebrow { color: var(--navy); opacity: 0.85; }
 .hero-eyebrow b { color: var(--accent); }
 .hero-h1 { font-size: clamp(2.1rem, 5.2vw, 4rem); margin-top: 1.5rem; line-height: 1.1; opacity: 0; animation: fadeUp 0.6s ease 0.15s forwards; }
@@ -196,20 +213,20 @@ h2.sec em { color: var(--accent); }
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 48px;
   background: var(--accent); color: #fff; border: none; padding: 0.85rem 2rem; border-radius: 10px;
   font-size: 1.02rem; font-weight: 700; cursor: pointer; font-family: inherit; text-decoration: none;
-  box-shadow: 5px 5px 0 rgba(27,58,92,0.15);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  box-shadow: 0 6px 18px rgba(255,106,19,0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
-.btn-accent:hover { background: #e85e0f; transform: translate(-2px,-2px); box-shadow: 8px 8px 0 rgba(27,58,92,0.2); }
+.btn-accent:hover { background: #e85e0f; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255,106,19,0.4); }
 .btn-ghost {
   display: inline-flex; align-items: center; justify-content: center; min-height: 48px;
-  background: #fff; color: var(--navy);
-  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
-  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
+  background: rgba(255,255,255,0.06); color: #fff;
+  border-top: 1px solid rgba(255,255,255,0.28); border-right: 1px solid rgba(255,255,255,0.28);
+  border-bottom: 1px solid rgba(255,255,255,0.28); border-left: 1px solid rgba(255,255,255,0.28);
   padding: 0.85rem 1.7rem; border-radius: 10px; font-size: 1.02rem; font-weight: 600;
   cursor: pointer; font-family: inherit; text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.btn-ghost:hover { background: var(--navy); color: #fff; }
+.btn-ghost:hover { background: #fff; color: var(--navy); border-top-color: #fff; border-right-color: #fff; border-bottom-color: #fff; border-left-color: #fff; }
 .hero-note { margin-top: 0.85rem; font-size: 0.8rem; color: var(--muted); opacity: 0; animation: fadeUp 0.6s ease 0.75s forwards; }
 .hero-note b { color: var(--ink-2); }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
@@ -217,28 +234,29 @@ h2.sec em { color: var(--accent); }
 /* ── Stamp cards ── */
 .cardgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; margin-top: 2.4rem; }
 .scard {
-  position: relative; background: #fff; border-radius: 10px; text-align: left;
-  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
-  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
-  box-shadow: 6px 6px 0 rgba(27,58,92,0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative; background: var(--card); border-radius: 14px; text-align: left;
+  border-top: 1px solid var(--card-line); border-right: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line); border-left: 1px solid var(--card-line);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18), 0 20px 46px rgba(0,0,0,0.28);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s ease;
   display: flex; flex-direction: column;
 }
-.scard:hover, .scard:focus-within { transform: translate(-3px,-3px); box-shadow: 10px 10px 0 rgba(27,58,92,0.13); z-index: 4; }
+.scard:hover, .scard:focus-within { transform: translateY(-6px); background: rgba(255,255,255,0.07); box-shadow: 0 3px 8px rgba(0,0,0,0.22), 0 32px 62px rgba(0,0,0,0.42); z-index: 4; }
 .scard-tab {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0.55rem 1.25rem; border-bottom: 1.5px solid var(--navy); border-radius: 8.5px 8.5px 0 0;
-  background: rgba(27,58,92,0.06);
+  padding: 0.6rem 1.25rem; border-bottom: 1px solid var(--card-line); border-radius: 13px 13px 0 0;
+  background: rgba(255,255,255,0.05);
 }
 .scard-tab.orange { background: var(--accent-soft); }
-.scard-tab.solid { background: var(--navy); }
-.scard-tab .word { font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; color: var(--navy); }
-.scard-tab.orange .word { color: var(--accent); }
+.scard-tab.solid { background: var(--accent); }
+.scard-tab .word { font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; color: #fff; }
+.scard-tab.orange .word { color: #ff9a52; }
 .scard-tab.solid .word { color: #fff; }
 .scard-tab .idx { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; color: var(--muted); }
 .scard-tab.solid .idx { color: rgba(255,255,255,0.6); }
 .scard-body { padding: 1.4rem 1.25rem 1.3rem; flex: 1; display: flex; flex-direction: column; }
-.scard .big { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; color: var(--navy); font-variant-numeric: tabular-nums; }
+.scard .big { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; color: #fff; font-variant-numeric: tabular-nums; }
 .scard .big .accent { color: var(--accent); }
 .scard .big-unit { display: block; margin-top: 0.35rem; font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
 .scard h3 { font-size: 1.05rem; margin: 1rem 0 0.4rem; font-weight: 700; letter-spacing: -0.01em; }
@@ -276,79 +294,121 @@ h2.sec em { color: var(--accent); }
 .info-tip:hover .tip-box, .info-tip:focus .tip-box { opacity: 1; visibility: visible; transform: translateX(-72%) translateY(0); }
 
 /* ── Muni strip ── */
-.muni { margin-top: 3.6rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-2); padding: 1rem 0; overflow: hidden; }
+.muni { margin-top: 3.6rem; border-top: 1px solid var(--card-line); border-bottom: 1px solid var(--card-line); background: transparent; padding: 1.6rem 0; overflow: hidden; }
 .muni-label { text-align: center; color: var(--muted); margin-bottom: 0.7rem; }
-.muni-track { display: flex; gap: 0.7rem; width: max-content; animation: marquee 36s linear infinite; }
+.muni-track { display: flex; align-items: center; gap: 1.3rem; width: max-content; animation: marquee 36s linear infinite; }
 .muni-chip {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; white-space: nowrap;
-  color: var(--navy); background: #fff; padding: 0.42rem 0.9rem 0.42rem 0.6rem; border-radius: 100px;
-  box-shadow: inset 0 0 0 1px var(--line);
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  height: 64px; padding: 0 1.3rem; border-radius: 14px;
+  background: rgba(244,247,250,0.9);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+  opacity: 0.82; transition: opacity 0.25s ease, transform 0.25s ease;
 }
-.muni-chip img { width: 20px; height: 20px; object-fit: contain; }
+.muni-chip img { height: 38px; width: auto; object-fit: contain; }
+.muni-chip:hover { opacity: 1; transform: translateY(-4px); }
+.muni:hover .muni-track { animation-play-state: paused; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ── Sections ── */
 .padsec { padding: 4.5rem 0 0; }
-.pain-num { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: 2.6rem; line-height: 1; color: var(--navy); }
-.pain-num .suffix { font-size: 0.42em; color: var(--ink-2); font-weight: 600; margin-left: 0.15rem; }
+.pain-num { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: 2.6rem; line-height: 1; color: #fff; }
+.pain-num .suffix { font-size: 0.42em; color: #ff9a52; font-weight: 600; margin-left: 0.15rem; }
 .pain-label { margin-top: 0.55rem; font-size: 0.88rem; color: var(--ink-2); line-height: 1.5; }
 .cardgrid.four { grid-template-columns: repeat(4, 1fr); }
 
 .browser {
-  margin-top: 2.2rem; background: #fff; border-radius: 12px; overflow: hidden;
-  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
-  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
-  box-shadow: 8px 8px 0 rgba(27,58,92,0.1);
+  margin-top: 2.2rem; background: #0b1f38; border-radius: 14px; overflow: hidden;
+  border-top: 1px solid var(--card-line); border-right: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line); border-left: 1px solid var(--card-line);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 40px 80px rgba(0,0,0,0.4);
 }
-.browser-chrome { display: flex; align-items: center; gap: 0.9rem; background: var(--navy); padding: 0.6rem 1rem; }
+.browser-chrome { display: flex; align-items: center; gap: 0.9rem; background: rgba(255,255,255,0.05); border-bottom: 1px solid var(--card-line); padding: 0.6rem 1rem; }
 .bc-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.28); display: inline-block; margin-right: 4px; }
 .bc-url { flex: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); border-radius: 6px; padding: 0.3rem 0.9rem; }
 .browser video { width: 100%; height: auto; display: block; }
 
-.sheet {
-  margin-top: 2.2rem; background: var(--sheet); border-radius: 4px; overflow: hidden;
-  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
-  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
-  box-shadow: 8px 8px 0 rgba(27,58,92,0.1);
-  background-image: linear-gradient(rgba(20,48,79,0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(20,48,79,0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* ── Report flow (the eight sections, connected glass cards) ── */
+.report-flow { position: relative; margin-top: 2.6rem; padding-left: 44px; }
+.report-flow::before {
+  content: ''; position: absolute; left: 18px; top: 14px; bottom: 14px; width: 2px; border-radius: 2px;
+  background: rgba(255,255,255,0.12);
 }
-.sheet-bar { background: var(--navy); color: #f4f2ed; display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 1.3rem; gap: 1rem; }
-.sheet-bar .mono { font-size: 0.66rem; letter-spacing: 0.1em; }
-.sheet-grid { display: grid; grid-template-columns: 1fr 1fr; }
-.sheet-item { display: flex; gap: 0.95rem; padding: 1.25rem 1.3rem; border-bottom: 1px solid rgba(27,58,92,0.15); }
-.sheet-item:nth-child(odd) { border-right: 1px solid rgba(27,58,92,0.15); }
-.sheet-idx { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; color: var(--accent); white-space: nowrap; padding-top: 0.2rem; }
-.sheet-item h3 { font-size: 0.98rem; font-weight: 700; }
-.sheet-item p { margin-top: 0.3rem; font-size: 0.86rem; line-height: 1.55; color: var(--ink-2); }
-.sheet-tb { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1.5px solid var(--navy); }
-.sheet-tb-cell { padding: 0.8rem 1.3rem; border-right: 1px solid rgba(27,58,92,0.15); }
-.sheet-tb-cell:last-child { border-right: none; }
-.sheet-tb-k { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.sheet-tb-v { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--navy); margin-top: 0.25rem; }
+.flow-fill {
+  position: absolute; left: 18px; top: 14px; width: 2px; height: 0; border-radius: 2px;
+  background: linear-gradient(180deg, #ff6a13, #ff9a52);
+  box-shadow: 0 0 14px rgba(255,106,19,0.65); z-index: 1;
+  transition: height 0.12s linear;
+}
+.rcard {
+  position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 0.6rem 1.4rem;
+  background: var(--card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--card-line); border-right: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line); border-left: 1px solid var(--card-line);
+  border-radius: 14px; padding: 1.1rem 1.4rem; margin-bottom: 0.85rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18), 0 16px 36px rgba(0,0,0,0.26);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s ease;
+}
+.rcard:hover { transform: translateX(5px); background: rgba(255,255,255,0.07); box-shadow: 0 3px 8px rgba(0,0,0,0.22), 0 22px 46px rgba(0,0,0,0.36); }
+.rcard-node {
+  position: absolute; left: -34px; top: 50%; transform: translateY(-50%);
+  width: 14px; height: 14px; border-radius: 50%; z-index: 2;
+  background: #0f2740; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.25);
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.rcard.in .rcard-node { background: var(--accent); box-shadow: inset 0 0 0 2px #ff9a52, 0 0 16px rgba(255,106,19,0.8); transform: translateY(-50%) scale(1.15); }
+.rcard::after {
+  content: ''; position: absolute; left: -22px; top: 50%; width: 18px; height: 2px; transform: translateY(-50%);
+  background: var(--card-line); transition: background 0.4s ease;
+}
+.rcard.in::after { background: var(--accent); }
+.rcard-head { display: flex; align-items: baseline; gap: 0.7rem; }
+.rcard-idx { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; color: var(--accent); flex-shrink: 0; }
+.rcard-title { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.02em; font-size: 1.22rem; color: #fff; }
+.rcard-desc { margin-top: 0.3rem; font-size: 0.92rem; line-height: 1.5; color: var(--ink-2); max-width: 56ch; }
+.rcard-tag {
+  text-align: right; white-space: nowrap;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); line-height: 1.5;
+}
+.rcard-tag b { display: block; color: #ff9a52; font-size: 0.78rem; letter-spacing: 0.02em; margin-top: 0.2rem; text-transform: none; }
+.rrow-payoff {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+  margin-top: 2.4rem; padding: 1.8rem 2rem; border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid var(--card-line); border-right: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line); border-left: 1px solid var(--card-line);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18), 0 20px 46px rgba(0,0,0,0.28);
+  position: relative; overflow: hidden;
+}
+.rrow-payoff::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px 200px at 100% 50%, rgba(255,106,19,0.14), transparent 70%); }
+.rrow-payoff-l { position: relative; z-index: 1; font-size: 1.08rem; line-height: 1.5; color: var(--ink-2); max-width: 44ch; }
+.rrow-payoff-l strong { color: #fff; }
+.rrow-payoff-r { position: relative; z-index: 1; text-align: right; }
+.rrow-payoff-r span { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+.rrow-payoff-r b { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.03em; font-size: 2.6rem; color: #fff; }
 
-.compress { margin-top: 4.5rem; background: var(--navy); color: #fff; text-align: center; padding: 2.2rem 4vw; }
-.compress p { font-size: clamp(1.05rem, 2vw, 1.4rem); font-weight: 500; max-width: 46ch; margin: 0 auto; }
-.compress strong { color: #ffb98c; }
+.compress { margin-top: 4.5rem; background: rgba(255,255,255,0.03); border-top: 1px solid var(--card-line); border-bottom: 1px solid var(--card-line); color: #fff; text-align: center; padding: 3rem 4vw; position: relative; overflow: hidden; }
+.compress::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(640px 220px at 50% 50%, rgba(255,106,19,0.14), transparent 70%); }
+.compress p { position: relative; z-index: 1; font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 500; max-width: 42ch; margin: 0 auto; line-height: 1.5; }
+.compress strong { color: #ff9a52; }
 
 /* ── Demo ── */
 .demo-chips { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; margin-top: 1.6rem; }
 .demo-chips-label { font-size: 0.85rem; color: var(--muted); }
 .demo-chip {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--navy); background: #fff;
-  border: none; box-shadow: inset 0 0 0 1px var(--line); padding: 0.55rem 0.9rem; border-radius: 100px;
-  cursor: pointer; min-height: 40px; transition: box-shadow 0.15s ease;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #fff; background: rgba(255,255,255,0.06);
+  border: none; box-shadow: inset 0 0 0 1px var(--card-line); padding: 0.55rem 0.9rem; border-radius: 100px;
+  cursor: pointer; min-height: 40px; transition: box-shadow 0.15s ease, background 0.15s ease;
 }
-.demo-chip:hover { box-shadow: inset 0 0 0 1.5px var(--navy); }
+.demo-chip:hover { background: rgba(255,255,255,0.12); box-shadow: inset 0 0 0 1.5px var(--accent); }
 .demo-input-row {
-  display: flex; margin-top: 1.1rem; max-width: 620px; background: #fff;
-  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
-  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
-  border-radius: 12px; overflow: hidden; box-shadow: 6px 6px 0 rgba(27,58,92,0.1);
+  display: flex; margin-top: 1.1rem; max-width: 620px; background: rgba(255,255,255,0.05);
+  border-top: 1px solid var(--card-line); border-right: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line); border-left: 1px solid var(--card-line);
+  border-radius: 14px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 24px 50px rgba(0,0,0,0.3);
 }
-.demo-input-field { flex: 1; border: none; outline: none; font-family: 'JetBrains Mono', monospace; font-size: 16px; padding: 0.9rem 1rem; color: var(--ink); background: transparent; min-width: 0; }
+.demo-input-field { flex: 1; border: none; outline: none; font-family: 'JetBrains Mono', monospace; font-size: 16px; padding: 0.9rem 1rem; color: #fff; background: transparent; min-width: 0; }
+.demo-input-field::placeholder { color: rgba(255,255,255,0.4); }
 .demo-scan-btn { background: var(--accent); color: #fff; border: none; padding: 0 1.5rem; font-family: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; min-height: 48px; }
 .demo-scan-btn:disabled { opacity: 0.6; cursor: default; }
 .demo-scanning { display: none; margin-top: 1.2rem; max-width: 620px; }
@@ -362,13 +422,13 @@ h2.sec em { color: var(--accent); }
 .demo-results { display: none; flex-direction: column; gap: 0.5rem; margin-top: 1.3rem; max-width: 620px; }
 .demo-result-row {
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-  background: #fff; border-radius: 8px; padding: 0.7rem 1rem;
-  box-shadow: inset 0 0 0 1px var(--line);
+  background: rgba(255,255,255,0.05); border-radius: 10px; padding: 0.75rem 1rem;
+  box-shadow: inset 0 0 0 1px var(--card-line);
 }
-.dr-label { font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+.dr-label { font-size: 0.88rem; font-weight: 600; color: #fff; }
 .dr-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.04em; white-space: nowrap; color: var(--ink-2); }
 .dr-warn { color: var(--accent); font-weight: 600; }
-.dr-ok { color: var(--navy); font-weight: 600; }
+.dr-ok { color: #8fb6e0; font-weight: 600; }
 .demo-complete { margin-top: 0.7rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .demo-complete p { font-size: 0.82rem; color: var(--muted); }
 .demo-complete .btn-accent { min-height: 44px; padding: 0.6rem 1.25rem; font-size: 0.88rem; }
@@ -382,14 +442,16 @@ h2.sec em { color: var(--accent); }
 /* ── Moat ── */
 .moat-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.6rem; align-items: start; }
 .moat-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-.moat-item { display: flex; gap: 0.9rem; background: #fff; border-radius: 10px; padding: 1.1rem 1.2rem; box-shadow: inset 0 0 0 1px var(--line), 4px 4px 0 rgba(27,58,92,0.06); }
+.moat-item { display: flex; gap: 0.9rem; background: var(--card); border-radius: 12px; padding: 1.1rem 1.2rem; border-top: 1px solid var(--card-line); border-right: 1px solid var(--card-line); border-bottom: 1px solid var(--card-line); border-left: 1px solid var(--card-line); box-shadow: 0 2px 6px rgba(0,0,0,0.18), 0 16px 36px rgba(0,0,0,0.26); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s ease; }
+.moat-item:hover { transform: translateX(4px); background: rgba(255,255,255,0.07); box-shadow: 0 3px 8px rgba(0,0,0,0.22), 0 22px 46px rgba(0,0,0,0.36); }
+.moat-item h3 { color: #fff; }
 .moat-item .tick { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 700; }
 .moat-item h3 { font-size: 0.98rem; font-weight: 700; }
 .moat-item p { margin-top: 0.25rem; font-size: 0.86rem; line-height: 1.55; color: var(--ink-2); }
 
 /* ── Pricing ── */
-.price-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 420px)); justify-content: center; gap: 1.3rem; margin-top: 2.4rem; }
-.price-big { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: 2.8rem; color: var(--navy); }
+.price-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; margin-top: 2.4rem; }
+.price-big { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.04em; font-size: 2.8rem; color: #fff; }
 .price-big .period { font-size: 0.95rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
 .price-feats { margin-top: 1rem; list-style: none; }
 .price-feats li { font-size: 0.88rem; color: var(--ink-2); padding: 0.3rem 0 0.3rem 1.3rem; position: relative; }
@@ -397,9 +459,9 @@ h2.sec em { color: var(--accent); }
 .price-cta { margin-top: auto; padding-top: 1.3rem; }
 .price-cta .btn-accent, .price-cta .btn-ghost { width: 100%; }
 .vs { margin-top: 2.6rem; }
-.vs-table { width: 100%; border-collapse: collapse; margin-top: 1.4rem; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: inset 0 0 0 1.5px var(--navy), 6px 6px 0 rgba(27,58,92,0.08); }
-.vs-table th { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: left; background: var(--navy); color: #fff; padding: 0.75rem 1.1rem; }
-.vs-table td { padding: 0.75rem 1.1rem; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--ink-2); }
+.vs-table { width: 100%; border-collapse: collapse; margin-top: 1.4rem; background: var(--card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 12px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--card-line), 0 4px 12px rgba(0,0,0,0.22), 0 24px 50px rgba(0,0,0,0.3); }
+.vs-table th { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: left; background: rgba(255,255,255,0.07); color: #fff; padding: 0.8rem 1.1rem; border-bottom: 1px solid var(--card-line); }
+.vs-table td { padding: 0.75rem 1.1rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: var(--ink-2); }
 .vs-table td:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .vs-table .total td { font-weight: 700; color: var(--ink); background: var(--accent-soft); }
 .vs-punch { margin-top: 1.3rem; font-size: 0.98rem; color: var(--ink-2); max-width: 60ch; }
@@ -407,7 +469,8 @@ h2.sec em { color: var(--accent); }
 
 /* ── FAQ ── */
 .faq-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; max-width: 820px; }
-.faq-item { background: #fff; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line), 4px 4px 0 rgba(27,58,92,0.05); }
+.faq-item { background: var(--card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 12px; box-shadow: inset 0 0 0 1px var(--card-line), 0 2px 6px rgba(0,0,0,0.18), 0 10px 26px rgba(0,0,0,0.24); transition: box-shadow 0.25s ease, background 0.25s ease; }
+.faq-item[open], .faq-item:hover { background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 1px var(--card-line), 0 3px 8px rgba(0,0,0,0.22), 0 18px 40px rgba(0,0,0,0.32); }
 .faq-item summary {
   list-style: none; cursor: pointer; display: flex; align-items: center; gap: 0.9rem;
   padding: 1rem 1.2rem; font-weight: 600; font-size: 0.96rem; min-height: 44px;
@@ -417,10 +480,12 @@ h2.sec em { color: var(--accent); }
 .faq-item summary::after { content: '+'; margin-left: auto; font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 1rem; }
 .faq-item[open] summary::after { content: '–'; }
 .faq-body { padding: 0 1.2rem 1.1rem 3.1rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-2); }
-.faq-body a { color: var(--navy); }
+.faq-body a { color: #ff9a52; }
 
 /* ── Final CTA + footer ── */
-.cta { margin-top: 5rem; background: var(--navy); color: #fff; text-align: center; padding: 4.5rem 4vw 5rem; }
+.cta { position: relative; overflow: hidden; margin-top: 5rem; background: transparent; border-top: 1px solid var(--card-line); color: #fff; text-align: center; padding: 5.5rem 4vw 6rem; }
+.cta::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(760px 360px at 50% 8%, rgba(255,106,19,0.18), transparent 68%); }
+.cta > * { position: relative; z-index: 1; }
 .cta-stamp {
   display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.14em;
   color: #ffb98c; padding: 0.4rem 0.85rem; border-radius: 5px; font-weight: 600;
@@ -449,18 +514,18 @@ footer .logo { color: #fff; }
 
 /* ── Waitlist modal ── */
 .modal-backdrop {
-  position: fixed; inset: 0; z-index: 30; background: rgba(15,30,48,0.55);
+  position: fixed; inset: 0; z-index: 30; background: rgba(4,12,24,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   display: flex; align-items: center; justify-content: center; padding: 1rem;
   opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s;
 }
 .modal-backdrop.open { opacity: 1; visibility: visible; }
 .modal {
-  position: relative; background: #fff; border-radius: 14px; width: min(520px, 100%);
+  position: relative; background: #0d2135; border-radius: 16px; width: min(520px, 100%);
   max-height: calc(100dvh - 2rem); overflow-y: auto; -webkit-overflow-scrolling: touch;
   padding: 2.2rem 2rem 2rem;
-  border-top: 1.5px solid var(--navy); border-right: 1.5px solid var(--navy);
-  border-bottom: 1.5px solid var(--navy); border-left: 1.5px solid var(--navy);
-  box-shadow: 8px 8px 0 rgba(18,42,67,0.35);
+  border-top: 1px solid var(--card-line); border-right: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line); border-left: 1px solid var(--card-line);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
   transform: translateY(14px) scale(0.98); transition: transform 0.3s ease;
 }
 .modal-backdrop.open .modal { transform: none; }
@@ -476,20 +541,21 @@ footer .logo { color: #fff; }
 .form-field .req { color: var(--accent); }
 .form-field .opt { color: var(--muted); font-weight: 400; }
 .form-field input, .form-field select {
-  width: 100%; font-family: inherit; font-size: 16px; color: var(--ink);
-  padding: 0.65rem 0.8rem; border-radius: 8px; background: #fff;
-  border-top: 1.5px solid var(--line); border-right: 1.5px solid var(--line);
-  border-bottom: 1.5px solid var(--line); border-left: 1.5px solid var(--line);
-  outline: none; transition: border-color 0.15s ease;
+  width: 100%; font-family: inherit; font-size: 16px; color: #fff;
+  padding: 0.7rem 0.85rem; border-radius: 9px; background: rgba(255,255,255,0.05);
+  border-top: 1px solid var(--card-line); border-right: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line); border-left: 1px solid var(--card-line);
+  outline: none; transition: border-color 0.15s ease, background 0.15s ease;
 }
-.form-field input:focus, .form-field select:focus { border-color: var(--navy); }
+.form-field input::placeholder { color: rgba(255,255,255,0.38); }
+.form-field input:focus, .form-field select:focus { border-color: var(--accent); background: rgba(255,255,255,0.08); }
 .form-error { display: none; font-size: 0.74rem; color: var(--accent); margin-top: 0.3rem; }
 .form-field.error input, .form-field.error select { border-color: var(--accent); }
 .form-field.error .form-error { display: block; }
 .modal-submit {
   width: 100%; min-height: 48px; background: var(--accent); color: #fff; border: none;
   padding: 0.85rem 1.5rem; border-radius: 10px; font-family: inherit; font-size: 1rem; font-weight: 700;
-  cursor: pointer; margin-top: 0.4rem; box-shadow: 4px 4px 0 rgba(27,58,92,0.15);
+  cursor: pointer; margin-top: 0.4rem; box-shadow: 0 8px 24px rgba(255,106,19,0.3);
 }
 .modal-submit:disabled { opacity: 0.6; cursor: default; }
 .modal-success { display: none; text-align: center; padding: 1.5rem 0 0.5rem; }
@@ -525,17 +591,52 @@ footer .logo { color: #fff; }
 .see-more.hidden { opacity: 0; visibility: hidden; }
 @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(5px); } }
 
+/* ── Hero dark-bg overrides ── */
+.hero .hero-eyebrow { color: rgba(255,255,255,0.45); opacity: 1; }
+.hero .hero-eyebrow b { color: var(--accent); }
+.hero .hero-h1 { color: #fff; }
+.hero .hero-sub { color: rgba(255,255,255,0.72); }
+.hero .hero-sub strong { color: #fff; }
+.hero .hstat-num { color: #fff; }
+.hero .hstat-label { color: rgba(255,255,255,0.45); }
+.hero .hstat-sep { background: rgba(255,255,255,0.14); }
+.hero .hero-note { color: rgba(255,255,255,0.4); }
+.hero .hero-stats { justify-content: flex-start; margin: 2.2rem 0 0; max-width: none; }
+.hero .plus-more { color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.08); border-top-color: rgba(255,255,255,0.18); border-right-color: rgba(255,255,255,0.18); border-bottom-color: rgba(255,255,255,0.18); border-left-color: rgba(255,255,255,0.18); }
+.hero .plus-more:hover { background: rgba(255,255,255,0.18); color: #fff; }
+.hero .btn-ghost { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); border-top-color: rgba(255,255,255,0.3); border-right-color: rgba(255,255,255,0.3); border-bottom-color: rgba(255,255,255,0.3); border-left-color: rgba(255,255,255,0.3); }
+.hero .btn-ghost:hover { background: #fff; color: var(--navy); border-top-color: #fff; border-right-color: #fff; border-bottom-color: #fff; border-left-color: #fff; }
+.hero .btn-accent { box-shadow: 0 10px 34px rgba(255,106,19,0.4); }
+.hero .hero-cta { justify-content: flex-start; }
+
+/* ── Section heading accents on the dark canvas ── */
+h2.sec em { text-shadow: 0 0 34px rgba(255,106,19,0.35); }
+.eyebrow b { text-shadow: 0 0 20px rgba(255,106,19,0.4); }
+.pain-label { color: var(--ink-2); }
+
+/* ── Persona cards (Who it's for) ── */
+.persona-ico { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 1rem; background: rgba(255,106,19,0.14); box-shadow: inset 0 0 0 1px rgba(255,106,19,0.25); }
+.persona-ico svg { width: 26px; height: 26px; stroke: var(--accent); }
+.persona-role { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9a52; margin-bottom: 0.55rem; font-weight: 600; }
+
 /* ── Mobile / iOS ── */
 @media (max-width: 768px) {
   .cardgrid, .cardgrid.four, .price-cards { grid-template-columns: 1fr; }
-  .sheet-grid { grid-template-columns: 1fr; }
-  .sheet-item:nth-child(odd) { border-right: none; }
-  .sheet-tb { grid-template-columns: repeat(2, 1fr); }
-  .sheet-tb-cell:nth-child(2) { border-right: none; }
+  .report-flow { padding-left: 34px; }
+  .report-flow::before, .flow-fill { left: 13px; }
+  .rcard { grid-template-columns: 1fr; gap: 0.3rem; padding: 1rem 1.1rem; }
+  .rcard-node { left: -26px; }
+  .rcard::after { left: -16px; width: 14px; }
+  .rcard-tag { text-align: left; margin-top: 0.6rem; }
+  .rrow-payoff { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.5rem; }
+  .rrow-payoff-r { text-align: left; }
   .moat-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-  .hero { padding-top: 2.4rem; }
+  .hero { grid-template-columns: 1fr !important; text-align: center !important; padding: 2.4rem 4vw 2.6rem; }
+  .hero-illo { display: none !important; }
   .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero .hero-cta { align-items: stretch; }
   .hero-stats { gap: 0; }
+  .hero .hero-stats { justify-content: center !important; }
   .hstat { padding: 0 0.8rem; }
   .hstat-sep { height: 24px; }
   .nav-links { display: none; }
@@ -548,6 +649,22 @@ footer .logo { color: #fff; }
   .info-tip .tip-box { left: auto; right: -0.5rem; transform: translateY(4px); }
   .info-tip:hover .tip-box, .info-tip:focus .tip-box { transform: translateY(0); }
   .info-tip .tip-box::after { left: auto; right: 0.7rem; transform: none; }
+
+  /* Minimal mobile: tighter rhythm, less text */
+  .padsec { padding-top: 3rem; }
+  .sec-sub { font-size: 0.94rem; margin-top: 0.75rem; }
+  .cardgrid { margin-top: 1.6rem; gap: 0.9rem; }
+  .scard-body { padding: 1.15rem 1.15rem 1.2rem; }
+  .muni { margin-top: 2.4rem; }
+  .report-flow { margin-top: 1.6rem; }
+  .rcard { padding: 0.9rem 1.1rem; margin-bottom: 0.65rem; }
+  .rcard-desc { display: none; }
+  .rcard-title { font-size: 1.08rem; }
+  .rcard-tag { margin-top: 0.45rem; }
+  .rrow-payoff { margin-top: 1.5rem; }
+  .compress { margin-top: 3rem; padding: 2.2rem 4vw; }
+  .cta { margin-top: 3rem; padding: 3.6rem 4vw 4rem; }
+  .vs { margin-top: 1.8rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-h1, .hero-sub, .hero-cta, .hero-note, .hero-stats { animation: none !important; opacity: 1 !important; }
@@ -581,22 +698,82 @@ footer .logo { color: #fff; }
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-eyebrow mono">PreBuildIQ &middot; Pre-development intelligence &middot; <b>First in Canada</b></div>
-  <h1 class="hero-h1 display">Every approval your site needs. <span style="color:var(--accent);">In 60 seconds.</span></h1>
-  <p class="hero-sub">Enter any Canadian address. Get the <strong>zoning verdict, every approval body, and every required study</strong> in 60 seconds, cited to the bylaw section, at a fraction of consultant cost. <a class="plus-more" href="#inside">+ 5 more sections in every report &#x2193;</a></p>
-  <div class="hero-cta">
-    <a class="btn-accent" href="https://prebuildiq.app">Get my report &#x2192;</a>
-    <a class="btn-ghost" href="#inside">See what is in it</a>
+  <div class="hero-content">
+    <div class="hero-eyebrow mono">PreBuildIQ &middot; Pre-development intelligence &middot; <b>First in Canada</b></div>
+    <h1 class="hero-h1 display">Every approval your site needs. <span style="color:var(--accent);">In 60 seconds.</span></h1>
+    <p class="hero-sub">Enter any Canadian address. Get the <strong>zoning verdict, every approval body, and every required study</strong> in 60 seconds, cited to the bylaw section, at a fraction of consultant cost. <a class="plus-more" href="#inside">+ 5 more sections in every report &#x2193;</a></p>
+    <div class="hero-cta">
+      <a class="btn-accent" href="https://prebuildiq.app">Get my report &#x2192;</a>
+      <a class="btn-ghost" href="#inside">See what is in it</a>
+    </div>
+    <div class="hero-note">No subscription. Credits never expire.</div>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-num">43</span><span class="hstat-label">Municipalities</span></div>
+      <div class="hstat-sep"></div>
+      <div class="hstat"><span class="hstat-num">60s</span><span class="hstat-label">Turnaround</span></div>
+      <div class="hstat-sep"></div>
+      <div class="hstat"><span class="hstat-num">8</span><span class="hstat-label">Report sections</span></div>
+      <div class="hstat-sep"></div>
+      <div class="hstat"><span class="hstat-num">$1,499</span><span class="hstat-label">Per report</span></div>
+    </div>
   </div>
-  <div class="hero-note">No subscription. Credits never expire.</div>
-  <div class="hero-stats">
-    <div class="hstat"><span class="hstat-num">43</span><span class="hstat-label">Municipalities</span></div>
-    <div class="hstat-sep"></div>
-    <div class="hstat"><span class="hstat-num">60s</span><span class="hstat-label">Turnaround</span></div>
-    <div class="hstat-sep"></div>
-    <div class="hstat"><span class="hstat-num">8</span><span class="hstat-label">Report sections</span></div>
-    <div class="hstat-sep"></div>
-    <div class="hstat"><span class="hstat-num">$1,499</span><span class="hstat-label">Per report</span></div>
+  <div class="hero-illo">
+    <svg class="hero-svg" viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="hog" cx="52%" cy="45%" r="50%">
+          <stop offset="0%" stop-color="#ff6a13" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#ff6a13" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="hglow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- Glow orb behind focal building -->
+      <ellipse cx="295" cy="235" rx="130" ry="110" fill="url(#hog)"/>
+      <!-- Ground grid -->
+      <line x1="208" y1="264" x2="352" y2="336" stroke="white" stroke-opacity="0.05" stroke-width="0.75"/>
+      <line x1="172" y1="282" x2="316" y2="354" stroke="white" stroke-opacity="0.05" stroke-width="0.75"/>
+      <line x1="244" y1="246" x2="388" y2="318" stroke="white" stroke-opacity="0.05" stroke-width="0.75"/>
+      <line x1="280" y1="264" x2="172" y2="318" stroke="white" stroke-opacity="0.05" stroke-width="0.75"/>
+      <line x1="316" y1="282" x2="208" y2="336" stroke="white" stroke-opacity="0.05" stroke-width="0.75"/>
+      <line x1="352" y1="300" x2="244" y2="354" stroke="white" stroke-opacity="0.05" stroke-width="0.75"/>
+      <!-- Building 4 — back small -->
+      <polygon points="316,282 280,300 280,228 316,210" fill="#091928"/>
+      <polygon points="280,300 244,282 244,210 280,228" fill="#07151f"/>
+      <polygon points="280,192 316,210 280,228 244,210" fill="#0d2240"/>
+      <!-- Building 3 — back right -->
+      <polygon points="352,300 316,318 316,174 352,156" fill="#0a1f38"/>
+      <polygon points="316,318 280,300 280,156 316,174" fill="#091628"/>
+      <polygon points="316,138 352,156 316,174 280,156" fill="#122a45"/>
+      <!-- Building 2 — left -->
+      <polygon points="280,300 244,318 244,210 280,192" fill="#0f2642"/>
+      <polygon points="244,318 208,300 208,192 244,210" fill="#0b1f38"/>
+      <polygon points="244,174 280,192 244,210 208,192" fill="#17304f"/>
+      <!-- Building 1 — FOCAL (orange) -->
+      <polygon points="316,318 280,336 280,156 316,138" fill="#c95500"/>
+      <polygon points="280,336 244,318 244,138 280,156" fill="#b04a00"/>
+      <polygon points="280,120 316,138 280,156 244,138" fill="#ff6a13" filter="url(#hglow)"/>
+      <polyline points="280,120 316,138 280,156 244,138 280,120" fill="none" stroke="#ff8c3f" stroke-opacity="0.65" stroke-width="1"/>
+      <!-- Building 5 — front right small -->
+      <polygon points="352,336 316,354 316,282 352,264" fill="#091928"/>
+      <polygon points="316,354 280,336 280,264 316,282" fill="#07151f"/>
+      <polygon points="316,246 352,264 316,282 280,264" fill="#0d2240"/>
+      <!-- Annotation: YOUR SITE -->
+      <line x1="308" y1="128" x2="368" y2="80" stroke="#ff6a13" stroke-opacity="0.5" stroke-width="0.75" stroke-dasharray="4,3"/>
+      <circle cx="368" cy="80" r="2.5" fill="#ff6a13" fill-opacity="0.7"/>
+      <text x="374" y="84" font-family="'JetBrains Mono',monospace" font-size="8" fill="#ff6a13" fill-opacity="0.85" letter-spacing="1.5">YOUR SITE</text>
+      <!-- Annotation: 43 MUNIS -->
+      <line x1="244" y1="175" x2="158" y2="130" stroke="white" stroke-opacity="0.2" stroke-width="0.75" stroke-dasharray="4,3"/>
+      <circle cx="158" cy="130" r="2" fill="white" fill-opacity="0.25"/>
+      <text x="62" y="134" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="white" fill-opacity="0.4" letter-spacing="1">43 MUNIS</text>
+      <!-- Annotation: TRCA -->
+      <line x1="352" y1="295" x2="420" y2="255" stroke="white" stroke-opacity="0.15" stroke-width="0.75" stroke-dasharray="4,3"/>
+      <circle cx="420" cy="255" r="2" fill="white" fill-opacity="0.2"/>
+      <text x="395" y="270" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="white" fill-opacity="0.35" letter-spacing="1">TRCA</text>
+      <!-- Glow ring on focal building top -->
+      <ellipse cx="280" cy="132" rx="24" ry="13" fill="none" stroke="#ff6a13" stroke-width="1.5" stroke-opacity="0.3"/>
+    </svg>
   </div>
 </section>
 
@@ -609,7 +786,7 @@ footer .logo { color: #fff; }
         <div class="big"><span class="count" data-to="60">0</span><span class="accent">s</span></div>
         <span class="big-unit">from address to full report</span>
         <h3>Answers while the deal is still alive.</h3>
-        <p>Site diligence that takes <strong>weeks of bylaw PDFs and unreturned planner calls</strong> comes back before the meeting ends. Run it in the room, on the property you are discussing.</p>
+        <p>Diligence that takes <strong>weeks of bylaw PDFs and unreturned planner calls</strong> comes back before the meeting ends. Run it in the room.</p>
         <div class="foot">43 municipalities &middot; 188+ approval bodies</div>
       </div>
     </div>
@@ -640,7 +817,7 @@ footer .logo { color: #fff; }
 <section class="muni">
   <div class="muni-label mono">Covering Ontario &middot; new municipalities added monthly</div>
   <div class="muni-track" id="muniTrack">
-    <span class="muni-chip"><img src="logos/toronto.png" alt="">Toronto</span><span class="muni-chip"><img src="logos/mississauga.png" alt="">Mississauga</span><span class="muni-chip"><img src="logos/brampton.png" alt="">Brampton</span><span class="muni-chip"><img src="logos/vaughan.png" alt="">Vaughan</span><span class="muni-chip"><img src="logos/markham.png" alt="">Markham</span><span class="muni-chip"><img src="logos/hamilton.svg" alt="">Hamilton</span><span class="muni-chip"><img src="logos/richmond-hill.svg" alt="">Richmond Hill</span><span class="muni-chip"><img src="logos/oakville.png" alt="">Oakville</span><span class="muni-chip"><img src="logos/burlington.svg" alt="">Burlington</span><span class="muni-chip"><img src="logos/milton.svg" alt="">Milton</span><span class="muni-chip"><img src="logos/newmarket.svg" alt="">Newmarket</span><span class="muni-chip"><img src="logos/aurora.svg" alt="">Aurora</span><span class="muni-chip"><img src="logos/pickering.svg" alt="">Pickering</span><span class="muni-chip"><img src="logos/ajax.svg" alt="">Ajax</span><span class="muni-chip"><img src="logos/whitby.svg" alt="">Whitby</span><span class="muni-chip"><img src="logos/oshawa.svg" alt="">Oshawa</span><span class="muni-chip"><img src="logos/kingston.png" alt="">Kingston</span><span class="muni-chip"><img src="logos/peterborough.png" alt="">Peterborough</span><span class="muni-chip"><img src="logos/greater-sudbury.png" alt="">Greater Sudbury</span>
+    <span class="muni-chip"><img src="logos/toronto.png" alt="Toronto"></span><span class="muni-chip"><img src="logos/mississauga.png" alt="Mississauga"></span><span class="muni-chip"><img src="logos/brampton.png" alt="Brampton"></span><span class="muni-chip"><img src="logos/vaughan.png" alt="Vaughan"></span><span class="muni-chip"><img src="logos/markham.png" alt="Markham"></span><span class="muni-chip"><img src="logos/hamilton.svg" alt="Hamilton"></span><span class="muni-chip"><img src="logos/richmond-hill.svg" alt="Richmond Hill"></span><span class="muni-chip"><img src="logos/oakville.png" alt="Oakville"></span><span class="muni-chip"><img src="logos/burlington.svg" alt="Burlington"></span><span class="muni-chip"><img src="logos/milton.svg" alt="Milton"></span><span class="muni-chip"><img src="logos/newmarket.svg" alt="Newmarket"></span><span class="muni-chip"><img src="logos/aurora.svg" alt="Aurora"></span><span class="muni-chip"><img src="logos/pickering.svg" alt="Pickering"></span><span class="muni-chip"><img src="logos/ajax.svg" alt="Ajax"></span><span class="muni-chip"><img src="logos/whitby.svg" alt="Whitby"></span><span class="muni-chip"><img src="logos/oshawa.svg" alt="Oshawa"></span><span class="muni-chip"><img src="logos/kingston.png" alt="Kingston"></span><span class="muni-chip"><img src="logos/peterborough.png" alt="Peterborough"></span><span class="muni-chip"><img src="logos/greater-sudbury.png" alt="Greater Sudbury"></span>
   </div>
 </section>
 
@@ -649,7 +826,7 @@ footer .logo { color: #fff; }
   <div class="wrap">
     <span class="eyebrow mono"><b>01</b> / The Problem</span>
     <h2 class="sec display">Canadian developers are flying blind into a <em class="italic-serif">$300B</em> market.</h2>
-    <p class="sec-sub">A developer buys a site. Three weeks of research across 6 agencies. <strong>$25K to a planning consultant.</strong> The 1st submission still comes back rejected over one missing study, and the resubmission takes 4 months at $43K/month carrying cost, <strong>before a shovel hits dirt.</strong></p>
+    <p class="sec-sub">Buy a site. Three weeks of research, <strong>$25K to a consultant,</strong> and the 1st submission still comes back rejected over one missing study. The resubmission costs four months at $43K/month, <strong>before a shovel hits dirt.</strong></p>
     <div class="cardgrid">
       <div class="scard reveal"><div class="scard-tab"><span class="word">Timeline</span></div><div class="scard-body">
         <div class="pain-num"><span class="count" data-to="24">0</span><span class="suffix">months</span></div>
@@ -689,33 +866,61 @@ footer .logo { color: #fff; }
 <section class="padsec" id="inside">
   <div class="wrap">
     <span class="eyebrow mono"><b>03</b> / Inside the Report</span>
-    <h2 class="sec display">Eight sections. <em class="italic-serif">None</em> of them a Google search away.</h2>
-    <p class="sec-sub">Every report reads like a drawing set: indexed, dimensioned, and cited. Assembled from <strong>zoning bylaws, municipal GIS, agency terms of reference, and planning decision records</strong> for every municipality we cover.</p>
-    <div class="sheet reveal">
-      <div class="sheet-bar"><span class="mono">PRE-DEVELOPMENT INTELLIGENCE REPORT &middot; SHEET INDEX</span><span class="mono" style="opacity:0.7;">SET A-100</span></div>
-      <div class="sheet-grid">
-        <div class="sheet-item"><span class="sheet-idx">A-00</span><div><h3>Zoning verdict</h3><p>As-of-right, minor variance, or ZBA. Read from your municipality's zoning fabric for the exact parcel, including holding provisions and overlays.</p></div></div>
-        <div class="sheet-item"><span class="sheet-idx">A-01</span><div><h3>Suitability analysis</h3><p>Every barrier between your intended use and an approvable path, ranked by severity, with the approvals, studies, weeks, and cost to clear each one.</p></div></div>
-        <div class="sheet-item"><span class="sheet-idx">A-02</span><div><h3>Agency circulation</h3><p>The full commenting list: planning, building, conservation authority, region, utilities. Who reviews your file and what each one requires.</p></div></div>
-        <div class="sheet-item"><span class="sheet-idx">A-03</span><div><h3>Required studies</h3><p>Every study your submission triggers, with the terms of reference, the consultant who produces it, market cost, and duration.</p></div></div>
-        <div class="sheet-item"><span class="sheet-idx">A-04</span><div><h3>Bylaw standards</h3><p>Setbacks, height, FSI, lot coverage, parking. Pulled from the governing bylaw and cited to the exact section.</p></div></div>
-        <div class="sheet-item"><span class="sheet-idx">A-05</span><div><h3>Building envelope</h3><p>Your maximum buildable envelope drawn to the parcel's real geometry. Plan and elevation, every setback dimensioned.</p></div></div>
-        <div class="sheet-item"><span class="sheet-idx">A-06</span><div><h3>Construction cost</h3><p>Structural, engineering, permit fees, finishes, HST. An all-in range for your project type and scale, plus the carrying cost of every month of delay.</p></div></div>
-        <div class="sheet-item"><span class="sheet-idx">A-07</span><div><h3>Nearby decisions</h3><p>How comparable applications near your site were decided: approved, refused, conditions attached. Precedent without digging through committee minutes.</p></div></div>
-      </div>
-      <div class="sheet-tb">
-        <div class="sheet-tb-cell"><div class="sheet-tb-k">Project</div><div class="sheet-tb-v">YOUR ADDRESS</div></div>
-        <div class="sheet-tb-cell"><div class="sheet-tb-k">Jurisdiction</div><div class="sheet-tb-v">43 MUNICIPALITIES</div></div>
-        <div class="sheet-tb-cell"><div class="sheet-tb-k">Turnaround</div><div class="sheet-tb-v">60 SECONDS</div></div>
-        <div class="sheet-tb-cell"><div class="sheet-tb-k">Status</div><div class="sheet-tb-v" style="color:var(--accent);">READY TO RUN</div></div>
-      </div>
+    <h2 class="sec display">What's <em class="italic-serif">included</em> in the report.</h2>
+    <p class="sec-sub">Each one is a deliverable a consultant bills for on its own. You get all eight, for any address, in 60 seconds.</p>
+    <div class="report-flow">
+      <div class="flow-fill" id="flowFill"></div>
+      <article class="rcard reveal">
+        <span class="rcard-node"></span>
+        <div class="rcard-main"><div class="rcard-head"><span class="rcard-idx">A-00</span><h3 class="rcard-title">Zoning verdict</h3></div><p class="rcard-desc">As-of-right, minor variance, or ZBA. Read from your parcel's own zoning fabric.</p></div>
+        <div class="rcard-tag">Source<b>Zoning fabric</b></div>
+      </article>
+      <article class="rcard reveal">
+        <span class="rcard-node"></span>
+        <div class="rcard-main"><div class="rcard-head"><span class="rcard-idx">A-01</span><h3 class="rcard-title">Suitability analysis</h3></div><p class="rcard-desc">Every barrier to an approvable path, ranked, with the cost and weeks to clear each.</p></div>
+        <div class="rcard-tag">Consultant rate<b>$5,000&ndash;$12,000</b></div>
+      </article>
+      <article class="rcard reveal">
+        <span class="rcard-node"></span>
+        <div class="rcard-main"><div class="rcard-head"><span class="rcard-idx">A-02</span><h3 class="rcard-title">Agency circulation</h3></div><p class="rcard-desc">Your full commenting list. Who reviews the file and what each one requires.</p></div>
+        <div class="rcard-tag">Consultant rate<b>$2,500&ndash;$4,000</b></div>
+      </article>
+      <article class="rcard reveal">
+        <span class="rcard-node"></span>
+        <div class="rcard-main"><div class="rcard-head"><span class="rcard-idx">A-03</span><h3 class="rcard-title">Required studies</h3></div><p class="rcard-desc">Every study you trigger, with its terms of reference, market cost, and duration.</p></div>
+        <div class="rcard-tag">Consultant rate<b>$3,000&ndash;$8,000</b></div>
+      </article>
+      <article class="rcard reveal">
+        <span class="rcard-node"></span>
+        <div class="rcard-main"><div class="rcard-head"><span class="rcard-idx">A-04</span><h3 class="rcard-title">Bylaw standards</h3></div><p class="rcard-desc">Setbacks, height, FSI, coverage, parking. Each cited to the exact section.</p></div>
+        <div class="rcard-tag">Source<b>Governing by-law</b></div>
+      </article>
+      <article class="rcard reveal">
+        <span class="rcard-node"></span>
+        <div class="rcard-main"><div class="rcard-head"><span class="rcard-idx">A-05</span><h3 class="rcard-title">Building envelope</h3></div><p class="rcard-desc">Your maximum buildable form, drawn to the parcel. Every setback dimensioned.</p></div>
+        <div class="rcard-tag">Source<b>Parcel geometry</b></div>
+      </article>
+      <article class="rcard reveal">
+        <span class="rcard-node"></span>
+        <div class="rcard-main"><div class="rcard-head"><span class="rcard-idx">A-06</span><h3 class="rcard-title">Construction cost</h3></div><p class="rcard-desc">An all-in build range for your project, plus the carrying cost of each month of delay.</p></div>
+        <div class="rcard-tag">Consultant rate<b>$1,500&ndash;$3,000</b></div>
+      </article>
+      <article class="rcard reveal">
+        <span class="rcard-node"></span>
+        <div class="rcard-main"><div class="rcard-head"><span class="rcard-idx">A-07</span><h3 class="rcard-title">Nearby decisions</h3></div><p class="rcard-desc">How comparable applications nearby were decided. Precedent, without the minutes.</p></div>
+        <div class="rcard-tag">Source<b>Decision records</b></div>
+      </article>
+    </div>
+    <div class="rrow-payoff reveal">
+      <div class="rrow-payoff-l">Assembled separately, these eight are a <strong>$14,000 to $31,500</strong> consultant engagement.</div>
+      <div class="rrow-payoff-r"><span>All eight, one report</span><b>$1,499</b></div>
     </div>
   </div>
 </section>
 
 <!-- ── Compression band ── -->
 <section class="compress">
-  <p>Three weeks of research. A <strong>$14,000</strong> consultant engagement. Compressed to <strong>60 seconds</strong>.</p>
+  <p>Three weeks of consultant research, back in <strong>60 seconds</strong>. Before the meeting ends.</p>
 </section>
 
 <!-- ── 04 Demo ── -->
@@ -800,27 +1005,30 @@ footer .logo { color: #fff; }
   <div class="wrap">
     <span class="eyebrow mono"><b>06</b> / Who It's For</span>
     <h2 class="sec display">Built for the people <em class="italic-serif">on the ground</em>.</h2>
-    <p class="sec-sub">Canadian developers, GCs, and architects spending weeks on research that should take minutes.</p>
+    <p class="sec-sub">Canadian developers, architects, and permit expeditors spending weeks on research that should take minutes. Here is what each gets on day one.</p>
     <div class="cardgrid">
       <div class="scard reveal">
         <div class="scard-tab"><span class="word">Developers</span></div>
         <div class="scard-body">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.75rem;display:block;"><rect x="3" y="10" width="5" height="11"/><rect x="9.5" y="6" width="5" height="15"/><rect x="16" y="13" width="5" height="8"/><line x1="1" y1="21" x2="23" y2="21"/></svg>
-          <p><strong>5&ndash;20 projects per year</strong> with no in-house planning team. Know your zoning verdict, your ZBA exposure, and your full agency circulation list <strong>before you commit capital</strong>. Not after.</p>
+          <div class="persona-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="5" height="11"/><rect x="9.5" y="6" width="5" height="15"/><rect x="16" y="13" width="5" height="8"/><line x1="1" y1="21" x2="23" y2="21"/></svg></div>
+          <div class="persona-role">5&ndash;20 projects a year, no in-house planners</div>
+          <p>Know your zoning verdict, your ZBA exposure, and your full agency circulation list <strong>before you commit capital</strong>. Not after the deposit clears.</p>
         </div>
       </div>
       <div class="scard reveal">
         <div class="scard-tab orange"><span class="word">Architects + GCs</span></div>
         <div class="scard-body">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.75rem;display:block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
-          <p>You prepare the drawings. You face the reviewing agencies. PreBuildIQ catches <strong>OBC and zoning by-law violations before the 1st submission</strong> so your commenting package comes back clean.</p>
+          <div class="persona-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+          <div class="persona-role">You draw it, you face the reviewers</div>
+          <p>PreBuildIQ catches <strong>OBC and zoning by-law violations before the 1st submission</strong>, so your commenting package comes back clean instead of flagged.</p>
         </div>
       </div>
       <div class="scard reveal">
         <div class="scard-tab solid"><span class="word">Expeditors</span></div>
         <div class="scard-body">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.75rem;display:block;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <p>Deliver <strong>same-day pre-consultation packages</strong> instead of two months of manual research. Handle more clients across more jurisdictions, without adding headcount.</p>
+          <div class="persona-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="persona-role">More files, same headcount</div>
+          <p>Deliver <strong>same-day pre-consultation packages</strong> instead of two months of manual research. Handle more clients across more jurisdictions, without hiring.</p>
         </div>
       </div>
     </div>
@@ -852,7 +1060,7 @@ footer .logo { color: #fff; }
     <span class="eyebrow mono"><b>08</b> / Pricing</span>
     <h2 class="sec display">Transparent pricing. <em class="italic-serif">Full</em> report.</h2>
     <p class="sec-sub">Pay per site. No subscription. Each address stays unlocked on your account permanently. Credits never expire.</p>
-    <div class="price-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <div class="price-cards">
       <div class="scard reveal">
         <div class="scard-tab"><span class="word">1 Report</span><span class="idx">$1,499</span></div>
         <div class="scard-body">
@@ -936,7 +1144,7 @@ footer .logo { color: #fff; }
   <h2 class="display">Stop losing months. <em class="italic-serif">Start knowing</em>.</h2>
   <p>Know every agency, every study, and every bylaw constraint before your 1st submission. Built for Canadian developers, architects, and permit expeditors.</p>
   <button class="btn-accent" data-open-waitlist>Get your report &#x2192;</button>
-  <div class="proof">3 design partners &middot; 2 signed LOIs &middot; Built in Toronto</div>
+  <div class="proof">Built in Toronto</div>
   <div class="mail">info@prebuildiq.ca</div>
 </section>
 
@@ -1056,12 +1264,25 @@ footer .logo { color: #fff; }
   const progressBar = document.getElementById('scroll-progress');
   const seeMore = document.getElementById('seeMore');
   const nav = document.getElementById('nav');
+  const flow = document.querySelector('.report-flow');
+  const flowFill = document.getElementById('flowFill');
+  function updateFlow() {
+    if (!flow || !flowFill) return;
+    const r = flow.getBoundingClientRect();
+    const ref = window.innerHeight * 0.58;
+    let prog = (ref - r.top) / r.height;
+    prog = Math.max(0, Math.min(1, prog));
+    flowFill.style.height = (prog * (r.height - 28)) + 'px';
+  }
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
     progressBar.style.width = (scrolled * 100) + '%';
     seeMore.classList.toggle('hidden', window.scrollY > 160);
     nav.classList.toggle('scrolled', window.scrollY > 20);
+    updateFlow();
   }, { passive: true });
+  window.addEventListener('resize', updateFlow, { passive: true });
+  updateFlow();
 
   /* ── Smooth scroll ── */
   function smoothScroll(targetY, duration) {
