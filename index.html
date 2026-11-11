@@ -85,7 +85,7 @@
     {
       "@type": "Question",
       "name": "What does PreBuildIQ cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "1 report is $1,499 one-time. 5-report pack is $5,499 ($1,100 per site). 10-report pack is $9,500 ($950 per site). Credits never expire. No subscription. A comparable consultant pre-application engagement runs $14,000 to $31,500." }
+      "acceptedAnswer": { "@type": "Answer", "text": "1 report is $1,499 one-time. 5-report pack is $5,499 and includes 2 free sites (7 total, $785 per site). 10-report pack is $9,500 and includes 3 free sites (13 total, $731 per site). Credits never expire. No subscription. A comparable consultant pre-application engagement runs $14,000 to $31,500." }
     }
   ]
 }
@@ -1083,11 +1083,11 @@ h2.sec em { text-shadow: 0 0 34px rgba(255,106,19,0.35); }
       <div class="scard reveal">
         <div class="scard-tab orange"><span class="word">5 Reports</span><span class="idx">RECOMMENDED</span></div>
         <div class="scard-body">
-          <div class="price-big">$5,499<span class="period"> / 5 sites</span></div>
-          <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px;">$1,100 per site</div>
-          <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">save $1,996 vs. singles</div>
+          <div class="price-big">$5,499<span class="period"> / 7 sites</span></div>
+          <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px;">$785 per site</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">2 sites free &middot; save $4,994 vs. singles</div>
           <ul class="price-feats">
-            <li>Everything in 1 Report, × 5 addresses</li>
+            <li>7 full reports (5 paid + 2 free)</li>
             <li>Credits never expire, use anytime</li>
             <li>Shareable across your team</li>
           </ul>
@@ -1097,11 +1097,11 @@ h2.sec em { text-shadow: 0 0 34px rgba(255,106,19,0.35); }
       <div class="scard reveal">
         <div class="scard-tab solid"><span class="word">10 Reports</span><span class="idx">BEST VALUE</span></div>
         <div class="scard-body">
-          <div class="price-big">$9,500<span class="period"> / 10 sites</span></div>
-          <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px;">$950 per site</div>
-          <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">save $5,490 vs. singles</div>
+          <div class="price-big">$9,500<span class="period"> / 13 sites</span></div>
+          <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px;">$731 per site</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">3 sites free &middot; save $9,987 vs. singles</div>
           <ul class="price-feats">
-            <li>Everything in 1 Report, × 10 addresses</li>
+            <li>13 full reports (10 paid + 3 free)</li>
             <li>Credits never expire, use anytime</li>
             <li>Shareable across your team</li>
           </ul>
@@ -1137,7 +1137,7 @@ h2.sec em { text-shadow: 0 0 34px rgba(255,106,19,0.35); }
       <details class="faq-item"><summary><span class="faq-idx">Q-03</span>Where does the data come from?</summary><div class="faq-body">Municipal zoning bylaws, municipal GIS parcel and zoning data, agency terms of reference, and planning decision records for every covered municipality, kept current as bylaws change. Not scraped blog content. Not a generic AI summary.</div></details>
       <details class="faq-item"><summary><span class="faq-idx">Q-04</span>Does this replace my planning consultant?</summary><div class="faq-body">No. It front-loads the research a consultant spends the first weeks of an engagement assembling, so you walk into pre-consultation informed and spend consultant hours on strategy instead of lookup. Planning consultants and permit expeditors are among our heaviest users.</div></details>
       <details class="faq-item"><summary><span class="faq-idx">Q-05</span>How accurate is the zoning verdict?</summary><div class="faq-body">The verdict is read from your municipality's own zoning fabric for the exact parcel, including holding provisions and overlays, and every bylaw standard is cited to its section so you can verify it yourself. PreBuildIQ is decision support for pre-development diligence, not legal advice.</div></details>
-      <details class="faq-item"><summary><span class="faq-idx">Q-06</span>What does it cost?</summary><div class="faq-body">1 report is $1,499 one-time. 5-report pack is $5,499 ($1,100 per site). 10-report pack is $9,500 ($950 per site). Credits never expire. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div></details>
+      <details class="faq-item"><summary><span class="faq-idx">Q-06</span>What does it cost?</summary><div class="faq-body">1 report is $1,499 one-time. 5-report pack is $5,499 and includes 2 free sites (7 total, $785 per site). 10-report pack is $9,500 and includes 3 free sites (13 total, $731 per site). Credits never expire. A comparable consultant pre-application engagement runs $14,000 to $31,500.</div></details>
     </div>
   </div>
 </section>
@@ -1374,18 +1374,18 @@ h2.sec em { text-shadow: 0 0 34px rgba(255,106,19,0.35); }
       redirect: 'https://prebuildiq.app/login?mode=signup&next=%2Fbilling',
     },
     'five-reports': {
-      eyebrow: '5 Reports · $5,499',
-      title: 'Five sites. <strong>$1,100</strong> each.',
-      sub: 'Credits never expire. Shareable across your team. Save $1,996 vs. singles.',
-      submit: 'Buy 5 reports →',
+      eyebrow: '5 Reports + 2 free · $5,499',
+      title: 'Seven sites. <strong>$785</strong> each.',
+      sub: 'Buy 5, get 2 free. Credits never expire. Shareable across your team. Save $4,994 vs. singles.',
+      submit: 'Buy 5, get 2 free →',
       intent: 'five_reports',
       redirect: 'https://prebuildiq.app/login?mode=signup&next=%2Fbilling',
     },
     'ten-reports': {
-      eyebrow: '10 Reports · $9,500',
-      title: 'Ten sites. <strong>$950</strong> each.',
-      sub: 'Credits never expire. Shareable across your team. Save $5,490 vs. singles.',
-      submit: 'Buy 10 reports →',
+      eyebrow: '10 Reports + 3 free · $9,500',
+      title: 'Thirteen sites. <strong>$731</strong> each.',
+      sub: 'Buy 10, get 3 free. Credits never expire. Shareable across your team. Save $9,987 vs. singles.',
+      submit: 'Buy 10, get 3 free →',
       intent: 'ten_reports',
       redirect: 'https://prebuildiq.app/login?mode=signup&next=%2Fbilling',
     },
